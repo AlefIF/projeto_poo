@@ -5,6 +5,7 @@
  */
 package Visao;
 
+import Controle.CategoriaControle;
 import Controle.Con_JogoControle;
 import Controle.ConsoleControle;
 import Modelo.CategoriaBEAN;
@@ -31,9 +32,10 @@ public class FRMJogo extends javax.swing.JFrame {
     private JogoControle jControle = new JogoControle();
     private Con_JogoControle cjc = new Con_JogoControle();
     private ConsoleControle cControle = new ConsoleControle();
+    private CategoriaControle catControle = new CategoriaControle();
     private ArrayList<JogoBEAN> jDados;
     private DefaultTableModel dTable;
-
+    private ArrayList<CategoriaBEAN> catDados;
     private ArrayList<Con_jogoBEAN> cjDados;
     private ArrayList<ConsoleBEAN> cDados;
 
@@ -67,32 +69,30 @@ public class FRMJogo extends javax.swing.JFrame {
         dTable.addColumn("Preço Padrão");
         dTable.addColumn("Categoria");
         dTable.addColumn("Tipo de Jogo");
-        /*dTable.addColumn("CodigoConsole");
-        dTable.addColumn("Nome");
-        dTable.addColumn("Marca");*/
+        dTable.addColumn("Console");
+
         //pega os dados do ArrayList
         jDados = jControle.listarALL();
-        /*
+        catDados = catControle.listarALL();
         cDados = cControle.listarALL();
-        int cc;
-        String cn;
-        String cm;
-        for (ConsoleBEAN cdado : cDados) {
-            for (Con_jogoBEAN cjdado : cjDados) {
-                if (cdado.getConCodigo() == cjdado.getCjg_conCodigo()) {
-                    cc = cdado.getConCodigo();
-                    cn = cdado.getConNome();
-                    cm = cdado.getConMarca();
-                }
-            }
-            
-        }*/
+        cjDados = cjc.listarALL();
 
-        ////dTable.addColumn("CodigoConsole");  
         //cada célula do arrayList vira uma linha(row) na tabela
         for (JogoBEAN dado : jDados) {
-            dTable.addRow(new Object[]{dado.getJoCodigo(), dado.getJoNome(),
-                dado.getJoFaixaEtaria(), dado.getJoPrecoPadrao(), dado.getJo_catCodigo(), dado.getJoTipo()/*, cc, cn, cm*/});
+            for (CategoriaBEAN dado2 : catDados) {
+                if (dado.getJo_catCodigo() == dado2.getCatCodigo()) {
+                    for (Con_jogoBEAN dado3 : cjDados) {
+                        if (dado3.getCjg_joCodigo() == dado.getJoCodigo()) {
+                            for (ConsoleBEAN dado4 : cDados) {
+                                if (dado3.getCjg_conCodigo() == dado4.getConCodigo()) {
+                                    dTable.addRow(new Object[]{dado.getJoCodigo(), dado.getJoNome(),
+                                        dado.getJoFaixaEtaria(), dado.getJoPrecoPadrao(), dado2.getCatNome(), dado.getJoTipo(), dado4.getConNome()});
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         //set o modelo da tabela
@@ -105,10 +105,11 @@ public class FRMJogo extends javax.swing.JFrame {
             //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
             Class[] types = new Class[]{
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class,
-                java.lang.Double.class, java.lang.Integer.class, java.lang.String.class, /*java.lang.Integer.class, java.lang.String.class, java.lang.String.class*/};
+                java.lang.Double.class, java.lang.String.class, java.lang.String.class,
+                java.lang.String.class};
             //define se os campos podem ser editados na propria tabela
             boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false,/* false, false, false*/};
+                false, false, false, false, false, false, false};
 
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -178,19 +179,19 @@ public class FRMJogo extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setText("Código :");
 
-        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel3.setText("Nome :");
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel5.setText("Faixa etária :");
 
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel9.setText("Quantidade :");
 
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel7.setText("Categoria :");
 
         lbCodigoJogo.setText("...");
@@ -295,7 +296,7 @@ public class FRMJogo extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel6.setText("Console :");
 
         cbCon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
@@ -319,7 +320,7 @@ public class FRMJogo extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setText("Preço :");
 
         tableM.setModel(new javax.swing.table.DefaultTableModel(
@@ -349,7 +350,7 @@ public class FRMJogo extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tableM);
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel8.setText("Tipo de jogo :");
 
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Venda", "Aluguel" }));
@@ -505,6 +506,7 @@ public class FRMJogo extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Venda");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -512,6 +514,7 @@ public class FRMJogo extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Aluguel");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -599,18 +602,6 @@ public class FRMJogo extends javax.swing.JFrame {
         return linha;
     }
 
-    private void pegaSelecionado() {
-        int linha = retornaLinha();
-        jDados = jControle.listarALL();
-        lbCodigoJogo.setText(String.valueOf(jDados.get(linha).getJoCodigo()));
-        tfNome.setText(jDados.get(linha).getJoNome());
-        tfFaixa.setText(jDados.get(linha).getJoFaixaEtaria());
-        tfPreco.setText(String.valueOf(jDados.get(linha).getJoPrecoPadrao()));
-        cbTipo.setSelectedItem((jDados.get(linha).getJoTipo()));
-        cbCat.setSelectedIndex((jDados.get(linha).getJo_catCodigo()));
-        cDados = cControle.listarALL();
-        /*cbCon.setSelectedIndex(cDados.get(linha).getConCodigo());*/
-    }
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
         QtdBEAN qtde = new QtdBEAN();
         qtde.setQtd(Integer.parseInt(tfQtde.getText()));
@@ -715,10 +706,22 @@ public class FRMJogo extends javax.swing.JFrame {
             tfNome.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 1).toString());
             tfFaixa.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 2).toString());
             tfPreco.setText((tableJogo.getValueAt(tableJogo.getSelectedRow(), 3).toString()));
-            cbCat.setSelectedItem(tableJogo.getValueAt(tableJogo.getSelectedRow(), 4).toString());
             cbTipo.setSelectedItem(tableJogo.getValueAt(tableJogo.getSelectedRow(), 5).toString());
+            for (CategoriaBEAN dado2 : catDados) {
+                int xx = 0;
+                if ((tableJogo.getValueAt(tableJogo.getSelectedRow(), 4).toString().equals(dado2.getCatNome()))) {
+                    xx = dado2.getCatCodigo();
+                    cbCat.setSelectedIndex(xx);
+                }
+            }
+            for (ConsoleBEAN dado4 : cDados) {
+                int xx = 0;
+                if ((tableJogo.getValueAt(tableJogo.getSelectedRow(), 6).toString().equals(dado4.getConNome()))) {
+                    xx = dado4.getConCodigo();
+                    cbCon.setSelectedIndex(xx);
+                }
+            }
         }
-
     }//GEN-LAST:event_tableJogoMouseClicked
 
     private void tfFaixaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFaixaKeyTyped
@@ -790,12 +793,12 @@ public class FRMJogo extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        for(int x=0;x<tableM.getRowCount();x++){
-        if(tableM.getValueAt(x, 0)==(null)){
-        tableM.setValueAt(cbCon.getSelectedItem(), x, 0);//c
-        tableM.setValueAt(cbTipo.getSelectedItem(), x, 1);//t
-        tableM.setValueAt(tfPreco.getSelectedText(), x, 2);//p
-        }
+        for (int x = 0; x < tableM.getRowCount(); x++) {
+            if (tableM.getValueAt(x, 0) == (null)) {
+                tableM.setValueAt(cbCon.getSelectedItem(), x, 0);//c
+                tableM.setValueAt(cbTipo.getSelectedItem(), x, 1);//t
+                tableM.setValueAt(tfPreco.getSelectedText(), x, 2);//p
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
     private void limparCampos() {

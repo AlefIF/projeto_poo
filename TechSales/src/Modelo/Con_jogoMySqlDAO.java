@@ -6,8 +6,9 @@
 package Modelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -84,6 +85,32 @@ public class Con_jogoMySqlDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    
+    public ArrayList<Con_jogoBEAN> listarALL() {
+        String sql = "select * from con_jogo;";
+        ArrayList<Con_jogoBEAN> cjAL = new ArrayList<Con_jogoBEAN>();
+        try {
+            // prepared statement para seleção
+            stmt = connection.prepareStatement(sql);
+
+            // executa a consulta SQL usando o comando executeQuery
+            ResultSet rs = stmt.executeQuery();
+            //joga resultado da consulta no ArrayList
+            while (rs.next()) {
+                //joga os dados do rs dentro de um objeto c do tipo ContatoBEAN
+                Con_jogoBEAN b = new Con_jogoBEAN();
+                b.setCjg_conCodigo(rs.getInt(1));//indica que o cod ta no campo 1 do rs
+                b.setCjg_joCodigo(rs.getInt(2));
+                
+                //adiciona os dados no ArrayLIst
+                cjAL.add(b);
+            }
+            stmt.close();//fecha conexão - OBRIGATORIO SEMPRE!
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cjAL;
     }
     
 }

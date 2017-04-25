@@ -7,6 +7,7 @@ package Controle;
 
 import Modelo.Con_jogoBEAN;
 import Modelo.Con_jogoMySqlDAO;
+import java.util.ArrayList;
 
 /**
  *
@@ -30,5 +31,9 @@ public class Con_JogoControle {
     
     public boolean remover2(int codigo) {     
         return cjDAO.remover2(codigo);
+    }
+    
+    public ArrayList<Con_jogoBEAN> listarALL() {
+       return cjDAO.listarALL();
     }
 }

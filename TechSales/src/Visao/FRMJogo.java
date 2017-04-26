@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Modelo.JogoBEAN;
 import Modelo.QtdBEAN;
+import javax.swing.JList;
 import javax.swing.RowFilter;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -33,12 +34,12 @@ public class FRMJogo extends javax.swing.JFrame {
     private Con_JogoControle cjc = new Con_JogoControle();
     private ConsoleControle cControle = new ConsoleControle();
     private CategoriaControle catControle = new CategoriaControle();
-    private ArrayList<JogoBEAN> jDados;
-    private DefaultTableModel dTable;
+    private ArrayList<JogoBEAN> jDados;    
     private ArrayList<CategoriaBEAN> catDados;
     private ArrayList<Con_jogoBEAN> cjDados;
     private ArrayList<ConsoleBEAN> cDados;
-
+    private DefaultTableModel dTable;
+    private DefaultTableModel dTable2;
     /**
      * Creates new form FRMJogo
      */
@@ -325,29 +326,14 @@ public class FRMJogo extends javax.swing.JFrame {
 
         tableM.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Console", "Tipo de jogo", "Preço"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane3.setViewportView(tableM);
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -792,14 +778,41 @@ public class FRMJogo extends javax.swing.JFrame {
         sorter.setRowFilter(RowFilter.regexFilter(text));
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        for (int x = 0; x < tableM.getRowCount(); x++) {
-            if (tableM.getValueAt(x, 0) == (null)) {
-                tableM.setValueAt(cbCon.getSelectedItem(), x, 0);//c
-                tableM.setValueAt(cbTipo.getSelectedItem(), x, 1);//t
-                tableM.setValueAt(tfPreco.getSelectedText(), x, 2);//p
+    
+    private void preencheTabela2() {
+        dTable2 = criaTabela2();
+        //seta o nome das colunas da tabela
+        dTable2.addColumn("Console");
+        dTable2.addColumn("Tipo de jogo");
+        dTable2.addColumn("preço");   
+        dTable2.addRow(new Object[]{cbCon.getSelectedItem(),cbTipo.getSelectedItem(), tfPreco.getText()});  
+        //set o modelo da tabela
+        tableM.setModel(dTable2);    
+    }
+
+    private DefaultTableModel criaTabela2() {
+        //sempre que usar JTable é necessário ter um DefaulttableModel
+        DefaultTableModel dTable2 = new DefaultTableModel() {
+            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class};
+            //define se os campos podem ser editados na propria tabela
+            boolean[] canEdit = new boolean[]{
+                false, false, false};
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
             }
-        }
+        ;
+
+        };
+        //retorna o DefaultTableModel
+    return dTable2;
+    }
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        preencheTabela2();          
     }//GEN-LAST:event_jButton1ActionPerformed
     private void limparCampos() {
         lbCodigoJogo.setText("");

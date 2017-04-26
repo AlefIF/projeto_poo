@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Modelo.JogoBEAN;
 import Modelo.QtdBEAN;
-import javax.swing.JList;
+import Modelo.testeBean;
 import javax.swing.RowFilter;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -38,8 +38,10 @@ public class FRMJogo extends javax.swing.JFrame {
     private ArrayList<CategoriaBEAN> catDados;
     private ArrayList<Con_jogoBEAN> cjDados;
     private ArrayList<ConsoleBEAN> cDados;
+    private ArrayList<testeBean> testeDados;
     private DefaultTableModel dTable;
     private DefaultTableModel dTable2;
+    
     /**
      * Creates new form FRMJogo
      */
@@ -60,7 +62,7 @@ public class FRMJogo extends javax.swing.JFrame {
         }
 
     }
-
+   
     private void preencheTabela() {
         dTable = criaTabela();
         //seta o nome das colunas da tabela
@@ -784,8 +786,11 @@ public class FRMJogo extends javax.swing.JFrame {
         //seta o nome das colunas da tabela
         dTable2.addColumn("Console");
         dTable2.addColumn("Tipo de jogo");
-        dTable2.addColumn("preço");   
-        dTable2.addRow(new Object[]{cbCon.getSelectedItem(),cbTipo.getSelectedItem(), tfPreco.getText()});  
+        dTable2.addColumn("preço"); 
+        for (testeBean as : testeDados) {
+           dTable2.addRow(new Object[]{as.getConsole(),as.getTipoJog(), as.getPreco()}); 
+        }
+          
         //set o modelo da tabela
         tableM.setModel(dTable2);    
     }
@@ -810,9 +815,18 @@ public class FRMJogo extends javax.swing.JFrame {
         //retorna o DefaultTableModel
     return dTable2;
     }
-
+    
+   private void cadastroTeste(){
+       testeBean as= new testeBean();
+       as.setPreco("as");
+       as.setConsole("as");
+       as.setTipoJog("as");
+       testeDados.add(as);
+       preencheTabela2(); 
+   }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        preencheTabela2();          
+        cadastroTeste();              
     }//GEN-LAST:event_jButton1ActionPerformed
     private void limparCampos() {
         lbCodigoJogo.setText("");

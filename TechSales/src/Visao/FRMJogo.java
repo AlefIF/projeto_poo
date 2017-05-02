@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Modelo.JogoBEAN;
-import Modelo.QtdBEAN;
 import Modelo.testeBean;
 import javax.swing.RowFilter;
 import javax.swing.table.TableModel;
@@ -34,14 +33,14 @@ public class FRMJogo extends javax.swing.JFrame {
     private Con_JogoControle cjc = new Con_JogoControle();
     private ConsoleControle cControle = new ConsoleControle();
     private CategoriaControle catControle = new CategoriaControle();
-    private ArrayList<JogoBEAN> jDados;    
+    private ArrayList<JogoBEAN> jDados;
     private ArrayList<CategoriaBEAN> catDados;
     private ArrayList<Con_jogoBEAN> cjDados;
     private ArrayList<ConsoleBEAN> cDados;
     private ArrayList<testeBean> testeDados;
     private DefaultTableModel dTable;
     private DefaultTableModel dTable2;
-    
+
     /**
      * Creates new form FRMJogo
      */
@@ -62,7 +61,7 @@ public class FRMJogo extends javax.swing.JFrame {
         }
 
     }
-   
+
     private void preencheTabela() {
         dTable = criaTabela();
         //seta o nome das colunas da tabela
@@ -73,7 +72,7 @@ public class FRMJogo extends javax.swing.JFrame {
         dTable.addColumn("Categoria");
         dTable.addColumn("Tipo de Jogo");
         dTable.addColumn("Console");
-
+        dTable.addColumn("Quantidade");
         //pega os dados do ArrayList
         jDados = jControle.listarALL();
         catDados = catControle.listarALL();
@@ -89,7 +88,7 @@ public class FRMJogo extends javax.swing.JFrame {
                             for (ConsoleBEAN dado4 : cDados) {
                                 if (dado3.getCjg_conCodigo() == dado4.getConCodigo()) {
                                     dTable.addRow(new Object[]{dado.getJoCodigo(), dado.getJoNome(),
-                                        dado.getJoFaixaEtaria(), dado.getJoPrecoPadrao(), dado2.getCatNome(), dado.getJoTipo(), dado4.getConNome()});
+                                        dado.getJoFaixaEtaria(), dado.getJoPrecoPadrao(), dado2.getCatNome(), dado.getJoTipo(), dado4.getConNome(), dado.getJoQtd()});
                                 }
                             }
                         }
@@ -109,10 +108,10 @@ public class FRMJogo extends javax.swing.JFrame {
             Class[] types = new Class[]{
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class,
                 java.lang.Double.class, java.lang.String.class, java.lang.String.class,
-                java.lang.String.class};
+                java.lang.String.class,java.lang.Integer.class};
             //define se os campos podem ser editados na propria tabela
             boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false, false};
+                false, false, false, false, false, false, false, false};
 
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -591,28 +590,21 @@ public class FRMJogo extends javax.swing.JFrame {
     }
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        QtdBEAN qtde = new QtdBEAN();
-        qtde.setQtd(Integer.parseInt(tfQtde.getText()));
-        if (qtde.getQtd() >= 1) {
-            for (int i = 0; i < qtde.getQtd(); i++) {
-                JogoBEAN jogo = new JogoBEAN();
-                jogo.setJoNome(tfNome.getText());
-                jogo.setJoFaixaEtaria(tfFaixa.getText());
-                jogo.setJoPrecoPadrao(Double.parseDouble((tfPreco.getText())));
-                jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
-                CategoriaBEAN c = (CategoriaBEAN) cbCat.getSelectedItem();
-                jogo.setJo_catCodigo(c.getCatCodigo());
-                Con_jogoBEAN w = new Con_jogoBEAN();
-                ConsoleBEAN d = (ConsoleBEAN) cbCon.getSelectedItem();
-                w.setCjg_conCodigo(d.getConCodigo());
-                jControle.cadastrar(jogo);
-                cjc.cadastrar2(w);
-                this.preencheTabela();
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro: Insira a quantidade");
-        }
 
+        JogoBEAN jogo = new JogoBEAN();
+        jogo.setJoNome(tfNome.getText());
+        jogo.setJoFaixaEtaria(tfFaixa.getText());
+        jogo.setJoPrecoPadrao(Double.parseDouble((tfPreco.getText())));
+        jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
+        jogo.setJoQtd(Integer.parseInt(tfQtde.getText()));
+        CategoriaBEAN c = (CategoriaBEAN) cbCat.getSelectedItem();
+        jogo.setJo_catCodigo(c.getCatCodigo());
+        Con_jogoBEAN w = new Con_jogoBEAN();
+        ConsoleBEAN d = (ConsoleBEAN) cbCon.getSelectedItem();
+        w.setCjg_conCodigo(d.getConCodigo());
+        jControle.cadastrar(jogo);
+        cjc.cadastrar2(w);
+        this.preencheTabela();
         limparCampos();
         JOptionPane.showMessageDialog(null, "Jogo CADASTRADO com sucesso");
     }//GEN-LAST:event_btCadastrarActionPerformed
@@ -780,19 +772,18 @@ public class FRMJogo extends javax.swing.JFrame {
         sorter.setRowFilter(RowFilter.regexFilter(text));
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
-    
     private void preencheTabela2() {
         dTable2 = criaTabela2();
         //seta o nome das colunas da tabela
         dTable2.addColumn("Console");
         dTable2.addColumn("Tipo de jogo");
-        dTable2.addColumn("preço"); 
+        dTable2.addColumn("preço");
         for (testeBean as : testeDados) {
-           dTable2.addRow(new Object[]{as.getConsole(),as.getTipoJog(), as.getPreco()}); 
+            dTable2.addRow(new Object[]{as.getConsole(), as.getTipoJog(), as.getPreco()});
         }
-          
+
         //set o modelo da tabela
-        tableM.setModel(dTable2);    
+        tableM.setModel(dTable2);
     }
 
     private DefaultTableModel criaTabela2() {
@@ -815,18 +806,18 @@ public class FRMJogo extends javax.swing.JFrame {
         //retorna o DefaultTableModel
     return dTable2;
     }
-    
-   private void cadastroTeste(){
-       testeBean as= new testeBean();
-       as.setPreco("as");
-       as.setConsole("as");
-       as.setTipoJog("as");
-       testeDados.add(as);
-       preencheTabela2(); 
-   }
-    
+
+    private void cadastroTeste() {
+        testeBean as = new testeBean();
+        as.setPreco("as");
+        as.setConsole("as");
+        as.setTipoJog("as");
+        testeDados.add(as);
+        preencheTabela2();
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cadastroTeste();              
+        cadastroTeste();
     }//GEN-LAST:event_jButton1ActionPerformed
     private void limparCampos() {
         lbCodigoJogo.setText("");

@@ -17,7 +17,16 @@ public class JogoBEAN {
     private double joPrecoPadrao;
     private String joTipo;
     private int jo_catCodigo;
+     private int joQtd;
 
+    public int getJoQtd() {
+        return joQtd;
+    }
+
+    public void setJoQtd(int joQtd) {
+        this.joQtd = joQtd;
+    }
+     
     public int getJo_catCodigo() {
         return jo_catCodigo;
     }

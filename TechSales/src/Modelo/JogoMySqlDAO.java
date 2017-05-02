@@ -25,7 +25,7 @@ public class JogoMySqlDAO {
 
     public void cadastrar(JogoBEAN c) {
 
-        String sql = "insert into jogo (joNome, joFaixaEtaria, joPrecoPadrao,jo_catCodigo, joTipo) values (?,?,?,?,?);";
+        String sql = "insert into jogo (joNome, joFaixaEtaria, joPrecoPadrao,jo_catCodigo, joTipo,joQtd) values (?,?,?,?,?,?);";
         try {
             // prepared statement para inserção
             stmt = connection.prepareStatement(sql);
@@ -35,6 +35,7 @@ public class JogoMySqlDAO {
             stmt.setDouble(3, c.getJoPrecoPadrao());
             stmt.setInt(4, c.getJo_catCodigo());
             stmt.setString(5, c.getJoTipo());
+            stmt.setInt(6, c.getJoQtd());
             // executa
             stmt.execute();
             stmt.close();
@@ -61,9 +62,10 @@ public class JogoMySqlDAO {
                 c.setJoCodigo(rs.getInt("joCodigo"));//indica que o cod ta no campo 1 do rs
                 c.setJoNome(rs.getString(2));
                 c.setJoFaixaEtaria(rs.getString(3));
-                c.setJoPrecoPadrao(rs.getDouble(4));
-                c.setJo_catCodigo(rs.getInt(5));
+                c.setJoPrecoPadrao(rs.getDouble(4));             
+                c.setJoQtd(rs.getInt(5));
                 c.setJoTipo(rs.getString(6));
+                c.setJo_catCodigo(rs.getInt(7));
                 //adiciona os dados no ArrayLIst
                 jogoAL.add(c);
             }
@@ -77,7 +79,7 @@ public class JogoMySqlDAO {
     public boolean editar(JogoBEAN c) {
         
         String sql = "update jogo set joNome = ?,joFaixaEtaria = ?,"
-                + " joPrecoPadrao=?, jo_catCodigo = ?, joTipo = ? where joCodigo = ?;";
+                + " joPrecoPadrao=?, jo_catCodigo = ?, joTipo = ? ,joQtd = ? where joCodigo = ?;";
         try {
             /* metodo usado para criar um objeto que representa a instrução 
             SQL que será executada, sendo que é invocado através do objeto 
@@ -92,7 +94,8 @@ public class JogoMySqlDAO {
             stmt.setDouble(3, c.getJoPrecoPadrao());
             stmt.setInt(4, c.getJo_catCodigo());
             stmt.setString(5, c.getJoTipo());
-            stmt.setInt(6, c.getJoCodigo());
+            stmt.setInt(6, c.getJoQtd());
+            stmt.setInt(7, c.getJoCodigo());
 
             // executa update
             int linhasAtualizadas = stmt.executeUpdate();

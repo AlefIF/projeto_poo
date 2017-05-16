@@ -88,7 +88,8 @@ public class FRMJogo extends javax.swing.JFrame {
                             for (ConsoleBEAN dado4 : cDados) {
                                 if (dado3.getCjg_conCodigo() == dado4.getConCodigo()) {
                                     dTable.addRow(new Object[]{dado.getJoCodigo(), dado.getJoNome(),
-                                        dado.getJoFaixaEtaria(), dado.getJoPrecoPadrao(), dado2.getCatNome(), dado.getJoTipo(), dado4.getConNome(), dado.getJoQtd()});
+                                        dado.getJoFaixaEtaria(), dado.getJoPrecoPadrao(), dado2.getCatNome(),
+                                        dado.getJoTipo(), dado4.getConNome(), dado.getJoQtd()});
                                 }
                             }
                         }
@@ -108,7 +109,7 @@ public class FRMJogo extends javax.swing.JFrame {
             Class[] types = new Class[]{
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class,
                 java.lang.Double.class, java.lang.String.class, java.lang.String.class,
-                java.lang.String.class,java.lang.Integer.class};
+                java.lang.String.class, java.lang.Integer.class};
             //define se os campos podem ser editados na propria tabela
             boolean[] canEdit = new boolean[]{
                 false, false, false, false, false, false, false, false};
@@ -162,6 +163,8 @@ public class FRMJogo extends javax.swing.JFrame {
         tableM = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         cbTipo = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        tfLote = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableJogo = new javax.swing.JTable();
@@ -384,7 +387,7 @@ public class FRMJogo extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 20, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -392,6 +395,15 @@ public class FRMJogo extends javax.swing.JFrame {
                         .addComponent(tfPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel10.setText("Lote :");
+
+        tfLote.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfLoteKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -415,15 +427,19 @@ public class FRMJogo extends javax.swing.JFrame {
                                     .addComponent(tfFaixa, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                                     .addComponent(tfQtde))
                                 .addGap(36, 36, 36)
-                                .addComponent(jLabel7)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel10))
                                 .addGap(18, 18, 18)
-                                .addComponent(cbCat, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cbCat, 0, 113, Short.MAX_VALUE)
+                                    .addComponent(tfLote)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel3)
-                                    .addGap(62, 62, 62)
-                                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -436,11 +452,11 @@ public class FRMJogo extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(lbCodigoJogo))
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tfFaixa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -449,7 +465,9 @@ public class FRMJogo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(tfQtde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfQtde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(tfLote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -597,6 +615,7 @@ public class FRMJogo extends javax.swing.JFrame {
         jogo.setJoPrecoPadrao(Double.parseDouble((tfPreco.getText())));
         jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
         jogo.setJoQtd(Integer.parseInt(tfQtde.getText()));
+        jogo.setJoLote(tfLote.getText());
         CategoriaBEAN c = (CategoriaBEAN) cbCat.getSelectedItem();
         jogo.setJo_catCodigo(c.getCatCodigo());
         Con_jogoBEAN w = new Con_jogoBEAN();
@@ -813,12 +832,17 @@ public class FRMJogo extends javax.swing.JFrame {
         as.setConsole("as");
         as.setTipoJog("as");
         testeDados.add(as);
-        preencheTabela2();
+
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         cadastroTeste();
+        preencheTabela2();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tfLoteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLoteKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfLoteKeyTyped
     private void limparCampos() {
         lbCodigoJogo.setText("");
         tfNome.setText("");
@@ -880,6 +904,7 @@ public class FRMJogo extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -903,6 +928,7 @@ public class FRMJogo extends javax.swing.JFrame {
     private javax.swing.JTable tableM;
     private javax.swing.JTextField tfChave;
     private javax.swing.JFormattedTextField tfFaixa;
+    private javax.swing.JTextField tfLote;
     private javax.swing.JTextField tfNome;
     private javax.swing.JFormattedTextField tfPreco;
     private javax.swing.JTextField tfQtde;

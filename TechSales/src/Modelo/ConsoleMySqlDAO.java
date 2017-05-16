@@ -33,7 +33,7 @@ public class ConsoleMySqlDAO {
             // prepared statement para inserção
             stmt = connection.prepareStatement(sql);
             // seta os valores
-           // stmt.setInt(1, c.getConCodigo());
+            // stmt.setInt(1, c.getConCodigo());
             stmt.setString(1, c.getConNome());
             stmt.setString(2, c.getConMarca());
             // executa

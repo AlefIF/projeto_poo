@@ -13,61 +13,60 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author LUCASP
  */
 public class ConnectionFactory {
-    private static final String DRIVER= "com.mysql.jdbc.Driver";//define o driver usado pelo mysql
-    private static final String URL="jdbc:mysql://localhost:3307/bdTechSales2";//define o caminho de conexão
-    private static final String USER="root";//define o usuario do banco
-    private static final String PASS="alef91107785";//define a senha do banco
-    
-    
-    public static Connection getConnection(){
+
+    private static final String DRIVER = "com.mysql.jdbc.Driver";//define o driver usado pelo mysql
+    private static final String URL = "jdbc:mysql://localhost:3307/bdTechSalesAtual";//define o caminho de conexão
+    private static final String USER = "root";//define o usuario do banco
+    private static final String PASS = "alef91107785";//define a senha do banco
+
+    public static Connection getConnection() {
         try {
             Class.forName(DRIVER);
             return DriverManager.getConnection(URL, USER, PASS);
-        } catch (ClassNotFoundException| SQLException ex) {
-            throw new RuntimeException("Erro ao conectar BD:\n",ex);
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new RuntimeException("Erro ao conectar BD:\n", ex);
         }
 
-
     }
-   
-    public static void closeConnection(Connection con){
-         try {
-             if(con!=null) {
-           
+
+    public static void closeConnection(Connection con) {
+        try {
+            if (con != null) {
+
                 con.close();
             }
-         } catch (SQLException ex) {
-                Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
-    public static void closeConnection(Connection con,PreparedStatement stmt){
+
+    public static void closeConnection(Connection con, PreparedStatement stmt) {
         closeConnection(con);
         try {
-             if(stmt!=null) {
-           
+            if (stmt != null) {
+
                 stmt.close();
             }
-         } catch (SQLException ex) {
-                Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    public static void closeConnection(Connection con,PreparedStatement stmt,ResultSet rs){
+
+    public static void closeConnection(Connection con, PreparedStatement stmt, ResultSet rs) {
         closeConnection(con, stmt);
         try {
-             if(rs!=null) {
-           
+            if (rs != null) {
+
                 rs.close();
             }
-         } catch (SQLException ex) {
-                Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+
 }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Modelo;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
  * @author admin
  */
 public class Con_jogoMySqlDAO {
+
     //armazernar meu objeto de conexao com o BD MySQL    
     private Connection connection;
     //objeto stmt que executa as consultas no BD
@@ -33,17 +35,16 @@ public class Con_jogoMySqlDAO {
             stmt = connection.prepareStatement(sql);
             // seta os valores
             stmt.setInt(1, w.getCjg_joCodigo());
-            stmt.setInt(2, w.getCjg_conCodigo());             
+            stmt.setInt(2, w.getCjg_conCodigo());
             // executa
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }      
+        }
 
     }
 
-    
     public boolean editar2(Con_jogoBEAN w) {
         String sql = "update  Con_jogo set cjg_conCodigo=? where cjg_joCodigo = ?;";
 
@@ -55,8 +56,8 @@ public class Con_jogoMySqlDAO {
             Deve ser colocado dentro de um bloco try catch */
             stmt = connection.prepareStatement(sql);
             // seta os valores          
-            stmt.setInt(1, w.getCjg_conCodigo());     
-             stmt.setInt(2, w.getCjg_joCodigo());
+            stmt.setInt(1, w.getCjg_conCodigo());
+            stmt.setInt(2, w.getCjg_joCodigo());
 
             // executa update
             int linhasAtualizadas = stmt.executeUpdate();
@@ -86,7 +87,7 @@ public class Con_jogoMySqlDAO {
             throw new RuntimeException(e);
         }
     }
-    
+
     public ArrayList<Con_jogoBEAN> listarALL() {
         String sql = "select * from con_jogo;";
         ArrayList<Con_jogoBEAN> cjAL = new ArrayList<Con_jogoBEAN>();
@@ -102,7 +103,7 @@ public class Con_jogoMySqlDAO {
                 Con_jogoBEAN b = new Con_jogoBEAN();
                 b.setCjg_conCodigo(rs.getInt(1));//indica que o cod ta no campo 1 do rs
                 b.setCjg_joCodigo(rs.getInt(2));
-                
+
                 //adiciona os dados no ArrayLIst
                 cjAL.add(b);
             }
@@ -112,5 +113,5 @@ public class Con_jogoMySqlDAO {
         }
         return cjAL;
     }
-    
+
 }

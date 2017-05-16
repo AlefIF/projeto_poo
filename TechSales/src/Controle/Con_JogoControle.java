@@ -14,26 +14,30 @@ import java.util.ArrayList;
  * @author admin
  */
 public class Con_JogoControle {
-    private Con_jogoMySqlDAO cjDAO= new Con_jogoMySqlDAO();
+
+    private Con_jogoMySqlDAO cjDAO = new Con_jogoMySqlDAO();
     private int codigo = 0;
-    public int atualizaCodigo2(){
-       codigo++;   
-       return codigo;
-    }     
-    public void cadastrar2(Con_jogoBEAN w) {                             
-       
-       w.setCjg_joCodigo(this.atualizaCodigo2());      
-       cjDAO.cadastrar2(w);
+
+    public int atualizaCodigo2() {
+        codigo++;
+        return codigo;
     }
+
+    public void cadastrar2(Con_jogoBEAN w) {
+
+        w.setCjg_joCodigo(this.atualizaCodigo2());
+        cjDAO.cadastrar2(w);
+    }
+
     public boolean editar2(Con_jogoBEAN w) {
-        return cjDAO.editar2(w);        
+        return cjDAO.editar2(w);
     }
-    
-    public boolean remover2(int codigo) {     
+
+    public boolean remover2(int codigo) {
         return cjDAO.remover2(codigo);
     }
-    
+
     public ArrayList<Con_jogoBEAN> listarALL() {
-       return cjDAO.listarALL();
+        return cjDAO.listarALL();
     }
 }

@@ -16,8 +16,17 @@ public class JogoBEAN {
     private String joFaixaEtaria;
     private double joPrecoPadrao;
     private String joTipo;
+    private String joLote;
+
+    public String getJoLote() {
+        return joLote;
+    }
+
+    public void setJoLote(String joLote) {
+        this.joLote = joLote;
+    }
     private int jo_catCodigo;
-     private int joQtd;
+    private int joQtd;
 
     public int getJoQtd() {
         return joQtd;
@@ -26,7 +35,7 @@ public class JogoBEAN {
     public void setJoQtd(int joQtd) {
         this.joQtd = joQtd;
     }
-     
+
     public int getJo_catCodigo() {
         return jo_catCodigo;
     }

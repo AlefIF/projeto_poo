@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Controle;
+
 import Modelo.CategoriaBEAN;
 import Modelo.CategoriaMysqlDAO;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
  * @author admin
  */
 public class CategoriaControle {
+
     private CategoriaMysqlDAO catDAO = new CategoriaMysqlDAO();
     private int codigo = 0;
 
@@ -37,5 +39,5 @@ public class CategoriaControle {
     public boolean remover(int codigo) {
         return catDAO.remover(codigo);
     }
-    
+
 }

@@ -25,7 +25,7 @@ public class JogoMySqlDAO {
 
     public void cadastrar(JogoBEAN c) {
 
-        String sql = "insert into jogo (joNome, joFaixaEtaria, joPrecoPadrao,joTipo,joQtd,joLote,jo_catCodigo, ) values (?,?,?,?,?,?,?);";
+        String sql = "insert into jogo (joNome, joFaixaEtaria, joPrecoPadrao, joTipo, joQtd, joLote, jo_catCodigo) values (?,?,?,?,?,?,?);";
         try {
             // prepared statement para inserção
             stmt = connection.prepareStatement(sql);

@@ -89,8 +89,8 @@ public class FRMJogo extends javax.swing.JFrame {
                             for (ConsoleBEAN dado4 : cDados) {
                                 if (dado3.getCjg_conCodigo() == dado4.getConCodigo()) {
                                     dTable.addRow(new Object[]{dado.getJoCodigo(), dado.getJoNome(),
-                                        dado.getJoFaixaEtaria(), dado.getJoPrecoPadrao(),dado.getJoTipo(),
-                                        dado2.getCatNome(),dado4.getConNome(),dado.getJoLote() , dado.getJoQtd()});
+                                        dado.getJoFaixaEtaria(), dado.getJoPrecoPadrao(), dado.getJoTipo(),
+                                        dado2.getCatNome(), dado4.getConNome(), dado.getJoLote(), dado.getJoQtd()});
                                 }
                             }
                         }
@@ -110,10 +110,10 @@ public class FRMJogo extends javax.swing.JFrame {
             Class[] types = new Class[]{
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class,
                 java.lang.Double.class, java.lang.String.class, java.lang.String.class,
-                java.lang.String.class,java.lang.String.class, java.lang.Integer.class};
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class};
             //define se os campos podem ser editados na propria tabela
             boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false, false, false ,false};
+                false, false, false, false, false, false, false, false, false};
 
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {

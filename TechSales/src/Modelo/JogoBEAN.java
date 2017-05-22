@@ -18,13 +18,6 @@ public class JogoBEAN {
     private String joTipo;
     private String joLote;
 
-    public String getJoLote() {
-        return joLote;
-    }
-
-    public void setJoLote(String joLote) {
-        this.joLote = joLote;
-    }
     private int jo_catCodigo;
     private int joQtd;
 
@@ -82,6 +75,14 @@ public class JogoBEAN {
 
     public void setJoPrecoPadrao(double joPrecoPadrao) {
         this.joPrecoPadrao = joPrecoPadrao;
+    }
+
+    public String getJoLote() {
+        return joLote;
+    }
+
+    public void setJoLote(String joLote) {
+        this.joLote = joLote;
     }
 
 }

@@ -44,7 +44,6 @@ public class JogoMySqlDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        Con_jogoBEAN a = new Con_jogoBEAN();
 
     }
 
@@ -82,7 +81,7 @@ public class JogoMySqlDAO {
     public boolean editar(JogoBEAN c) {
 
         String sql = "update jogo set joNome = ?,joFaixaEtaria = ?,"
-                + " joPrecoPadrao=?, joTipo = ?, joQtd = ?, jo_catCodigo = ?,  where joCodigo = ?;";
+                + " joPrecoPadrao=?, joTipo = ?, joQtd = ?, joLote = ?, jo_catCodigo = ?,  where joCodigo = ?;";
         try {
             /* metodo usado para criar um objeto que representa a instrução 
             SQL que será executada, sendo que é invocado através do objeto 
@@ -97,8 +96,9 @@ public class JogoMySqlDAO {
             stmt.setDouble(3, c.getJoPrecoPadrao());
             stmt.setString(4, c.getJoTipo());
             stmt.setInt(5, c.getJoQtd());
-            stmt.setInt(6, c.getJo_catCodigo());
-            stmt.setInt(7, c.getJoCodigo());
+            stmt.setString(6, c.getJoLote());
+            stmt.setInt(7, c.getJo_catCodigo());
+            stmt.setInt(8, c.getJoCodigo());
 
             // executa update
             int linhasAtualizadas = stmt.executeUpdate();

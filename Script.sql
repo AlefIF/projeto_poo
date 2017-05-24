@@ -81,7 +81,7 @@ CREATE TABLE `con_jogo` (
   KEY `fk_jogo_has_console_jogo1_idx` (`cjg_joCodigo`),
   CONSTRAINT `fk_jogo_has_console_console1` FOREIGN KEY (`cjg_conCodigo`) REFERENCES `console` (`conCodigo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_jogo_has_console_jogo1` FOREIGN KEY (`cjg_joCodigo`) REFERENCES `jogo` (`joCodigo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,6 +90,7 @@ CREATE TABLE `con_jogo` (
 
 LOCK TABLES `con_jogo` WRITE;
 /*!40000 ALTER TABLE `con_jogo` DISABLE KEYS */;
+INSERT INTO `con_jogo` VALUES (1,3);
 /*!40000 ALTER TABLE `con_jogo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,16 +223,15 @@ CREATE TABLE `jogo` (
   `joCodigo` int(11) NOT NULL AUTO_INCREMENT,
   `joNome` text NOT NULL,
   `joFaixaEtaria` text NOT NULL,
-  `joPrecoPadrao` float NOT NULL,
+  `joPrecoPadrao` double NOT NULL,
   `joTipo` text NOT NULL,
   `joQtd` int(11) NOT NULL,
-  `joLote` varchar(40) NOT NULL,
+  `joLote` text NOT NULL,
   `jo_catCodigo` int(11) NOT NULL,
   PRIMARY KEY (`joCodigo`),
-  UNIQUE KEY `joLote_UNIQUE` (`joLote`),
   KEY `fk_jogo_categoria1_idx` (`jo_catCodigo`),
   CONSTRAINT `fk_jogo_categoria1` FOREIGN KEY (`jo_catCodigo`) REFERENCES `categoria` (`catCodigo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,6 +240,7 @@ CREATE TABLE `jogo` (
 
 LOCK TABLES `jogo` WRITE;
 /*!40000 ALTER TABLE `jogo` DISABLE KEYS */;
+INSERT INTO `jogo` VALUES (1,'Warcraft 4','+(18)',600,'Venda',1,'abc123',3);
 /*!40000 ALTER TABLE `jogo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -315,4 +316,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-16 11:36:26
+-- Dump completed on 2017-05-24 19:40:13

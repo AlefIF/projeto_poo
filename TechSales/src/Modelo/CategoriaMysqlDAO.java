@@ -45,7 +45,7 @@ public class CategoriaMysqlDAO {
     }
 
     public ArrayList<CategoriaBEAN> listarALL() {
-        String sql = "select * from categoria;";
+        String sql = "select *from categoria;";
         ArrayList<CategoriaBEAN> catAL = new ArrayList<CategoriaBEAN>();
         try {
             // prepared statement para seleção

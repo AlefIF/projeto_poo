@@ -45,7 +45,7 @@ public class ConsoleMySqlDAO {
     }
 
     public ArrayList<ConsoleBEAN> listarALL() {
-        String sql = "select * from console;";
+        String sql = "select *from console;";
         ArrayList<ConsoleBEAN> conAL = new ArrayList<ConsoleBEAN>();
         try {
             // prepared statement para seleção

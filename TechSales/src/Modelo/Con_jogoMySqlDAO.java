@@ -89,7 +89,7 @@ public class Con_jogoMySqlDAO {
     }
 
     public ArrayList<Con_jogoBEAN> listarALL() {
-        String sql = "select * from con_jogo;";
+        String sql = "select *from con_jogo;";
         ArrayList<Con_jogoBEAN> cjAL = new ArrayList<Con_jogoBEAN>();
         try {
             // prepared statement para seleção
@@ -101,8 +101,8 @@ public class Con_jogoMySqlDAO {
             while (rs.next()) {
                 //joga os dados do rs dentro de um objeto c do tipo ContatoBEAN
                 Con_jogoBEAN b = new Con_jogoBEAN();
-                b.setCjg_conCodigo(rs.getInt(1));//indica que o cod ta no campo 1 do rs
-                b.setCjg_joCodigo(rs.getInt(2));
+                b.setCjg_joCodigo(rs.getInt(1));
+                b.setCjg_conCodigo(rs.getInt(2));//indica que o cod ta no campo 1 do rs
 
                 //adiciona os dados no ArrayLIst
                 cjAL.add(b);

@@ -48,7 +48,7 @@ public class JogoMySqlDAO {
     }
 
     public ArrayList<JogoBEAN> listarALL() {
-        String sql = "select * from jogo;";
+        String sql = "select *from jogo;";
         ArrayList<JogoBEAN> jogoAL = new ArrayList<JogoBEAN>();
         try {
             // prepared statement para seleção

@@ -706,21 +706,22 @@ public class FRMJogo extends javax.swing.JFrame {
             tfNome.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 1).toString());
             tfFaixa.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 2).toString());
             tfPreco.setText((tableJogo.getValueAt(tableJogo.getSelectedRow(), 3).toString()));
-            cbTipo.setSelectedItem(tableJogo.getValueAt(tableJogo.getSelectedRow(), 5).toString());
+            cbTipo.setSelectedItem(tableJogo.getValueAt(tableJogo.getSelectedRow(), 4).toString());
             for (CategoriaBEAN dado2 : catDados) {
-                int xx = 0;
-                if ((tableJogo.getValueAt(tableJogo.getSelectedRow(), 4).toString().equals(dado2.getCatNome()))) {
-                    xx = dado2.getCatCodigo();
+                if ((tableJogo.getValueAt(tableJogo.getSelectedRow(), 5).toString().equals(dado2.getCatNome()))) {
+                    int xx = dado2.getCatCodigo();
                     cbCat.setSelectedIndex(xx);
                 }
             }
             for (ConsoleBEAN dado4 : cDados) {
-                int xx = 0;
+
                 if ((tableJogo.getValueAt(tableJogo.getSelectedRow(), 6).toString().equals(dado4.getConNome()))) {
-                    xx = dado4.getConCodigo();
+                    int xx = dado4.getConCodigo();
                     cbCon.setSelectedIndex(xx);
                 }
             }
+            tfLote.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 7).toString());
+            tfQtde.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 8).toString());
         }
     }//GEN-LAST:event_tableJogoMouseClicked
 

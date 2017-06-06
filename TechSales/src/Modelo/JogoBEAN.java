@@ -17,7 +17,6 @@ public class JogoBEAN {
     private double joPrecoPadrao;
     private String joTipo;
     private String joLote;
-
     private int jo_catCodigo;
     private int joQtd;
 

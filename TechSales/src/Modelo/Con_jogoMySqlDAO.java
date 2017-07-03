@@ -29,13 +29,12 @@ public class Con_jogoMySqlDAO {
 
     public void cadastrar2(Con_jogoBEAN w) {
 
-        String sql = "insert into con_jogo (cjg_joCodigo,cjg_conCodigo) values (?,?);";
+        String sql = "insert into con_jogo (cjg_conCodigo) values (?);";
         try {
             // prepared statement para inserção
             stmt = connection.prepareStatement(sql);
             // seta os valores
-            stmt.setInt(1, w.getCjg_joCodigo());
-            stmt.setInt(2, w.getCjg_conCodigo());
+            stmt.setInt(1, w.getCjg_conCodigo());
             // executa
             stmt.execute();
             stmt.close();

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Modelo.JogoBEAN;
-import Modelo.insertBean;
+import Modelo.InsertBean;
 import javax.swing.RowFilter;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -39,7 +39,7 @@ public class FRMJogo extends javax.swing.JFrame {
     private ArrayList<ConsoleBEAN> cDados;
     private DefaultTableModel dTable;
     private DefaultTableModel dTable2;
-    private ArrayList<insertBean> insertDados = new ArrayList<insertBean>();
+    private ArrayList<InsertBean> insertDados = new ArrayList<InsertBean>();
 
     /**
      * Creates new form FRMJogo
@@ -80,7 +80,6 @@ public class FRMJogo extends javax.swing.JFrame {
         cDados = cControle.listarALL();
         cjDados = cjc.listarALL();
 
-        //cada célula do arrayList vira uma linha(row) na tabela
         for (JogoBEAN dado : jDados) {
             for (CategoriaBEAN dado2 : catDados) {
                 if (dado.getJo_catCodigo() == dado2.getCatCodigo()) {
@@ -298,6 +297,11 @@ public class FRMJogo extends javax.swing.JFrame {
         jLabel8.setText("Tipo de jogo :");
 
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Venda", "Aluguel" }));
+        cbTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbTipoActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel9.setText("Quantidade :");
@@ -343,7 +347,7 @@ public class FRMJogo extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGap(142, 142, 142)
@@ -611,7 +615,7 @@ public class FRMJogo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btVoltar);
-        btVoltar.setBounds(480, 10, 80, 20);
+        btVoltar.setBounds(470, 10, 80, 20);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/back2.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -628,24 +632,41 @@ public class FRMJogo extends javax.swing.JFrame {
     }
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
+        cDados = cControle.listarALL();
+        jDados = jControle.listarALL();
+        for (InsertBean insert : insertDados) {
+            for (ConsoleBEAN cDado : cDados) {
+                if (cDado.getConNome().equals(insert.getConNome())) {
+                    JogoBEAN jogo = new JogoBEAN();
+                    jogo.setJoNome(tfNome.getText());
+                    jogo.setJoFaixaEtaria(tfFaixa.getText());
+                    CategoriaBEAN c = (CategoriaBEAN) cbCat.getSelectedItem();
+                    jogo.setJo_catCodigo(c.getCatCodigo());
+                    jogo.setJoPrecoPadrao(insert.getJoPrecoPadrao());
+                    jogo.setJoQtd(insert.getJoQtd());
+                    jogo.setJoLote(insert.getJoLote());
+                    jogo.setJoTipo(insert.getJoTipo());
+                    jControle.cadastrar(jogo);
+                    Con_jogoBEAN w = new Con_jogoBEAN();
+                    w.setCjg_conCodigo(cDado.getConCodigo());
+                    cjc.cadastrar2(w);
+                }
+            }
 
-        JogoBEAN jogo = new JogoBEAN();
-        jogo.setJoNome(tfNome.getText());
-        jogo.setJoFaixaEtaria(tfFaixa.getText());
-        jogo.setJoPrecoPadrao(Double.parseDouble((tfPreco.getText())));
-        jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
-        jogo.setJoQtd(Integer.parseInt(tfQtde.getText()));
-        jogo.setJoLote(tfLote.getText());
-        CategoriaBEAN c = (CategoriaBEAN) cbCat.getSelectedItem();
-        jogo.setJo_catCodigo(c.getCatCodigo());
-        Con_jogoBEAN w = new Con_jogoBEAN();
-        ConsoleBEAN d = (ConsoleBEAN) cbCon.getSelectedItem();
-        w.setCjg_conCodigo(d.getConCodigo());
-        jControle.cadastrar(jogo);
-        cjc.cadastrar2(w);
+        }
+        insertDados.clear();
+        preencheTabela2();
         this.preencheTabela();
         limparCampos();
         JOptionPane.showMessageDialog(null, "Jogo CADASTRADO com sucesso");
+       
+        /*
+            for (JogoBEAN dado : jDados) {
+                if (dado.getJoLote().equals(insert.getJoLote())) {
+                    JOptionPane.showMessageDialog(null, "Este lote já esta cadastrado");
+                } else {*/
+
+
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
@@ -814,7 +835,7 @@ public class FRMJogo extends javax.swing.JFrame {
         dTable2.addColumn("Lote");
         dTable2.addColumn("Quantidade");
 
-        for (insertBean as : insertDados) {
+        for (InsertBean as : insertDados) {
             dTable2.addRow(new Object[]{as.getJoPrecoPadrao(), as.getJoTipo(),
                 as.getConNome(), as.getJoLote(), as.getJoQtd()});
         }
@@ -846,10 +867,13 @@ public class FRMJogo extends javax.swing.JFrame {
     }
 
     private void cadastroTeste() {
-        insertBean jogo = new insertBean();
+        InsertBean jogo = new InsertBean();
         jogo.setJoPrecoPadrao(Double.parseDouble((tfPreco.getText())));
         jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
-        jogo.setConNome(String.valueOf(cbCon.getSelectedItem()));
+
+        ConsoleBEAN w = (ConsoleBEAN) cbCon.getSelectedItem();
+        jogo.setConNome(w.getConNome());
+
         jogo.setJoLote(tfLote.getText());
         jogo.setJoQtd(Integer.parseInt(tfQtde.getText()));
         insertDados.add(jogo);
@@ -864,6 +888,10 @@ public class FRMJogo extends javax.swing.JFrame {
     private void tfLoteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLoteKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_tfLoteKeyTyped
+
+    private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbTipoActionPerformed
     private void limparCampos() {
         lbCodigoJogo.setText("");
         tfNome.setText("");
@@ -873,6 +901,7 @@ public class FRMJogo extends javax.swing.JFrame {
         cbCat.setSelectedIndex(0);
         cbCon.setSelectedIndex(0);
         cbTipo.setSelectedIndex(0);
+        tfLote.setText("");
     }
 
     /**

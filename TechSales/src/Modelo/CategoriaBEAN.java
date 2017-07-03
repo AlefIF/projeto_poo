@@ -34,5 +34,4 @@ public class CategoriaBEAN {
     public String toString() {
         return getCatNome(); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

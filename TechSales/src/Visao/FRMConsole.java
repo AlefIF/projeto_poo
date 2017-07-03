@@ -101,6 +101,7 @@ public class FRMConsole extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         tfChave = new javax.swing.JTextField();
         btVoltar1 = new javax.swing.JButton();
+        btVoltar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -316,7 +317,7 @@ public class FRMConsole extends javax.swing.JFrame {
         tpGuia.addTab("Consultar", jPanel2);
 
         getContentPane().add(tpGuia);
-        tpGuia.setBounds(10, 20, 522, 300);
+        tpGuia.setBounds(10, 20, 526, 300);
 
         btVoltar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
         btVoltar1.setText("Voltar");
@@ -328,6 +329,16 @@ public class FRMConsole extends javax.swing.JFrame {
         getContentPane().add(btVoltar1);
         btVoltar1.setBounds(577, 31, 80, 20);
 
+        btVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
+        btVoltar.setText("Voltar");
+        btVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btVoltar);
+        btVoltar.setBounds(449, 11, 80, 20);
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/Background.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
@@ -338,7 +349,7 @@ public class FRMConsole extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     private int retornaLinha() {
         //retorna a linha que o usuário selecionou na tabela
-        int linha =tableConsole.getSelectedRow();
+        int linha = tableConsole.getSelectedRow();
         return linha;
     }
 
@@ -415,8 +426,8 @@ public class FRMConsole extends javax.swing.JFrame {
 //        this.pegaSelecionado();
         tpGuia.setSelectedIndex(0);
         if (tableConsole.getSelectedRow() != -1) {
-            lbCodCon.setText( tableConsole.getValueAt(tableConsole.getSelectedRow(), 0).toString());
-            tfNome.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 1).toString());    
+            lbCodCon.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 0).toString());
+            tfNome.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 1).toString());
             tfMarca.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 2).toString());
         }
     }//GEN-LAST:event_tableConsoleMouseClicked
@@ -427,13 +438,19 @@ public class FRMConsole extends javax.swing.JFrame {
 
     private void tfChaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyTyped
         TableRowSorter sorter = null;
-        DefaultTableModel model = (DefaultTableModel)tableConsole.getModel();
+        DefaultTableModel model = (DefaultTableModel) tableConsole.getModel();
         sorter = new TableRowSorter<TableModel>(model);
         tableConsole.setRowSorter(sorter);
-        String text = tfChave.getText();       
+        String text = tfChave.getText();
         sorter.setRowFilter(RowFilter.regexFilter(text));
-        
+
     }//GEN-LAST:event_tfChaveKeyTyped
+
+    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
+        FRMPrincipalFun fun = new FRMPrincipalFun();
+        this.dispose();
+        fun.setVisible(true);
+    }//GEN-LAST:event_btVoltarActionPerformed
     private void limparCampos() {
         lbCodCon.setText("");
         tfNome.setText("");
@@ -489,6 +506,7 @@ public class FRMConsole extends javax.swing.JFrame {
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btLocalizar;
+    private javax.swing.JButton btVoltar;
     private javax.swing.JButton btVoltar1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;

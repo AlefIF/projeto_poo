@@ -24,7 +24,6 @@ public class Con_JogoControle {
     }
 
     public void cadastrar2(Con_jogoBEAN w) {
-
         w.setCjg_joCodigo(this.atualizaCodigo2());
         cjDAO.cadastrar2(w);
     }

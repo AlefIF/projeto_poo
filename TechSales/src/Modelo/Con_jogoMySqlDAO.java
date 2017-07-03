@@ -29,7 +29,7 @@ public class Con_jogoMySqlDAO {
 
     public void cadastrar2(Con_jogoBEAN w) {
 
-        String sql = "insert into Con_jogo (cjg_joCodigo,cjg_conCodigo ) values (?,?);";
+        String sql = "insert into con_jogo (cjg_joCodigo,cjg_conCodigo) values (?,?);";
         try {
             // prepared statement para inserção
             stmt = connection.prepareStatement(sql);
@@ -46,7 +46,7 @@ public class Con_jogoMySqlDAO {
     }
 
     public boolean editar2(Con_jogoBEAN w) {
-        String sql = "update  Con_jogo set cjg_conCodigo=? where cjg_joCodigo = ?;";
+        String sql = "update  con_jogo set cjg_conCodigo=? where cjg_joCodigo = ?;";
 
         try {
             /* metodo usado para criar um objeto que representa a instrução 
@@ -73,7 +73,7 @@ public class Con_jogoMySqlDAO {
     }
 
     public boolean remover2(int codigo) {
-        String sql = "delete from Con_jogo where cjg_joCodigo = ?";
+        String sql = "delete from con_jogo where cjg_joCodigo = ?";
         try {
             // prepared statement para inserção
             stmt = connection.prepareStatement(sql);

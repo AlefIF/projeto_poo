@@ -9,14 +9,13 @@ package Modelo;
  *
  * @author Alef
  */
-public class insertBean {
+public class InsertBean {
 
     private double joPrecoPadrao;
     private String joTipo;
     private String conNome;
     private String joLote;
     private int joQtd;
-    
 
     public String getConNome() {
         return conNome;
@@ -26,6 +25,7 @@ public class insertBean {
         this.conNome = conNome;
     }
 
+   
     public double getJoPrecoPadrao() {
         return joPrecoPadrao;
     }

@@ -381,8 +381,6 @@ public class FRMCategoria extends javax.swing.JFrame {
         FRMPrincipalFun fun = new FRMPrincipalFun();
         this.dispose();
         fun.setVisible(true);
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_btVoltarActionPerformed
 
     private void tableCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCategoriaMouseClicked

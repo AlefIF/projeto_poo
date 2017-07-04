@@ -665,11 +665,13 @@ public class FRMJogo extends javax.swing.JFrame {
         jogo.setJoFaixaEtaria(tfFaixa.getText());
         jogo.setJoPrecoPadrao(Double.parseDouble((tfPreco.getText())));
         jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
+        jogo.setJoQtd(Integer.parseInt(String.valueOf(tfQtde.getText())));
+        jogo.setJoLote(String.valueOf(tfLote.getText()));
         CategoriaBEAN c = (CategoriaBEAN) cbCat.getSelectedItem();
         jogo.setJo_catCodigo(c.getCatCodigo());
         Con_jogoBEAN w = new Con_jogoBEAN();
         ConsoleBEAN d = (ConsoleBEAN) cbCon.getSelectedItem();
-        w.setCjg_conCodigo(Integer.parseInt(lbCodigoJogo.getText()));
+        w.setCjg_joCodigo(Integer.parseInt(lbCodigoJogo.getText()));
         w.setCjg_conCodigo(d.getConCodigo());
         //chama o método de controle para editar
         boolean retorno1 = cjc.editar2(w);

@@ -81,7 +81,7 @@ public class JogoMySqlDAO {
     public boolean editar(JogoBEAN c) {
 
         String sql = "update jogo set joNome = ?,joFaixaEtaria = ?,"
-                + " joPrecoPadrao=?, joTipo = ?, joQtd = ?, joLote = ?, jo_catCodigo = ?,  where joCodigo = ?;";
+                + " joPrecoPadrao=?, joTipo = ?, joQtd = ?, joLote = ?, jo_catCodigo = ?  where joCodigo = ?;";
         try {
             /* metodo usado para criar um objeto que representa a instrução 
             SQL que será executada, sendo que é invocado através do objeto 

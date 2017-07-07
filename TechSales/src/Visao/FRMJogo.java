@@ -157,6 +157,7 @@ public class FRMJogo extends javax.swing.JFrame {
         tfQtde = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         tfLote = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         cbCat = new javax.swing.JComboBox<>();
         tfFaixa = new javax.swing.JFormattedTextField();
@@ -291,6 +292,7 @@ public class FRMJogo extends javax.swing.JFrame {
 
             }
         ));
+        tableM.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane3.setViewportView(tableM);
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -321,6 +323,13 @@ public class FRMJogo extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Excluir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -344,15 +353,14 @@ public class FRMJogo extends javax.swing.JFrame {
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42))))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,7 +388,8 @@ public class FRMJogo extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(jButton2))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -628,7 +637,31 @@ public class FRMJogo extends javax.swing.JFrame {
         return linha;
     }
 
-    private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
+    private int verificaLote() {
+        int j = 0;
+        jDados = jControle.listarALL();
+        for (InsertBean insert : insertDados) {
+            for (JogoBEAN jDado : jDados) {
+                if (jDado.getJoLote().equals(insert.getJoLote())) {
+                    j = jDado.getJoCodigo();
+                }
+            }
+        }
+        return j;
+    }
+
+    private int verificaLote1() {
+        int j = 0;
+        jDados = jControle.listarALL();
+        for (JogoBEAN jDado : jDados) {
+            if (jDado.getJoLote().equals(tfLote.getText())) {
+                j = jDado.getJoCodigo();
+            }
+        }
+        return j;
+    }
+
+    private void cadastroInserir() {
         cDados = cControle.listarALL();
         jDados = jControle.listarALL();
         for (InsertBean insert : insertDados) {
@@ -651,11 +684,61 @@ public class FRMJogo extends javax.swing.JFrame {
             }
 
         }
+        resultado();
+    }
+
+    private int verificarInserir() {
+        int j = 0;
+        for (InsertBean insert : insertDados) {
+            j++;
+        }
+        return j;
+    }
+
+    private void resultado() {
         insertDados.clear();
         preencheTabela2();
         this.preencheTabela();
         limparCampos();
         JOptionPane.showMessageDialog(null, "Jogo CADASTRADO com sucesso");
+    }
+
+    private void cadastroNormal() {
+        JogoBEAN jogo = new JogoBEAN();
+        jogo.setJoNome(tfNome.getText());
+        jogo.setJoFaixaEtaria(tfFaixa.getText());
+        CategoriaBEAN c = (CategoriaBEAN) cbCat.getSelectedItem();
+        jogo.setJo_catCodigo(c.getCatCodigo());
+        jogo.setJoPrecoPadrao(Double.parseDouble(tfPreco.getText()));
+        jogo.setJoQtd(Integer.parseInt(tfQtde.getText()));
+        jogo.setJoLote(tfLote.getText());
+        jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
+        jControle.cadastrar(jogo);
+        ConsoleBEAN w = (ConsoleBEAN) cbCon.getSelectedItem();
+        Con_jogoBEAN a = new Con_jogoBEAN();
+        a.setCjg_conCodigo(w.getConCodigo());
+        cjc.cadastrar2(a);
+        resultado();
+    }
+
+
+    private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
+        int z = verificarInserir();
+        if (z == 0) {
+            int v = verificaLote1();
+            if (v == 0) {
+                this.cadastroNormal();
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro! Lote já existente,Código do produto:" + v);
+            }
+        } else {
+            int x = verificaLote();
+            if (x == 0) {
+                this.cadastroInserir();
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro! Lote já existente,Código do produto:" + x);
+            }
+        }
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
@@ -780,7 +863,7 @@ public class FRMJogo extends javax.swing.JFrame {
     }//GEN-LAST:event_tfQtdeKeyTyped
 
     private void cbConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbConActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cbConActionPerformed
 
     private void tfChaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyPressed
@@ -870,11 +953,17 @@ public class FRMJogo extends javax.swing.JFrame {
         insertDados.add(jogo);
     }
 
-
+    private void limparCampos2() {
+        tfLote.setText("");
+        tfPreco.setText("");
+        tfQtde.setText("");
+        cbCon.setSelectedIndex(0);
+        cbTipo.setSelectedIndex(0);
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         cadastroTeste();
         preencheTabela2();
-        tfLote.setText("");
+        limparCampos2();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tfLoteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLoteKeyTyped
@@ -884,6 +973,12 @@ public class FRMJogo extends javax.swing.JFrame {
     private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbTipoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int i = insertDados.size() - 1;
+        insertDados.remove(i);
+        preencheTabela2();
+    }//GEN-LAST:event_jButton2ActionPerformed
     private void limparCampos() {
         lbCodigoJogo.setText("");
         tfNome.setText("");
@@ -943,6 +1038,7 @@ public class FRMJogo extends javax.swing.JFrame {
     private javax.swing.JComboBox<Object> cbCon;
     private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -976,4 +1072,5 @@ public class FRMJogo extends javax.swing.JFrame {
     private javax.swing.JTextField tfQtde;
     private javax.swing.JTabbedPane tpGuia;
     // End of variables declaration//GEN-END:variables
+
 }

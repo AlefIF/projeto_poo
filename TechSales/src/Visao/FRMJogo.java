@@ -721,23 +721,36 @@ public class FRMJogo extends javax.swing.JFrame {
         resultado();
     }
 
-
+    private boolean verificaCampos() {
+        if (tfFaixa.getText().equals("+(  )") || lbCodigoJogo.getText().equals("")
+                || tfNome.getText().equals("") || tfFaixa.getText().equals("") || tfPreco.getText().equals("")
+                || tfQtde.getText().equals("") || cbCat.getSelectedIndex() == (0)
+                || cbCon.getSelectedIndex() == (0) || cbTipo.getSelectedIndex() == (0) || tfLote.getText().equals("")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        int z = verificarInserir();
-        if (z == 0) {
-            int v = verificaLote1();
-            if (v == 0) {
-                this.cadastroNormal();
+        if (verificaCampos() == true) {
+            int z = verificarInserir();
+            if (z == 0) {
+                int v = verificaLote1();
+                if (v == 0) {
+                    this.cadastroNormal();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro! Lote já existente,Código do produto:" + v);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Erro! Lote já existente,Código do produto:" + v);
+                int x = verificaLote();
+                if (x == 0) {
+                    this.cadastroInserir();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro! Lote já existente,Código do produto:" + x);
+                }
             }
         } else {
-            int x = verificaLote();
-            if (x == 0) {
-                this.cadastroInserir();
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro! Lote já existente,Código do produto:" + x);
-            }
+            JOptionPane.showMessageDialog(null, "Erro! Insira todos os valores");
         }
     }//GEN-LAST:event_btCadastrarActionPerformed
 

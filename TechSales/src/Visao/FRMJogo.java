@@ -755,38 +755,42 @@ public class FRMJogo extends javax.swing.JFrame {
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        JogoBEAN jogo = new JogoBEAN();
-        jogo.setJoCodigo(Integer.parseInt(lbCodigoJogo.getText()));
-        jogo.setJoNome(tfNome.getText());
-        jogo.setJoFaixaEtaria(tfFaixa.getText());
-        jogo.setJoPrecoPadrao(Double.parseDouble((tfPreco.getText())));
-        jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
-        jogo.setJoQtd(Integer.parseInt(String.valueOf(tfQtde.getText())));
-        jogo.setJoLote(String.valueOf(tfLote.getText()));
-        CategoriaBEAN c = (CategoriaBEAN) cbCat.getSelectedItem();
-        jogo.setJo_catCodigo(c.getCatCodigo());
-        Con_jogoBEAN w = new Con_jogoBEAN();
-        ConsoleBEAN d = (ConsoleBEAN) cbCon.getSelectedItem();
-        w.setCjg_joCodigo(Integer.parseInt(lbCodigoJogo.getText()));
-        w.setCjg_conCodigo(d.getConCodigo());
-        //chama o método de controle para editar
-        boolean retorno1 = cjc.editar2(w);
-        if (retorno1 == true) {
-            boolean retorno = jControle.editar(jogo);
-            //se a variavel retorno for igual a true o usuario foi editado
-            if (retorno == true) {
-                JOptionPane.showMessageDialog(null, "Jogo MODIFICADO com sucesso");
-                //solicita a atualização da tabela ou seja preenche ela toda novamente
-                this.preencheTabela();
-                //chama o método para limpar campos
-                this.limparCampos();
+        if (verificaCampos() == true) {
+            JogoBEAN jogo = new JogoBEAN();
+            jogo.setJoCodigo(Integer.parseInt(lbCodigoJogo.getText()));
+            jogo.setJoNome(tfNome.getText());
+            jogo.setJoFaixaEtaria(tfFaixa.getText());
+            jogo.setJoPrecoPadrao(Double.parseDouble((tfPreco.getText())));
+            jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
+            jogo.setJoQtd(Integer.parseInt(String.valueOf(tfQtde.getText())));
+            jogo.setJoLote(String.valueOf(tfLote.getText()));
+            CategoriaBEAN c = (CategoriaBEAN) cbCat.getSelectedItem();
+            jogo.setJo_catCodigo(c.getCatCodigo());
+            Con_jogoBEAN w = new Con_jogoBEAN();
+            ConsoleBEAN d = (ConsoleBEAN) cbCon.getSelectedItem();
+            w.setCjg_joCodigo(Integer.parseInt(lbCodigoJogo.getText()));
+            w.setCjg_conCodigo(d.getConCodigo());
+            //chama o método de controle para editar
+            boolean retorno1 = cjc.editar2(w);
+            if (retorno1 == true) {
+                boolean retorno = jControle.editar(jogo);
+                //se a variavel retorno for igual a true o usuario foi editado
+                if (retorno == true) {
+                    JOptionPane.showMessageDialog(null, "Jogo MODIFICADO com sucesso");
+                    //solicita a atualização da tabela ou seja preenche ela toda novamente
+                    this.preencheTabela();
+                    //chama o método para limpar campos
+                    this.limparCampos();
+                } else {
+                    //mensagem de erro
+                    JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
+                }
             } else {
                 //mensagem de erro
                 JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
             }
         } else {
-            //mensagem de erro
-            JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
+            JOptionPane.showMessageDialog(null, "Erro! Insira todos os valores");
         }
     }//GEN-LAST:event_btEditarActionPerformed
 

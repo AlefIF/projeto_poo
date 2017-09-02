@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class JogoMySqlDAO {
@@ -126,6 +127,19 @@ public class JogoMySqlDAO {
             return true;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+    
+    public ResultSet consulta(String strSql) {
+        try {
+            //criando o objeto Statement para que seja possivel enviar as consultas
+            Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            //objeto do ResulSet para receber o resultado da consulta
+            ResultSet rs = stmt.executeQuery(strSql);
+            return rs;
+        } catch (SQLException erro) {
+            System.err.println(erro.getMessage());
+            return null;
         }
     }
 

@@ -29,14 +29,14 @@ order by sum(ivQtd)  desc limit 10;]]>
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[TITLE]]></text>
+					<text><![CDATA[Top Jogos]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="1e66af8f-bab2-429b-8cb5-7bef374836de"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Add a description here]]></text>
+					<text><![CDATA[TechSales]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -54,14 +54,14 @@ order by sum(ivQtd)  desc limit 10;]]>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[joNome]]></text>
+				<text><![CDATA[Jogo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="280" y="0" width="275" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="26510542-f5ef-4706-9610-99d05ee5577d"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Quantidade evndida]]></text>
+				<text><![CDATA[Quantidade vendida]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -79,8 +79,8 @@ order by sum(ivQtd)  desc limit 10;]]>
 			</textField>
 			<textField>
 				<reportElement x="280" y="-5" width="275" height="24" uuid="bbe63825-c6e0-4011-8d10-f0447859015c"/>
-				<textElement verticalAlignment="Middle">
-					<font size="14" isBold="true"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Quantidade vendida}]]></textFieldExpression>
 			</textField>

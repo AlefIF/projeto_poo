@@ -14,14 +14,16 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.*;
 import static Modelo.ConnectionFactory.getConnection;
+import Modelo.JogoMySqlDAO;
 import jxl.write.DateTime;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
  * @author Alef
  */
 public class GeraRelatorio2 {
-    
+
     public GeraRelatorio2() {
     }
 
@@ -30,9 +32,9 @@ public class GeraRelatorio2 {
         JasperReport jasperReport;
         JasperPrint jasperPrint;
         //Try Catch necessário caso ocorra algum erro durante a geração do relatório
-        
+
         try {
-           //Formatando a data para nomear o arquivo PDF gerado
+            //Formatando a data para nomear o arquivo PDF gerado
             SimpleDateFormat dt = new SimpleDateFormat("dd-MM-yyyy");
             //Pega a conexão para efetuar as operações no BD
             Connection con = getConnection();
@@ -46,21 +48,45 @@ public class GeraRelatorio2 {
             //Busca e exibe automaticamnete o arquivo PDF gerado
             File arquivo = new File("C:\\Users\\Alef\\Desktop\\projeto techsales poo\\TechSales\\src\\relatorios" + jrxml + "-" + dt.format(Calendar.getInstance().getTime()) + ".pdf");
             Desktop.getDesktop().open(arquivo);
-           
+
         } catch (IOException | JRException e) {
             JOptionPane.showMessageDialog(null, "Erro ao Gerar o Relatório, " + e.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
             System.out.println(e.getMessage());
         }
 
     }
-    
-     
-    public static void geraRelatorioJogos(Timestamp dataInicio,Timestamp dataFinal){
+
+    public static void geraRelatorioJogos(Timestamp dataInicio, Timestamp dataFinal) {
         HashMap parameters = new HashMap();
         parameters.put("dataInicio", dataInicio);
         parameters.put("dataFinal", dataFinal);
-        gerarRelatorio("TopJogosPorPeriodo","TopJogosPorPeriodo",parameters);
+        gerarRelatorio("TopJogosPorPeriodo", "TopJogosPorPeriodo", parameters);
     }
 
-    
+    public static void gerarRelatorio2(String query, String relatJasp, Timestamp dataInicio, Timestamp dataFinal)
+            throws JRException, Exception {
+
+        JogoMySqlDAO dao = new JogoMySqlDAO();
+        ResultSet rs = dao.consulta(query);
+
+        try {
+            /* implementacaoo da interface JRDataSource para DataSource ResultSet 
+            JRResultSetDataSource  clase para acessar um banco de dados*/
+            JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
+
+            /* HashMap de parametros utilizados no relatório. 
+            Sempre instanciados mesmo se nao tiver parâmetros */
+            Map parameters = new HashMap();
+            parameters.put("dataInicio", dataInicio);
+            parameters.put("dataFinal", dataFinal);
+            /* Preenche o relat�rio com os dados. 
+            Gera o arquivo Cliente.jrprint */
+            JasperViewer.viewReport(JasperFillManager.fillReport(relatJasp, parameters, jrRS));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao gerar o relatório, " + e.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println(e.getMessage());
+        }
+
+    }
+
 }

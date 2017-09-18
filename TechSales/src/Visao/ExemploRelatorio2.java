@@ -5,8 +5,8 @@
  */
 package Visao;
 
+import Controle.GeraRelatorio;
 import Controle.GeraRelatorio2;
-
 
 /**
  *
@@ -14,14 +14,10 @@ import Controle.GeraRelatorio2;
  */
 public class ExemploRelatorio2 extends javax.swing.JFrame {
 
-   
-
     public ExemploRelatorio2() {
         initComponents();
-       
-    }
 
-    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -121,13 +117,24 @@ public class ExemploRelatorio2 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         java.sql.Timestamp dataInicio = java.sql.Timestamp.valueOf(String.valueOf(tfDataInicio.getText()));
         java.sql.Timestamp dataFinal = java.sql.Timestamp.valueOf(String.valueOf(tfDataFinal.getText()));
-        
-        
+        /*
         try {
             //chama o método para dar início a geração do relatório passando o código do cliente como parâmetro
             GeraRelatorio2.geraRelatorioJogos(dataInicio, dataFinal);
         } catch (Exception x) {
+        }  */
+        String query = "Select joNome , sum(ivQtd)as \n"
+                + " 'Quantidade vendida' from jogo join item_venda \n"
+                + " join venda  where venDataEHora \n"
+                + "BETWEEN " + "'" + dataInicio + "'" + " and " + "'" + dataFinal + "'" + " \n "
+                + " and joCodigo = iv_joCodigo and iv_venCodigo = venCodigo \n "
+                + " group by joNome order by sum(ivQtd)  desc limit 10; ";
+        try {
+            //passa o caminho onde o relatório esta no projeto - codigo compilado
+            GeraRelatorio.gerarRelatorio(query, "./report/TopJogosPorPeriodo.jasper");
+        } catch (Exception x) {
         }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

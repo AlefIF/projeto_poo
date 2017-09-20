@@ -6,7 +6,7 @@
 package Visao;
 
 import Controle.GeraRelatorio;
-import Controle.GeraRelatorio2;
+import javax.swing.JTextField;
 
 /**
  *
@@ -16,6 +16,7 @@ public class ExemploRelatorio2 extends javax.swing.JFrame {
 
     public ExemploRelatorio2() {
         initComponents();
+       
 
     }
 
@@ -28,15 +29,21 @@ public class ExemploRelatorio2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         tfDataInicio = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         tfDataFinal = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/back2.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Exemplo Relatório");
+        getContentPane().setLayout(null);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/visao/print.jpg"))); // NOI18N
         jButton1.setText("Gerar Relatório");
@@ -45,71 +52,48 @@ public class ExemploRelatorio2 extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(41, 116, 314, 99);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Escolha o período de venda:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(10, 11, 174, 17);
 
         try{
-            javax.swing.text.MaskFormatter faixa= new javax.swing.text.MaskFormatter("####-##-##//##:##:##");
-            tfFaixa = new javax.swing.JFormattedTextField(faixa);
+            javax.swing.text.MaskFormatter faixa= new javax.swing.text.MaskFormatter("####-##-######:##:##");
+            tfDataFinal = new javax.swing.JFormattedTextField(faixa);
         }
         catch (Exception e){
         }
-        tfDataInicio.setText("YYYY-MM-DD HH:MM:SS");
+        getContentPane().add(tfDataInicio);
+        tfDataInicio.setBounds(64, 68, 129, 20);
 
-        jLabel2.setText("a");
+        jLabel2.setText("a:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(206, 71, 20, 14);
 
         try{
-            javax.swing.text.MaskFormatter faixa= new javax.swing.text.MaskFormatter("####-##-##//##:##:##");
-            tfFaixa = new javax.swing.JFormattedTextField(faixa);
+            javax.swing.text.MaskFormatter faixa= new javax.swing.text.MaskFormatter("####-##-######:##:##");
+            tfDataFinal = new javax.swing.JFormattedTextField(faixa);
         }
         catch (Exception e){
         }
-        tfDataFinal.setText("YYYY-MM-DD HH:MM:SS");
+        getContentPane().add(tfDataFinal);
+        tfDataFinal.setBounds(244, 68, 135, 20);
 
-        jLabel3.setText("De");
+        jLabel3.setText("De:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(24, 71, 20, 14);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(tfDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(tfDataFinal, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(22, 22, 22))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfDataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(tfDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(28, 28, 28)
-                .addComponent(jButton1)
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
+        jLabel6.setText("Insira as datas: YYYY-MM-DD hh:mm:ss");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(60, 40, 190, 14);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/back2.png"))); // NOI18N
+        jLabel5.setText("jLabel1");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, 0, 400, 240);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -178,6 +162,9 @@ public class ExemploRelatorio2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField tfDataFinal;
     private javax.swing.JTextField tfDataInicio;
     // End of variables declaration//GEN-END:variables

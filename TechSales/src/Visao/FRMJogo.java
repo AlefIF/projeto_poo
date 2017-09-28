@@ -50,7 +50,8 @@ public class FRMJogo extends javax.swing.JFrame {
     //Não implementei a funcionalidade inserir por falta de tempo
     public FRMJogo() {
         initComponents();
-
+        setResizable(false);
+        
         ConsoleMySqlDAO consDAO = new ConsoleMySqlDAO();
         for (ConsoleBEAN e : consDAO.listarALL()) {
             cbCon.addItem(e);
@@ -59,7 +60,8 @@ public class FRMJogo extends javax.swing.JFrame {
         for (CategoriaBEAN d : catDAO.listarALL()) {
             cbCat.addItem(d);
         }
-
+        
+         preencheTabela();
     }
 
     private void preencheTabela() {
@@ -293,6 +295,11 @@ public class FRMJogo extends javax.swing.JFrame {
             }
         ));
         tableM.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tableM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tableM);
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -625,9 +632,9 @@ public class FRMJogo extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/back2.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(-40, -30, 720, 560);
+        jLabel1.setBounds(-40, -30, 620, 560);
 
-        setSize(new java.awt.Dimension(576, 538));
+        setSize(new java.awt.Dimension(576, 534));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -754,6 +761,8 @@ public class FRMJogo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btCadastrarActionPerformed
 
+          
+      
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         if (verificaCampos() == true) {
             JogoBEAN jogo = new JogoBEAN();
@@ -795,6 +804,7 @@ public class FRMJogo extends javax.swing.JFrame {
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        if (verificaCampos() == true) {
         boolean retorno1 = cjc.remover2(Integer.parseInt(lbCodigoJogo.getText()));
         if (retorno1 == true) {
             boolean retorno2 = jControle.remover(Integer.parseInt(lbCodigoJogo.getText()));
@@ -813,8 +823,9 @@ public class FRMJogo extends javax.swing.JFrame {
             //mensagem de erro
             JOptionPane.showMessageDialog(null, "ERRO na exclusão");
         }
+        }
     }//GEN-LAST:event_btExcluirActionPerformed
-
+    
     private void btLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLocalizarActionPerformed
         tpGuia.setSelectedIndex(1);
         preencheTabela();
@@ -992,10 +1003,14 @@ public class FRMJogo extends javax.swing.JFrame {
     }//GEN-LAST:event_cbTipoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int i = insertDados.size() - 1;
+        int i = tableM.getSelectedRow();
         insertDados.remove(i);
         preencheTabela2();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tableMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMMouseClicked
+    int i=tableM.getSelectedRow();
+    }//GEN-LAST:event_tableMMouseClicked
     private void limparCampos() {
         lbCodigoJogo.setText("");
         tfNome.setText("");

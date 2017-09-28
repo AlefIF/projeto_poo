@@ -5,7 +5,9 @@
  */
 package Modelo;
 
-import java.sql.Timestamp;
+import java.util.Date;
+
+
 
 
 /**
@@ -16,7 +18,7 @@ public class Venda {
     
     private int venCodigo;
     private String venNNF;
-    private Timestamp venDataEHora;
+    private Date venData;
     private int ven_funCodigo;
     private int cliente_cliCodigo;
 
@@ -36,12 +38,12 @@ public class Venda {
         this.venNNF = venNNF;
     }
 
-    public Timestamp getVenDataEHora() {
-        return venDataEHora;
+    public Date getVenDataEHora() {
+        return venData;
     }
 
-    public void setVenDataEHora(Timestamp venDataEHora) {
-        this.venDataEHora = venDataEHora;
+    public void setVenDataEHora(Date venData) {
+        this.venData = venData;
     }
 
     public int getVen_funCodigo() {

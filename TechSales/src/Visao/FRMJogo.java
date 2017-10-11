@@ -101,8 +101,7 @@ public class FRMJogo extends javax.swing.JFrame {
                 }
             }
         }
-        
-        
+
         //set o modelo da tabela
         tableJogo.setModel(dTable);
         //TableColumn tc= tableJogo.getColumnModel().getColumn(7);
@@ -765,7 +764,6 @@ public class FRMJogo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro! Insira todos os valores");
         }
     }//GEN-LAST:event_btCadastrarActionPerformed
-
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         if (verificaCampos() == true) {

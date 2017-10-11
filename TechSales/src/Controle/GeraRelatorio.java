@@ -40,8 +40,8 @@ public class GeraRelatorio {
         }
 
     }
-    
-     public static void gerarRelatorio2(String jrxml, String nomeArquivo) {
+
+    public static void gerarRelatorio2(String jrxml, String nomeArquivo) {
         JasperReport jasperReport;
         JasperPrint jasperPrint;
         //Try Catch necessário caso ocorra algum erro durante a geração do relatório

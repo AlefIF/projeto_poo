@@ -16,13 +16,12 @@ import java.util.List;
  * @author LUCASP
  */
 public class ControleUser {
+
     UserBEAN user = new UserBEAN();
     UserDAO dao = new UserDAO();
-    
-    
-    
-    public void cadastrar(String nome,int idade,String endereco, String cpf,String np,String nomeusuario,String senha,String telefone ){
-    user.setNome(nome);
+
+    public void cadastrar(String nome, int idade, String endereco, String cpf, String np, String nomeusuario, String senha, String telefone) {
+        user.setNome(nome);
         user.setIdade(idade);
         user.setEndereco(endereco);
         user.setCpf(cpf);
@@ -32,12 +31,13 @@ public class ControleUser {
         user.setTelefone(telefone);
         dao.cadastrar(user);
     }
-    public boolean verificaLogin(String senha){
-    return dao.verificaLogin(senha);
+
+    public boolean verificaLogin(String senha) {
+        return dao.verificaLogin(senha);
     }
-    
-    public void editar(String nome,int idade,String endereco, String cpf,String np,String nomeusuario,String senha,String telefone ){
-    user.setNome(nome);
+
+    public void editar(String nome, int idade, String endereco, String cpf, String np, String nomeusuario, String senha, String telefone) {
+        user.setNome(nome);
         user.setIdade(idade);
         user.setEndereco(endereco);
         user.setCpf(cpf);
@@ -47,18 +47,18 @@ public class ControleUser {
         user.setTelefone(telefone);
         dao.editar(user);
     }
-    public ArrayList<UserBEAN> ListarALL(){
-    ArrayList<UserBEAN> auxAL= (ArrayList<UserBEAN>) dao.ListarALL();
-    return auxAL;
+
+    public ArrayList<UserBEAN> ListarALL() {
+        ArrayList<UserBEAN> auxAL = (ArrayList<UserBEAN>) dao.ListarALL();
+        return auxAL;
     }
-    
-    
-    public void excluir(int codigo){
-    user.setCodigo(codigo);
-    dao.excluir(user);
+
+    public void excluir(int codigo) {
+        user.setCodigo(codigo);
+        dao.excluir(user);
     }
-    
-    public boolean verificaLogin2(String login,String senha){
-    return dao.verificaLogin2(login, senha);
+
+    public boolean verificaLogin2(String login, String senha) {
+        return dao.verificaLogin2(login, senha);
     }
 }

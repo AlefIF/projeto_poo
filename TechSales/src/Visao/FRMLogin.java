@@ -15,12 +15,14 @@ import javax.swing.JOptionPane;
  * @author LUCASP
  */
 public class FRMLogin extends javax.swing.JFrame {
-    ControleUser ct=new ControleUser();
+
+    ControleUser ct = new ControleUser();
+
     /**
      * Creates new form FRMLogin
      */
     public FRMLogin() {
-        
+
         setResizable(false);
         initComponents();
     }
@@ -105,12 +107,9 @@ public class FRMLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rbSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSenhaActionPerformed
-if (rbSenha.isSelected())
-        {
-            pfSenha.setEchoChar((char)0); //password = JPasswordField
-        }
-    else
-        {
+        if (rbSenha.isSelected()) {
+            pfSenha.setEchoChar((char) 0); //password = JPasswordField
+        } else {
 
             pfSenha.setEchoChar('*');
         }        // TODO add your handling code here:
@@ -118,16 +117,16 @@ if (rbSenha.isSelected())
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         /*boolean v=ct.verificaLogin(pfSenha.getText());*/
-        if(tfUser.getText().equals("ADM")||tfUser.getText().equals("adm")){
-        FRMPrincipalAdm adm=new FRMPrincipalAdm();
-        this.dispose();
-        adm.setVisible(true);
-        }else{
-       
-        FRMPrincipalFun fun=new FRMPrincipalFun();
-        this.dispose();
-        fun.setVisible(true);
-  
+        if (tfUser.getText().equals("ADM") || tfUser.getText().equals("adm")) {
+            FRMPrincipalAdm adm = new FRMPrincipalAdm();
+            this.dispose();
+            adm.setVisible(true);
+        } else {
+
+            FRMPrincipalFun fun = new FRMPrincipalFun();
+            this.dispose();
+            fun.setVisible(true);
+
         }
 
         // TODO add your handling code here:
@@ -169,7 +168,7 @@ if (rbSenha.isSelected())
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FRMLogin().setVisible(true);
-                
+
             }
         });
     }

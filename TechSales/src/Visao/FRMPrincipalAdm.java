@@ -37,7 +37,7 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         this.preencheTabela();
 
     }
-    
+
     private void preencheTabela() {
         tbUsers = this.criaTabela();
         tbUsers.addColumn("Código");
@@ -423,9 +423,9 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         jbCadastrarFun.setEnabled(false);
         jtbPesquisa.setSelectedIndex(0);
         if (tbPesquisa.getSelectedRow() != -1) {
-            lbCodigo.setText((String)tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 0).toString());
+            lbCodigo.setText((String) tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 0).toString());
             tfNomeFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 1).toString());
-            tfCpfFun.setText((String)tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 2).toString());
+            tfCpfFun.setText((String) tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 2).toString());
         }
     }//GEN-LAST:event_tbPesquisaMouseClicked
 
@@ -443,12 +443,12 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
     private void jbEditarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarFunActionPerformed
         if (lbCodigo.getText().equals("...")) {
             JOptionPane.showMessageDialog(null, "É preciso selecionar um funcionário na tabela de consulta");
-        } else if(tfNomeFun.getText().equals("")||tfIdadeFun.getText().equals("")||  tfEnderecoFun.getText().equals("")||  tfCpfFun.getText().equals("")||
-            tfNPFun.getText().equals("")||  tfNomeUserFun.getText().equals("")|| tfSenhaUserFun.getText().equals("")|| tfTelefoneFun.getText().equals("")) {
-        JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios");
-        }else{
+        } else if (tfNomeFun.getText().equals("") || tfIdadeFun.getText().equals("") || tfEnderecoFun.getText().equals("") || tfCpfFun.getText().equals("")
+                || tfNPFun.getText().equals("") || tfNomeUserFun.getText().equals("") || tfSenhaUserFun.getText().equals("") || tfTelefoneFun.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios");
+        } else {
             ct.editar(tfNomeFun.getText(), Integer.parseInt(tfIdadeFun.getText()), tfEnderecoFun.getText(), tfCpfFun.getText(),
-                tfNPFun.getText(), tfNomeUserFun.getText(), tfSenhaUserFun.getText(), tfTelefoneFun.getText());
+                    tfNPFun.getText(), tfNomeUserFun.getText(), tfSenhaUserFun.getText(), tfTelefoneFun.getText());
             limpaCampos();
             this.preencheTabela();
             jbCadastrarFun.setEnabled(true);
@@ -456,12 +456,12 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_jbEditarFunActionPerformed
 
     private void jbCadastrarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarFunActionPerformed
-        if (tfNomeFun.getText().equals("")||tfIdadeFun.getText().equals("")||  tfEnderecoFun.getText().equals("")||  tfCpfFun.getText().equals("")||
-            tfNPFun.getText().equals("")||  tfNomeUserFun.getText().equals("")|| tfSenhaUserFun.getText().equals("")|| tfTelefoneFun.getText().equals("")) {
+        if (tfNomeFun.getText().equals("") || tfIdadeFun.getText().equals("") || tfEnderecoFun.getText().equals("") || tfCpfFun.getText().equals("")
+                || tfNPFun.getText().equals("") || tfNomeUserFun.getText().equals("") || tfSenhaUserFun.getText().equals("") || tfTelefoneFun.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios");
         } else {
             ct.cadastrar(tfNomeFun.getText(), Integer.parseInt(tfIdadeFun.getText()), tfEnderecoFun.getText(), tfCpfFun.getText(),
-                tfNPFun.getText(), tfNomeUserFun.getText(), tfSenhaUserFun.getText(), tfTelefoneFun.getText());
+                    tfNPFun.getText(), tfNomeUserFun.getText(), tfSenhaUserFun.getText(), tfTelefoneFun.getText());
             this.preencheTabela();
             limpaCampos();
         }
@@ -520,7 +520,6 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         //retorna o DefaultTableModel
     return tbUsers;
     }
-
 
     /**
      * @param args the command line arguments
@@ -595,6 +594,4 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField tfTelefoneFun;
     // End of variables declaration//GEN-END:variables
 
-        
-    
 }

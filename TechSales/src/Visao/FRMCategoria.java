@@ -25,7 +25,7 @@ public class FRMCategoria extends javax.swing.JFrame {
      */
     public FRMCategoria() {
         initComponents();
-        
+
     }
     private CategoriaControle catCon = new CategoriaControle();
     private ArrayList<CategoriaBEAN> caDados;
@@ -387,8 +387,8 @@ public class FRMCategoria extends javax.swing.JFrame {
 //        this.pegaSelecionado();
         tpGuia.setSelectedIndex(0);
         if (tableCategoria.getSelectedRow() != -1) {
-            lbCodCat.setText( tableCategoria.getValueAt(tableCategoria.getSelectedRow(), 0).toString());
-            tfNome.setText(tableCategoria.getValueAt(tableCategoria.getSelectedRow(), 1).toString());        
+            lbCodCat.setText(tableCategoria.getValueAt(tableCategoria.getSelectedRow(), 0).toString());
+            tfNome.setText(tableCategoria.getValueAt(tableCategoria.getSelectedRow(), 1).toString());
         }
     }//GEN-LAST:event_tableCategoriaMouseClicked
 

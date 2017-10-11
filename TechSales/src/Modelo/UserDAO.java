@@ -45,7 +45,7 @@ public class UserDAO {
 
         }
     }
-    
+
     public void editar(UserBEAN user) {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
@@ -53,7 +53,7 @@ public class UserDAO {
             stmt = con.prepareStatement("UPDATE funcionario SET funNome=?,funIdade=?,"
                     + "funEndereco=?,funCPF=?,funNomeUsuario=?,funUsuarioSenha=?,"
                     + "funTelefone=?,funNisPis=? WHERE funCodigo=?");
-           
+
             stmt.setString(1, user.getNome());
             stmt.setInt(2, user.getIdade());
             stmt.setString(3, user.getEndereco());
@@ -74,12 +74,11 @@ public class UserDAO {
         }
     }
 
-   public List<UserBEAN> ListarALL() {
-        Connection con = ConnectionFactory.getConnection();  
+    public List<UserBEAN> ListarALL() {
+        Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
-        ResultSet rs=null;
-        
-        
+        ResultSet rs = null;
+
         List<UserBEAN> users = new ArrayList<UserBEAN>();
         try {
             // prepared statement para seleção
@@ -103,15 +102,14 @@ public class UserDAO {
                 //adiciona os dados no ArrayLIst
                 users.add(user);
             }
-            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Nenhum funcionário não encontrado" + e);
-        }finally{
-        ConnectionFactory.closeConnection(con, stmt, rs);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
         }
         return users;
     }
-    
 
     public boolean verificaLogin(String senha) {
         Connection con = ConnectionFactory.getConnection();
@@ -122,7 +120,7 @@ public class UserDAO {
         try {
             // prepared statement para seleção
             stmt = con.prepareStatement("SELECT * from funcionario WHERE funNomeUsuario=ADM AND funUsuarioSenha=?");
-            
+
             stmt.setString(2, senha);
             // executa a consulta SQL usando o comando executeQuery
             rs = stmt.executeQuery();
@@ -134,13 +132,14 @@ public class UserDAO {
             stmt.close();//fecha conexão - OBRIGATORIO SEMPRE!
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
-            ConnectionFactory.closeConnection(con, stmt,rs);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
 
         }
         return verifica;
     }
-    public boolean verificaLogin2(String login,String senha) {
+
+    public boolean verificaLogin2(String login, String senha) {
         Connection con = ConnectionFactory.getConnection();
         String sql = null;
         ResultSet rs = null;
@@ -149,7 +148,7 @@ public class UserDAO {
         try {
             // prepared statement para seleção
             stmt = con.prepareStatement("SELECT * from funcionario WHERE funNomeUsuario=? AND funUsuarioSenha=?");
-            
+
             stmt.setString(2, senha);
             // executa a consulta SQL usando o comando executeQuery
             rs = stmt.executeQuery();
@@ -161,8 +160,8 @@ public class UserDAO {
             stmt.close();//fecha conexão - OBRIGATORIO SEMPRE!
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
-            ConnectionFactory.closeConnection(con, stmt,rs);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
 
         }
         return verifica;
@@ -185,18 +184,17 @@ public class UserDAO {
 
         }
     }
-    
+
     public List<UserBEAN> readForNome(String funNome) {
-        Connection con = ConnectionFactory.getConnection();  
+        Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
-        ResultSet rs=null;
-        
-        
+        ResultSet rs = null;
+
         List<UserBEAN> users = new ArrayList<UserBEAN>();
         try {
             // prepared statement para seleção
             stmt = con.prepareStatement("SELECT * from funcionario WHERE funNome LIKE ?");
-            stmt.setString(1, "%"+funNome+"%");
+            stmt.setString(1, "%" + funNome + "%");
             // executa a consulta SQL usando o comando executeQuery
             rs = stmt.executeQuery();
             //joga resultado da consulta no ArrayList
@@ -216,11 +214,11 @@ public class UserDAO {
                 //adiciona os dados no ArrayLIst
                 users.add(user);
             }
-            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Funcionário não encontrado" + e);
-        }finally{
-        ConnectionFactory.closeConnection(con, stmt, rs);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
         }
         return users;
     }

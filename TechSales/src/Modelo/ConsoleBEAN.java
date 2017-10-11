@@ -13,7 +13,7 @@ public class ConsoleBEAN {
 
     private int conCodigo;
     private String conNome;
-    private String conMarca; 
+    private String conMarca;
 
     public String getConMarca() {
         return conMarca;

@@ -18,6 +18,9 @@ public class ExemploRelatorio extends javax.swing.JFrame {
      */
     public ExemploRelatorio() {
         initComponents();
+        setSize(400,300);
+        
+        setResizable(false);
     }
 
     /**
@@ -56,7 +59,7 @@ public class ExemploRelatorio extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //consulta do BD
-        /*String query = "SELECT joCodigo,joNome,joFaixaEtaria,joPrecoPadrao,joTipo,joQtd,joLote,  catNome, conNome\n"
+        String query = "SELECT joCodigo,joNome,joFaixaEtaria,joPrecoPadrao,joTipo,joQtd,joLote,  catNome, conNome\n"
                 + "FROM jogo join con_Jogo  join categoria join console \n"
                 + "where joCodigo=cjg_joCodigo\n"
                 + "and catCodigo=jo_catCodigo and cjg_conCodigo=conCodigo\n"
@@ -64,13 +67,10 @@ public class ExemploRelatorio extends javax.swing.JFrame {
         try {
             //passa o caminho onde o relatório esta no projeto - codigo compilado
             GeraRelatorio.gerarRelatorio(query, "./report/JogosRelatorio.jasper");
+            GeraRelatorio.gerarRelatorio2("JogoRelatorio", "JogoRelatorio");
         } catch (Exception x) {
-        }*/
-        try {
-            //chama o método para dar início a geração do relatório passando o código do cliente como parâmetro
-            GeraRelatorio.gerarRelatorio2("JogoRelatorio","JogoRelatorio");
-        } catch (Exception x) {
-        }  
+        }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

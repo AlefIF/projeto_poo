@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @author Alef
  */
 public class Item_VendaDAO {
-    
+
     //armazernar meu objeto de conexao com o BD MySQL    
     private Connection connection;
     //objeto stmt que executa as consultas no BD
@@ -26,7 +26,7 @@ public class Item_VendaDAO {
         //inicializa a conexão com o BD - chamando o FActory e Singleton
         this.connection = ConnectionFactory.getConnection();
     }
-    
+
     public ArrayList<Item_Venda> listarALL() {
         String sql = "select *from item_venda;";
         ArrayList<Item_Venda> itvAL = new ArrayList<Item_Venda>();
@@ -44,7 +44,7 @@ public class Item_VendaDAO {
                 c.setIv_joCodigo(rs.getInt(2));
                 c.setvQtd(rs.getInt(3));
                 c.setIvPrecoUnitReal(rs.getFloat(4));
-                
+
                 //adiciona os dados no ArrayLIst
                 itvAL.add(c);
             }

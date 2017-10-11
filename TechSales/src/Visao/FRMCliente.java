@@ -466,7 +466,6 @@ public class FRMCliente extends javax.swing.JFrame {
     private void btLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLocalizarActionPerformed
         tpGuia.setSelectedIndex(1);
 
-
     }//GEN-LAST:event_btLocalizarActionPerformed
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
@@ -521,7 +520,6 @@ public class FRMCliente extends javax.swing.JFrame {
 
     private void tableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableClienteMouseClicked
 
-   
         tpGuia.setSelectedIndex(0);
 
         if (tableCliente.getSelectedRow() != -1) {
@@ -540,7 +538,6 @@ public class FRMCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_tfLocalizarNomeActionPerformed
 
     private void tfLocalizarNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfLocalizarNomeMouseClicked
-
 
     }//GEN-LAST:event_tfLocalizarNomeMouseClicked
 
@@ -673,9 +670,6 @@ public class FRMCliente extends javax.swing.JFrame {
         //retorna o DefaultTableModel
     return cTable;
     }
-
-   
-    
 
     private void tfIdadeKeyTyped(java.awt.event.KeyEvent evt) {
         String caracteres = "0987654321";

@@ -16,7 +16,6 @@ public class ExemploRelatorio2 extends javax.swing.JFrame {
 
     public ExemploRelatorio2() {
         initComponents();
-       
 
     }
 
@@ -118,7 +117,6 @@ public class ExemploRelatorio2 extends javax.swing.JFrame {
             GeraRelatorio.gerarRelatorio(query, "./report/TopJogosPorPeriodo.jasper");
         } catch (Exception x) {
         }
-
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

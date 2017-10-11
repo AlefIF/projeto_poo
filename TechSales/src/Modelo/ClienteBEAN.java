@@ -6,7 +6,7 @@
 package Modelo;
 
 public class ClienteBEAN {
-    
+
     private int cod;
     private String nome;
     private int idade;
@@ -61,9 +61,5 @@ public class ClienteBEAN {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    
 
-    
-    
-    
 }

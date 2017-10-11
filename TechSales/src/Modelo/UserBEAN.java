@@ -10,6 +10,7 @@ package Modelo;
  * @author LUCASP
  */
 public class UserBEAN {
+
     private int codigo;
     private String nome;
     private int idade;
@@ -27,6 +28,7 @@ public class UserBEAN {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
     public String getNome() {
         return nome;
     }
@@ -90,6 +92,5 @@ public class UserBEAN {
     public void setNisPis(String nisPis) {
         this.nisPis = nisPis;
     }
-    
 
 }

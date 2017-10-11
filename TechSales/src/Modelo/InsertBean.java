@@ -25,7 +25,6 @@ public class InsertBean {
         this.conNome = conNome;
     }
 
-   
     public double getJoPrecoPadrao() {
         return joPrecoPadrao;
     }

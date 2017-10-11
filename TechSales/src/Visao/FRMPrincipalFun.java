@@ -126,53 +126,50 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        FRMLogin login=new FRMLogin();
+        FRMLogin login = new FRMLogin();
         this.dispose();
         login.setVisible(true);
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btGClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGClienteActionPerformed
-        FRMCliente cliente=new FRMCliente();
+        FRMCliente cliente = new FRMCliente();
         this.dispose();
-        cliente.setVisible(true);  
-        
-
+        cliente.setVisible(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btGClienteActionPerformed
 
     private void btGJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGJogoActionPerformed
-    FRMJogo jogo=new FRMJogo();
+        FRMJogo jogo = new FRMJogo();
         this.dispose();
         jogo.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_btGJogoActionPerformed
 
     private void btRTransacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRTransacaoActionPerformed
-FRMTransacao trans=new FRMTransacao();
+        FRMTransacao trans = new FRMTransacao();
         this.dispose();
         trans.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btRTransacaoActionPerformed
 
     private void btERelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btERelatoriosActionPerformed
-        FRMEmitirRelatorios er=new FRMEmitirRelatorios();
+        FRMEmitirRelatorios er = new FRMEmitirRelatorios();
         this.dispose();
         er.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btERelatoriosActionPerformed
 
     private void jbGerenciarConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGerenciarConsoleActionPerformed
-        FRMConsole console=new FRMConsole();
+        FRMConsole console = new FRMConsole();
         this.dispose();
-        console.setVisible(true);  
+        console.setVisible(true);
     }//GEN-LAST:event_jbGerenciarConsoleActionPerformed
 
     private void jbGerenciarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGerenciarCategoriaActionPerformed
-        FRMCategoria cat=new FRMCategoria();
+        FRMCategoria cat = new FRMCategoria();
         this.dispose();
-        cat.setVisible(true);  
+        cat.setVisible(true);
     }//GEN-LAST:event_jbGerenciarCategoriaActionPerformed
 
     /**

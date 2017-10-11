@@ -12,13 +12,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
 /**
  *
  * @author Alef
  */
 public class VendaDAO {
-    
+
     //armazernar meu objeto de conexao com o BD MySQL    
     private Connection connection;
     //objeto stmt que executa as consultas no BD
@@ -55,7 +54,8 @@ public class VendaDAO {
         }
         return vendaAL;
     }
-     public ResultSet consulta(String strSql) {
+
+    public ResultSet consulta(String strSql) {
         try {
             //criando o objeto Statement para que seja possivel enviar as consultas
             Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);

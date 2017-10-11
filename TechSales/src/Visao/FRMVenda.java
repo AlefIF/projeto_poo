@@ -16,6 +16,7 @@ import Modelo.Con_jogoBEAN;
 import Modelo.ConsoleBEAN;
 import Modelo.JogoBEAN;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -34,6 +35,7 @@ public class FRMVenda extends javax.swing.JFrame {
     private DefaultTableModel dTable;
     private DefaultTableModel cTable;
     private DefaultTableModel ccTable;
+    private DefaultTableModel rcTable;
     private ArrayList<JogoBEAN> jDados;
     private ArrayList<CategoriaBEAN> catDados;
     private ArrayList<Con_jogoBEAN> cjDados;
@@ -46,10 +48,12 @@ public class FRMVenda extends javax.swing.JFrame {
      */
     public FRMVenda() {
         initComponents();
-        setSize(800, 800);
+        setSize(700, 500);
         setResizable(false);
         preencheTabela();
         preencheTabela2();
+        preencheTabela3();
+        preencheTabela4();
     }
 
     /**
@@ -167,15 +171,14 @@ public class FRMVenda extends javax.swing.JFrame {
     return cTable;
     }
 
-    private void preencheTabela3(int i) {
+    private void preencheTabela3() {
         ccTable = criaTabela();
         //seta o nome das colunas da tabela
         ccTable.addColumn("Jogo");
         ccTable.addColumn("Preço");
-        ccTable.addColumn("Qunatidade");
+        ccTable.addColumn("Quantidade");
 
-        ccTable.addRow(new Object[]{});
-
+        //ccTable.addRow(new Object[]{i, a, b});
         //cada célula do arrayList vira uma linha(row) na tabela
         //set o modelo da tabela
         tableCli.setModel(ccTable);
@@ -200,6 +203,36 @@ public class FRMVenda extends javax.swing.JFrame {
 
         };
     return cTable;
+    }
+
+    private void preencheTabela4() {
+        rcTable = criaTabela();
+        //seta o nome das colunas da tabela
+        rcTable.addColumn("Jogo");
+        rcTable.addColumn("Preço");
+        rcTable.addColumn("Quantidade");
+        tableCR.setModel(rcTable);
+    }
+
+    private DefaultTableModel criaTabela4() {
+        //sempre que usar JTable é necessário ter um DefaulttableModel
+        DefaultTableModel rcTable = new DefaultTableModel() {
+            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.Double.class, java.lang.Integer.class,};
+            //define se os campos podem ser editados na propria tabela
+            boolean[] canEdit = new boolean[]{
+                false, false, false
+            };
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        ;
+
+        };
+    return rcTable;
     }
 
     @SuppressWarnings("unchecked")
@@ -246,7 +279,7 @@ public class FRMVenda extends javax.swing.JFrame {
         lbTelefone = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tableM = new javax.swing.JTable();
+        tableCR = new javax.swing.JTable();
         btVoltar3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -602,38 +635,29 @@ public class FRMVenda extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Carrinho de compras"));
 
-        tableM.setModel(new javax.swing.table.DefaultTableModel(
+        tableCR.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {}
+
             },
             new String [] {
-
+                "Jogo", "Preço", "Quantidade"
             }
         ));
-        tableM.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane3.setViewportView(tableM);
+        tableCR.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane3.setViewportView(tableCR);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 271, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                    .addContainerGap(27, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(20, 20, 20)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(96, Short.MAX_VALUE)))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -654,12 +678,13 @@ public class FRMVenda extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -723,11 +748,27 @@ public class FRMVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_tableClienteMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String jogo = tableJogo.getValueAt(tableJogo.getSelectedRow(), 1).toString();
-
-        int quantidade = 1;
-
-        double preco = 1;
+        if (tableJogo.getSelectedRow() != -1) {
+            double preco = Double.parseDouble(JOptionPane.showInputDialog("Digite o preço do Jogo"));
+            if (preco > 0) {
+                int qtd = Integer.parseInt(JOptionPane.showInputDialog("Digite a Quantidade de jogos"));
+                if ((qtd <= Integer.parseInt(tableJogo.getValueAt(tableJogo.getSelectedRow(), 8).toString())) && (qtd >= 1)) {
+                    if (tableJogo.getSelectedRow() != -1) {
+                        String jogo = tableJogo.getValueAt(tableJogo.getSelectedRow(), 1).toString();
+                        ccTable.addRow(new Object[]{jogo, preco, qtd});
+                        rcTable.addRow(new Object[]{jogo, preco, qtd});
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Selecione o jogo");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Quantidade não disponível");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Preço inválido");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void tfChave2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave2KeyPressed
@@ -760,6 +801,8 @@ public class FRMVenda extends javax.swing.JFrame {
             lbCPF.setText((tableCliente.getValueAt(tableCliente.getSelectedRow(), 3).toString()));
             lbEndereco.setText(tableCliente.getValueAt(tableCliente.getSelectedRow(), 4).toString());
             lbTelefone.setText(tableCliente.getValueAt(tableCliente.getSelectedRow(), 5).toString());
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione o cliente");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -785,16 +828,30 @@ public class FRMVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_tfChave3KeyTyped
 
     private void tableCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCliMouseClicked
-        int i = tableM.getSelectedRow();
+        int i = tableCR.getSelectedRow();
     }//GEN-LAST:event_tableCliMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int i = tableCli.getSelectedRow();
-        preencheTabela2();
+        if (tableJogo.getSelectedRow() != -1) {
+            int i = tableCli.getSelectedRow();
+            ccTable.removeRow(i);
+            //   rcTable.removeRow(i);
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione o jogo");
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         tpGuia.setSelectedIndex(2);
+        
+        double precoTT = 0;
+        for (int i = 0; i <= tableCR.getRowCount(); i++) {
+            precoTT += Double.parseDouble(tableCR.getComponentAt(i, 2).toString());
+            
+        }
+        lbTotal.setText(""+precoTT);
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
@@ -869,10 +926,10 @@ public class FRMVenda extends javax.swing.JFrame {
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbTelefone;
     private javax.swing.JLabel lbTotal;
+    private javax.swing.JTable tableCR;
     private javax.swing.JTable tableCli;
     private javax.swing.JTable tableCliente;
     private javax.swing.JTable tableJogo;
-    private javax.swing.JTable tableM;
     private javax.swing.JTextField tfChave2;
     private javax.swing.JTextField tfChave3;
     private javax.swing.JTabbedPane tpGuia;

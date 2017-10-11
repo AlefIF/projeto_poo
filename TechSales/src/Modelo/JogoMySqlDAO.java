@@ -129,7 +129,7 @@ public class JogoMySqlDAO {
             throw new RuntimeException(e);
         }
     }
-    
+
     public ResultSet consulta(String strSql) {
         try {
             //criando o objeto Statement para que seja possivel enviar as consultas

@@ -10,10 +10,11 @@ package Modelo;
  * @author Alef
  */
 public class Item_Venda {
-   private int iv_venCodigo;
-   private int iv_joCodigo;
-   private int vQtd;
-   private Float ivPrecoUnitReal;
+
+    private int iv_venCodigo;
+    private int iv_joCodigo;
+    private int vQtd;
+    private Float ivPrecoUnitReal;
 
     public int getIv_venCodigo() {
         return iv_venCodigo;
@@ -46,6 +47,5 @@ public class Item_Venda {
     public void setIvPrecoUnitReal(Float ivPrecoUnitReal) {
         this.ivPrecoUnitReal = ivPrecoUnitReal;
     }
-   
-            
+
 }

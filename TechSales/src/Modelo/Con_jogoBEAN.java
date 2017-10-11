@@ -10,6 +10,7 @@ package Modelo;
  * @author admin
  */
 public class Con_jogoBEAN {
+
     private int cjg_conCodigo;
     private int cjg_joCodigo;
 
@@ -28,7 +29,5 @@ public class Con_jogoBEAN {
     public void setCjg_joCodigo(int cjg_joCodigo) {
         this.cjg_joCodigo = cjg_joCodigo;
     }
-    
-   
-    
+
 }

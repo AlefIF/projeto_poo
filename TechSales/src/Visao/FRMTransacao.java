@@ -16,9 +16,9 @@ public class FRMTransacao extends javax.swing.JFrame {
      */
     public FRMTransacao() {
         initComponents();
-        
+
         setResizable(false);
-        
+
     }
 
     /**
@@ -467,7 +467,7 @@ public class FRMTransacao extends javax.swing.JFrame {
     }//GEN-LAST:event_btVenderActionPerformed
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
-        FRMPrincipalFun fun=new FRMPrincipalFun();
+        FRMPrincipalFun fun = new FRMPrincipalFun();
         this.dispose();
         fun.setVisible(true);
 

@@ -7,15 +7,12 @@ package Modelo;
 
 import java.util.Date;
 
-
-
-
 /**
  *
  * @author Alef
  */
 public class Venda {
-    
+
     private int venCodigo;
     private String venNNF;
     private Date venData;
@@ -61,6 +58,5 @@ public class Venda {
     public void setCliente_cliCodigo(int cliente_cliCodigo) {
         this.cliente_cliCodigo = cliente_cliCodigo;
     }
-    
-    
+
 }

@@ -36,7 +36,7 @@ public class ClienteMySqlDAO {
             stmt.setString(3, c.getCpf());
             stmt.setString(4, c.getEndereco());
             stmt.setString(5, c.getTelefone());
-            
+
             // executa
             stmt.execute();
             stmt.close();
@@ -57,14 +57,14 @@ public class ClienteMySqlDAO {
             //joga resultado da consulta no ArrayList
             while (rs.next()) {
                 //joga os dados do rs dentro de um objeto c do tipo ClienteBEAN
-                ClienteBEAN c = new ClienteBEAN(); 
+                ClienteBEAN c = new ClienteBEAN();
                 c.setCod(rs.getInt(1));//indica que o cod ta no campo 1 do rs
                 c.setNome(rs.getString(2));
                 c.setIdade(rs.getInt(3));
                 c.setCpf(rs.getString(4));
                 c.setEndereco(rs.getString(5));
                 c.setTelefone(rs.getString(6));
-                
+
                 //adiciona os dados no ArrayLIst
                 contatoAL.add(c);
             }
@@ -78,13 +78,13 @@ public class ClienteMySqlDAO {
     public ClienteBEAN localizarCPF(String cpf) {
         String sql = "select * from cliente where cliCPF = ?;";
         ClienteBEAN c = new ClienteBEAN();
-        try{
+        try {
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, cpf);
-           
+
             ResultSet rs = stmt.executeQuery();
             //joga resultado da consulta no arrayList
-            while (rs.next()){
+            while (rs.next()) {
                 //ContatoBEAN c = new ContatoBEAN();
                 c.setCod(rs.getInt(1)); // Ou pode colocar o nome da tabela quie esta no Banco de Dados
                 c.setNome(rs.getString(2));
@@ -92,12 +92,12 @@ public class ClienteMySqlDAO {
                 c.setCpf(rs.getString(4));
                 c.setEndereco(rs.getString(5));
                 c.setTelefone(rs.getString(6));
-                
+
                 //adiciona os dados no array
                 //contatoAL.add(c);
             }
             stmt.close();
-        }catch (SQLException e ){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return c;
@@ -105,50 +105,50 @@ public class ClienteMySqlDAO {
 
     public boolean editar(ClienteBEAN c) {
         String sql = "update cliente set cliNome = ?, cliIdade = ?, cliCPF = ?, cliEndereco = ?, cliTelefone = ? where cliCodigo = ?";
-        
-        try{
+
+        try {
             //prepared statement para inserção
             stmt = connection.prepareStatement(sql);
-            
+
             //seta os valores
             stmt.setString(1, c.getNome());
-             stmt.setInt(2, c.getIdade());
-              stmt.setString(3, c.getCpf());
+            stmt.setInt(2, c.getIdade());
+            stmt.setString(3, c.getCpf());
             stmt.setString(4, c.getEndereco());
-            stmt.setString(5, c.getTelefone());           
+            stmt.setString(5, c.getTelefone());
             stmt.setInt(6, c.getCod());
-            
+
             //executa update(mudança)
             int linhasAtualizadas = stmt.executeUpdate();
             stmt.close();
-            
+
             //apenas se quiser saber quantas linhas foram alteradas
-            if(linhasAtualizadas > 0){
-                System.out.println("Foram alterados "+linhasAtualizadas+" registros");
+            if (linhasAtualizadas > 0) {
+                System.out.println("Foram alterados " + linhasAtualizadas + " registros");
             }
             return true;
-            
-        }catch (SQLException e){
+
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     public boolean remover(int codigo) {
         String sql = "delete from cliente where cliCodigo = ?";
-        
-        try{
+
+        try {
             //prepared statement para inserção
             stmt = connection.prepareStatement(sql);
-            
+
             //seta os valores
             stmt.setInt(1, codigo);
-            
+
             //executa
             stmt.execute();
             stmt.close();
             return true;
-            
-        }catch (SQLException e){
+
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -156,13 +156,13 @@ public class ClienteMySqlDAO {
     public ClienteBEAN localizarCodigo(int busca) {
         String sql = "select * from cliente where cliCodigo = ?;";
         ClienteBEAN c = new ClienteBEAN();
-        try{
+        try {
             stmt = connection.prepareStatement(sql);
             stmt.setInt(1, busca);
-           
+
             ResultSet rs = stmt.executeQuery();
             //joga resultado da consulta no arrayList
-            while (rs.next()){
+            while (rs.next()) {
                 //ContatoBEAN c = new ContatoBEAN();
                 c.setCod(rs.getInt(1)); // Ou pode colocar o nome da tabela quie esta no Banco de Dados
                 c.setNome(rs.getString(2));
@@ -170,12 +170,12 @@ public class ClienteMySqlDAO {
                 c.setCpf(rs.getString(4));
                 c.setEndereco(rs.getString(5));
                 c.setTelefone(rs.getString(6));
-                
+
                 //adiciona os dados no array
                 //contatoAL.add(c);
             }
             stmt.close();
-        }catch (SQLException e ){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return c;
@@ -184,13 +184,13 @@ public class ClienteMySqlDAO {
     public ClienteBEAN localizarNome(String busca) {
         String sql = "select * from cliente where cliNome = ?;";
         ClienteBEAN c = new ClienteBEAN();
-        try{
+        try {
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, busca);
-           
+
             ResultSet rs = stmt.executeQuery();
             //joga resultado da consulta no arrayList
-            while (rs.next()){
+            while (rs.next()) {
                 //ContatoBEAN c = new ContatoBEAN();
                 c.setCod(rs.getInt(1)); // Ou pode colocar o nome da tabela quie esta no Banco de Dados
                 c.setNome(rs.getString(2));
@@ -198,12 +198,12 @@ public class ClienteMySqlDAO {
                 c.setCpf(rs.getString(4));
                 c.setEndereco(rs.getString(5));
                 c.setTelefone(rs.getString(6));
-                
+
                 //adiciona os dados no array
                 //contatoAL.add(c);
             }
             stmt.close();
-        }catch (SQLException e ){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return c;

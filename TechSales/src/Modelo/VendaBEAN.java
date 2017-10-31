@@ -5,13 +5,13 @@
  */
 package Modelo;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
  * @author Alef
  */
-public class Venda {
+public class VendaBEAN {
 
     private int venCodigo;
     private String venNNF;

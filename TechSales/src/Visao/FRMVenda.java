@@ -9,13 +9,21 @@ import Controle.CategoriaControle;
 import Controle.ClienteControle;
 import Controle.Con_JogoControle;
 import Controle.ConsoleControle;
+import Controle.ControleUser;
+import Controle.ItemVendaControle;
 import Controle.JogoControle;
+import Controle.VendaControle;
 import Modelo.CategoriaBEAN;
 import Modelo.ClienteBEAN;
 import Modelo.Con_jogoBEAN;
 import Modelo.ConsoleBEAN;
+import Modelo.Item_VendaBEAN;
 import Modelo.JogoBEAN;
+import Modelo.UserBEAN;
+import Modelo.VendaBEAN;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -41,8 +49,12 @@ public class FRMVenda extends javax.swing.JFrame {
     private ArrayList<Con_jogoBEAN> cjDados;
     private ArrayList<ConsoleBEAN> cDados;
     private ClienteControle cCliente = new ClienteControle();
+    private ItemVendaControle cItv = new ItemVendaControle();
+    private VendaControle cVenda = new VendaControle();
     private ArrayList<ClienteBEAN> cdados;
-
+    private ArrayList<Object> a = new ArrayList<Object>();
+    private ArrayList<UserBEAN> userD;
+    ControleUser ct = new ControleUser();
     /**
      * Creates new form FRMVenda
      */
@@ -53,7 +65,12 @@ public class FRMVenda extends javax.swing.JFrame {
         preencheTabela();
         preencheTabela2();
         preencheTabela3();
-        preencheTabela4();
+        preencheTabela4();   
+        userD = ct.ListarALL();
+         for (UserBEAN d : userD) {
+           if(d.nomeUsuario.)
+        }
+
     }
 
     /**
@@ -259,7 +276,7 @@ public class FRMVenda extends javax.swing.JFrame {
         tableCli = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        tfNff = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         lbTotal = new javax.swing.JLabel();
@@ -280,6 +297,8 @@ public class FRMVenda extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableCR = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        lbCodigo = new javax.swing.JLabel();
         btVoltar3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -531,9 +550,14 @@ public class FRMVenda extends javax.swing.JFrame {
 
         tpGuia.addTab("Selecionar jogos", jPanel5);
 
-        jTextField1.setText(" ");
+        tfNff.setText(" ");
 
         jButton1.setText("Realizar Venda");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Total: R$");
 
@@ -640,7 +664,7 @@ public class FRMVenda extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Jogo", "Preço", "Quantidade"
+                "Código", "Jogo", "Preço", "Quantidade"
             }
         ));
         tableCR.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -656,9 +680,13 @@ public class FRMVenda extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        jLabel4.setText("Código do vendedor:");
+
+        lbCodigo.setText("---");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -676,15 +704,20 @@ public class FRMVenda extends javax.swing.JFrame {
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(tfNff, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lbTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbCodigo)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -695,7 +728,11 @@ public class FRMVenda extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(lbCodigo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -707,7 +744,7 @@ public class FRMVenda extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tfNff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(97, 97, 97))))
         );
 
@@ -755,8 +792,10 @@ public class FRMVenda extends javax.swing.JFrame {
                 if ((qtd <= Integer.parseInt(tableJogo.getValueAt(tableJogo.getSelectedRow(), 8).toString())) && (qtd >= 1)) {
                     if (tableJogo.getSelectedRow() != -1) {
                         String jogo = tableJogo.getValueAt(tableJogo.getSelectedRow(), 1).toString();
+                        String cod = tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString();
                         ccTable.addRow(new Object[]{jogo, preco, qtd});
-                        rcTable.addRow(new Object[]{jogo, preco, qtd});
+                        rcTable.addRow(new Object[]{cod,jogo, preco, qtd});
+                        a.add((new Object[]{jogo, preco, qtd}));
                     } else {
                         JOptionPane.showMessageDialog(null, "Selecione o jogo");
                     }
@@ -844,15 +883,41 @@ public class FRMVenda extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         tpGuia.setSelectedIndex(2);
-        
+
         double precoTT = 0;
-        for (int i = 0; i <= tableCR.getRowCount(); i++) {
-            precoTT += Double.parseDouble(tableCR.getComponentAt(i, 2).toString());
-            
+        for (int i = 0; i < tableCR.getRowCount(); i++) {
+            precoTT += (Double.parseDouble((tableCR.getValueAt(i, 1)).toString()) * Double.parseDouble((tableCR.getValueAt(i, 2)).toString()));
+
         }
-        lbTotal.setText(""+precoTT);
+        lbTotal.setText("" + precoTT);
 
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        VendaBEAN v = new VendaBEAN();
+        v.setCliente_cliCodigo(Integer.valueOf(jLabelCodigo.getText()));
+        v.setVenNNF(tfNff.getText());
+        java.sql.Date d = (java.sql.Date) new Date();
+        String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+        System.out.println(dStr);
+        v.setVenDataEHora(d);
+        //Arrumar isso
+        v.setVen_funCodigo(Integer.valueOf(lbCodigo.getText()));
+
+        ///
+        int cod=cVenda.cadastrar(v);
+        ArrayList<VendaBEAN> vbl = new ArrayList<VendaBEAN>();
+        Item_VendaBEAN itv = new Item_VendaBEAN();
+        for (int i = 0; i < tableCR.getRowCount(); i++) {
+            itv.setIv_joCodigo(Integer.parseInt((tableCR.getValueAt(i, 2)).toString()));
+            itv.setvQtd((Float.parseFloat((tableCR.getValueAt(i, 2)).toString())));
+            itv.setIvPrecoUnitReal(Float.parseFloat((tableCR.getValueAt(i, 1)).toString()));
+            itv.setIv_venCodigo(cod);
+            cItv.cadastrar2(itv);
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -903,6 +968,7 @@ public class FRMVenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelCodigo;
@@ -919,8 +985,8 @@ public class FRMVenda extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbCPF;
+    private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbEndereco;
     private javax.swing.JLabel lbIdade;
     private javax.swing.JLabel lbNome;
@@ -932,6 +998,7 @@ public class FRMVenda extends javax.swing.JFrame {
     private javax.swing.JTable tableJogo;
     private javax.swing.JTextField tfChave2;
     private javax.swing.JTextField tfChave3;
+    private javax.swing.JTextField tfNff;
     private javax.swing.JTabbedPane tpGuia;
     // End of variables declaration//GEN-END:variables
 }

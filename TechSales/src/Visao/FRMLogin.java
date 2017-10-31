@@ -117,6 +117,10 @@ public class FRMLogin extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         /*boolean v=ct.verificaLogin(pfSenha.getText());*/
+        for (Object object : col) {
+            
+        }
+        
         if (tfUser.getText().equals("ADM") || tfUser.getText().equals("adm")) {
             FRMPrincipalAdm adm = new FRMPrincipalAdm();
             this.dispose();

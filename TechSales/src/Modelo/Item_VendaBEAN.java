@@ -9,7 +9,7 @@ package Modelo;
  *
  * @author Alef
  */
-public class Item_Venda {
+public class Item_VendaBEAN {
 
     private int iv_venCodigo;
     private int iv_joCodigo;

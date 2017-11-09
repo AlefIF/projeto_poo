@@ -8,6 +8,7 @@ package Visao;
 import Controle.ControleUser;
 import Modelo.ConnectionFactory;
 import Modelo.UserBEAN;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,14 +18,15 @@ import javax.swing.JOptionPane;
 public class FRMLogin extends javax.swing.JFrame {
 
     ControleUser ct = new ControleUser();
+    ArrayList<UserBEAN> al = ct.ListarALL();
 
     /**
      * Creates new form FRMLogin
      */
     public FRMLogin() {
-
         setResizable(false);
         initComponents();
+
     }
 
     /**
@@ -117,27 +119,27 @@ public class FRMLogin extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         /*boolean v=ct.verificaLogin(pfSenha.getText());*/
-        for (Object object : col) {
-            
+        int a = 1;
+        String nome = tfUser.getText();
+        String senha = tfUser.getText();
+        for (UserBEAN user : al) {
+            if (nome.equals("ADM") || senha.equals("adm")) {
+                FRMPrincipalAdm adm = new FRMPrincipalAdm();
+                this.dispose();
+                adm.setVisible(true);
+            } else if (nome.toString().equals(user.getNomeUsuario())
+                    || senha.toString().equals(user.getSenha())) {
+                int cod=user.getCodigo();
+                FRMPrincipalFun fun = new FRMPrincipalFun(cod);
+                this.dispose();
+                fun.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário não encontrado");
+            }
         }
-        
-        if (tfUser.getText().equals("ADM") || tfUser.getText().equals("adm")) {
-            FRMPrincipalAdm adm = new FRMPrincipalAdm();
-            this.dispose();
-            adm.setVisible(true);
-        } else {
-
-            FRMPrincipalFun fun = new FRMPrincipalFun();
-            this.dispose();
-            fun.setVisible(true);
-
-        }
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btSairProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairProgramaActionPerformed
-
         System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_btSairProgramaActionPerformed
 
@@ -155,16 +157,24 @@ public class FRMLogin extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FRMLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FRMLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FRMLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FRMLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMLogin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

@@ -55,22 +55,20 @@ public class FRMVenda extends javax.swing.JFrame {
     private ArrayList<Object> a = new ArrayList<Object>();
     private ArrayList<UserBEAN> userD;
     ControleUser ct = new ControleUser();
+
     /**
      * Creates new form FRMVenda
      */
-    public FRMVenda() {
+    public FRMVenda(int cod) {
         initComponents();
         setSize(700, 500);
         setResizable(false);
         preencheTabela();
         preencheTabela2();
         preencheTabela3();
-        preencheTabela4();   
-        userD = ct.ListarALL();
-         for (UserBEAN d : userD) {
-           if(d.nomeUsuario.)
-        }
-
+        preencheTabela4();
+        lbCod.setText(String.valueOf(cod));
+        lbCodigo.setText(String.valueOf(cod));
     }
 
     /**
@@ -225,6 +223,7 @@ public class FRMVenda extends javax.swing.JFrame {
     private void preencheTabela4() {
         rcTable = criaTabela();
         //seta o nome das colunas da tabela
+        rcTable.addColumn("Código");
         rcTable.addColumn("Jogo");
         rcTable.addColumn("Preço");
         rcTable.addColumn("Quantidade");
@@ -236,7 +235,7 @@ public class FRMVenda extends javax.swing.JFrame {
         DefaultTableModel rcTable = new DefaultTableModel() {
             //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
             Class[] types = new Class[]{
-                java.lang.String.class, java.lang.Double.class, java.lang.Integer.class,};
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class};
             //define se os campos podem ser editados na propria tabela
             boolean[] canEdit = new boolean[]{
                 false, false, false
@@ -258,6 +257,8 @@ public class FRMVenda extends javax.swing.JFrame {
 
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        lbCod = new javax.swing.JLabel();
         tpGuia = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -317,6 +318,14 @@ public class FRMVenda extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jLabel5.setText("Código:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(30, 10, 50, 14);
+
+        lbCod.setText("...");
+        getContentPane().add(lbCod);
+        lbCod.setBounds(90, 10, 12, 14);
 
         tableCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -771,7 +780,7 @@ public class FRMVenda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btVoltar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltar3ActionPerformed
-        FRMPrincipalFun fun = new FRMPrincipalFun();
+        FRMPrincipalFun fun = new FRMPrincipalFun(Integer.valueOf(lbCod.getText()));
         this.dispose();
         fun.setVisible(true);
     }//GEN-LAST:event_btVoltar3ActionPerformed
@@ -794,7 +803,7 @@ public class FRMVenda extends javax.swing.JFrame {
                         String jogo = tableJogo.getValueAt(tableJogo.getSelectedRow(), 1).toString();
                         String cod = tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString();
                         ccTable.addRow(new Object[]{jogo, preco, qtd});
-                        rcTable.addRow(new Object[]{cod,jogo, preco, qtd});
+                        rcTable.addRow(new Object[]{cod, jogo, preco, qtd});
                         a.add((new Object[]{jogo, preco, qtd}));
                     } else {
                         JOptionPane.showMessageDialog(null, "Selecione o jogo");
@@ -882,15 +891,14 @@ public class FRMVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        tpGuia.setSelectedIndex(2);
-
-        double precoTT = 0;
-        for (int i = 0; i < tableCR.getRowCount(); i++) {
-            precoTT += (Double.parseDouble((tableCR.getValueAt(i, 1)).toString()) * Double.parseDouble((tableCR.getValueAt(i, 2)).toString()));
-
+        
+        double precoTT = tableCR.getRowCount();
+        for (int i = 0; i <= tableCR.getRowCount(); i++) {
+            precoTT += (Double.parseDouble((tableCR.getValueAt(i, 2)).toString()) 
+                    * Double.parseDouble((tableCR.getValueAt(i, 3)).toString()));
         }
-        lbTotal.setText("" + precoTT);
-
+        lbTotal.setText(String.valueOf(precoTT));
+        tpGuia.setSelectedIndex(2);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -902,10 +910,10 @@ public class FRMVenda extends javax.swing.JFrame {
         System.out.println(dStr);
         v.setVenDataEHora(d);
         //Arrumar isso
-        v.setVen_funCodigo(Integer.valueOf(lbCodigo.getText()));
+        v.setVen_funCodigo(Integer.valueOf(lbCod.getText()));
 
         ///
-        int cod=cVenda.cadastrar(v);
+        int cod = cVenda.cadastrar(v);
         ArrayList<VendaBEAN> vbl = new ArrayList<VendaBEAN>();
         Item_VendaBEAN itv = new Item_VendaBEAN();
         for (int i = 0; i < tableCR.getRowCount(); i++) {
@@ -949,7 +957,7 @@ public class FRMVenda extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FRMVenda().setVisible(true);
+                new FRMVenda(1).setVisible(true);
             }
         });
     }
@@ -969,6 +977,7 @@ public class FRMVenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelCodigo;
@@ -986,6 +995,7 @@ public class FRMVenda extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbCPF;
+    private javax.swing.JLabel lbCod;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbEndereco;
     private javax.swing.JLabel lbIdade;

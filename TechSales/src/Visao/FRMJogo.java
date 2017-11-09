@@ -546,6 +546,11 @@ public class FRMJogo extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         jLabel12.setText("Palavra Chave :");
 
+        tfChave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfChaveActionPerformed(evt);
+            }
+        });
         tfChave.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfChaveKeyPressed(evt);
@@ -1013,6 +1018,10 @@ public class FRMJogo extends javax.swing.JFrame {
     private void tableMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMMouseClicked
         int i = tableM.getSelectedRow();
     }//GEN-LAST:event_tableMMouseClicked
+
+    private void tfChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfChaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfChaveActionPerformed
     private void limparCampos() {
         lbCodigoJogo.setText("");
         tfNome.setText("");

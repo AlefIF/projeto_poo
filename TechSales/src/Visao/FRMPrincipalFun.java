@@ -14,11 +14,12 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
     /**
      * Creates new form FRMPrincipal
      */
-    public FRMPrincipalFun() {
+    public FRMPrincipalFun(int cod) {
         initComponents();
-        setResizable(false);
+        setResizable(false);      
+        lbCod.setText(String.valueOf(cod));
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,6 +30,8 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
+        lbCod = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jbGerenciarCategoria = new javax.swing.JButton();
         jbGerenciarConsole = new javax.swing.JButton();
         btERelatorios = new javax.swing.JButton();
@@ -47,6 +50,14 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
         jLabel3.setText("Opções:");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(230, 120, 70, 30);
+
+        lbCod.setText("...");
+        getContentPane().add(lbCod);
+        lbCod.setBounds(70, 10, 12, 14);
+
+        jLabel4.setText("Código:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(10, 10, 37, 14);
 
         jbGerenciarCategoria.setText("Gerenciar Categoria");
         jbGerenciarCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -149,9 +160,10 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
     }//GEN-LAST:event_btGJogoActionPerformed
 
     private void btRTransacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRTransacaoActionPerformed
-        FRMTransacao trans = new FRMTransacao();
+        int cod1=Integer.valueOf(lbCod.getText());
+        FRMVenda venda = new FRMVenda(cod1);
         this.dispose();
-        trans.setVisible(true);        // TODO add your handling code here:
+        venda.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btRTransacaoActionPerformed
 
     private void btERelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btERelatoriosActionPerformed
@@ -203,7 +215,7 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FRMPrincipalFun().setVisible(true);
+                new FRMPrincipalFun(1).setVisible(true);
             }
         });
     }
@@ -217,7 +229,9 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton jbGerenciarCategoria;
     private javax.swing.JButton jbGerenciarConsole;
+    private javax.swing.JLabel lbCod;
     // End of variables declaration//GEN-END:variables
 }

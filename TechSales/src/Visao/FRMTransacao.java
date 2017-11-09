@@ -14,7 +14,7 @@ public class FRMTransacao extends javax.swing.JFrame {
     /**
      * Creates new form FRMTransacao
      */
-    public FRMTransacao() {
+    public FRMTransacao(int cod) {
         initComponents();
 
         setResizable(false);
@@ -516,7 +516,7 @@ public class FRMTransacao extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FRMTransacao().setVisible(true);
+                new FRMTransacao(1).setVisible(true);
             }
         });
     }

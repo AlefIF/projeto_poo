@@ -16,7 +16,8 @@ import javax.swing.JOptionPane;
  * @author LUCASP
  */
 public class FRMLogin extends javax.swing.JFrame {
-
+    
+    static UserBEAN user= new UserBEAN();
     ControleUser ct = new ControleUser();
     ArrayList<UserBEAN> al = ct.ListarALL();
 
@@ -118,7 +119,7 @@ public class FRMLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_rbSenhaActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        /*boolean v=ct.verificaLogin(pfSenha.getText());*/
+        al = ct.ListarALL();
         int a = 1;
         String nome = tfUser.getText();
         String senha = tfUser.getText();
@@ -128,9 +129,9 @@ public class FRMLogin extends javax.swing.JFrame {
                 this.dispose();
                 adm.setVisible(true);
             } else if (nome.toString().equals(user.getNomeUsuario())
-                    || senha.toString().equals(user.getSenha())) {
-                int cod=user.getCodigo();
-                FRMPrincipalFun fun = new FRMPrincipalFun(cod);
+                    && senha.toString().equals(user.getSenha())) {
+                this.user=user;
+                FRMPrincipalFun fun = new FRMPrincipalFun();
                 this.dispose();
                 fun.setVisible(true);
             } else {

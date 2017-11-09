@@ -59,7 +59,7 @@ public class FRMVenda extends javax.swing.JFrame {
     /**
      * Creates new form FRMVenda
      */
-    public FRMVenda(int cod) {
+    public FRMVenda() {
         initComponents();
         setSize(700, 500);
         setResizable(false);
@@ -67,8 +67,8 @@ public class FRMVenda extends javax.swing.JFrame {
         preencheTabela2();
         preencheTabela3();
         preencheTabela4();
-        lbCod.setText(String.valueOf(cod));
-        lbCodigo.setText(String.valueOf(cod));
+        lbCod.setText(String.valueOf(FRMLogin.user.getCodigo()));
+        lbCodigo.setText(String.valueOf(FRMLogin.user.getCodigo()));
     }
 
     /**
@@ -780,7 +780,7 @@ public class FRMVenda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btVoltar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltar3ActionPerformed
-        FRMPrincipalFun fun = new FRMPrincipalFun(Integer.valueOf(lbCod.getText()));
+        FRMPrincipalFun fun = new FRMPrincipalFun();
         this.dispose();
         fun.setVisible(true);
     }//GEN-LAST:event_btVoltar3ActionPerformed
@@ -891,8 +891,7 @@ public class FRMVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        
-        double precoTT = tableCR.getRowCount();
+        double precoTT=0;
         for (int i = 0; i <= tableCR.getRowCount(); i++) {
             precoTT += (Double.parseDouble((tableCR.getValueAt(i, 2)).toString()) 
                     * Double.parseDouble((tableCR.getValueAt(i, 3)).toString()));
@@ -957,7 +956,7 @@ public class FRMVenda extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FRMVenda(1).setVisible(true);
+                new FRMVenda().setVisible(true);
             }
         });
     }

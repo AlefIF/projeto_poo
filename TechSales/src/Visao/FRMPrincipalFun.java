@@ -14,10 +14,10 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
     /**
      * Creates new form FRMPrincipal
      */
-    public FRMPrincipalFun(int cod) {
+    public FRMPrincipalFun() {
         initComponents();
         setResizable(false);      
-        lbCod.setText(String.valueOf(cod));
+        lbCod.setText(String.valueOf(FRMLogin.user.getCodigo()));
     }
     
     /**
@@ -160,8 +160,8 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
     }//GEN-LAST:event_btGJogoActionPerformed
 
     private void btRTransacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRTransacaoActionPerformed
-        int cod1=Integer.valueOf(lbCod.getText());
-        FRMVenda venda = new FRMVenda(cod1);
+      
+        FRMVenda venda = new FRMVenda();
         this.dispose();
         venda.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btRTransacaoActionPerformed
@@ -215,7 +215,7 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FRMPrincipalFun(1).setVisible(true);
+                new FRMPrincipalFun().setVisible(true);
             }
         });
     }

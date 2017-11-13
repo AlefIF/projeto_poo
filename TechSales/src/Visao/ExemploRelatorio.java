@@ -18,8 +18,8 @@ public class ExemploRelatorio extends javax.swing.JFrame {
      */
     public ExemploRelatorio() {
         initComponents();
-        setSize(400,300);
-        
+        setSize(400, 300);
+
         setResizable(false);
     }
 
@@ -70,7 +70,6 @@ public class ExemploRelatorio extends javax.swing.JFrame {
             GeraRelatorio.gerarRelatorio2("JogoRelatorio", "JogoRelatorio");
         } catch (Exception x) {
         }
-
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

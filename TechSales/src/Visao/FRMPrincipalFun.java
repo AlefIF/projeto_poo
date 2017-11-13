@@ -16,10 +16,10 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
      */
     public FRMPrincipalFun() {
         initComponents();
-        setResizable(false);      
+        setResizable(false);
         lbCod.setText(String.valueOf(FRMLogin.user.getCodigo()));
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -160,7 +160,7 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
     }//GEN-LAST:event_btGJogoActionPerformed
 
     private void btRTransacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRTransacaoActionPerformed
-      
+
         FRMVenda venda = new FRMVenda();
         this.dispose();
         venda.setVisible(true);        // TODO add your handling code here:

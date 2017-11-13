@@ -14,6 +14,7 @@ import java.util.ArrayList;
  * @author Alef
  */
 public class VendaControle {
+
     private VendaDAO venDAO = new VendaDAO();
     private int codigo = 0;
 
@@ -24,7 +25,7 @@ public class VendaControle {
 
     public int cadastrar(VendaBEAN c) {
         c.setVenCodigo(this.atualizaCodigo());
-        int cod=venDAO.cadastrar(c);
+        int cod = venDAO.cadastrar(c);
         return cod;
     }
 

@@ -22,8 +22,12 @@ import Modelo.JogoBEAN;
 import Modelo.UserBEAN;
 import Modelo.VendaBEAN;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -54,7 +58,7 @@ public class FRMVenda extends javax.swing.JFrame {
     private ArrayList<ClienteBEAN> cdados;
     private ArrayList<Object> a = new ArrayList<Object>();
     private ArrayList<UserBEAN> userD;
-    ControleUser ct = new ControleUser();
+    private ControleUser ct = new ControleUser();
 
     /**
      * Creates new form FRMVenda
@@ -891,9 +895,9 @@ public class FRMVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        double precoTT=0;
-        for (int i = 0; i <= tableCR.getRowCount(); i++) {
-            precoTT += (Double.parseDouble((tableCR.getValueAt(i, 2)).toString()) 
+        double precoTT = 0;
+        for (int i = 0; i < tableCR.getRowCount(); i++) {
+            precoTT += (Double.parseDouble((tableCR.getValueAt(i, 2)).toString())
                     * Double.parseDouble((tableCR.getValueAt(i, 3)).toString()));
         }
         lbTotal.setText(String.valueOf(precoTT));
@@ -904,26 +908,28 @@ public class FRMVenda extends javax.swing.JFrame {
         VendaBEAN v = new VendaBEAN();
         v.setCliente_cliCodigo(Integer.valueOf(jLabelCodigo.getText()));
         v.setVenNNF(tfNff.getText());
-        java.sql.Date d = (java.sql.Date) new Date();
-        String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
-        System.out.println(dStr);
-        v.setVenDataEHora(d);
-        //Arrumar isso
         v.setVen_funCodigo(Integer.valueOf(lbCod.getText()));
+        SimpleDateFormat sdff = new SimpleDateFormat("yyyy-MM-dd");
+        String dia = (sdff.format(new Date()));
+        java.sql.Date data;
+        try {
+            data = new java.sql.Date(sdff.parse(dia).getTime());
+            v.setVenData(data);
+        } catch (ParseException ex) {
+            System.out.println("Erro de Conversão de Data");
 
-        ///
+        }
         int cod = cVenda.cadastrar(v);
+        System.out.println(cod);
         ArrayList<VendaBEAN> vbl = new ArrayList<VendaBEAN>();
         Item_VendaBEAN itv = new Item_VendaBEAN();
         for (int i = 0; i < tableCR.getRowCount(); i++) {
-            itv.setIv_joCodigo(Integer.parseInt((tableCR.getValueAt(i, 2)).toString()));
-            itv.setvQtd((Float.parseFloat((tableCR.getValueAt(i, 2)).toString())));
-            itv.setIvPrecoUnitReal(Float.parseFloat((tableCR.getValueAt(i, 1)).toString()));
+            itv.setIv_joCodigo(Integer.parseInt((tableCR.getValueAt(i, 0)).toString()));
+            itv.setvQtd(Integer.parseInt((tableCR.getValueAt(i, 3)).toString()));
+            itv.setIvPrecoUnitReal(Float.parseFloat((tableCR.getValueAt(i, 2)).toString()));
             itv.setIv_venCodigo(cod);
             cItv.cadastrar2(itv);
         }
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

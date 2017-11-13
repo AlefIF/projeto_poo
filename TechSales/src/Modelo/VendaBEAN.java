@@ -35,11 +35,11 @@ public class VendaBEAN {
         this.venNNF = venNNF;
     }
 
-    public Date getVenDataEHora() {
+    public Date getVenData() {
         return venData;
     }
 
-    public void setVenDataEHora(Date venData) {
+    public void setVenData(Date venData) {
         this.venData = venData;
     }
 

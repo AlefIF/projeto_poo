@@ -16,8 +16,8 @@ import javax.swing.JOptionPane;
  * @author LUCASP
  */
 public class FRMLogin extends javax.swing.JFrame {
-    
-    static UserBEAN user= new UserBEAN();
+
+    static UserBEAN user = new UserBEAN();
     ControleUser ct = new ControleUser();
     ArrayList<UserBEAN> al = ct.ListarALL();
 
@@ -39,7 +39,7 @@ public class FRMLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pfSenha = new javax.swing.JPasswordField();
+        tfSenha = new javax.swing.JPasswordField();
         tfUser = new javax.swing.JTextField();
         rbSenha = new javax.swing.JRadioButton();
         btSairPrograma = new javax.swing.JButton();
@@ -53,8 +53,8 @@ public class FRMLogin extends javax.swing.JFrame {
         setTitle("Login");
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(null);
-        getContentPane().add(pfSenha);
-        pfSenha.setBounds(200, 190, 120, 30);
+        getContentPane().add(tfSenha);
+        tfSenha.setBounds(200, 190, 120, 30);
         getContentPane().add(tfUser);
         tfUser.setBounds(200, 150, 120, 30);
 
@@ -111,26 +111,25 @@ public class FRMLogin extends javax.swing.JFrame {
 
     private void rbSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSenhaActionPerformed
         if (rbSenha.isSelected()) {
-            pfSenha.setEchoChar((char) 0); //password = JPasswordField
+            tfSenha.setEchoChar((char) 0); //password = JPasswordField
         } else {
 
-            pfSenha.setEchoChar('*');
+            tfSenha.setEchoChar('*');
         }        // TODO add your handling code here:
     }//GEN-LAST:event_rbSenhaActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         al = ct.ListarALL();
-        int a = 1;
         String nome = tfUser.getText();
-        String senha = tfUser.getText();
+        String senha = tfSenha.getText();
         for (UserBEAN user : al) {
-            if (nome.equals("ADM") || senha.equals("adm")) {
+            if (nome.equals("ADM") && senha.equals("adm")) {
                 FRMPrincipalAdm adm = new FRMPrincipalAdm();
                 this.dispose();
                 adm.setVisible(true);
             } else if (nome.toString().equals(user.getNomeUsuario())
                     && senha.toString().equals(user.getSenha())) {
-                this.user=user;
+                this.user = user;
                 FRMPrincipalFun fun = new FRMPrincipalFun();
                 this.dispose();
                 fun.setVisible(true);
@@ -195,8 +194,8 @@ public class FRMLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPasswordField pfSenha;
     private javax.swing.JRadioButton rbSenha;
+    private javax.swing.JPasswordField tfSenha;
     private javax.swing.JTextField tfUser;
     // End of variables declaration//GEN-END:variables
 }

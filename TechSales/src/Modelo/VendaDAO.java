@@ -36,7 +36,7 @@ public class VendaDAO {
             stmt = connection.prepareStatement(sql);
             // seta os valores
             stmt.setString(1, c.getVenNNF());
-            stmt.setDate(2, c.getVenDataEHora());
+            stmt.setDate(2, c.getVenData());
             stmt.setDouble(3, c.getVen_funCodigo());
             stmt.setInt(4, c.getCliente_cliCodigo());
             // executa
@@ -62,7 +62,7 @@ public class VendaDAO {
             // seta os valores
 
             stmt.setString(1, c.getVenNNF());
-            stmt.setDate(2, c.getVenDataEHora());
+            stmt.setDate(2, c.getVenData());
             stmt.setDouble(3, c.getVen_funCodigo());
             stmt.setInt(4, c.getCliente_cliCodigo());
 
@@ -110,7 +110,7 @@ public class VendaDAO {
                 VendaBEAN c = new VendaBEAN();
                 c.setVenCodigo(rs.getInt(1));
                 c.setVenNNF(rs.getString(2));
-                c.setVenDataEHora((rs.getTimestamp(3)));
+                c.setVenData((rs.getDate(3)));
                 c.setVen_funCodigo(rs.getInt(4));
                 //adiciona os dados no ArrayLIst
                 vendaAL.add(c);

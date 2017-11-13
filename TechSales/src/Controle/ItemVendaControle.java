@@ -14,7 +14,8 @@ import java.util.ArrayList;
  * @author Alef
  */
 public class ItemVendaControle {
-     private Item_VendaDAO itvDAO = new Item_VendaDAO();
+
+    private Item_VendaDAO itvDAO = new Item_VendaDAO();
     private int codigo = 0;
 
     public int atualizaCodigo2() {

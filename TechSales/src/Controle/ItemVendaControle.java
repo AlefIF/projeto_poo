@@ -23,8 +23,7 @@ public class ItemVendaControle {
         return codigo;
     }
 
-    public void cadastrar2(Item_VendaBEAN w) {
-        w.setIv_venCodigo(this.atualizaCodigo2());
+    public void cadastrar2(Item_VendaBEAN w) {      
         itvDAO.cadastrar(w);
     }
 

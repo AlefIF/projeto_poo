@@ -819,7 +819,7 @@ public class FRMVenda extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Preço inválido");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Erro");
+            JOptionPane.showMessageDialog(null, "Selecione o jogo");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -905,30 +905,59 @@ public class FRMVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VendaBEAN v = new VendaBEAN();
-        v.setCliente_cliCodigo(Integer.valueOf(jLabelCodigo.getText()));
-        v.setVenNNF(tfNff.getText());
-        v.setVen_funCodigo(Integer.valueOf(lbCod.getText()));
-        SimpleDateFormat sdff = new SimpleDateFormat("yyyy-MM-dd");
-        String dia = (sdff.format(new Date()));
-        java.sql.Date data;
-        try {
-            data = new java.sql.Date(sdff.parse(dia).getTime());
-            v.setVenData(data);
-        } catch (ParseException ex) {
-            System.out.println("Erro de Conversão de Data");
-
+        ArrayList<VendaBEAN> aV1 = new ArrayList<VendaBEAN>();
+        aV1 = cVenda.listarALL();
+        int a = 0;
+        for (VendaBEAN vb : aV1) {
+            if (tfNff.getText().equals(vb.getVenNNF())) {
+                a++;
+            }
         }
-        int cod = cVenda.cadastrar(v);
-        System.out.println(cod);
-        ArrayList<VendaBEAN> vbl = new ArrayList<VendaBEAN>();
-        Item_VendaBEAN itv = new Item_VendaBEAN();
-        for (int i = 0; i < tableCR.getRowCount(); i++) {
-            itv.setIv_joCodigo(Integer.parseInt((tableCR.getValueAt(i, 0)).toString()));
-            itv.setvQtd(Integer.parseInt((tableCR.getValueAt(i, 3)).toString()));
-            itv.setIvPrecoUnitReal(Float.parseFloat((tableCR.getValueAt(i, 2)).toString()));
-            itv.setIv_venCodigo(cod);
-            cItv.cadastrar2(itv);
+        if (a > 0) {
+            VendaBEAN v = new VendaBEAN();
+            v.setVenNNF(tfNff.getText());
+            v.setCliente_cliCodigo(Integer.valueOf(jLabelCodigo.getText()));
+            v.setVen_funCodigo(Integer.valueOf(lbCod.getText()));
+            SimpleDateFormat sdff = new SimpleDateFormat("yyyy-MM-dd");
+            String dia = (sdff.format(new Date()));
+            java.sql.Date data;
+            try {
+                data = new java.sql.Date(sdff.parse(dia).getTime());
+                v.setVenData(data);
+            } catch (ParseException ex) {
+                System.out.println("Erro de Conversão de Data");
+
+            }
+            cVenda.cadastrar(v);
+            ArrayList<VendaBEAN> aV2 = new ArrayList<VendaBEAN>();
+            aV2 = cVenda.listarALL();
+            v = aV2.get(aV2.size() - 1);
+            Item_VendaBEAN itv = new Item_VendaBEAN();
+            ArrayList<JogoBEAN> jT1 = new ArrayList<JogoBEAN>();
+            for (int i = 0; i < tableCR.getRowCount(); i++) {
+                jT1 = jControle.listarALL();
+                itv.setIv_joCodigo(Integer.parseInt((tableCR.getValueAt(i, 0)).toString()));
+                itv.setIvPrecoUnitReal(Float.parseFloat((tableCR.getValueAt(i, 2)).toString()));
+                itv.setvQtd(Integer.parseInt((tableCR.getValueAt(i, 3)).toString()));
+                itv.setIv_venCodigo(v.getVenCodigo());
+                cItv.cadastrar2(itv);
+                for (JogoBEAN jogo : jT1) {
+                    if (jogo.getJoCodigo() == Integer.parseInt((tableCR.getValueAt(i, 0)))) {
+                        jogo.setJoQtd(jogo.getJoQtd() - Integer.parseInt((tableCR.getValueAt(i, 3))));
+
+                        boolean retorno = jControle.editar(jogo);
+                        if (retorno == true) {
+                            JOptionPane.showMessageDialog(null, "Jogo MODIFICADO com sucesso");
+                        } else {
+                            //mensagem de erro
+                            JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
+                        }                 
+                    }
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Cadastrado");
+        } else {
+            JOptionPane.showMessageDialog(null, "Nota fiscal já exisetnte");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

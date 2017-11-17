@@ -29,14 +29,15 @@ public class Item_VendaDAO {
 
     public void cadastrar(Item_VendaBEAN c) {
 
-        String sql = "insert into item_venda (iv_joCodigo, ivQtd, ivPrecoUnitReal) values (?,?,?);";
+        String sql = "insert into item_venda (iv_venCodigo,iv_joCodigo, ivQtd, ivPrecoUnitReal) values (?,?,?,?);";
         try {
             // prepared statement para inserção
             stmt = connection.prepareStatement(sql);
             // seta os valores
-            stmt.setInt(1, c.getIv_joCodigo());
-            stmt.setInt(2, c.getvQtd());
-            stmt.setDouble(3, c.getIvPrecoUnitReal());
+            stmt.setInt(1, c.getIv_venCodigo());
+            stmt.setInt(2, c.getIv_joCodigo());
+            stmt.setInt(3, c.getvQtd());
+            stmt.setDouble(4, c.getIvPrecoUnitReal());
             // executa
             stmt.execute();
             stmt.close();

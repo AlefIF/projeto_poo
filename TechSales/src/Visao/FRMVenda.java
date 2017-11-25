@@ -951,7 +951,7 @@ public class FRMVenda extends javax.swing.JFrame {
                         } else {
                             //mensagem de erro
                             JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
-                        }                 
+                        }
                     }
                 }
             }

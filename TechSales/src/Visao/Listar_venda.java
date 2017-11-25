@@ -5,17 +5,73 @@
  */
 package Visao;
 
+import Controle.ItemVendaControle;
+import Controle.JogoControle;
+import Controle.VendaControle;
+import Modelo.CategoriaBEAN;
+import Modelo.Con_jogoBEAN;
+import Modelo.ConsoleBEAN;
+import Modelo.Item_VendaBEAN;
+import Modelo.JogoBEAN;
+import Modelo.VendaBEAN;
+import java.util.ArrayList;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Alef
  */
 public class Listar_venda extends javax.swing.JFrame {
 
+    private DefaultTableModel df;
+    private VendaControle vc = new VendaControle();
+    private ItemVendaControle ivc = new ItemVendaControle();
+    private JogoControle jgc = new JogoControle();
+    JComboBox<JogoBEAN> comboBox = new JComboBox<JogoBEAN>();
+    DefaultTableModel model;
+
     /**
      * Creates new form Listar_venda
      */
     public Listar_venda() {
         initComponents();
+        ArrayList<VendaBEAN> vb = vc.listarALL();
+        ArrayList<Item_VendaBEAN> tvb = ivc.listarALL();
+        ArrayList<JogoBEAN> jgL = jgc.listarALL();
+        for (JogoBEAN jg : jgL) {
+            comboBox.addItem(jg);
+        }
+
+        TableColumn comboColuna = tb1.getColumnModel().getColumn(5);
+        comboColuna.setCellEditor(new DefaultCellEditor(comboBox));
+        df = (DefaultTableModel) tb1.getModel();
+
+
+
+        preencheTabela();
+
+    }
+
+    private void preencheTabela() {
+        ArrayList<VendaBEAN> vb = vc.listarALL();
+        ArrayList<Item_VendaBEAN> tvb = ivc.listarALL();
+        ArrayList<JogoBEAN> jgL = jgc.listarALL();
+
+        JComboBox e = new JComboBox();
+
+        for (VendaBEAN vO : vb) {
+            for (Item_VendaBEAN iO : tvb) {
+                if (vO.getVenCodigo() == iO.getIv_venCodigo()) {
+                    df.addRow(new Object[]{vO.getVenCodigo(), vO.getVenNNF(),
+                        vO.getVenData(), vO.getVen_funCodigo(), vO.getCliente_cliCodigo(), e});
+                }
+            }
+        }
+        tb1.setModel(df);
     }
 
     /**
@@ -29,40 +85,48 @@ public class Listar_venda extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tb1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-
+                "Código", "Nº N. Fiscal", "Data", "Cod Vend", "Cod Cli", "Jogo"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tb1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab1", jPanel1);
@@ -75,7 +139,7 @@ public class Listar_venda extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
+            .addGap(0, 449, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab2", jPanel2);
@@ -132,8 +196,8 @@ public class Listar_venda extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tb1;
     // End of variables declaration//GEN-END:variables
 }

@@ -111,7 +111,8 @@ public class VendaDAO {
                 c.setVenCodigo(rs.getInt(1));
                 c.setVenNNF(rs.getString(2));
                 c.setVenData((rs.getDate(3)));
-                c.setVen_funCodigo(rs.getInt(4));
+                c.setCliente_cliCodigo((rs.getInt(4)));
+                c.setVen_funCodigo(rs.getInt(5));
                 //adiciona os dados no ArrayLIst
                 vendaAL.add(c);
             }

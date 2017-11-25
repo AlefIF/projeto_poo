@@ -84,4 +84,9 @@ public class JogoBEAN {
         this.joLote = joLote;
     }
 
+    @Override
+    public String toString() {
+        return getJoNome();
+    }
+
 }

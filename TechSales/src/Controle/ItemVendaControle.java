@@ -23,7 +23,7 @@ public class ItemVendaControle {
         return codigo;
     }
 
-    public void cadastrar2(Item_VendaBEAN w) {      
+    public void cadastrar2(Item_VendaBEAN w) {
         itvDAO.cadastrar(w);
     }
 

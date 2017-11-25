@@ -8,9 +8,6 @@ package Visao;
 import Controle.ItemVendaControle;
 import Controle.JogoControle;
 import Controle.VendaControle;
-import Modelo.CategoriaBEAN;
-import Modelo.Con_jogoBEAN;
-import Modelo.ConsoleBEAN;
 import Modelo.Item_VendaBEAN;
 import Modelo.JogoBEAN;
 import Modelo.VendaBEAN;
@@ -19,7 +16,6 @@ import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -31,47 +27,40 @@ public class Listar_venda extends javax.swing.JFrame {
     private VendaControle vc = new VendaControle();
     private ItemVendaControle ivc = new ItemVendaControle();
     private JogoControle jgc = new JogoControle();
-    JComboBox<JogoBEAN> comboBox = new JComboBox<JogoBEAN>();
-    DefaultTableModel model;
+
+    private DefaultTableModel model;
+    private ArrayList<VendaBEAN> vb = vc.listarALL();
+    private ArrayList<Item_VendaBEAN> tvb = ivc.listarALL();
+    private ArrayList<JogoBEAN> jgL = jgc.listarALL();
 
     /**
      * Creates new form Listar_venda
      */
     public Listar_venda() {
         initComponents();
-        ArrayList<VendaBEAN> vb = vc.listarALL();
-        ArrayList<Item_VendaBEAN> tvb = ivc.listarALL();
-        ArrayList<JogoBEAN> jgL = jgc.listarALL();
-        for (JogoBEAN jg : jgL) {
-            comboBox.addItem(jg);
-        }
-
-        TableColumn comboColuna = tb1.getColumnModel().getColumn(5);
-        comboColuna.setCellEditor(new DefaultCellEditor(comboBox));
-        df = (DefaultTableModel) tb1.getModel();
-
-
-
         preencheTabela();
-
     }
 
     private void preencheTabela() {
-        ArrayList<VendaBEAN> vb = vc.listarALL();
-        ArrayList<Item_VendaBEAN> tvb = ivc.listarALL();
-        ArrayList<JogoBEAN> jgL = jgc.listarALL();
 
-        JComboBox e = new JComboBox();
-
+        df = (DefaultTableModel) tb1.getModel();
         for (VendaBEAN vO : vb) {
             for (Item_VendaBEAN iO : tvb) {
                 if (vO.getVenCodigo() == iO.getIv_venCodigo()) {
+                    JComboBox<JogoBEAN> comboBox = new JComboBox<JogoBEAN>();
+                    TableColumn comboColuna = tb1.getColumnModel().getColumn(5);
+                    comboColuna.setCellEditor(new DefaultCellEditor(comboBox));
+                    for (JogoBEAN jg : jgL) {
+                        if (iO.getIv_joCodigo() == jg.getJoCodigo()) {
+                            comboBox.addItem(jg);
+                        }
+                    }
                     df.addRow(new Object[]{vO.getVenCodigo(), vO.getVenNNF(),
-                        vO.getVenData(), vO.getVen_funCodigo(), vO.getCliente_cliCodigo(), e});
+                        vO.getVenData(), vO.getVen_funCodigo(), vO.getCliente_cliCodigo(), comboBox});
                 }
             }
         }
-        tb1.setModel(df);
+
     }
 
     /**

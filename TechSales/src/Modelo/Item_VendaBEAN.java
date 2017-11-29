@@ -5,6 +5,11 @@
  */
 package Modelo;
 
+import Controle.ItemVendaControle;
+import Controle.JogoControle;
+import Controle.VendaControle;
+import java.util.ArrayList;
+
 /**
  *
  * @author Alef
@@ -15,6 +20,31 @@ public class Item_VendaBEAN {
     private int iv_joCodigo;
     private int vQtd;
     private Float ivPrecoUnitReal;
+
+    String jogo = "a";
+    int qtd = 1;
+    float preco = 1;
+
+    public Item_VendaBEAN renomear(ArrayList<VendaBEAN> vba, ArrayList<Item_VendaBEAN> tvb, ArrayList<JogoBEAN> jgL) {
+        Item_VendaBEAN iOa = new Item_VendaBEAN();
+        for (VendaBEAN vO : vba) {
+            for (Item_VendaBEAN iO : tvb) {
+                if (vO.getVenCodigo() == iO.getIv_venCodigo()) {
+                    for (JogoBEAN jg : jgL) {
+                        if (iO.getIv_joCodigo() == jg.getJoCodigo()) {
+
+                            String jogo = jg.getJoNome();
+                            qtd = iO.getvQtd();
+                            preco = iO.getIvPrecoUnitReal();
+
+                        }
+                    }
+                }
+            }
+        }
+
+        return iOa;
+    }
 
     public int getIv_venCodigo() {
         return iv_venCodigo;
@@ -46,6 +76,11 @@ public class Item_VendaBEAN {
 
     public void setIvPrecoUnitReal(Float ivPrecoUnitReal) {
         this.ivPrecoUnitReal = ivPrecoUnitReal;
+    }
+
+    @Override
+    public String toString() {
+        return jogo + "/" + preco + "/" + qtd;
     }
 
 }

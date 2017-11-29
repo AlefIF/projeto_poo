@@ -725,7 +725,7 @@ public class FRMJogo extends javax.swing.JFrame {
         jogo.setJoFaixaEtaria(tfFaixa.getText());
         CategoriaBEAN c = (CategoriaBEAN) cbCat.getSelectedItem();
         jogo.setJo_catCodigo(c.getCatCodigo());
-        jogo.setJoPrecoPadrao(Double.parseDouble(tfPreco.getText()));
+        jogo.setJoPrecoPadrao(Float.parseFloat(tfPreco.getText()));
         jogo.setJoQtd(Integer.parseInt(tfQtde.getText()));
         jogo.setJoLote(tfLote.getText());
         jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
@@ -776,7 +776,7 @@ public class FRMJogo extends javax.swing.JFrame {
             jogo.setJoCodigo(Integer.parseInt(lbCodigoJogo.getText()));
             jogo.setJoNome(tfNome.getText());
             jogo.setJoFaixaEtaria(tfFaixa.getText());
-            jogo.setJoPrecoPadrao(Double.parseDouble((tfPreco.getText())));
+            jogo.setJoPrecoPadrao(Float.parseFloat((tfPreco.getText())));
             jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
             jogo.setJoQtd(Integer.parseInt(String.valueOf(tfQtde.getText())));
             jogo.setJoLote(String.valueOf(tfLote.getText()));
@@ -977,7 +977,7 @@ public class FRMJogo extends javax.swing.JFrame {
 
     private void cadastroTeste() {
         InsertBean jogo = new InsertBean();
-        jogo.setJoPrecoPadrao(Double.parseDouble((tfPreco.getText())));
+        jogo.setJoPrecoPadrao(Float.parseFloat((tfPreco.getText())));
         jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
 
         ConsoleBEAN w = (ConsoleBEAN) cbCon.getSelectedItem();

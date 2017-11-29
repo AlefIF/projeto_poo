@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,8 +22,10 @@ import javax.swing.JOptionPane;
  */
 public class UserDAO {
 
+    private Connection con;
+
     public void cadastrar(UserBEAN user) {
-        Connection con = ConnectionFactory.getConnection();
+        con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement("INSERT INTO funcionario(funNome,funIdade,funEndereco,funCPF,funNomeUsuario,funUsuarioSenha,funTelefone,funNisPis"
@@ -221,5 +224,18 @@ public class UserDAO {
             ConnectionFactory.closeConnection(con, stmt, rs);
         }
         return users;
+    }
+
+    public ResultSet consulta(String strSql) {
+        try {
+            //criando o objeto Statement para que seja possivel enviar as consultas
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            //objeto do ResulSet para receber o resultado da consulta
+            ResultSet rs = stmt.executeQuery(strSql);
+            return rs;
+        } catch (SQLException erro) {
+            System.err.println(erro.getMessage());
+            return null;
+        }
     }
 }

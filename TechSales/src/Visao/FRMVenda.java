@@ -21,13 +21,10 @@ import Modelo.Item_VendaBEAN;
 import Modelo.JogoBEAN;
 import Modelo.UserBEAN;
 import Modelo.VendaBEAN;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -942,8 +939,8 @@ public class FRMVenda extends javax.swing.JFrame {
                 itv.setIv_venCodigo(v.getVenCodigo());
                 cItv.cadastrar2(itv);
                 for (JogoBEAN jogo : jT1) {
-                    if (jogo.getJoCodigo() == Integer.parseInt((tableCR.getValueAt(i, 0)))) {
-                        jogo.setJoQtd(jogo.getJoQtd() - Integer.parseInt((tableCR.getValueAt(i, 3))));
+                    if (jogo.getJoCodigo() == Integer.parseInt((tableCR.getValueAt(i, 0)).toString())) {
+                        jogo.setJoQtd(jogo.getJoQtd() - Integer.parseInt((tableCR.getValueAt(i, 3)).toString()));
 
                         boolean retorno = jControle.editar(jogo);
                         if (retorno == true) {

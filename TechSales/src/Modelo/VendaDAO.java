@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -134,6 +135,32 @@ public class VendaDAO {
             System.err.println(erro.getMessage());
             return null;
         }
+    }
+
+    public ArrayList consultar(String a) {
+
+        ArrayList b= new ArrayList();
+        try {
+            // prepared statement para seleção
+            stmt = connection.prepareStatement(a);
+
+            // executa a consulta SQL usando o comando executeQuery
+            ResultSet rs = stmt.executeQuery();
+            //joga resultado da consulta no ArrayList
+            while (rs.next()) {
+                //joga os dados do rs dentro de um objeto c do tipo ContatoBEAN
+                Object o= new Object();
+                o.
+                o.setInt(rs.getInt(1));
+                o.setVenNNF(rs.getString(2));
+                //adiciona os dados no ArrayLIst
+                b.add(o);
+            }
+            stmt.close();//fecha conexão - OBRIGATORIO SEMPRE!
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return b;
     }
 
 }

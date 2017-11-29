@@ -64,7 +64,7 @@ public class JogoMySqlDAO {
                 c.setJoCodigo(rs.getInt("joCodigo"));//indica que o cod ta no campo 1 do rs
                 c.setJoNome(rs.getString(2));
                 c.setJoFaixaEtaria(rs.getString(3));
-                c.setJoPrecoPadrao(rs.getDouble(4));
+                c.setJoPrecoPadrao(rs.getFloat(4));
                 c.setJoTipo(rs.getString(5));
                 c.setJoQtd(rs.getInt(6));
                 c.setJoLote(rs.getString(7));

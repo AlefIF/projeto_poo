@@ -14,7 +14,7 @@ public class JogoBEAN {
     private int joCodigo;
     private String joNome;
     private String joFaixaEtaria;
-    private double joPrecoPadrao;
+    private float joPrecoPadrao;
     private String joTipo;
     private String joLote;
     private int jo_catCodigo;
@@ -68,11 +68,11 @@ public class JogoBEAN {
         this.joFaixaEtaria = joFaixaEtaria;
     }
 
-    public double getJoPrecoPadrao() {
+    public float getJoPrecoPadrao() {
         return joPrecoPadrao;
     }
 
-    public void setJoPrecoPadrao(double joPrecoPadrao) {
+    public void setJoPrecoPadrao(float joPrecoPadrao) {
         this.joPrecoPadrao = joPrecoPadrao;
     }
 

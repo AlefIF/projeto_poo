@@ -11,7 +11,7 @@ package Modelo;
  */
 public class InsertBean {
 
-    private double joPrecoPadrao;
+    private float joPrecoPadrao;
     private String joTipo;
     private String conNome;
     private String joLote;
@@ -25,11 +25,11 @@ public class InsertBean {
         this.conNome = conNome;
     }
 
-    public double getJoPrecoPadrao() {
+    public float getJoPrecoPadrao() {
         return joPrecoPadrao;
     }
 
-    public void setJoPrecoPadrao(double joPrecoPadrao) {
+    public void setJoPrecoPadrao(float joPrecoPadrao) {
         this.joPrecoPadrao = joPrecoPadrao;
     }
 

@@ -24,11 +24,11 @@ import javax.swing.table.TableColumn;
 public class Listar_venda extends javax.swing.JFrame {
 
     private DefaultTableModel df;
+
     private VendaControle vc = new VendaControle();
     private ItemVendaControle ivc = new ItemVendaControle();
     private JogoControle jgc = new JogoControle();
 
-    private DefaultTableModel model;
     private ArrayList<VendaBEAN> vb = vc.listarALL();
     private ArrayList<Item_VendaBEAN> tvb = ivc.listarALL();
     private ArrayList<JogoBEAN> jgL = jgc.listarALL();
@@ -38,29 +38,30 @@ public class Listar_venda extends javax.swing.JFrame {
      */
     public Listar_venda() {
         initComponents();
-        preencheTabela();
+
     }
 
     private void preencheTabela() {
-
         df = (DefaultTableModel) tb1.getModel();
         for (VendaBEAN vO : vb) {
             for (Item_VendaBEAN iO : tvb) {
                 if (vO.getVenCodigo() == iO.getIv_venCodigo()) {
-                    JComboBox<JogoBEAN> comboBox = new JComboBox<JogoBEAN>();
+                    JComboBox<Item_VendaBEAN> comboBox = new JComboBox<Item_VendaBEAN>();
                     TableColumn comboColuna = tb1.getColumnModel().getColumn(5);
                     comboColuna.setCellEditor(new DefaultCellEditor(comboBox));
                     for (JogoBEAN jg : jgL) {
                         if (iO.getIv_joCodigo() == jg.getJoCodigo()) {
-                            comboBox.addItem(jg);
+
+                            comboBox.addItem(iO.renomear(vb, tvb, jgL));
                         }
                     }
+
                     df.addRow(new Object[]{vO.getVenCodigo(), vO.getVenNNF(),
                         vO.getVenData(), vO.getVen_funCodigo(), vO.getCliente_cliCodigo(), comboBox});
+
                 }
             }
         }
-
     }
 
     /**
@@ -76,6 +77,7 @@ public class Listar_venda extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tb1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -101,6 +103,13 @@ public class Listar_venda extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tb1);
 
+        jButton1.setText("Atualizar Tabela");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -109,11 +118,16 @@ public class Listar_venda extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(235, 235, 235))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addComponent(jButton1)
+                .addGap(20, 20, 20)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(99, Short.MAX_VALUE))
         );
@@ -146,6 +160,10 @@ public class Listar_venda extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        preencheTabela();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,6 +201,7 @@ public class Listar_venda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;

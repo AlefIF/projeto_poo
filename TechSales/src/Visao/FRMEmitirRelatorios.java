@@ -156,28 +156,27 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
         String query = "SELECT \n"
-                + "    cliCodigo, cliNome, joNome, devDataDevolucao\n"
+                + "cliCodigo, cliNome, joNome, devDataDevolucao\n"
                 + "FROM\n"
-                + "    cliente\n"
-                + "        JOIN\n"
-                + "	jogo\n"
-                + "		JOIN	\n"
-                + "    locacao\n"
-                + "        JOIN\n"
-                + "    devolucao\n"
+                + "cliente\n"
+                + "JOIN\n"
+                + "jogo\n"
+                + "JOIN	\n"
+                + "locacao\n"
+                + "JOIN\n"
+                + "devolucao\n"
                 + "WHERE\n"
-                + "	TIMESTAMPDIFF(DAY, loDataAluguel, devDataDevolucao) >= 7\n"
-                + "    AND loc_cliCodigo = cliCodigo\n"
-                + "        AND joCodigo = loc_joCodigo\n"
-                + "        AND dev_loCodigo = loCodigo\n"
-                + "        AND cliente_cliCodigo = cliCodigo\n"
-                + "       \n"
+                + "TIMESTAMPDIFF(DAY, loDataAluguel, devDataDevolucao) >= 7\n"
+                + "AND loc_cliCodigo = cliCodigo\n"
+                + "AND joCodigo = loc_joCodigo\n"
+                + "AND dev_loCodigo = loCodigo\n"
+                + "AND cliente_cliCodigo = cliCodigo\n"
+                + "\n"
                 + "GROUP BY cliCodigo; ";
         try {
             //passa o caminho onde o relatório esta no projeto - codigo compilado
-            RelCliente.gerarRelatorio2(query, "./report/Pendencia_Relatorio.jasper");
+            RelCliente.gerarRelatorio2(query, "./Report/Pendencia_Relatorio.jasper");
         } catch (Exception x) {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -186,7 +185,7 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
         String query = "SELECT funCodigo, funNome, count(venCodigo) from funcionario join venda where funCodigo = ven_funcodigo group by funCodigo; ";
         try {
             //passa o caminho onde o relatório esta no projeto - codigo compilado
-            RelFun.gerarRelatorio(query, "./report/Funcionario_Vendas.jasper");
+            RelFun.gerarRelatorio(query, "./Report/Funcionario_Vendas.jasper");
         } catch (Exception x) {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -204,7 +203,7 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
                 + "group by joCodigo;";
         try {
             //passa o caminho onde o relatório esta no projeto - codigo compilado
-            GeraRelatorio.gerarRelatorio(query, "./report/JogosRelatorio.jasper");
+            GeraRelatorio.gerarRelatorio(query, "./Report/JogosRelatorio.jasper");
         } catch (Exception x) {
         }
     }//GEN-LAST:event_jButton5ActionPerformed

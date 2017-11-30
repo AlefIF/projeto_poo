@@ -41,8 +41,8 @@ public class VendaControle {
     public boolean remover(int codigo) {
         return venDAO.remover(codigo);
     }
-    
-     public ArrayList consultar(String consulta) {
+
+    public ArrayList consultar(String consulta) {
         return venDAO.consultar(consulta);
     }
 

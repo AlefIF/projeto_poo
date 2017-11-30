@@ -5,21 +5,23 @@
  */
 package Modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author Alef
  */
 public class GraficoBEAN {
-    
-    private int venCodigo;
+
+    private String venData;
     private int quantidade;
 
-    public int getVenCodigo() {
-        return venCodigo;
+    public String getVenData() {
+        return venData;
     }
 
-    public void setVenCodigo(int venCodigo) {
-        this.venCodigo = venCodigo;
+    public void setVenData(String venData) {
+        this.venData = venData;
     }
 
     public int getQuantidade() {
@@ -29,7 +31,5 @@ public class GraficoBEAN {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
-    
-    
-    
+
 }

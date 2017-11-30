@@ -6,6 +6,8 @@
 package Visao;
 
 import Controle.VendaControle;
+import Modelo.GraficoBEAN;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -19,14 +21,17 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * @author Wayne
  */
 public class Barra extends javax.swing.JFrame {
-    
+
     private VendaControle cVenda = new VendaControle();
+    private ArrayList<GraficoBEAN> alG = new ArrayList<>();
 
     /**
      * Creates new form Barra
      */
     public Barra() {
         initComponents();
+        setSize(400, 350);
+        setResizable(false);
 
     }
 
@@ -35,32 +40,47 @@ public class Barra extends javax.swing.JFrame {
     // primeiro parametro = valor do gráfico
     // segundo parametro = referência da legenda
     // terceiro parametro = nome em baixo da barra (como é o mesmo, aparecerá apenas 1 centralizado)
-    private CategoryDataset createDataset() {
-        
+    private CategoryDataset createDataset(ArrayList<GraficoBEAN> a) {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(Integer.parseInt(jTextField1.getText()), "Janeiro", "Mês");
-        dataset.addValue(Integer.parseInt(jTextField2.getText()), "Fevereiro", "Mês");
-        dataset.addValue(Integer.parseInt(jTextField3.getText()), "Março", "Mês");
-        dataset.addValue(Integer.parseInt(jTextField4.getText()), "Abril", "Mês");
-        dataset.addValue(Integer.parseInt(jTextField1.getText()), "Maio", "Mês");
-        dataset.addValue(Integer.parseInt(jTextField2.getText()), "Junho", "Mês");
-        dataset.addValue(Integer.parseInt(jTextField3.getText()), "Julho", "Mês");
-        dataset.addValue(Integer.parseInt(jTextField4.getText()), "Agosto", "Mês");
-        dataset.addValue(Integer.parseInt(jTextField1.getText()), "Setembro", "Mês");
-        dataset.addValue(Integer.parseInt(jTextField2.getText()), "Outrubro", "Mês");
-        dataset.addValue(Integer.parseInt(jTextField3.getText()), "Novenbro", "Mês");
-        dataset.addValue(Integer.parseInt(jTextField4.getText()), "Dezembro", "Mês");
+        for (GraficoBEAN gO : a) {
+            if (Integer.parseInt(gO.getVenData().toString()) == 2017) {
+                // dataset.addValue(gO.getQuantidade(), "Janeiro", "Mês");
+            } else if (Integer.valueOf(gO.getVenData().toString()) == 2) {
+                dataset.addValue(gO.getQuantidade(), "Fevereiro", "Mês");
+            } else if (Integer.valueOf(gO.getVenData().toString()) == 3) {
+                dataset.addValue(gO.getQuantidade(), "Março", "Mês");
+            } else if (Integer.valueOf(gO.getVenData().toString()) == 4) {
+                dataset.addValue(gO.getQuantidade(), "Abril", "Mês");
+            } else if (Integer.valueOf(gO.getVenData().toString()) == 5) {
+                dataset.addValue(gO.getQuantidade(), "Maio", "Mês");
+            } else if (Integer.valueOf(gO.getVenData().toString()) == 6) {
+                dataset.addValue(gO.getQuantidade(), "Junho", "Mês");
+            } else if (Integer.valueOf(gO.getVenData().toString()) == 7) {
+                dataset.addValue(gO.getQuantidade(), "Julho", "Mês");
+            } else if (Integer.valueOf(gO.getVenData().toString()) == 8) {
+                dataset.addValue(gO.getQuantidade(), "Agosto", "Mês");
+            } else if (Integer.valueOf(gO.getVenData().toString()) == 9) {
+                dataset.addValue(gO.getQuantidade(), "Setembro", "Mês");
+            } else if (Integer.valueOf(gO.getVenData().toString()) == 10) {
+                dataset.addValue(gO.getQuantidade(), "Outubro", "Mês");
+            } else if (Integer.valueOf(gO.getVenData().toString()) == 11) {
+                dataset.addValue(gO.getQuantidade(), "Novenbro", "Mês");
+            } else if (Integer.valueOf(gO.getVenData().toString()) == 12) {
+                dataset.addValue(gO.getQuantidade(), "Dezembro", "Mês");
+            }
+
+        }
         return dataset;
     }
 
     // responsavel por criar o grafico
     // mais "importante"
-    public void criaGrafico() {
+    public void criaGrafico(ArrayList<GraficoBEAN> a) {
         // aqui ele pega os valores que serão inseridos nele
-        CategoryDataset cds = createDataset();
+        CategoryDataset cds = createDataset(a);
         String titulo = "Grafico - BARRA"; // título do grafico
-        String eixoy = "Notas"; // string na lateral esquerda, referente aos valores (as notas)
-        String txt_legenda = "Bimestres"; // titulo da legenda
+        String eixoy = "Quantidade vendida"; // string na lateral esquerda, referente aos valores (as notas)
+        String txt_legenda = "Meses"; // titulo da legenda
         // ferramentas auxiliares, não utilizadas (redirecionamento de url, ponteiro em cima)
         boolean legenda = true;
         boolean tooltips = false;
@@ -88,9 +108,11 @@ public class Barra extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         tfAno = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gráfico de Barras");
+        getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(454, 222));
@@ -99,12 +121,15 @@ public class Barra extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 454, Short.MAX_VALUE)
+            .addGap(0, 360, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 217, Short.MAX_VALUE)
+            .addGap(0, 210, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(19, 19, 360, 210);
 
         jButton1.setText("Gerar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -112,56 +137,36 @@ public class Barra extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(170, 250, 59, 23);
 
         jLabel5.setText("Ano:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(10, 250, 30, 14);
+        getContentPane().add(tfAno);
+        tfAno.setBounds(60, 250, 63, 20);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(tfAno, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(tfAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(58, 58, 58))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/Background.jpg"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 540, 370);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         try{
-         String query = 
-         "select venCodigo, ivQtd from venda, item_venda \n"+
-         "where venCodigo=iv_venCodigo and year(+venData)="+tfAno.getText()+";";   
-         cVenda.consultar(query);
-         }catch(Exception e){
-             
-         }
-
-
-        
-        
-        
+        try {
+            String query = "select month(venData),sum(ivQtd) from venda"
+                    + "  join item_venda on venCodigo=iv_venCodigo "
+                    + "and year(venData)=" + Integer.parseInt(tfAno.getText()) + " group "
+                    + "by month(venData);";
+            /* String query = "select venData,sum(ivQtd) from venda, item_venda\n"
+                    + "where venCodigo=iv_venCodigo and year(venData)=" + tfAno.getText() + "\n"
+                    + "group by  month(venData);";*/
+            alG = cVenda.consultar(query);
+            criaGrafico(alG);
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Preencha o campo da data");
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -203,6 +208,7 @@ public class Barra extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField tfAno;

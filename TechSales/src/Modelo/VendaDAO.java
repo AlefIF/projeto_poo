@@ -139,7 +139,7 @@ public class VendaDAO {
 
     public ArrayList consultar(String a) {
 
-        ArrayList b= new ArrayList();
+        ArrayList<GraficoBEAN> b = new ArrayList<GraficoBEAN>();
         try {
             // prepared statement para seleção
             stmt = connection.prepareStatement(a);
@@ -149,10 +149,9 @@ public class VendaDAO {
             //joga resultado da consulta no ArrayList
             while (rs.next()) {
                 //joga os dados do rs dentro de um objeto c do tipo ContatoBEAN
-                Object o= new Object();
-                o.
-                o.setInt(rs.getInt(1));
-                o.setVenNNF(rs.getString(2));
+                GraficoBEAN o = new GraficoBEAN();
+                o.setVenData(rs.getString(1));
+                o.setQuantidade(rs.getInt(2));
                 //adiciona os dados no ArrayLIst
                 b.add(o);
             }

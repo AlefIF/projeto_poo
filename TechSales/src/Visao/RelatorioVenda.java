@@ -11,9 +11,9 @@ import Controle.GeraRelatorio;
  *
  * @author polo
  */
-public class ExemploRelatorio2 extends javax.swing.JFrame {
+public class RelatorioVenda extends javax.swing.JFrame {
 
-    public ExemploRelatorio2() {
+    public RelatorioVenda() {
         initComponents();
         setSize(410, 240);
 
@@ -137,7 +137,7 @@ public class ExemploRelatorio2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ExemploRelatorio2().setVisible(true);
+                new RelatorioVenda().setVisible(true);
             }
         });
     }

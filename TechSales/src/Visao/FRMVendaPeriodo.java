@@ -98,14 +98,14 @@ public class FRMVendaPeriodo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btRelatorioClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRelatorioClienteActionPerformed
-        java.sql.Timestamp dataInicio = java.sql.Timestamp.valueOf(String.valueOf(tfDatai.getText()));
-        java.sql.Timestamp dataFinal = java.sql.Timestamp.valueOf(String.valueOf(tfDataf.getText()));
+        java.sql.Date dataInicio = java.sql.Date.valueOf(String.valueOf(tfDatai.getText()));
+        java.sql.Date dataFinal = java.sql.Date.valueOf(String.valueOf(tfDataf.getText()));
         String query = "SELECT \n"
-                + "    venCodigo, venNNF, venDataEHora\n"
+                + "    venCodigo, venNNF, venData\n"
                 + "FROM\n"
                 + "    venda\n"
                 + "WHERE\n"
-                + "venDataEHora BETWEEN " + "'" + dataInicio + "'" + " AND " + "'" + dataFinal + "'" + "group by venCodigo;";
+                + "venData BETWEEN " + "'" + dataInicio + "'" + " AND " + "'" + dataFinal + "'" + "group by venCodigo;";
 
         try {
             //passa o caminho onde o relatório esta no projeto - codigo compilado

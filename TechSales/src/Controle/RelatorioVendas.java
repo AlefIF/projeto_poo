@@ -61,7 +61,7 @@ public class RelatorioVendas {
         gerarRelatorio("vendaPeriodo", "vendaPeriodo", parameters);
     }
 
-    public static void gerarRelatorio2(String query, String relatJasp, Timestamp venDataInicio, Timestamp venDataFim)
+    public static void gerarRelatorio2(String query, String relatJasp, java.sql.Date venDataInicio, java.sql.Date venDataFim)
             throws JRException, Exception {
 
         VendaDAO dao = new VendaDAO();

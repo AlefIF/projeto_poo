@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cliente" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3d6b9493-e9b9-476a-800e-29de7ec26d59">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="Y2xpZW50ZSAsMTUsMTUsOWM2N2ExMGEtNWJiNC00OTY5LWE4ZGMtMmM5MTY0YmEyNGY1Ow=="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Cliente"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT *
+FROM cliente]]>
+	</queryString>
+	<field name="cliCodigo" class="java.lang.Integer"/>
+	<field name="cliNome" class="java.lang.String"/>
+	<field name="cliIdade" class="java.lang.Integer"/>
+	<field name="cliCPF" class="java.lang.String"/>
+	<field name="cliEndereco" class="java.lang.String"/>
+	<field name="cliTelefone" class="java.lang.String"/>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{cliCodigo}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupExpression><![CDATA[$F{cliNome}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group3">
+		<groupExpression><![CDATA[$F{cliIdade}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group4">
+		<groupExpression><![CDATA[$F{cliCPF}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="cliEndereco">
+		<groupExpression><![CDATA[$F{cliEndereco}]]></groupExpression>
+	</group>
+	<group name="cliTelefone">
+		<groupExpression><![CDATA[$F{cliTelefone}]]></groupExpression>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="63a907d1-8a56-4ec5-84f2-021cce7dd897"/>
+				<staticText>
+					<reportElement x="20" y="20" width="330" height="43" forecolor="#FFFFFF" uuid="142f5186-5ee0-4be4-8a05-cd5b2c6b569b"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Relatório do Cliente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="90af2174-2e65-47f2-b884-36b5d97be9f3"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[TechSales]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="33">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="e2042569-76ec-451b-8cb0-55c6d1a3655c"/>
+			</line>
+			<staticText>
+				<reportElement x="340" y="0" width="100" height="20" forecolor="#066990" uuid="0ce4de80-7e3d-47ac-a53a-c943cf0a18e9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Endereço]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="-1" width="85" height="21" forecolor="#066990" backcolor="#CCCACA" uuid="c3130ba3-2aa3-4050-b972-81f47834d819"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="174" y="1" width="60" height="20" forecolor="#066990" uuid="aa982d1c-95dc-48f8-8468-8634b07cc4fd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Idade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="0" width="70" height="20" forecolor="#066990" uuid="47022037-597e-4e1a-ab98-fc3faa947faa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="1" width="80" height="20" forecolor="#066990" uuid="1032f21c-a74e-4d9c-be51-29ba820af67f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="-5" y="0" width="80" height="20" forecolor="#066990" backcolor="#FFFFFF" uuid="7d512001-054a-4467-81b9-88d0c29fc208"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="33">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="e87f79b5-1b62-4a01-bcaf-9789be50b3d2"/>
+			</line>
+			<textField>
+				<reportElement x="460" y="-9" width="85" height="28" forecolor="#000000" uuid="38daa30e-ccd6-401d-8afa-10f731c940f3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliTelefone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="-9" width="100" height="28" forecolor="#000000" uuid="c26c081d-cd71-4695-b622-f9264f7cb50f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliEndereco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="-10" width="70" height="29" forecolor="#000000" uuid="a66dcbc9-0cd5-4a3c-b1e3-189cf32a8dbb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliCPF}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="174" y="-10" width="60" height="29" forecolor="#000000" uuid="f699b052-2c0d-4c61-89b8-0f4d6d5c4779"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliIdade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="-5" y="-10" width="80" height="29" forecolor="#000000" backcolor="#FFFFFF" uuid="98e127c0-1e5a-4271-9274-193873661064"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliCodigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="-10" width="80" height="29" forecolor="#000000" uuid="01cd9728-8f23-4b95-8b90-22a43d78c5a6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliNome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="db801ed1-1a20-449c-95b5-69c65f1a25a7"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="be42c142-04c7-425e-a490-2c0b2457c5e7"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="5f3dbfe7-d8a0-46f4-af8e-642469da3f9e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

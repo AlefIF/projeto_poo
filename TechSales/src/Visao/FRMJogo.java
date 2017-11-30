@@ -738,17 +738,28 @@ public class FRMJogo extends javax.swing.JFrame {
     }
 
     private boolean verificaCampos() {
-        if (tfFaixa.getText().equals("+(  )") || lbCodigoJogo.getText().equals("")
-                || tfNome.getText().equals("") || tfFaixa.getText().equals("") || tfPreco.getText().equals("")
-                || tfQtde.getText().equals("") || cbCat.getSelectedIndex() == (0)
-                || cbCon.getSelectedIndex() == (0) || cbTipo.getSelectedIndex() == (0) || tfLote.getText().equals("")) {
+        if (tfFaixa.getText().equals("+(  )") || tfNome.getText().equals("")
+                || tfFaixa.getText().equals("") || cbCat.getSelectedIndex() == (0)
+                || tfPreco.getText().equals("") || tfQtde.getText().equals("")
+                || tfLote.getText().equals("") || cbCon.getSelectedIndex() == (0)
+                || cbTipo.getSelectedIndex() == (0)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean verificaCampos2() {
+        if (tfFaixa.getText().equals("+(  )")
+                || tfNome.getText().equals("") || tfFaixa.getText().equals("")
+                || cbCat.getSelectedIndex() == (0)) {
             return false;
         } else {
             return true;
         }
     }
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        if (verificaCampos()) {
+        if (verificaCampos2()) {
             int z = verificarInserir();
             if (z == 0) {
                 int v = verificaLote1();
@@ -996,6 +1007,7 @@ public class FRMJogo extends javax.swing.JFrame {
         cbTipo.setSelectedIndex(0);
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         cadastroTeste();
         preencheTabela2();
         limparCampos2();

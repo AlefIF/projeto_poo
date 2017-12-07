@@ -34,8 +34,8 @@ public class JogoBEAN {
     private CategoriaBEAN cat;
     private List<Con_jogoBEAN> con;
     private List<VendaBEAN> venda;
-    private List<Aluguel> alug;
-    
+    private List<LocacaoBEAN> alug;
+
     @Id
     @GeneratedValue
     public int getJoCodigo() {
@@ -101,7 +101,15 @@ public class JogoBEAN {
     public void setJoQtd(int joQtd) {
         this.joQtd = joQtd;
     }
-    
+
+    public int getJoDisponibilidade() {
+        return joDisponibilidade;
+    }
+
+    public void setJoDisponibilidade(int joDisponibilidade) {
+        this.joDisponibilidade = joDisponibilidade;
+    }
+
     @ManyToOne
     @JoinColumn(name = "jo_catCodigo")
     public CategoriaBEAN getCat() {
@@ -134,13 +142,13 @@ public class JogoBEAN {
 
     @OneToMany(mappedBy = "loc_joCodigo")
     @Column(nullable = false)
-    public List<Aluguel> getAlug() {
+    public List<LocacaoBEAN> getAlug() {
         return alug;
     }
 
-    public void setAlug(List<Aluguel> alug) {
+    public void setAlug(List<LocacaoBEAN> alug) {
         this.alug = alug;
-    }       
+    }
 
     @Override
     public String toString() {

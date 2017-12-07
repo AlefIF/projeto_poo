@@ -181,17 +181,19 @@ public class ClienteMySqlDAO {
         return c;
     }
 
-    public ClienteBEAN localizarNome(String busca) {
-        String sql = "select * from cliente where cliNome = ?;";
+    public ArrayList<ClienteBEAN> localizarNome(String nome) {
+        String sql = "select * from cliente where cliNome like ? ;";
         ClienteBEAN c = new ClienteBEAN();
+        ArrayList<ClienteBEAN> cliAL = new ArrayList<ClienteBEAN>();
         try {
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, busca);
-
+            stmt.setString(1, "%" + nome + "%");
+            //executa
             ResultSet rs = stmt.executeQuery();
             //joga resultado da consulta no arrayList
             while (rs.next()) {
-                //ContatoBEAN c = new ContatoBEAN();
+                //joga os dados do rs dentro de um objeto c do tipo ContatoBEAN
+
                 c.setCod(rs.getInt(1)); // Ou pode colocar o nome da tabela quie esta no Banco de Dados
                 c.setNome(rs.getString(2));
                 c.setIdade(rs.getInt(3));
@@ -199,14 +201,14 @@ public class ClienteMySqlDAO {
                 c.setEndereco(rs.getString(5));
                 c.setTelefone(rs.getString(6));
 
-                //adiciona os dados no array
-                //contatoAL.add(c);
+                //adiciona os dados no ArrayLIst
+                cliAL.add(c);
             }
-            stmt.close();
+            stmt.close();//fecha conexão - OBRIGATORIO SEMPRE!
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return c;
+        return cliAL;
     }
 
 }

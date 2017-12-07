@@ -54,7 +54,7 @@ public class RelatorioVendas {
 
     }
 
-    public static void geraRelatorioJogos(Timestamp venDataInicio, Timestamp venDataFim) {
+    public static void geraRelatorioJogos(java.sql.Date venDataInicio, java.sql.Date venDataFim) {
         HashMap parameters = new HashMap();
         parameters.put("venDataInicio", venDataInicio);
         parameters.put("venDataFim", venDataFim);

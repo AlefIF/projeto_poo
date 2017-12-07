@@ -216,7 +216,7 @@ public class FRMJogo extends javax.swing.JFrame {
 
         btExcluir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonDeletarFun.png"))); // NOI18N
-        btExcluir.setText("Excluir");
+        btExcluir.setText("Invalidar");
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcluirActionPerformed(evt);
@@ -366,7 +366,7 @@ public class FRMJogo extends javax.swing.JFrame {
                         .addComponent(cbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -786,6 +786,7 @@ public class FRMJogo extends javax.swing.JFrame {
             JogoBEAN jogo = new JogoBEAN();
             jogo.setJoCodigo(Integer.parseInt(lbCodigoJogo.getText()));
             jogo.setJoNome(tfNome.getText());
+            jogo.setJoDisponibilidade(0);
             jogo.setJoFaixaEtaria(tfFaixa.getText());
             jogo.setJoPrecoPadrao(Float.parseFloat((tfPreco.getText())));
             jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
@@ -823,24 +824,25 @@ public class FRMJogo extends javax.swing.JFrame {
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         if (verificaCampos() == true) {
-            boolean retorno1 = cjc.remover2(Integer.parseInt(lbCodigoJogo.getText()));
-            if (retorno1 == true) {
-                boolean retorno2 = jControle.remover(Integer.parseInt(lbCodigoJogo.getText()));
-                //se a variavel retorno for igual a true o usuario foi exluido
-                if (retorno2 == true) {
-                    JOptionPane.showMessageDialog(null, "Jogo EXCLUÍDO com sucesso");
-                    //solicita a atualização da tabela ou seja preenche ela toda novamente
-                    this.preencheTabela();
-                    //chama o método para limpar campos
-                    this.limparCampos();
-                } else {
-                    //mensagem de erro
-                    JOptionPane.showMessageDialog(null, "ERRO na exclusão");
-                }
+            JogoBEAN jogo = new JogoBEAN();
+            jogo.setJoCodigo(Integer.parseInt(lbCodigoJogo.getText()));
+            jogo.setJoQtd(0);
+            jogo.setJoDisponibilidade(1);
+            boolean retorno = jControle.editarINVAL(jogo);
+            //se a variavel retorno for igual a true o usuario foi editado
+            if (retorno == true) {
+                JOptionPane.showMessageDialog(null, "Jogo MODIFICADO com sucesso");
+                //solicita a atualização da tabela ou seja preenche ela toda novamente
+                this.preencheTabela();
+                //chama o método para limpar campos
+                this.limparCampos();
             } else {
                 //mensagem de erro
-                JOptionPane.showMessageDialog(null, "ERRO na exclusão");
+                JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
             }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro! Insira todos os valores");
         }
     }//GEN-LAST:event_btExcluirActionPerformed
 
@@ -857,25 +859,30 @@ public class FRMJogo extends javax.swing.JFrame {
     }//GEN-LAST:event_btVoltarActionPerformed
 
     private void tableJogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableJogoMouseClicked
+        limparCampos();
         tpGuia.setSelectedIndex(0);
         if (tableJogo.getSelectedRow() != -1) {
-            lbCodigoJogo.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString());
-            tfNome.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 1).toString());
-            tfFaixa.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 2).toString());
-            tfPreco.setText((tableJogo.getValueAt(tableJogo.getSelectedRow(), 3).toString()));
-            cbTipo.setSelectedItem(tableJogo.getValueAt(tableJogo.getSelectedRow(), 4).toString());
-            for (CategoriaBEAN dado2 : catDados) {
-                if ((tableJogo.getValueAt(tableJogo.getSelectedRow(), 5).toString().equals(dado2.getCatNome()))) {
-                    cbCat.setSelectedIndex(dado2.getCatCodigo());
+            if (Integer.parseInt(tableJogo.getValueAt(tableJogo.getSelectedRow(), 8).toString()) > 0) {
+                lbCodigoJogo.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString());
+                tfNome.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 1).toString());
+                tfFaixa.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 2).toString());
+                tfPreco.setText((tableJogo.getValueAt(tableJogo.getSelectedRow(), 3).toString()));
+                cbTipo.setSelectedItem(tableJogo.getValueAt(tableJogo.getSelectedRow(), 4).toString());
+                for (CategoriaBEAN dado2 : catDados) {
+                    if ((tableJogo.getValueAt(tableJogo.getSelectedRow(), 5).toString().equals(dado2.getCatNome()))) {
+                        cbCat.setSelectedIndex(dado2.getCatCodigo());
+                    }
                 }
-            }
-            for (ConsoleBEAN dado4 : cDados) {
-                if ((tableJogo.getValueAt(tableJogo.getSelectedRow(), 6).toString().equals(dado4.getConNome()))) {
-                    cbCon.setSelectedIndex(dado4.getConCodigo());
+                for (ConsoleBEAN dado4 : cDados) {
+                    if ((tableJogo.getValueAt(tableJogo.getSelectedRow(), 6).toString().equals(dado4.getConNome()))) {
+                        cbCon.setSelectedIndex(dado4.getConCodigo());
+                    }
                 }
+                tfLote.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 7).toString());
+                tfQtde.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 8).toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro, jogo não disponível no estoque");
             }
-            tfLote.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 7).toString());
-            tfQtde.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 8).toString());
         }
     }//GEN-LAST:event_tableJogoMouseClicked
 
@@ -1023,8 +1030,13 @@ public class FRMJogo extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int i = tableM.getSelectedRow();
-        insertDados.remove(i);
-        preencheTabela2();
+        if (i != -1) {
+            insertDados.remove(i);
+            preencheTabela2();
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro! Nenhum dado selecionado na tabela");
+
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tableMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMMouseClicked
@@ -1071,6 +1083,8 @@ public class FRMJogo extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FRMJogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

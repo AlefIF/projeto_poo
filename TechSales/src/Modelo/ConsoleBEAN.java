@@ -60,7 +60,6 @@ public class ConsoleBEAN {
         this.jogo = jogo;
     }
 
-   
     @Override
     public String toString() {
         return getConNome(); //To change body of generated methods, choose Tools | Templates.

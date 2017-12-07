@@ -49,7 +49,7 @@ public class JogoMySqlDAO {
     }
 
     public ArrayList<JogoBEAN> listarALL() {
-        String sql = "select *from jogo;";
+        String sql = "select * from jogo;";
         ArrayList<JogoBEAN> jogoAL = new ArrayList<JogoBEAN>();
         try {
             // prepared statement para seleção
@@ -69,6 +69,7 @@ public class JogoMySqlDAO {
                 c.setJoQtd(rs.getInt(6));
                 c.setJoLote(rs.getString(7));
                 c.setJo_catCodigo(rs.getInt(8));
+                c.setJoDisponibilidade(rs.getInt(9));
                 //adiciona os dados no ArrayLIst
                 jogoAL.add(c);
             }
@@ -79,10 +80,39 @@ public class JogoMySqlDAO {
         return jogoAL;
     }
 
+    public boolean editarINVAL(JogoBEAN c) {
+
+        String sql = "update jogo set joQtd = ?,  joDisponibilidade = ?  where joCodigo = ?;";
+        try {
+            /* metodo usado para criar um objeto que representa a instrução 
+            SQL que será executada, sendo que é invocado através do objeto 
+            Connection.
+            
+            Deve ser colocado dentro de um bloco try catch */
+            stmt = connection.prepareStatement(sql);
+            // seta os valores
+
+            stmt.setInt(1, c.getJoQtd());
+            stmt.setInt(2, c.getJoDisponibilidade());
+            stmt.setInt(3, c.getJoCodigo());
+
+            // executa update
+            int linhasAtualizadas = stmt.executeUpdate();
+            stmt.close();
+            //apenas se quiser saber quantas linhas foram alteradas
+            if (linhasAtualizadas > 0) {
+                System.out.println("Foram alterados " + linhasAtualizadas + " registros");
+            }
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public boolean editar(JogoBEAN c) {
 
         String sql = "update jogo set joNome = ?,joFaixaEtaria = ?,"
-                + " joPrecoPadrao=?, joTipo = ?, joQtd = ?, joLote = ?, jo_catCodigo = ?  where joCodigo = ?;";
+                + " joPrecoPadrao=?, joTipo = ?, joQtd = ?, joLote = ?, jo_catCodigo = ? , joDisponibilidade = ?  where joCodigo = ?;";
         try {
             /* metodo usado para criar um objeto que representa a instrução 
             SQL que será executada, sendo que é invocado através do objeto 
@@ -99,7 +129,8 @@ public class JogoMySqlDAO {
             stmt.setInt(5, c.getJoQtd());
             stmt.setString(6, c.getJoLote());
             stmt.setInt(7, c.getJo_catCodigo());
-            stmt.setInt(8, c.getJoCodigo());
+            stmt.setInt(8, c.getJoDisponibilidade());
+            stmt.setInt(9, c.getJoCodigo());
 
             // executa update
             int linhasAtualizadas = stmt.executeUpdate();
@@ -141,6 +172,99 @@ public class JogoMySqlDAO {
             System.err.println(erro.getMessage());
             return null;
         }
+    }
+
+    public boolean editarDisponibilidade(JogoBEAN l) {
+        String sql = "update jogo set joDisponibilidade = ? "
+                + " where joCodigo = ?;";
+        try {
+            /* metodo usado para criar um objeto que representa a instrução 
+            SQL que será executada, sendo que é invocado através do objeto 
+            Connection.
+            
+            Deve ser colocado dentro de um bloco try catch */
+            stmt = connection.prepareStatement(sql);
+            // seta os valores
+
+            stmt.setInt(1, l.getJoDisponibilidade());
+
+            stmt.setInt(2, l.getJoCodigo());
+
+            // executa update
+            int linhasAtualizadas = stmt.executeUpdate();
+            stmt.close();
+            //apenas se quiser saber quantas linhas foram alteradas
+            if (linhasAtualizadas > 0) {
+                System.out.println("Foram alterados " + linhasAtualizadas + " registros");
+            }
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public ArrayList<JogoBEAN> localizarNome(String nome) {
+        String sql = "select * from jogo where joNome like ?";
+        ArrayList<JogoBEAN> jogoAL = new ArrayList<JogoBEAN>();
+        try {
+            // prepared statement para seleção
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, "%" + nome + "%");
+            // executa a consulta SQL usando o comando executeQuery
+            ResultSet rs = stmt.executeQuery();
+            //joga resultado da consulta no ArrayList
+            while (rs.next()) {
+                //joga os dados do rs dentro de um objeto c do tipo ContatoBEAN
+                JogoBEAN c = new JogoBEAN();
+                c.setJoCodigo(rs.getInt("joCodigo"));//indica que o cod ta no campo 1 do rs
+                c.setJoNome(rs.getString(2));
+                c.setJoFaixaEtaria(rs.getString(3));
+                c.setJoPrecoPadrao(rs.getFloat(4));
+                c.setJoTipo(rs.getString(5));
+                c.setJoQtd(rs.getInt(6));
+                c.setJoLote(rs.getString(7));
+                c.setJo_catCodigo(rs.getInt(8));
+                //adiciona os dados no ArrayLIst
+                jogoAL.add(c);
+            }
+            stmt.close();//fecha conexão - OBRIGATORIO SEMPRE!
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return jogoAL;
+    }
+
+    public Object localizarCodigo(int loc_jogCodigo) {
+        String sql = "select * from jogo where joCodigo = ?;";
+        ArrayList<JogoBEAN> jogoAL = new ArrayList<JogoBEAN>();
+        try {
+            // prepared statement para seleção
+            stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, loc_jogCodigo);
+
+            // executa a consulta SQL usando o comando executeQuery
+            ResultSet rs = stmt.executeQuery();
+            //joga resultado da consulta no ArrayList
+            while (rs.next()) {
+                //joga os dados do rs dentro de um objeto c do tipo ContatoBEAN
+                JogoBEAN c = new JogoBEAN();
+                c.setJoCodigo(rs.getInt("joCodigo"));//indica que o cod ta no campo 1 do rs
+                c.setJoNome(rs.getString(2));
+                c.setJoFaixaEtaria(rs.getString(3));
+                c.setJoPrecoPadrao(rs.getFloat(4));
+                c.setJoTipo(rs.getString(5));
+                c.setJoQtd(rs.getInt(6));
+                c.setJoLote(rs.getString(7));
+                c.setJo_catCodigo(rs.getInt(8));
+                //adiciona os dados no ArrayLIst
+                jogoAL.add(c);
+            }
+            stmt.close();//fecha conexão - OBRIGATORIO SEMPRE!
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return jogoAL.get(0);
     }
 
 }

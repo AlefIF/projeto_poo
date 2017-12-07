@@ -6,7 +6,6 @@
 package Visao;
 
 import Controle.ControleUser;
-import Modelo.ConnectionFactory;
 import Modelo.UserBEAN;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -122,21 +121,33 @@ public class FRMLogin extends javax.swing.JFrame {
         al = ct.ListarALL();
         String nome = tfUser.getText();
         String senha = tfSenha.getText();
-        for (UserBEAN user : al) {
-            if (nome.equals("ADM") && senha.equals("adm")) {
-                FRMPrincipalAdm adm = new FRMPrincipalAdm();
-                this.dispose();
-                adm.setVisible(true);
-            } else if (nome.toString().equals(user.getNomeUsuario())
-                    && senha.toString().equals(user.getSenha())) {
-                this.user = user;
-                FRMPrincipalFun fun = new FRMPrincipalFun();
-                this.dispose();
-                fun.setVisible(true);
+        try {
+            if (!nome.equals("") && !senha.equals("")) {
+                for (UserBEAN user : al) {
+                    if (user.getNomeUsuario().equals(nome) && user.getSenha().equals(senha)) {
+                        this.user = user;
+                    }
+                }
+                if (user != null) {
+                    if (user.getNomeUsuario().equals("ADM")) {
+                        FRMPrincipalAdm adm = new FRMPrincipalAdm();
+                        this.dispose();
+                        adm.setVisible(true);
+                    } else {
+                        FRMPrincipalFun fun = new FRMPrincipalFun();
+                        this.dispose();
+                        fun.setVisible(true);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuário  não encontrado!");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Usuário não encontrado");
+                JOptionPane.showMessageDialog(null, "Insira todos os dados!");
             }
+        } catch (java.lang.NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Usuário  não encontrado!");
         }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btSairProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairProgramaActionPerformed
@@ -176,6 +187,7 @@ public class FRMLogin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FRMLogin.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

@@ -17,7 +17,6 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
     public FRMPrincipalFun() {
         initComponents();
         setResizable(false);
-        lbCod.setText(String.valueOf(FRMLogin.user.getCodigo()));
     }
 
     /**
@@ -29,9 +28,8 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btRVenda = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        lbCod = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jbGerenciarCategoria = new javax.swing.JButton();
         jbGerenciarConsole = new javax.swing.JButton();
         btERelatorios = new javax.swing.JButton();
@@ -46,18 +44,19 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
         setTitle("Funcionário");
         getContentPane().setLayout(null);
 
+        btRVenda.setText("Realizar Venda");
+        btRVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRVendaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btRVenda);
+        btRVenda.setBounds(170, 300, 140, 30);
+
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setText("Opções:");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(230, 120, 70, 30);
-
-        lbCod.setText("...");
-        getContentPane().add(lbCod);
-        lbCod.setBounds(70, 10, 12, 14);
-
-        jLabel4.setText("Código:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(10, 10, 37, 14);
 
         jbGerenciarCategoria.setText("Gerenciar Categoria");
         jbGerenciarCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -66,7 +65,7 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jbGerenciarCategoria);
-        jbGerenciarCategoria.setBounds(340, 260, 150, 30);
+        jbGerenciarCategoria.setBounds(320, 260, 170, 30);
 
         jbGerenciarConsole.setText("Gerenciar Console");
         jbGerenciarConsole.addActionListener(new java.awt.event.ActionListener() {
@@ -75,7 +74,7 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jbGerenciarConsole);
-        jbGerenciarConsole.setBounds(180, 260, 140, 30);
+        jbGerenciarConsole.setBounds(170, 260, 140, 30);
 
         btERelatorios.setText("Emitir Relatórios");
         btERelatorios.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +92,7 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btGCliente);
-        btGCliente.setBounds(30, 200, 130, 30);
+        btGCliente.setBounds(20, 200, 140, 30);
 
         btGJogo.setText("Gerenciar Jogos");
         btGJogo.addActionListener(new java.awt.event.ActionListener() {
@@ -102,16 +101,16 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btGJogo);
-        btGJogo.setBounds(180, 200, 140, 30);
+        btGJogo.setBounds(170, 200, 140, 30);
 
-        btRTransacao.setText("Realizar transação");
+        btRTransacao.setText("Realizar Aluguel/Devolução");
         btRTransacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRTransacaoActionPerformed(evt);
             }
         });
         getContentPane().add(btRTransacao);
-        btRTransacao.setBounds(340, 200, 150, 30);
+        btRTransacao.setBounds(320, 200, 170, 30);
 
         btSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
         btSair.setText("Sair");
@@ -132,13 +131,15 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-70, -10, 640, 370);
 
-        setSize(new java.awt.Dimension(527, 364));
+        setSize(new java.awt.Dimension(527, 379));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
         FRMLogin login = new FRMLogin();
+        FRMLogin.user = null;
         this.dispose();
+
         login.setVisible(true);
 
         // TODO add your handling code here:
@@ -160,10 +161,9 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
     }//GEN-LAST:event_btGJogoActionPerformed
 
     private void btRTransacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRTransacaoActionPerformed
-
-        FRMVenda venda = new FRMVenda();
+        FRMTransacao trans = new FRMTransacao();
         this.dispose();
-        venda.setVisible(true);        // TODO add your handling code here:
+        trans.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btRTransacaoActionPerformed
 
     private void btERelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btERelatoriosActionPerformed
@@ -183,6 +183,13 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
         this.dispose();
         cat.setVisible(true);
     }//GEN-LAST:event_jbGerenciarCategoriaActionPerformed
+
+    private void btRVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRVendaActionPerformed
+        FRMVenda_1 frm = new FRMVenda_1();
+        frm.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btRVendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,13 +232,12 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
     private javax.swing.JButton btGCliente;
     private javax.swing.JButton btGJogo;
     private javax.swing.JButton btRTransacao;
+    private javax.swing.JButton btRVenda;
     private javax.swing.JButton btSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton jbGerenciarCategoria;
     private javax.swing.JButton jbGerenciarConsole;
-    private javax.swing.JLabel lbCod;
     // End of variables declaration//GEN-END:variables
 }

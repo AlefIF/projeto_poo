@@ -54,9 +54,9 @@ public class Con_jogoMySqlDAO {
             
             Deve ser colocado dentro de um bloco try catch */
             stmt = connection.prepareStatement(sql);
-            // seta os valores          
-            stmt.setInt(1, w.getCjg_conCodigo());
+            // seta os valores   
             stmt.setInt(2, w.getCjg_joCodigo());
+            stmt.setInt(1, w.getCjg_conCodigo());
 
             // executa update
             int linhasAtualizadas = stmt.executeUpdate();

@@ -5,7 +5,7 @@
  */
 package Controle;
 
-import Modelo.UserDAO;
+import Modelo.FunSql;
 import Modelo.JogoMySqlDAO;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
@@ -26,7 +26,7 @@ public class RelCliente {
     public static void gerarRelatorio2(String query, String relatJasp)
             throws JRException, Exception {
 
-        UserDAO dao = new UserDAO();
+        FunSql dao = new FunSql();
         ResultSet rs = dao.consulta(query);
 
         try {

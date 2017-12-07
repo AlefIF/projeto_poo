@@ -38,7 +38,24 @@ public class JogoControle {
         return jDAO.editar(c);
     }
 
+    public boolean editarINVAL(JogoBEAN c) {
+        return jDAO.editarINVAL(c);
+    }
+
     public boolean remover(int codigo) {
         return jDAO.remover(codigo);
     }
+
+    public void editarDisponibilidade(JogoBEAN l) {
+        jDAO.editarDisponibilidade(l);
+    }
+
+    public ArrayList<JogoBEAN> localizarNome(String nome) {
+        return jDAO.localizarNome(nome);
+    }
+
+    public Object localizarCodigo(int loc_jogCodigo) {
+        return jDAO.localizarCodigo(loc_jogCodigo);
+    }
+
 }

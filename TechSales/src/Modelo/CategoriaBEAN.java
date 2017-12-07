@@ -22,8 +22,6 @@ public class CategoriaBEAN {
     private String catNome;
     private JogoBEAN jogo;
 
-    
-
     @Id
     @GeneratedValue
     public int getCatCodigo() {
@@ -42,11 +40,6 @@ public class CategoriaBEAN {
         this.catNome = catNome;
     }
 
-    @Override
-    public String toString() {
-        return getCatNome(); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     @OneToMany
     @JoinColumn(name = "jo_catCodigo")
     public JogoBEAN getJogo() {
@@ -55,5 +48,10 @@ public class CategoriaBEAN {
 
     public void setJogo(JogoBEAN jogo) {
         this.jogo = jogo;
+    }
+    
+    @Override
+    public String toString() {
+        return getCatNome(); //To change body of generated methods, choose Tools | Templates.
     }
 }

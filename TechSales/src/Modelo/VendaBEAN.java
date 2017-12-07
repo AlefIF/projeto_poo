@@ -102,5 +102,5 @@ public class VendaBEAN {
     public void setCliente(ClienteBEAN cliente) {
         this.cliente = cliente;
     }
-              
+
 }

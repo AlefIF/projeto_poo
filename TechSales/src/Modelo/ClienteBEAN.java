@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class ClienteBEAN {
-    
+
     private int cod;
     private String nome;
     private int idade;
@@ -22,8 +22,8 @@ public class ClienteBEAN {
     private String endereco;
     private String telefone;
     private List<VendaBEAN> venda;
-    private List<Locacao> locacao;
-    private List<Devolucao> devolucao;
+    private List<LocacaoBEAN> locacao;
+    private List<DevolucaoBEAN> devolucao;
 
     @Id
     @GeneratedValue
@@ -87,30 +87,22 @@ public class ClienteBEAN {
 
     @OneToMany(mappedBy = "loc_cliCodigo")
     @Column(nullable = true)
-    public List<Locacao> getLocacao() {
+    public List<LocacaoBEAN> getLocacao() {
         return locacao;
     }
 
-    public void setLocacao(List<Locacao> aluguel) {
+    public void setLocacao(List<LocacaoBEAN> aluguel) {
         this.locacao = aluguel;
     }
 
     @OneToMany(mappedBy = "dev_cliCodigo")
     @Column(nullable = true)
-    public List<Devolucao> getDevolucao() {
+    public List<DevolucaoBEAN> getDevolucao() {
         return devolucao;
     }
 
-    public void setDevolucao(List<Devolucao> devolucao) {
+    public void setDevolucao(List<DevolucaoBEAN> devolucao) {
         this.devolucao = devolucao;
     }
-    
-    
-            
-    
-    
-    
-
-   
 
 }

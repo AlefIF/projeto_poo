@@ -28,8 +28,8 @@ public class UserBEAN {
     private String senha;
     private String telefone;
     private String nisPis;
-    private List<Locacao> loc;
-    private List<Devolucao> dev;       
+    private List<LocacaoBEAN> loc;
+    private List<DevolucaoBEAN> dev;
     private List<VendaBEAN> venda;
 
     @Id
@@ -105,24 +105,24 @@ public class UserBEAN {
     public void setNisPis(String nisPis) {
         this.nisPis = nisPis;
     }
-    
+
     @OneToMany(mappedBy = "loc_funCodigo")
     @Column(nullable = true)
-    public List<Locacao> getLoc() {
+    public List<LocacaoBEAN> getLoc() {
         return loc;
     }
 
-    public void setLoc(List<Locacao> loc) {
+    public void setLoc(List<LocacaoBEAN> loc) {
         this.loc = loc;
     }
 
     @OneToMany(mappedBy = "dev_funCodigo")
     @Column(nullable = true)
-    public List<Devolucao> getDev() {
+    public List<DevolucaoBEAN> getDev() {
         return dev;
     }
 
-    public void setDev(List<Devolucao> dev) {
+    public void setDev(List<DevolucaoBEAN> dev) {
         this.dev = dev;
     }
 
@@ -135,8 +135,5 @@ public class UserBEAN {
     public void setVenda(List<VendaBEAN> venda) {
         this.venda = venda;
     }
-    
-    
-    
 
 }

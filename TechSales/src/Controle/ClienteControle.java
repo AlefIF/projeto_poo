@@ -45,7 +45,7 @@ public class ClienteControle {
         return cDAO.localizarCodigo(busca);
     }
 
-    public ClienteBEAN localizarNome(String busca) {
+    public ArrayList<ClienteBEAN> localizarNome(String busca) {
         return cDAO.localizarNome(busca);
     }
 

@@ -1,6 +1,7 @@
 package Visao;
 
 import Controle.ClienteControle;
+import Controle.GeraRelatorio;
 import Modelo.ClienteBEAN;
 import static java.awt.Color.BLACK;
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ public class FRMCliente extends javax.swing.JFrame {
         tfCpfCli = new javax.swing.JFormattedTextField();
         tfTelCli = new javax.swing.JFormattedTextField();
         tfIdadeCli = new javax.swing.JFormattedTextField();
+        btRelatorio = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCliente = new javax.swing.JTable();
@@ -194,6 +196,13 @@ public class FRMCliente extends javax.swing.JFrame {
             }
         });
 
+        btRelatorio.setText("Gerar Relatorio");
+        btRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRelatorioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -226,6 +235,10 @@ public class FRMCliente extends javax.swing.JFrame {
                                 .addComponent(tfEnderecoCli, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(89, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btRelatorio)
+                .addGap(97, 97, 97))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,7 +269,9 @@ public class FRMCliente extends javax.swing.JFrame {
                     .addComponent(tfTelCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btRelatorio)
+                .addGap(30, 30, 30))
         );
 
         tpGuia.addTab("Cadastrar", jPanel2);
@@ -383,13 +398,13 @@ public class FRMCliente extends javax.swing.JFrame {
                             .addComponent(rbCpf)))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
         );
 
         tpGuia.addTab("Consulta Cliente", jPanel3);
 
         getContentPane().add(tpGuia);
-        tpGuia.setBounds(10, 40, 680, 320);
+        tpGuia.setBounds(10, 40, 680, 340);
 
         btVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
         btVoltar.setText("Voltar");
@@ -403,9 +418,9 @@ public class FRMCliente extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/back2.png"))); // NOI18N
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(-10, -10, 720, 390);
+        jLabel2.setBounds(-10, -10, 720, 400);
 
-        setSize(new java.awt.Dimension(716, 407));
+        setSize(new java.awt.Dimension(716, 417));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -541,6 +556,17 @@ public class FRMCliente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tfLocalizarNomeMouseClicked
 
+    private void btRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRelatorioActionPerformed
+        //consulta do BD
+        String query = "SELECT  * \n"
+                + "FROM cliente \n";
+        try {
+            //passa o caminho onde o relatório esta no projeto - codigo compilado
+            GeraRelatorio.gerarRelatorio(query, "./report/cliente.jasper");
+        } catch (Exception x) {
+        }
+    }//GEN-LAST:event_btRelatorioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -584,6 +610,7 @@ public class FRMCliente extends javax.swing.JFrame {
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btLocalizar;
+    private javax.swing.JButton btRelatorio;
     private javax.swing.JButton btVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

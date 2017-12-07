@@ -2,7 +2,7 @@ package Controle;
 
 /* pacotes necessários */
 import static Modelo.ConnectionFactory.getConnection;
-import Modelo.UserDAO;
+import Modelo.FunSql;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
 import java.sql.*;
@@ -20,7 +20,7 @@ public class RelFun {
     public static void gerarRelatorio(String query, String relatJasp)
             throws JRException, Exception {
 
-        UserDAO dao = new UserDAO();
+        FunSql dao = new FunSql();
         ResultSet rs = dao.consulta(query);
 
         try {

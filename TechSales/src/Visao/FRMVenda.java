@@ -19,7 +19,7 @@ import Modelo.Con_jogoBEAN;
 import Modelo.ConsoleBEAN;
 import Modelo.Item_VendaBEAN;
 import Modelo.JogoBEAN;
-import Modelo.UserBEAN;
+import Modelo.FuncionarioBEAN;
 import Modelo.VendaBEAN;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -54,7 +54,7 @@ public class FRMVenda extends javax.swing.JFrame {
     private VendaControle cVenda = new VendaControle();
     private ArrayList<ClienteBEAN> cdados;
     private ArrayList<Object> a = new ArrayList<Object>();
-    private ArrayList<UserBEAN> userD;
+    private ArrayList<FuncionarioBEAN> userD;
     private ControleUser ct = new ControleUser();
 
     /**

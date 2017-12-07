@@ -9,7 +9,6 @@ package com.bdii.techSales.jpa;
  *
  * @author user
  */
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -30,4 +29,3 @@ public class JpaUtil {
         factory.close();
     }
 }
-

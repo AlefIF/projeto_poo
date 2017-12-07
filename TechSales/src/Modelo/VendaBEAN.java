@@ -28,7 +28,7 @@ public class VendaBEAN {
     private int ven_funCodigo;
     private int cliente_cliCodigo;
     private List<JogoBEAN> jogo;
-    private UserBEAN funcionario;
+    private FuncionarioBEAN funcionario;
     private ClienteBEAN cliente;
 
     @Id
@@ -85,11 +85,11 @@ public class VendaBEAN {
 
     @ManyToOne
     @JoinColumn(name = "ven_funCodigo")
-    public UserBEAN getFuncionario() {
+    public FuncionarioBEAN getFuncionario() {
         return funcionario;
     }
 
-    public void setFuncionario(UserBEAN funcionario) {
+    public void setFuncionario(FuncionarioBEAN funcionario) {
         this.funcionario = funcionario;
     }
 

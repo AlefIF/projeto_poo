@@ -49,7 +49,7 @@ public class CategoriaBEAN {
     public void setJogo(JogoBEAN jogo) {
         this.jogo = jogo;
     }
-    
+
     @Override
     public String toString() {
         return getCatNome(); //To change body of generated methods, choose Tools | Templates.

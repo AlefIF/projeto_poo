@@ -6,7 +6,7 @@
 package Visao;
 
 import Controle.ControleUser;
-import Modelo.UserBEAN;
+import Modelo.FuncionarioBEAN;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -16,9 +16,9 @@ import javax.swing.JOptionPane;
  */
 public class FRMLogin extends javax.swing.JFrame {
 
-    static UserBEAN user = new UserBEAN();
+    static FuncionarioBEAN user = new FuncionarioBEAN();
     ControleUser ct = new ControleUser();
-    ArrayList<UserBEAN> al = ct.ListarALL();
+    ArrayList<FuncionarioBEAN> al = ct.ListarALL();
 
     /**
      * Creates new form FRMLogin
@@ -123,7 +123,7 @@ public class FRMLogin extends javax.swing.JFrame {
         String senha = tfSenha.getText();
         try {
             if (!nome.equals("") && !senha.equals("")) {
-                for (UserBEAN user : al) {
+                for (FuncionarioBEAN user : al) {
                     if (user.getNomeUsuario().equals(nome) && user.getSenha().equals(senha)) {
                         this.user = user;
                     }

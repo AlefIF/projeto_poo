@@ -6,8 +6,8 @@
 package Controle;
 
 //import Modelo.ConnectionFactory;
-import Modelo.UserBEAN;
-import Modelo.UserDAO;
+import Modelo.FuncionarioBEAN;
+import Modelo.FuncionarioDAO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +17,8 @@ import java.util.List;
  */
 public class ControleUser {
 
-    UserBEAN user = new UserBEAN();
-    UserDAO dao = new UserDAO();
+    FuncionarioBEAN user = new FuncionarioBEAN();
+    FuncionarioDAO dao = new FuncionarioDAO();
 
     public void cadastrar(String nome, int idade, String endereco, String cpf, String np, String nomeusuario, String senha, String telefone) {
         user.setNome(nome);
@@ -48,8 +48,8 @@ public class ControleUser {
         dao.editar(user);
     }
 
-    public ArrayList<UserBEAN> ListarALL() {
-        ArrayList<UserBEAN> auxAL = (ArrayList<UserBEAN>) dao.ListarALL();
+    public ArrayList<FuncionarioBEAN> ListarALL() {
+        ArrayList<FuncionarioBEAN> auxAL = (ArrayList<FuncionarioBEAN>) dao.ListarALL();
         return auxAL;
     }
 

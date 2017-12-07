@@ -19,9 +19,9 @@ import javax.swing.JOptionPane;
  *
  * @author LUCASP
  */
-public class UserDAO {
+public class FuncionarioDAO {
 
-    public void cadastrar(UserBEAN user) {
+    public void cadastrar(FuncionarioBEAN user) {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         try {
@@ -46,7 +46,7 @@ public class UserDAO {
         }
     }
 
-    public void editar(UserBEAN user) {
+    public void editar(FuncionarioBEAN user) {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         try {
@@ -74,12 +74,12 @@ public class UserDAO {
         }
     }
 
-    public List<UserBEAN> ListarALL() {
+    public List<FuncionarioBEAN> ListarALL() {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        List<UserBEAN> users = new ArrayList<UserBEAN>();
+        List<FuncionarioBEAN> users = new ArrayList<FuncionarioBEAN>();
         try {
             // prepared statement para seleção
             stmt = con.prepareStatement("SELECT * from funcionario");
@@ -88,7 +88,7 @@ public class UserDAO {
             //joga resultado da consulta no ArrayList
             while (rs.next()) {
                 //joga os dados do rs dentro de um objeto user do tipo userBEAN
-                UserBEAN user = new UserBEAN();
+                FuncionarioBEAN user = new FuncionarioBEAN();
                 user.setCodigo(rs.getInt("funCodigo"));
                 user.setNome(rs.getString("funNome"));
                 user.setIdade(rs.getInt("funIdade"));
@@ -167,7 +167,7 @@ public class UserDAO {
         return verifica;
     }
 
-    public void excluir(UserBEAN user) {
+    public void excluir(FuncionarioBEAN user) {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         try {
@@ -185,12 +185,12 @@ public class UserDAO {
         }
     }
 
-    public List<UserBEAN> readForNome(String funNome) {
+    public List<FuncionarioBEAN> readForNome(String funNome) {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        List<UserBEAN> users = new ArrayList<UserBEAN>();
+        List<FuncionarioBEAN> users = new ArrayList<FuncionarioBEAN>();
         try {
             // prepared statement para seleção
             stmt = con.prepareStatement("SELECT * from funcionario WHERE funNome LIKE ?");
@@ -200,7 +200,7 @@ public class UserDAO {
             //joga resultado da consulta no ArrayList
             while (rs.next()) {
                 //joga os dados do rs dentro de um objeto user do tipo userBEAN
-                UserBEAN user = new UserBEAN();
+                FuncionarioBEAN user = new FuncionarioBEAN();
                 user.setCodigo(rs.getInt("funCodigo"));
                 user.setNome(rs.getString("funNome"));
                 user.setIdade(rs.getInt("funIdade"));

@@ -126,9 +126,5 @@ public class DevolucaoBEAN {
     public void setFuncionario(FunSql funcionario) {
         this.funcionario = funcionario;
     }
-    
-    
-
-  
 
 }

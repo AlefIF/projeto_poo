@@ -30,7 +30,6 @@ public class LocacaoBEAN {
     private FunSql funcionario;
     private List<DevolucaoBEAN> devolucao;
 
-    
     public int getCod() {
         return cod;
     }
@@ -114,9 +113,9 @@ public class LocacaoBEAN {
     public List<DevolucaoBEAN> getDevolucao() {
         return devolucao;
     }
- 
+
     public void setDevolucao(List<DevolucaoBEAN> devolucao) {
         this.devolucao = devolucao;
     }
-           
+
 }

@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
  * @author LUCASP
  */
 @Entity
-public class UserBEAN {
+public class FuncionarioBEAN {
 
     private int codigo;
     private String nome;

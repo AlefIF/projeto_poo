@@ -7,8 +7,8 @@ package Visao;
 
 import Controle.ControleUser;
 
-import Modelo.UserBEAN;
-import Modelo.UserDAO;
+import Modelo.FuncionarioBEAN;
+import Modelo.FuncionarioDAO;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
 import static java.awt.Color.GRAY;
@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FRMPrincipalAdm extends javax.swing.JFrame {
 
-    private ArrayList<UserBEAN> userD;
+    private ArrayList<FuncionarioBEAN> userD;
     private DefaultTableModel tbUsers;
     ControleUser ct = new ControleUser();
 
@@ -45,7 +45,7 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         tbUsers.addColumn("CPF");
         userD = ct.ListarALL();
 
-        for (UserBEAN d : userD) {
+        for (FuncionarioBEAN d : userD) {
             tbUsers.addRow(new Object[]{
                 d.getCodigo(),
                 d.getNome(),
@@ -486,9 +486,9 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tbPesquisa.getModel();
 
         model.setNumRows(0);
-        UserDAO dao = new UserDAO();
+        FuncionarioDAO dao = new FuncionarioDAO();
 
-        for (UserBEAN d : dao.readForNome(funNome)) {
+        for (FuncionarioBEAN d : dao.readForNome(funNome)) {
             tbUsers.addRow(new Object[]{
                 d.getCodigo(),
                 d.getNome(),

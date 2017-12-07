@@ -15,35 +15,35 @@ import javax.persistence.Query;
  *
  * @author Alef
  */
-public class CategoriaHiber {
+public class VendaHiber {
 
     private static EntityManager manager = JpaUtil.getEntityManager();
     private static EntityTransaction tx = manager.getTransaction();
 
-    public static ArrayList<CategoriaBEAN> listarCat() {
+    public static ArrayList<VendaBEAN> listarVen() {
         começar();
-        Query q = manager.createQuery("from categoria");
-        ArrayList<CategoriaBEAN> catList = (ArrayList<CategoriaBEAN>) q.getResultList();
+        Query q = manager.createQuery("from venda");
+        ArrayList<VendaBEAN> venList = (ArrayList<VendaBEAN>) q.getResultList();
         tx.commit();
         fechar();
-        return catList;
+        return venList;
     }
 
-    public static void cadCat(CategoriaBEAN c) {
+    public static void cadVen(VendaBEAN c) {
         começar();
         manager.persist(c);
         tx.commit();
         fechar();
     }
 
-    public static void deleteCat(CategoriaBEAN c) {
+    public static void deleteVen(VendaBEAN c) {
         começar();
         manager.remove(c);
         tx.commit();
         fechar();
     }
 
-    public static void editarCat(CategoriaBEAN c) {
+    public static void editarVen(VendaBEAN c) {
         começar();
         manager.flush();
         tx.commit();

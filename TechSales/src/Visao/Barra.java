@@ -44,29 +44,29 @@ public class Barra extends javax.swing.JFrame {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (GraficoBEAN gO : a) {
             if (Integer.parseInt(gO.getVenData().toString()) == 2017) {
-                // dataset.addValue(gO.getQuantidade(), "Janeiro", "Mês");
+                dataset.addValue(gO.getQuantidade(), "Janeiro", "1");
             } else if (Integer.valueOf(gO.getVenData().toString()) == 2) {
-                dataset.addValue(gO.getQuantidade(), "Fevereiro", "Mês");
+                dataset.addValue(gO.getQuantidade(), "Fevereiro", "2");
             } else if (Integer.valueOf(gO.getVenData().toString()) == 3) {
-                dataset.addValue(gO.getQuantidade(), "Março", "Mês");
+                dataset.addValue(gO.getQuantidade(), "Março", "3");
             } else if (Integer.valueOf(gO.getVenData().toString()) == 4) {
-                dataset.addValue(gO.getQuantidade(), "Abril", "Mês");
+                dataset.addValue(gO.getQuantidade(), "Abril", "4");
             } else if (Integer.valueOf(gO.getVenData().toString()) == 5) {
-                dataset.addValue(gO.getQuantidade(), "Maio", "Mês");
+                dataset.addValue(gO.getQuantidade(), "Maio", "5");
             } else if (Integer.valueOf(gO.getVenData().toString()) == 6) {
-                dataset.addValue(gO.getQuantidade(), "Junho", "Mês");
+                dataset.addValue(gO.getQuantidade(), "Junho", "6");
             } else if (Integer.valueOf(gO.getVenData().toString()) == 7) {
-                dataset.addValue(gO.getQuantidade(), "Julho", "Mês");
+                dataset.addValue(gO.getQuantidade(), "Julho", "7");
             } else if (Integer.valueOf(gO.getVenData().toString()) == 8) {
-                dataset.addValue(gO.getQuantidade(), "Agosto", "Mês");
+                dataset.addValue(gO.getQuantidade(), "Agosto", "8");
             } else if (Integer.valueOf(gO.getVenData().toString()) == 9) {
-                dataset.addValue(gO.getQuantidade(), "Setembro", "Mês");
+                dataset.addValue(gO.getQuantidade(), "Setembro", "9");
             } else if (Integer.valueOf(gO.getVenData().toString()) == 10) {
-                dataset.addValue(gO.getQuantidade(), "Outubro", "Mês");
+                dataset.addValue(gO.getQuantidade(), "Outubro", "10");
             } else if (Integer.valueOf(gO.getVenData().toString()) == 11) {
-                dataset.addValue(gO.getQuantidade(), "Novenbro", "Mês");
+                dataset.addValue(gO.getQuantidade(), "Novembro", "11");
             } else if (Integer.valueOf(gO.getVenData().toString()) == 12) {
-                dataset.addValue(gO.getQuantidade(), "Dezembro", "Mês");
+                dataset.addValue(gO.getQuantidade(), "Dezembro", "12");
             }
 
         }
@@ -78,9 +78,9 @@ public class Barra extends javax.swing.JFrame {
     public void criaGrafico(ArrayList<GraficoBEAN> a) {
         // aqui ele pega os valores que serão inseridos nele
         CategoryDataset cds = createDataset(a);
-        String titulo = "Grafico - BARRA"; // título do grafico
-        String eixoy = "Quantidade vendida"; // string na lateral esquerda, referente aos valores (as notas)
-        String txt_legenda = "Meses"; // titulo da legenda
+        String titulo = "Vendas no Ano de " + tfAno.getText(); // título do grafico
+        String eixoy = "Mídias vendidas"; // string na lateral esquerda, referente aos valores (as notas)
+        String txt_legenda = "Mês"; // titulo da legenda
         // ferramentas auxiliares, não utilizadas (redirecionamento de url, ponteiro em cima)
         boolean legenda = true;
         boolean tooltips = false;

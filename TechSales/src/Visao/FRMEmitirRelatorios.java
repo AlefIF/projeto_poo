@@ -39,6 +39,7 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        btnVendaAno = new javax.swing.JButton();
         btVoltar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -92,6 +93,13 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
             }
         });
 
+        btnVendaAno.setText("Vendas por ano");
+        btnVendaAno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVendaAnoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -107,7 +115,8 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))))
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
+                    .addComponent(btnVendaAno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(151, 151, 151))
         );
         jPanel2Layout.setVerticalGroup(
@@ -125,11 +134,13 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
                 .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton6)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVendaAno)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(38, 103, 510, 290);
+        jPanel2.setBounds(38, 103, 510, 310);
 
         btVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
         btVoltar.setText("Voltar");
@@ -150,7 +161,7 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(-10, -10, 620, 460);
 
-        setSize(new java.awt.Dimension(613, 472));
+        setSize(new java.awt.Dimension(613, 478));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -230,6 +241,11 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void btnVendaAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaAnoActionPerformed
+        Barra b = new Barra();
+        b.setVisible(true);
+    }//GEN-LAST:event_btnVendaAnoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -268,6 +284,7 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btVoltar;
+    private javax.swing.JButton btnVendaAno;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

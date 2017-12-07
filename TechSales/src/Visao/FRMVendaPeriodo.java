@@ -23,7 +23,7 @@ public class FRMVendaPeriodo extends javax.swing.JFrame {
      */
     public FRMVendaPeriodo() {
         initComponents();
-        setSize(420,250);
+        setSize(420, 250);
         setResizable(false);
     }
 

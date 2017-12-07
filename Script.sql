@@ -82,7 +82,7 @@ CREATE TABLE `con_jogo` (
   KEY `fk_jogo_has_console_jogo1_idx` (`cjg_joCodigo`),
   CONSTRAINT `fk_jogo_has_console_console1` FOREIGN KEY (`cjg_conCodigo`) REFERENCES `console` (`conCodigo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_jogo_has_console_jogo1` FOREIGN KEY (`cjg_joCodigo`) REFERENCES `jogo` (`joCodigo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE `con_jogo` (
 
 LOCK TABLES `con_jogo` WRITE;
 /*!40000 ALTER TABLE `con_jogo` DISABLE KEYS */;
-INSERT INTO `con_jogo` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(12,1);
+INSERT INTO `con_jogo` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(12,1),(1,2),(14,2),(13,3);
 /*!40000 ALTER TABLE `con_jogo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +181,7 @@ CREATE TABLE `funcionario` (
 
 LOCK TABLES `funcionario` WRITE;
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
-INSERT INTO `funcionario` VALUES (1,'a',12,'1','1','d','1','1','1');
+INSERT INTO `funcionario` VALUES (1,'Alef',19,'104','399.999.999-99','Alef91','123456','(37)9 9999-9999','123456');
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,7 +196,7 @@ CREATE TABLE `item_venda` (
   `iv_venCodigo` int(11) NOT NULL,
   `iv_joCodigo` int(11) NOT NULL,
   `ivQtd` int(11) NOT NULL,
-  `ivPrecoUnitReal` float unsigned NOT NULL,
+  `ivPrecoUnitReal` float NOT NULL,
   PRIMARY KEY (`iv_venCodigo`,`iv_joCodigo`),
   KEY `fk_Compra_has_Jogo_Jogo1_idx` (`iv_joCodigo`),
   KEY `fk_Compra_has_Jogo_Compra_idx` (`iv_venCodigo`),
@@ -211,7 +211,7 @@ CREATE TABLE `item_venda` (
 
 LOCK TABLES `item_venda` WRITE;
 /*!40000 ALTER TABLE `item_venda` DISABLE KEYS */;
-INSERT INTO `item_venda` VALUES (1,1,10,1),(2,4,20,1),(3,7,30,1),(4,8,40,1);
+INSERT INTO `item_venda` VALUES (1,1,1,1),(2,4,1,1),(3,2,1,1),(4,6,1,1),(6,1,1,1),(7,2,1,1),(8,3,1,1),(10,2,1,1),(12,4,1,1),(12,13,1,1);
 /*!40000 ALTER TABLE `item_venda` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,7 +234,7 @@ CREATE TABLE `jogo` (
   PRIMARY KEY (`joCodigo`),
   KEY `fk_jogo_categoria1_idx` (`jo_catCodigo`),
   CONSTRAINT `fk_jogo_categoria1` FOREIGN KEY (`jo_catCodigo`) REFERENCES `categoria` (`catCodigo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -243,7 +243,7 @@ CREATE TABLE `jogo` (
 
 LOCK TABLES `jogo` WRITE;
 /*!40000 ALTER TABLE `jogo` DISABLE KEYS */;
-INSERT INTO `jogo` VALUES (1,'Alef','+(18)',321,'Venda',5,'asdf',1),(2,'Alef','+(18)',321,'Venda',5,'asdfs',1),(3,'Alef','+(18)',321,'Venda',5,'ddd',3),(4,'God Of War 4','+(18)',170.91,'Venda',1,'12df',7),(5,'Crash Bandicoot','+(12)',149,'Venda',5,'452878',7),(6,'Crash Bandicoot','+(12)',149,'Venda',5,'4528787',7),(7,'Crash Bandicoot','+(12)',149,'Venda',5,'45287',7),(8,'GTA 5','+(18)',134,'Venda',5,'452',2),(12,'GTA 5','+(18)',134,'Venda',5,'9452576',2);
+INSERT INTO `jogo` VALUES (1,'Alef','+(18)',321,'Venda',5,'asdf',1),(2,'Alef','+(18)',321,'Venda',5,'asdfs',1),(3,'Alef','+(18)',321,'Venda',5,'ddd',3),(4,'God Of War 4','+(18)',170.91,'Venda',1,'12df',7),(5,'Crash Bandicoot','+(12)',149,'Venda',5,'452878',7),(6,'Crash Bandicoot','+(12)',149,'Venda',5,'4528787',7),(7,'Crash Bandicoot','+(12)',149,'Venda',5,'45287',7),(8,'GTA 5','+(18)',134,'Venda',5,'452',2),(12,'GTA 5','+(18)',134,'Venda',5,'9452576',2),(13,'asda','+(11)',1,'Venda',1,'gxdh',3),(14,'12','+(12)',12,'Aluguel',12,'12',2);
 /*!40000 ALTER TABLE `jogo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,7 +290,7 @@ DROP TABLE IF EXISTS `venda`;
 CREATE TABLE `venda` (
   `venCodigo` int(11) NOT NULL AUTO_INCREMENT,
   `venNNF` text NOT NULL,
-  `venDataEHora` datetime NOT NULL,
+  `venData` date NOT NULL,
   `ven_funCodigo` int(11) NOT NULL,
   `cliente_cliCodigo` int(11) NOT NULL,
   PRIMARY KEY (`venCodigo`),
@@ -298,7 +298,7 @@ CREATE TABLE `venda` (
   KEY `fk_venda_cliente1_idx` (`cliente_cliCodigo`),
   CONSTRAINT `fk_compra_funcionario1` FOREIGN KEY (`ven_funCodigo`) REFERENCES `funcionario` (`funCodigo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_venda_cliente1` FOREIGN KEY (`cliente_cliCodigo`) REFERENCES `cliente` (`cliCodigo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -307,7 +307,7 @@ CREATE TABLE `venda` (
 
 LOCK TABLES `venda` WRITE;
 /*!40000 ALTER TABLE `venda` DISABLE KEYS */;
-INSERT INTO `venda` VALUES (1,'1','2017-10-10 23:59:59',1,1),(2,'1','2017-08-31 23:59:59',1,2),(3,'1','2017-02-02 23:59:59',1,3),(4,'1','2017-07-31 23:59:59',1,3);
+INSERT INTO `venda` VALUES (1,'1','2015-10-10',1,1),(2,'1','2017-08-31',1,2),(3,'1','2017-02-02',1,3),(4,'1','2017-07-31',1,3),(6,' 123456','2017-11-09',1,2),(7,' 333','2017-11-09',1,2),(8,' 66','2017-11-09',1,3),(10,'3333','2017-11-09',1,3),(12,' 122323','2016-11-16',1,1);
 /*!40000 ALTER TABLE `venda` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -320,4 +320,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-17 18:23:12
+-- Dump completed on 2017-11-30  1:15:33

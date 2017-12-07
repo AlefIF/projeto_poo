@@ -5,15 +5,27 @@
  */
 package Modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
 /**
  *
  * @author admin
  */
+@Entity
 public class CategoriaBEAN {
 
     private int catCodigo;
     private String catNome;
+    private JogoBEAN jogo;
 
+    
+
+    @Id
+    @GeneratedValue
     public int getCatCodigo() {
         return catCodigo;
     }
@@ -33,5 +45,15 @@ public class CategoriaBEAN {
     @Override
     public String toString() {
         return getCatNome(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @OneToMany
+    @JoinColumn(name = "jo_catCodigo")
+    public JogoBEAN getJogo() {
+        return jogo;
+    }
+
+    public void setJogo(JogoBEAN jogo) {
+        this.jogo = jogo;
     }
 }

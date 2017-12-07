@@ -5,15 +5,28 @@
  */
 package Modelo;
 
-public class ClienteBEAN {
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity
+public class ClienteBEAN {
+    
     private int cod;
     private String nome;
     private int idade;
     private String cpf;
     private String endereco;
     private String telefone;
+    private List<VendaBEAN> venda;
+    private List<Locacao> locacao;
+    private List<Devolucao> devolucao;
 
+    @Id
+    @GeneratedValue
     public int getCod() {
         return cod;
     }
@@ -61,5 +74,43 @@ public class ClienteBEAN {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+    @OneToMany(mappedBy = "ven_cliCodigo")
+    @Column(nullable = true)
+    public List<VendaBEAN> getVenda() {
+        return venda;
+    }
+
+    public void setVenda(List<VendaBEAN> venda) {
+        this.venda = venda;
+    }
+
+    @OneToMany(mappedBy = "loc_cliCodigo")
+    @Column(nullable = true)
+    public List<Locacao> getLocacao() {
+        return locacao;
+    }
+
+    public void setLocacao(List<Locacao> aluguel) {
+        this.locacao = aluguel;
+    }
+
+    @OneToMany(mappedBy = "dev_cliCodigo")
+    @Column(nullable = true)
+    public List<Devolucao> getDevolucao() {
+        return devolucao;
+    }
+
+    public void setDevolucao(List<Devolucao> devolucao) {
+        this.devolucao = devolucao;
+    }
+    
+    
+            
+    
+    
+    
+
+   
 
 }

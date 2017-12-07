@@ -5,24 +5,27 @@
  */
 package Modelo;
 
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
 /**
  *
  * @author admin
  */
+@Entity
 public class ConsoleBEAN {
 
     private int conCodigo;
     private String conNome;
     private String conMarca;
+    private List<JogoBEAN> jogo;
 
-    public String getConMarca() {
-        return conMarca;
-    }
-
-    public void setConMarca(String conMarca) {
-        this.conMarca = conMarca;
-    }
-
+    @Id
+    @GeneratedValue
     public int getConCodigo() {
         return conCodigo;
     }
@@ -39,6 +42,25 @@ public class ConsoleBEAN {
         this.conNome = conNome;
     }
 
+    public String getConMarca() {
+        return conMarca;
+    }
+
+    public void setConMarca(String conMarca) {
+        this.conMarca = conMarca;
+    }
+
+    @ManyToMany(mappedBy = "cjg_joCodigo")
+    @Column(nullable = false)
+    public List<JogoBEAN> getJogo() {
+        return jogo;
+    }
+
+    public void setJogo(List<JogoBEAN> jogo) {
+        this.jogo = jogo;
+    }
+
+   
     @Override
     public String toString() {
         return getConNome(); //To change body of generated methods, choose Tools | Templates.

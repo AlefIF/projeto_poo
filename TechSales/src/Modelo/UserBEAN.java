@@ -5,10 +5,18 @@
  */
 package Modelo;
 
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 /**
  *
  * @author LUCASP
  */
+@Entity
 public class UserBEAN {
 
     private int codigo;
@@ -20,7 +28,12 @@ public class UserBEAN {
     private String senha;
     private String telefone;
     private String nisPis;
+    private List<Locacao> loc;
+    private List<Devolucao> dev;       
+    private List<VendaBEAN> venda;
 
+    @Id
+    @GeneratedValue
     public int getCodigo() {
         return codigo;
     }
@@ -92,5 +105,38 @@ public class UserBEAN {
     public void setNisPis(String nisPis) {
         this.nisPis = nisPis;
     }
+    
+    @OneToMany(mappedBy = "loc_funCodigo")
+    @Column(nullable = true)
+    public List<Locacao> getLoc() {
+        return loc;
+    }
+
+    public void setLoc(List<Locacao> loc) {
+        this.loc = loc;
+    }
+
+    @OneToMany(mappedBy = "dev_funCodigo")
+    @Column(nullable = true)
+    public List<Devolucao> getDev() {
+        return dev;
+    }
+
+    public void setDev(List<Devolucao> dev) {
+        this.dev = dev;
+    }
+
+    @OneToMany(mappedBy = "ven_funCodigo")
+    @Column(nullable = true)
+    public List<VendaBEAN> getVenda() {
+        return venda;
+    }
+
+    public void setVenda(List<VendaBEAN> venda) {
+        this.venda = venda;
+    }
+    
+    
+    
 
 }

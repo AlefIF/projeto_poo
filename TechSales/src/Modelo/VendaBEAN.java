@@ -6,11 +6,20 @@
 package Modelo;
 
 import java.sql.Date;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Alef
  */
+@Entity
 public class VendaBEAN {
 
     private int venCodigo;
@@ -18,7 +27,12 @@ public class VendaBEAN {
     private Date venData;
     private int ven_funCodigo;
     private int cliente_cliCodigo;
+    private List<JogoBEAN> jogo;
+    private UserBEAN funcionario;
+    private ClienteBEAN cliente;
 
+    @Id
+    @GeneratedValue
     public int getVenCodigo() {
         return venCodigo;
     }
@@ -59,4 +73,34 @@ public class VendaBEAN {
         this.cliente_cliCodigo = cliente_cliCodigo;
     }
 
+    @ManyToMany(mappedBy = "iv_venCodigo")
+    @Column(nullable = false)
+    public List<JogoBEAN> getJogo() {
+        return jogo;
+    }
+
+    public void setJogo(List<JogoBEAN> jogo) {
+        this.jogo = jogo;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ven_funCodigo")
+    public UserBEAN getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(UserBEAN funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "ven_cliCodigo")
+    public ClienteBEAN getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteBEAN cliente) {
+        this.cliente = cliente;
+    }
+              
 }

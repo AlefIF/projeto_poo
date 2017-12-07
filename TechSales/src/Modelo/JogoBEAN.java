@@ -30,6 +30,7 @@ public class JogoBEAN {
     private String joLote;
     private int jo_catCodigo;
     private int joQtd;
+    private int joDisponibilidade;
     private CategoriaBEAN cat;
     private List<Con_jogoBEAN> con;
     private List<VendaBEAN> venda;

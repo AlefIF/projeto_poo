@@ -6,6 +6,7 @@
 package Controle;
 
 import Modelo.ConsoleBEAN;
+import Modelo.ConsoleHiber;
 import Modelo.ConsoleMySqlDAO;
 import java.util.ArrayList;
 
@@ -15,6 +16,7 @@ import java.util.ArrayList;
  */
 public class ConsoleControle {
 
+    private ConsoleHiber conHN = new ConsoleHiber();
     private ConsoleMySqlDAO conDAO = new ConsoleMySqlDAO();
     private int codigo = 0;
 
@@ -25,18 +27,23 @@ public class ConsoleControle {
 
     public void cadastrar(ConsoleBEAN c) {
         c.setConCodigo(this.atualizaCodigo());
-        conDAO.cadastrar(c);
+        //conDAO.cadastrar(c);
+        conHN.cadCon(c);
     }
 
     public ArrayList<ConsoleBEAN> listarALL() {
-        return conDAO.listarALL();
+        //return conDAO.listarALL();
+        return conHN.listarCon();
+
     }
 
     public boolean editar(ConsoleBEAN c) {
-        return conDAO.editar(c);
+        //return conDAO.editar(c);
+        return conHN.editarCon(c);
     }
 
     public boolean remover(int codigo) {
-        return conDAO.remover(codigo);
+        //return conDAO.remover(codigo);
+        return conHN.deleteCon(codigo);
     }
 }

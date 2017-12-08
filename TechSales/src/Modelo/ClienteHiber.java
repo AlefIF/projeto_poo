@@ -20,7 +20,7 @@ public class ClienteHiber {
     private static EntityManager manager = JpaUtil.getEntityManager();
     private static EntityTransaction tx = manager.getTransaction();
 
-    public static ArrayList<ClienteBEAN> listarCli() {
+    public ArrayList<ClienteBEAN> listarCli() {
         começar();
         Query q = manager.createQuery("from cliente");
         ArrayList<ClienteBEAN> cliList = (ArrayList<ClienteBEAN>) q.getResultList();
@@ -29,25 +29,37 @@ public class ClienteHiber {
         return cliList;
     }
 
-    public static void cadCli(ClienteBEAN c) {
+    public void cadCli(ClienteBEAN c) {
         começar();
         manager.persist(c);
         tx.commit();
         fechar();
     }
 
-    public static void deleteCli(ClienteBEAN c) {
-        começar();
-        manager.remove(c);
-        tx.commit();
-        fechar();
+    public boolean deleteCli(int c) {
+        try {
+            começar();
+            ClienteBEAN a = manager.find(ClienteBEAN.class, c);
+            manager.remove(a);
+            tx.commit();
+            fechar();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void editarCli(ClienteBEAN c) {
-        começar();
-        manager.flush();
-        tx.commit();
-        fechar();
+    public boolean editarCli(ClienteBEAN c) {
+        try {
+
+            começar();
+            manager.flush();
+            tx.commit();
+            fechar();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public static void começar() {

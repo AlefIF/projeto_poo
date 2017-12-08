@@ -9,7 +9,7 @@ import Controle.CategoriaControle;
 import Controle.ClienteControle;
 import Controle.Con_JogoControle;
 import Controle.ConsoleControle;
-import Controle.ControleUser;
+import Controle.FuncionarioControle;
 import Controle.ItemVendaControle;
 import Controle.JogoControle;
 import Controle.VendaControle;
@@ -55,7 +55,7 @@ public class FRMVenda_1 extends javax.swing.JFrame {
     private ArrayList<ClienteBEAN> cdados;
     private ArrayList<Object> a = new ArrayList<Object>();
     private ArrayList<FuncionarioBEAN> userD;
-    private ControleUser ct = new ControleUser();
+    private FuncionarioControle ct = new FuncionarioControle();
 
     /**
      * Creates new form FRMVenda

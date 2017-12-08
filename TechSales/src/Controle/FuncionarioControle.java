@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author LUCASP
  */
-public class ControleUser {
+public class FuncionarioControle {
 
     FuncionarioBEAN user = new FuncionarioBEAN();
     FuncionarioDAO dao = new FuncionarioDAO();

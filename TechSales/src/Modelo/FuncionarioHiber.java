@@ -20,7 +20,7 @@ public class FuncionarioHiber {
     private static EntityManager manager = JpaUtil.getEntityManager();
     private static EntityTransaction tx = manager.getTransaction();
 
-    public static ArrayList<FuncionarioBEAN> listarFun() {
+    public ArrayList<FuncionarioBEAN> listarFun() {
         começar();
         Query q = manager.createQuery("from funcionario");
         ArrayList<FuncionarioBEAN> funList = (ArrayList<FuncionarioBEAN>) q.getResultList();
@@ -29,25 +29,37 @@ public class FuncionarioHiber {
         return funList;
     }
 
-    public static void cadFun(FuncionarioBEAN c) {
+    public void cadFun(FuncionarioBEAN c) {
         começar();
         manager.persist(c);
         tx.commit();
         fechar();
     }
 
-    public static void deleteFun(FuncionarioBEAN c) {
-        começar();
-        manager.remove(c);
-        tx.commit();
-        fechar();
+    public boolean deleteFun(FuncionarioBEAN c) {
+
+        try {
+            começar();
+            FuncionarioBEAN a = manager.find(FuncionarioBEAN.class, c);
+            manager.remove(a);
+            tx.commit();
+            fechar();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void editarFun(FuncionarioBEAN c) {
-        começar();
-        manager.flush();
-        tx.commit();
-        fechar();
+    public boolean editarFun(FuncionarioBEAN c) {
+        try {
+            começar();
+            manager.flush();
+            tx.commit();
+            fechar();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public static void começar() {

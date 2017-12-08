@@ -20,7 +20,7 @@ public class ConsoleHiber {
     private static EntityManager manager = JpaUtil.getEntityManager();
     private static EntityTransaction tx = manager.getTransaction();
 
-    public static ArrayList<ConsoleBEAN> listarCon() {
+    public ArrayList<ConsoleBEAN> listarCon() {
         começar();
         Query q = manager.createQuery("from console");
         ArrayList<ConsoleBEAN> conList = (ArrayList<ConsoleBEAN>) q.getResultList();
@@ -29,25 +29,36 @@ public class ConsoleHiber {
         return conList;
     }
 
-    public static void cadCon(ConsoleBEAN c) {
+    public void cadCon(ConsoleBEAN c) {
         começar();
         manager.persist(c);
         tx.commit();
         fechar();
     }
 
-    public static void deleteCon(ConsoleBEAN c) {
-        começar();
-        manager.remove(c);
-        tx.commit();
-        fechar();
+    public boolean deleteCon(int c) {
+        try {
+            começar();
+            ConsoleBEAN a = manager.find(ConsoleBEAN.class, c);
+            manager.remove(a);
+            tx.commit();
+            fechar();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void editarCon(ConsoleBEAN c) {
-        começar();
-        manager.flush();
-        tx.commit();
-        fechar();
+    public boolean editarCon(ConsoleBEAN c) {
+        try {
+            começar();
+            manager.flush();
+            tx.commit();
+            fechar();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public static void começar() {

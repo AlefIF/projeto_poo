@@ -6,6 +6,7 @@
 package Controle;
 
 import Modelo.CategoriaBEAN;
+import Modelo.CategoriaHiber;
 import Modelo.CategoriaMysqlDAO;
 import java.util.ArrayList;
 
@@ -15,6 +16,7 @@ import java.util.ArrayList;
  */
 public class CategoriaControle {
 
+    private CategoriaHiber catHN = new CategoriaHiber();
     private CategoriaMysqlDAO catDAO = new CategoriaMysqlDAO();
     private int codigo = 0;
 
@@ -25,19 +27,23 @@ public class CategoriaControle {
 
     public void cadastrar(CategoriaBEAN c) {
         c.setCatCodigo(this.atualizaCodigo());
-        catDAO.cadastrar(c);
+        //catDAO.cadastrar(c);
+        catHN.cadCat(c);
     }
 
     public ArrayList<CategoriaBEAN> listarALL() {
-        return catDAO.listarALL();
+        //return catDAO.listarALL();
+        return catHN.listarCat();
     }
 
     public boolean editar(CategoriaBEAN c) {
-        return catDAO.editar(c);
+        //return catDAO.editar(c);
+        return catHN.editarCat(c);
     }
 
     public boolean remover(int codigo) {
-        return catDAO.remover(codigo);
+        //return catDAO.remover(codigo);
+        return catHN.deleteCat(codigo);
     }
 
 }

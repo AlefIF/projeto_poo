@@ -5,7 +5,7 @@
  */
 package Visao;
 
-import Controle.ControleUser;
+import Controle.FuncionarioControle;
 
 import Modelo.FuncionarioBEAN;
 import Modelo.FuncionarioDAO;
@@ -26,7 +26,7 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
 
     private ArrayList<FuncionarioBEAN> userD;
     private DefaultTableModel tbUsers;
-    ControleUser ct = new ControleUser();
+    FuncionarioControle ct = new FuncionarioControle();
 
     /**
      * Creates new form FRMAdm

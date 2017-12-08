@@ -5,7 +5,7 @@
  */
 package Visao;
 
-import Controle.ControleUser;
+import Controle.FuncionarioControle;
 import Modelo.FuncionarioBEAN;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class FRMLogin extends javax.swing.JFrame {
 
     static FuncionarioBEAN user = new FuncionarioBEAN();
-    ControleUser ct = new ControleUser();
+    FuncionarioControle ct = new FuncionarioControle();
     ArrayList<FuncionarioBEAN> al = ct.ListarALL();
 
     /**

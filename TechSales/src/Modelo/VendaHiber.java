@@ -20,7 +20,7 @@ public class VendaHiber {
     private static EntityManager manager = JpaUtil.getEntityManager();
     private static EntityTransaction tx = manager.getTransaction();
 
-    public static ArrayList<VendaBEAN> listarVen() {
+    public ArrayList<VendaBEAN> listarVen() {
         começar();
         Query q = manager.createQuery("from venda");
         ArrayList<VendaBEAN> venList = (ArrayList<VendaBEAN>) q.getResultList();
@@ -29,25 +29,37 @@ public class VendaHiber {
         return venList;
     }
 
-    public static void cadVen(VendaBEAN c) {
+    public int cadVen(VendaBEAN c) {
         começar();
         manager.persist(c);
         tx.commit();
         fechar();
+        return c.getVenCodigo();
     }
 
-    public static void deleteVen(VendaBEAN c) {
-        começar();
-        manager.remove(c);
-        tx.commit();
-        fechar();
+    public boolean deleteVen(int c) {
+        try {
+            começar();
+            VendaBEAN a = manager.find(VendaBEAN.class, c);
+            manager.remove(a);
+            tx.commit();
+            fechar();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void editarVen(VendaBEAN c) {
-        começar();
-        manager.flush();
-        tx.commit();
-        fechar();
+    public boolean editarVen(VendaBEAN c) {
+        try {
+            começar();
+            manager.flush();
+            tx.commit();
+            fechar();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public static void começar() {

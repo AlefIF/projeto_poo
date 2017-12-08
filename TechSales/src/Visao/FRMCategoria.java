@@ -25,8 +25,8 @@ public class FRMCategoria extends javax.swing.JFrame {
      */
     public FRMCategoria() {
         initComponents();
-
     }
+    
     private CategoriaControle catCon = new CategoriaControle();
     private ArrayList<CategoriaBEAN> caDados;
     private DefaultTableModel dTable;

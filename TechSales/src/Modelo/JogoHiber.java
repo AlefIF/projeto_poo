@@ -20,7 +20,7 @@ public class JogoHiber {
     private static EntityManager manager = JpaUtil.getEntityManager();
     private static EntityTransaction tx = manager.getTransaction();
 
-    public static ArrayList<JogoBEAN> listarJog() {
+    public ArrayList<JogoBEAN> listarJog() {
         começar();
         Query q = manager.createQuery("from jogo");
         ArrayList<JogoBEAN> jogList = (ArrayList<JogoBEAN>) q.getResultList();
@@ -29,25 +29,36 @@ public class JogoHiber {
         return jogList;
     }
 
-    public static void cadJog(JogoBEAN c) {
+    public void cadJog(JogoBEAN c) {
         começar();
         manager.persist(c);
         tx.commit();
         fechar();
     }
 
-    public static void deleteJog(JogoBEAN c) {
-        começar();
-        manager.remove(c);
-        tx.commit();
-        fechar();
+    public boolean deleteJog(int c) {
+        try {
+            começar();
+            JogoBEAN a = manager.find(JogoBEAN.class, c);
+            manager.remove(a);
+            tx.commit();
+            fechar();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void editarJog(JogoBEAN c) {
-        começar();
-        manager.flush();
-        tx.commit();
-        fechar();
+    public boolean editarJog(JogoBEAN c) {
+        try {
+            começar();
+            manager.flush();
+            tx.commit();
+            fechar();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public static void começar() {

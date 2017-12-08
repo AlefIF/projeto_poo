@@ -3,8 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Alef/Desktop/projeto%20techsales%20poo/TechSales/src/Modelo/ClienteBEAN.java</file>
-            <file>file:/C:/Users/Alef/Desktop/projeto%20techsales%20poo/TechSales/src/Visao/RelatorioDeVendas.java</file>
+            <file>file:/C:/Users/Alef/Desktop/projeto%20techsales%20poo/TechSales/src/META-INF/persistence.xml</file>
+            <file>file:/C:/Users/Alef/Desktop/projeto%20techsales%20poo/TechSales/src/com/bdii/techSales/jpa/JpaUtil.java</file>
+            <file>file:/C:/Users/Alef/Desktop/projeto%20techsales%20poo/TechSales/src/Visao/FRMCategoria.java</file>
         </group>
     </open-files>
 </project-private>

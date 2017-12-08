@@ -5,7 +5,8 @@
  */
 package Modelo;
 
-import com.bdii.TechSales.JpaUtil.JpaUtil;
+
+import com.bdii.techSales.jpa.JpaUtil;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -20,7 +21,7 @@ public class CategoriaHiber {
     private static EntityManager manager = JpaUtil.getEntityManager();
     private static EntityTransaction tx = manager.getTransaction();
 
-    public static ArrayList<CategoriaBEAN> listarCat() {
+    public ArrayList<CategoriaBEAN> listarCat() {
         começar();
         Query q = manager.createQuery("from categoria");
         ArrayList<CategoriaBEAN> catList = (ArrayList<CategoriaBEAN>) q.getResultList();
@@ -29,25 +30,36 @@ public class CategoriaHiber {
         return catList;
     }
 
-    public static void cadCat(CategoriaBEAN c) {
+    public void cadCat(CategoriaBEAN c) {
         começar();
         manager.persist(c);
         tx.commit();
         fechar();
     }
 
-    public static void deleteCat(CategoriaBEAN c) {
-        começar();
-        manager.remove(c);
-        tx.commit();
-        fechar();
+    public boolean deleteCat(int c) {
+        try {
+            começar();
+            CategoriaBEAN a = manager.find(CategoriaBEAN.class, c);
+            manager.remove(a);
+            tx.commit();
+            fechar();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void editarCat(CategoriaBEAN c) {
-        começar();
-        manager.flush();
-        tx.commit();
-        fechar();
+    public boolean editarCat(CategoriaBEAN c) {
+        try {
+            começar();
+            manager.flush();
+            tx.commit();
+            fechar();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public static void começar() {

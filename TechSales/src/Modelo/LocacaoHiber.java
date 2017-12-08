@@ -20,7 +20,7 @@ public class LocacaoHiber {
     private static EntityManager manager = JpaUtil.getEntityManager();
     private static EntityTransaction tx = manager.getTransaction();
 
-    public static ArrayList<LocacaoBEAN> listarLoc() {
+    public ArrayList<LocacaoBEAN> listarLoc() {
         começar();
         Query q = manager.createQuery("from locacao");
         ArrayList<LocacaoBEAN> locList = (ArrayList<LocacaoBEAN>) q.getResultList();
@@ -29,25 +29,36 @@ public class LocacaoHiber {
         return locList;
     }
 
-    public static void cadLoc(LocacaoBEAN c) {
+    public void cadLoc(LocacaoBEAN c) {
         começar();
         manager.persist(c);
         tx.commit();
         fechar();
     }
 
-    public static void deleteLoc(LocacaoBEAN c) {
-        começar();
-        manager.remove(c);
-        tx.commit();
-        fechar();
+    public boolean deleteLoc(int c) {
+        try {
+            começar();
+            LocacaoBEAN a = manager.find(LocacaoBEAN.class, c);
+            manager.remove(a);
+            tx.commit();
+            fechar();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public static void editarLoc(LocacaoBEAN c) {
-        começar();
-        manager.flush();
-        tx.commit();
-        fechar();
+    public boolean editarLoc(LocacaoBEAN c) {
+        try {
+            começar();
+            manager.flush();
+            tx.commit();
+            fechar();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public static void começar() {

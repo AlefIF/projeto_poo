@@ -7,11 +7,12 @@ package Controle;
 
 import java.util.ArrayList;
 import Modelo.ClienteBEAN;
+import Modelo.ClienteHiber;
 import Modelo.ClienteMySqlDAO;
 
 public class ClienteControle {
 
-    //private ContatoDAO cDAO = new ContatoDAO(); //acesso via arraylist
+    private ClienteHiber cliHN = new ClienteHiber();
     private ClienteMySqlDAO cDAO = new ClienteMySqlDAO();
     private int codigo = 0;
 
@@ -22,11 +23,13 @@ public class ClienteControle {
 
     public void cadastrar(ClienteBEAN c) {
         c.setCod(this.atualizaCodigo());
-        cDAO.cadastrar(c);
+        // cDAO.cadastrar(c);
+        cliHN.cadCli(c);
     }
 
     public ArrayList<ClienteBEAN> listarALL() {
-        return cDAO.listarALL();
+        //return cDAO.listarALL();
+        return cliHN.listarCli();
     }
 
     public ClienteBEAN localizarCPF(String cpf) {
@@ -34,11 +37,13 @@ public class ClienteControle {
     }
 
     public boolean editar(ClienteBEAN c) {
-        return cDAO.editar(c);
+        //return cDAO.editar(c);
+        return cliHN.editarCli(c);
     }
 
     public boolean remover(int codigo) {
-        return cDAO.remover(codigo);
+        //return cDAO.remover(codigo);
+        return cliHN.deleteCli(codigo);
     }
 
     public ClienteBEAN localizarCodigo(int busca) {

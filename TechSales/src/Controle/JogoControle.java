@@ -7,6 +7,7 @@ package Controle;
 
 import java.util.ArrayList;
 import Modelo.JogoBEAN;
+import Modelo.JogoHiber;
 import Modelo.JogoMySqlDAO;
 
 /**
@@ -14,8 +15,8 @@ import Modelo.JogoMySqlDAO;
  * @author admin
  */
 public class JogoControle {
-    // private JogoDAO jDAO = new JogoDAO();
 
+    private JogoHiber jogHN = new JogoHiber();
     private JogoMySqlDAO jDAO = new JogoMySqlDAO();
 
     private int codigo = 0;
@@ -27,15 +28,18 @@ public class JogoControle {
 
     public void cadastrar(JogoBEAN c) {
         c.setJoCodigo(this.atualizaCodigo());
-        jDAO.cadastrar(c);
+        //jDAO.cadastrar(c);
+        jogHN.cadJog(c);
     }
 
     public ArrayList<JogoBEAN> listarALL() {
-        return jDAO.listarALL();
+        //return jDAO.listarALL();
+        return jogHN.listarJog();
     }
 
     public boolean editar(JogoBEAN c) {
-        return jDAO.editar(c);
+        //return jDAO.editar(c);
+        return jogHN.editarJog(c);
     }
 
     public boolean editarINVAL(JogoBEAN c) {
@@ -43,7 +47,8 @@ public class JogoControle {
     }
 
     public boolean remover(int codigo) {
-        return jDAO.remover(codigo);
+        //return jDAO.remover(codigo);
+        return jogHN.deleteJog(codigo);
     }
 
     public void editarDisponibilidade(JogoBEAN l) {

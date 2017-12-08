@@ -7,10 +7,12 @@ package Controle;
 
 import Modelo.LocacaoBEAN;
 import Modelo.LocacaoDAO;
+import Modelo.LocacaoHiber;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -18,21 +20,18 @@ import java.util.logging.Logger;
  */
 public class LocacaoControle {
 
+    private LocacaoHiber locHN = new LocacaoHiber();
     private LocacaoDAO lDAO = new LocacaoDAO();
-    //private int codigo = tfCod.frmcp;
 
-    //public int atualizaCodigo(){
-    //codigo++;   
-    //return codigo;
-    //}
     public void cadastrar(LocacaoBEAN l) {
-        lDAO.cadastrar(l);
+        //lDAO.cadastrar(l);
     }
 
     public ArrayList<LocacaoBEAN> listarALL() {
         try {
-            return lDAO.listarALL();
-        } catch (SQLException ex) {
+            // return lDAO.listarALL();
+            return locHN.listarLoc();
+        } catch (HibernateException ex) {
             Logger.getLogger(LocacaoControle.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
@@ -43,11 +42,13 @@ public class LocacaoControle {
     }
 
     public boolean editar(LocacaoBEAN l) {
-        return lDAO.editar(l);
+        //return lDAO.editar(l);
+        return locHN.editarLoc(l);
     }
 
-    public boolean remover(String codigo) {
-        return lDAO.remover(codigo);
+    public boolean remover(int codigo) {
+        //return lDAO.remover(codigo);
+        return locHN.deleteLoc(codigo);
     }
 
     public ArrayList<LocacaoBEAN> localizarCli(int cod) {

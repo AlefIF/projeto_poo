@@ -140,7 +140,7 @@ public class JogoBEAN {
         this.venda = venda;
     }
 
-    @OneToMany(mappedBy = "loc_joCodigo")
+    @OneToMany(mappedBy = "jogo")
     @Column(nullable = false)
     public List<LocacaoBEAN> getAlug() {
         return alug;

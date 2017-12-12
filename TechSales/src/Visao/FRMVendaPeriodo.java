@@ -5,12 +5,8 @@
  */
 package Visao;
 
-import Controle.GeraRelatorio;
 import Controle.RelatorioVendas;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -23,7 +19,7 @@ public class FRMVendaPeriodo extends javax.swing.JFrame {
      */
     public FRMVendaPeriodo() {
         initComponents();
-        setSize(420, 250);
+        setSize(380, 250);
         setResizable(false);
     }
 
@@ -36,31 +32,82 @@ public class FRMVendaPeriodo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        tfDatai = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
+        tfDataf = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
         btRelatorioCliente = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        tfDatai = new javax.swing.JFormattedTextField();
-        tfDataf = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
+
+        jInternalFrame1.setVisible(true);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+
+        jLabel2.setText("DataInicio:");
+
+        try{
+            javax.swing.text.MaskFormatter faixa= new javax.swing.text.MaskFormatter("####-##-##");
+            tfDatai = new javax.swing.JFormattedTextField(faixa);
+        }
+        catch (Exception e){
+        }
+        tfDatai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfDataiActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("DataFim:");
+
+        try{
+            javax.swing.text.MaskFormatter faixa= new javax.swing.text.MaskFormatter("####-##-##");
+            tfDataf = new javax.swing.JFormattedTextField(faixa);
+        }
+        catch (Exception e){
+        }
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfDataf)
+                    .addComponent(tfDatai, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfDatai, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfDataf, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(30, 100, 190, 60);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Vendas por Período");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(100, 20, 204, 28);
-
-        jLabel2.setText("DataInicio:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 110, 52, 14);
-
-        jLabel3.setText("DataFim:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(200, 120, 43, 14);
 
         btRelatorioCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonImprimir.png"))); // NOI18N
         btRelatorioCliente.setText("Gerar Relatório");
@@ -79,16 +126,6 @@ public class FRMVendaPeriodo extends javax.swing.JFrame {
         jLabel6.setText("...");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(70, 70, 12, 14);
-
-        tfDatai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDataiActionPerformed(evt);
-            }
-        });
-        getContentPane().add(tfDatai);
-        tfDatai.setBounds(100, 110, 82, 20);
-        getContentPane().add(tfDataf);
-        tfDataf.setBounds(250, 110, 128, 20);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/Background.jpg"))); // NOI18N
         getContentPane().add(jLabel4);
@@ -162,12 +199,14 @@ public class FRMVendaPeriodo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btRelatorioCliente;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JFormattedTextField tfDataf;
     private javax.swing.JFormattedTextField tfDatai;
     // End of variables declaration//GEN-END:variables

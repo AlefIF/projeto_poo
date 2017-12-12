@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ public class CategoriaBEAN {
 
     private int catCodigo;
     private String catNome;
-    private JogoBEAN jogo;
+    private List<JogoBEAN> jogo;
 
     @Id
     @GeneratedValue
@@ -41,14 +42,17 @@ public class CategoriaBEAN {
     }
 
     @OneToMany
-    @JoinColumn(name = "jo_catCodigo")
-    public JogoBEAN getJogo() {
+    @JoinColumn(name = "cat")
+    public List<JogoBEAN> getJogo() {
         return jogo;
     }
 
-    public void setJogo(JogoBEAN jogo) {
+    public void setJogo(List<JogoBEAN> jogo) {
         this.jogo = jogo;
     }
+
+    
+   
 
     @Override
     public String toString() {

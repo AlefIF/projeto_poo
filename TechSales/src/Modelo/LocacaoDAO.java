@@ -132,7 +132,7 @@ public class LocacaoDAO {
         }
     }
 
-    public boolean remover(String codigo) {
+    public boolean remover(int codigo) {
         String sql = "delete from locacao where loCodigo = ?";
 
         try {
@@ -140,7 +140,7 @@ public class LocacaoDAO {
             stmt = connection.prepareStatement(sql);
 
             //seta os valores
-            stmt.setString(1, codigo);
+            stmt.setInt(1, codigo);
 
             //executa
             stmt.execute();

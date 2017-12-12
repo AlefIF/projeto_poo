@@ -8,6 +8,8 @@ package Modelo;
 import java.sql.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -30,6 +32,9 @@ public class LocacaoBEAN {
     private FunSql funcionario;
     private List<DevolucaoBEAN> devolucao;
 
+    
+    @Id
+    @GeneratedValue
     public int getCod() {
         return cod;
     }

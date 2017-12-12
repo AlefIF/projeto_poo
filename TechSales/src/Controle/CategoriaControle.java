@@ -32,7 +32,7 @@ public class CategoriaControle {
     }
 
     public ArrayList<CategoriaBEAN> listarALL() {
-        //return catDAO.listarALL();
+       // return catDAO.listarALL();
         return catHN.listarCat();
     }
 

@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class VendaControle {
 
-    private VendaHiber venHN = new VendaHiber();
+   // private VendaHiber venHN = new VendaHiber();
     private VendaDAO venDAO = new VendaDAO();
     private int codigo = 0;
 
@@ -29,24 +29,24 @@ public class VendaControle {
 
     public int cadastrar(VendaBEAN c) {
         c.setVenCodigo(this.atualizaCodigo());
-        //int cod = venDAO.cadastrar(c);
-        int cod = venHN.cadVen(c);
+        int cod = venDAO.cadastrar(c);
+       // int cod = venHN.cadVen(c);
         return cod;
     }
 
     public ArrayList<VendaBEAN> listarALL() {
-        // return venDAO.listarALL();
-        return venHN.listarVen();
+        return venDAO.listarALL();
+        //return venHN.listarVen();
     }
 
     public boolean editar(VendaBEAN c) {
-        // return venDAO.editar(c);
-        return venHN.editarVen(c);
+        return venDAO.editar(c);
+        //return venHN.editarVen(c);
     }
 
     public boolean remover(int codigo) {
-        // return venDAO.remover(codigo);
-        return venHN.deleteVen(codigo);
+        return venDAO.remover(codigo);
+        //return venHN.deleteVen(codigo);
     }
 
     public ArrayList consultar(String consulta) {

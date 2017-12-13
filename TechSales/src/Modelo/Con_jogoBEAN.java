@@ -5,15 +5,24 @@
  */
 package Modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author admin
  */
+@Entity
+@Table(name="con_jogo")
 public class Con_jogoBEAN {
 
     private int cjg_conCodigo;
     private int cjg_joCodigo;
 
+    @Id
+    @GeneratedValue
     public int getCjg_conCodigo() {
         return cjg_conCodigo;
     }

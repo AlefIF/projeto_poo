@@ -11,17 +11,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author admin
  */
 @Entity
+@Table(name="categoria")
 public class CategoriaBEAN {
 
     private int catCodigo;
     private String catNome;
-    private List<JogoBEAN> jogo;
+    //private List<JogoBEAN> jogo;
 
     @Id
     @GeneratedValue
@@ -40,19 +42,6 @@ public class CategoriaBEAN {
     public void setCatNome(String catNome) {
         this.catNome = catNome;
     }
-
-    @OneToMany
-    @JoinColumn(name = "cat")
-    public List<JogoBEAN> getJogo() {
-        return jogo;
-    }
-
-    public void setJogo(List<JogoBEAN> jogo) {
-        this.jogo = jogo;
-    }
-
-    
-   
 
     @Override
     public String toString() {

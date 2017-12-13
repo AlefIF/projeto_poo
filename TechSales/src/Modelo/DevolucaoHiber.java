@@ -21,28 +21,22 @@ public class DevolucaoHiber {
     private static EntityTransaction tx = manager.getTransaction();
 
     public ArrayList<DevolucaoBEAN> listarDev() {
-        começar();
-        Query q = manager.createQuery("from devolucao");
+        Query q = manager.createQuery("from DevolucaoBEAN");
         ArrayList<DevolucaoBEAN> devList = (ArrayList<DevolucaoBEAN>) q.getResultList();
         tx.commit();
-        fechar();
         return devList;
     }
 
     public void cadDev(DevolucaoBEAN c) {
-        começar();
         manager.persist(c);
         tx.commit();
-        fechar();
     }
 
-    public boolean deleteDev(DevolucaoBEAN c) {
+    public boolean deleteDev(int c) {
         try {
-            começar();
             DevolucaoBEAN a = manager.find(DevolucaoBEAN.class, c);
             manager.remove(a);
             tx.commit();
-            fechar();
             return true;
         } catch (Exception e) {
             return false;
@@ -51,10 +45,8 @@ public class DevolucaoHiber {
 
     public boolean editarDev(DevolucaoBEAN c) {
         try {
-            começar();
             manager.flush();
             tx.commit();
-            fechar();
             return true;
         } catch (Exception e) {
             return false;

@@ -18,15 +18,9 @@ public class CategoriaControle {
 
     private CategoriaHiber catHN = new CategoriaHiber();
     private CategoriaMysqlDAO catDAO = new CategoriaMysqlDAO();
-    private int codigo = 0;
-
-    public int atualizaCodigo() {
-        codigo++;
-        return codigo;
-    }
 
     public void cadastrar(CategoriaBEAN c) {
-        c.setCatCodigo(this.atualizaCodigo());
+        //c.setCatCodigo(this.atualizaCodigo());
         //catDAO.cadastrar(c);
         catHN.cadCat(c);
     }
@@ -36,14 +30,27 @@ public class CategoriaControle {
         return catHN.listarCat();
     }
 
-    public boolean editar(CategoriaBEAN c) {
-        //return catDAO.editar(c);
-        return catHN.editarCat(c);
+      public CategoriaBEAN localizar(int a){
+           return catHN.listarPorCod(a);         
+      }
+    
+    public boolean editar(CategoriaBEAN a) {
+        //return catDAO.editar(c);    
+        return catHN.editarCat(a);
     }
 
     public boolean remover(int codigo) {
         //return catDAO.remover(codigo);
         return catHN.deleteCat(codigo);
+    }
+    
+    
+    
+    public void iniciar(){
+        catHN.começar();
+    }
+    public void fechar(){
+        catHN.fechar();
     }
 
 }

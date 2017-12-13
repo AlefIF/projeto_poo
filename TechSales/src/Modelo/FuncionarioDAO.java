@@ -11,8 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,9 +19,11 @@ import javax.swing.JOptionPane;
  */
 public class FuncionarioDAO {
 
+    private Connection connection;
+    private PreparedStatement stmt;
+
     public void cadastrar(FuncionarioBEAN user) {
         Connection con = ConnectionFactory.getConnection();
-        PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement("INSERT INTO funcionario(funNome,funIdade,funEndereco,funCPF,funNomeUsuario,funUsuarioSenha,funTelefone,funNisPis"
                     + ") values(?,?,?,?,?,?,?,?)");
@@ -37,7 +37,6 @@ public class FuncionarioDAO {
             stmt.setString(8, user.getNisPis());
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário:\n" + ex);
         } finally {
@@ -47,10 +46,9 @@ public class FuncionarioDAO {
     }
 
     public void editar(FuncionarioBEAN user) {
-        Connection con = ConnectionFactory.getConnection();
-        PreparedStatement stmt = null;
+        connection = ConnectionFactory.getConnection();
         try {
-            stmt = con.prepareStatement("UPDATE funcionario SET funNome=?,funIdade=?,"
+            stmt = connection.prepareStatement("UPDATE funcionario SET funNome=?,funIdade=?,"
                     + "funEndereco=?,funCPF=?,funNomeUsuario=?,funUsuarioSenha=?,"
                     + "funTelefone=?,funNisPis=? WHERE funCodigo=?");
 
@@ -69,20 +67,20 @@ public class FuncionarioDAO {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao atualizar:\n" + ex);
         } finally {
-            ConnectionFactory.closeConnection(con, stmt);
+            ConnectionFactory.closeConnection(connection, stmt);
 
         }
     }
 
     public List<FuncionarioBEAN> ListarALL() {
-        Connection con = ConnectionFactory.getConnection();
+        connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         List<FuncionarioBEAN> users = new ArrayList<FuncionarioBEAN>();
         try {
             // prepared statement para seleção
-            stmt = con.prepareStatement("SELECT * from funcionario");
+            stmt = connection.prepareStatement("SELECT * from funcionario");
             // executa a consulta SQL usando o comando executeQuery
             rs = stmt.executeQuery();
             //joga resultado da consulta no ArrayList
@@ -106,20 +104,20 @@ public class FuncionarioDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Nenhum funcionário não encontrado" + e);
         } finally {
-            ConnectionFactory.closeConnection(con, stmt, rs);
+            ConnectionFactory.closeConnection(connection, stmt, rs);
         }
         return users;
     }
 
     public boolean verificaLogin(String senha) {
-        Connection con = ConnectionFactory.getConnection();
+        connection = ConnectionFactory.getConnection();
         String sql = null;
         ResultSet rs = null;
         PreparedStatement stmt = null;
         boolean verifica = false;
         try {
             // prepared statement para seleção
-            stmt = con.prepareStatement("SELECT * from funcionario WHERE funNomeUsuario=ADM AND funUsuarioSenha=?");
+            stmt = connection.prepareStatement("SELECT * from funcionario WHERE funNomeUsuario=ADM AND funUsuarioSenha=?");
 
             stmt.setString(2, senha);
             // executa a consulta SQL usando o comando executeQuery
@@ -133,21 +131,21 @@ public class FuncionarioDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            ConnectionFactory.closeConnection(con, stmt, rs);
+            ConnectionFactory.closeConnection(connection, stmt, rs);
 
         }
         return verifica;
     }
 
     public boolean verificaLogin2(String login, String senha) {
-        Connection con = ConnectionFactory.getConnection();
+        connection = ConnectionFactory.getConnection();
         String sql = null;
         ResultSet rs = null;
         PreparedStatement stmt = null;
         boolean verifica = false;
         try {
             // prepared statement para seleção
-            stmt = con.prepareStatement("SELECT * from funcionario WHERE funNomeUsuario=? AND funUsuarioSenha=?");
+            stmt = connection.prepareStatement("SELECT * from funcionario WHERE funNomeUsuario=? AND funUsuarioSenha=?");
 
             stmt.setString(2, senha);
             // executa a consulta SQL usando o comando executeQuery
@@ -161,39 +159,38 @@ public class FuncionarioDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            ConnectionFactory.closeConnection(con, stmt, rs);
+            ConnectionFactory.closeConnection(connection, stmt, rs);
 
         }
         return verifica;
     }
 
-    public void excluir(FuncionarioBEAN user) {
-        Connection con = ConnectionFactory.getConnection();
-        PreparedStatement stmt = null;
+    public boolean remover(int codigo) {
+        connection = ConnectionFactory.getConnection();
+        String sql = "delete from funcionario where funcionario = ?";
         try {
-            stmt = con.prepareStatement("DELETE from funcionario WHERE funCodigo=?");
-            stmt.setInt(1, user.getCodigo());
-
-            stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Excluído com sucesso");
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao excluir:\n" + ex);
-        } finally {
-            ConnectionFactory.closeConnection(con, stmt);
-
+            // prepared statement para inserção
+            stmt = connection.prepareStatement(sql);
+            // seta os valores
+            stmt.setInt(1, codigo);
+            // executa
+            stmt.execute();
+            stmt.close();
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
     public List<FuncionarioBEAN> readForNome(String funNome) {
-        Connection con = ConnectionFactory.getConnection();
+        connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         List<FuncionarioBEAN> users = new ArrayList<FuncionarioBEAN>();
         try {
             // prepared statement para seleção
-            stmt = con.prepareStatement("SELECT * from funcionario WHERE funNome LIKE ?");
+            stmt = connection.prepareStatement("SELECT * from funcionario WHERE funNome LIKE ?");
             stmt.setString(1, "%" + funNome + "%");
             // executa a consulta SQL usando o comando executeQuery
             rs = stmt.executeQuery();
@@ -218,7 +215,7 @@ public class FuncionarioDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Funcionário não encontrado" + e);
         } finally {
-            ConnectionFactory.closeConnection(con, stmt, rs);
+            ConnectionFactory.closeConnection(connection, stmt, rs);
         }
         return users;
     }

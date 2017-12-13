@@ -5,12 +5,12 @@
  */
 package Modelo;
 
-
 import com.bdii.techSales.jpa.JpaUtil;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -18,15 +18,15 @@ import javax.persistence.Query;
  */
 public class CategoriaHiber {
 
-    private static EntityManager manager = JpaUtil.getEntityManager();
-    private static EntityTransaction tx = manager.getTransaction();
+    EntityManager manager = JpaUtil.getEntityManager();
+    EntityTransaction tx = manager.getTransaction();
 
     public ArrayList<CategoriaBEAN> listarCat() {
-        começar();
-        Query q = manager.createQuery("from categoria");
+        começar(); 
+        Query q = manager.createQuery("from CategoriaBEAN");
         ArrayList<CategoriaBEAN> catList = (ArrayList<CategoriaBEAN>) q.getResultList();
         tx.commit();
-        fechar();
+        //fechar();
         return catList;
     }
 
@@ -34,7 +34,7 @@ public class CategoriaHiber {
         começar();
         manager.persist(c);
         tx.commit();
-        fechar();
+        //fechar();
     }
 
     public boolean deleteCat(int c) {
@@ -43,7 +43,7 @@ public class CategoriaHiber {
             CategoriaBEAN a = manager.find(CategoriaBEAN.class, c);
             manager.remove(a);
             tx.commit();
-            fechar();
+            //fechar();
             return true;
         } catch (Exception e) {
             return false;
@@ -52,21 +52,25 @@ public class CategoriaHiber {
 
     public boolean editarCat(CategoriaBEAN c) {
         try {
-            começar();
-            manager.flush();
+            começar(); 
             tx.commit();
-            fechar();
+            // fechar();
             return true;
-        } catch (Exception e) {
+        } catch (HibernateException e) {
             return false;
         }
     }
 
-    public static void começar() {
+    public CategoriaBEAN listarPorCod(int c) {
+        CategoriaBEAN a = manager.find(CategoriaBEAN.class, c);
+        return a;
+    }
+
+    public void começar() {
         tx.begin();
     }
 
-    public static void fechar() {
+    public void fechar() {
         manager.close();
         JpaUtil.close();
     }

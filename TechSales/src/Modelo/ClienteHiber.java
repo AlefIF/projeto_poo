@@ -21,28 +21,22 @@ public class ClienteHiber {
     private static EntityTransaction tx = manager.getTransaction();
 
     public ArrayList<ClienteBEAN> listarCli() {
-        começar();
-        Query q = manager.createQuery("from cliente");
+        Query q = manager.createQuery("from ClienteBEAN");
         ArrayList<ClienteBEAN> cliList = (ArrayList<ClienteBEAN>) q.getResultList();
         tx.commit();
-        fechar();
         return cliList;
     }
 
     public void cadCli(ClienteBEAN c) {
-        começar();
         manager.persist(c);
         tx.commit();
-        fechar();
     }
 
     public boolean deleteCli(int c) {
         try {
-            começar();
             ClienteBEAN a = manager.find(ClienteBEAN.class, c);
             manager.remove(a);
             tx.commit();
-            fechar();
             return true;
         } catch (Exception e) {
             return false;
@@ -51,11 +45,8 @@ public class ClienteHiber {
 
     public boolean editarCli(ClienteBEAN c) {
         try {
-
-            começar();
             manager.flush();
             tx.commit();
-            fechar();
             return true;
         } catch (Exception e) {
             return false;

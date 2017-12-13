@@ -14,12 +14,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author admin
  */
 @Entity
+@Table(name="jogo")
 public class JogoBEAN {
 
     private int joCodigo;
@@ -31,7 +33,7 @@ public class JogoBEAN {
     private int jo_catCodigo;
     private int joQtd;
     private int joDisponibilidade;
-    private CategoriaBEAN cat;
+    private CategoriaBEAN cat;  
     private List<Con_jogoBEAN> con;
     private List<VendaBEAN> venda;
     private List<LocacaoBEAN> alug;
@@ -111,7 +113,6 @@ public class JogoBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name = "jo_catCodigo")
     public CategoriaBEAN getCat() {
         return cat;
     }
@@ -120,8 +121,7 @@ public class JogoBEAN {
         this.cat = cat;
     }
 
-    @ManyToMany
-    @Column(nullable = false)
+    @OneToMany(mappedBy = "cjg_joCodigo")
     public List<Con_jogoBEAN> getCon() {
         return con;
     }

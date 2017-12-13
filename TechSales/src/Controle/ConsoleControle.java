@@ -18,15 +18,8 @@ public class ConsoleControle {
 
     private ConsoleHiber conHN = new ConsoleHiber();
     private ConsoleMySqlDAO conDAO = new ConsoleMySqlDAO();
-    private int codigo = 0;
-
-    public int atualizaCodigo() {
-        codigo++;
-        return codigo;
-    }
 
     public void cadastrar(ConsoleBEAN c) {
-        c.setConCodigo(this.atualizaCodigo());
         //conDAO.cadastrar(c);
         conHN.cadCon(c);
     }
@@ -45,5 +38,12 @@ public class ConsoleControle {
     public boolean remover(int codigo) {
         //return conDAO.remover(codigo);
         return conHN.deleteCon(codigo);
+    }
+    
+    public void iniciar(){
+        conHN.começar();
+    }
+    public void fechar(){
+        conHN.fechar();
     }
 }

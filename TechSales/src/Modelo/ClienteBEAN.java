@@ -11,8 +11,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="cliente")
 public class ClienteBEAN {
 
     private int cod;
@@ -75,7 +77,7 @@ public class ClienteBEAN {
         this.telefone = telefone;
     }
 
-    @OneToMany(mappedBy = "ven_cliCodigo")
+    @OneToMany(mappedBy = "cliente")
     @Column(nullable = true)
     public List<VendaBEAN> getVenda() {
         return venda;
@@ -85,7 +87,7 @@ public class ClienteBEAN {
         this.venda = venda;
     }
 
-    @OneToMany(mappedBy = "loc_cliCodigo")
+    @OneToMany(mappedBy = "cliente")
     @Column(nullable = true)
     public List<LocacaoBEAN> getLocacao() {
         return locacao;
@@ -95,7 +97,7 @@ public class ClienteBEAN {
         this.locacao = aluguel;
     }
 
-    @OneToMany(mappedBy = "dev_cliCodigo")
+    @OneToMany(mappedBy = "cliente")
     @Column(nullable = true)
     public List<DevolucaoBEAN> getDevolucao() {
         return devolucao;

@@ -13,12 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Maycon Jonathan
  */
 @Entity
+@Table(name="locacao")
 public class LocacaoBEAN {
 
     private int cod;
@@ -29,7 +31,7 @@ public class LocacaoBEAN {
     private Date data;
     private JogoBEAN jogo;
     private ClienteBEAN cliente;
-    private FunSql funcionario;
+    private FuncionarioBEAN funcionario;
     private List<DevolucaoBEAN> devolucao;
 
     
@@ -84,7 +86,6 @@ public class LocacaoBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name = "loc_joCodigo")
     public JogoBEAN getJogo() {
         return jogo;
     }
@@ -94,7 +95,6 @@ public class LocacaoBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name = "loc_cliCodigo")
     public ClienteBEAN getCliente() {
         return cliente;
     }
@@ -104,17 +104,15 @@ public class LocacaoBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name = "loc_funCodigo")
-    public FunSql getFuncionario() {
+    public FuncionarioBEAN getFuncionario() {
         return funcionario;
     }
 
-    public void setFuncionario(FunSql funcionario) {
+    public void setFuncionario(FuncionarioBEAN funcionario) {
         this.funcionario = funcionario;
     }
 
     @OneToMany
-    @JoinColumn(name = "dev_loCodigo")
     public List<DevolucaoBEAN> getDevolucao() {
         return devolucao;
     }

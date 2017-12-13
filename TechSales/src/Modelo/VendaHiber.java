@@ -21,29 +21,23 @@ public class VendaHiber {
     private static EntityTransaction tx = manager.getTransaction();
 
     public ArrayList<VendaBEAN> listarVen() {
-        começar();
-        Query q = manager.createQuery("from venda");
+        Query q = manager.createQuery("from VendaBEAN");
         ArrayList<VendaBEAN> venList = (ArrayList<VendaBEAN>) q.getResultList();
         tx.commit();
-        fechar();
         return venList;
     }
 
     public int cadVen(VendaBEAN c) {
-        começar();
         manager.persist(c);
         tx.commit();
-        fechar();
         return c.getVenCodigo();
     }
 
     public boolean deleteVen(int c) {
         try {
-            começar();
             VendaBEAN a = manager.find(VendaBEAN.class, c);
             manager.remove(a);
             tx.commit();
-            fechar();
             return true;
         } catch (Exception e) {
             return false;
@@ -52,10 +46,8 @@ public class VendaHiber {
 
     public boolean editarVen(VendaBEAN c) {
         try {
-            começar();
             manager.flush();
             tx.commit();
-            fechar();
             return true;
         } catch (Exception e) {
             return false;

@@ -21,29 +21,23 @@ public class FuncionarioHiber {
     private static EntityTransaction tx = manager.getTransaction();
 
     public ArrayList<FuncionarioBEAN> listarFun() {
-        começar();
-        Query q = manager.createQuery("from funcionario");
+        Query q = manager.createQuery("from FuncionarioBEAN");
         ArrayList<FuncionarioBEAN> funList = (ArrayList<FuncionarioBEAN>) q.getResultList();
         tx.commit();
-        fechar();
         return funList;
     }
 
     public void cadFun(FuncionarioBEAN c) {
-        começar();
         manager.persist(c);
         tx.commit();
-        fechar();
     }
 
     public boolean deleteFun(FuncionarioBEAN c) {
 
         try {
-            começar();
             FuncionarioBEAN a = manager.find(FuncionarioBEAN.class, c);
             manager.remove(a);
             tx.commit();
-            fechar();
             return true;
         } catch (Exception e) {
             return false;
@@ -52,10 +46,8 @@ public class FuncionarioHiber {
 
     public boolean editarFun(FuncionarioBEAN c) {
         try {
-            começar();
             manager.flush();
             tx.commit();
-            fechar();
             return true;
         } catch (Exception e) {
             return false;

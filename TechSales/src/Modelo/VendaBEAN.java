@@ -14,12 +14,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Alef
  */
 @Entity
+@Table(name="venda")
 public class VendaBEAN {
 
     private int venCodigo;
@@ -73,7 +75,7 @@ public class VendaBEAN {
         this.cliente_cliCodigo = cliente_cliCodigo;
     }
 
-    @ManyToMany(mappedBy = "iv_venCodigo")
+    @ManyToMany(mappedBy = "venda")
     @Column(nullable = false)
     public List<JogoBEAN> getJogo() {
         return jogo;
@@ -84,7 +86,6 @@ public class VendaBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name = "ven_funCodigo")
     public FuncionarioBEAN getFuncionario() {
         return funcionario;
     }
@@ -94,7 +95,6 @@ public class VendaBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name = "ven_cliCodigo")
     public ClienteBEAN getCliente() {
         return cliente;
     }

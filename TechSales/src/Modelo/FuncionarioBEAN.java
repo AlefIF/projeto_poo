@@ -11,12 +11,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author LUCASP
  */
 @Entity
+@Table(name="funcionario")
 public class FuncionarioBEAN {
 
     private int codigo;

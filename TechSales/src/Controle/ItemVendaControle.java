@@ -16,12 +16,6 @@ import java.util.ArrayList;
 public class ItemVendaControle {
 
     private Item_VendaDAO itvDAO = new Item_VendaDAO();
-    private int codigo = 0;
-
-    public int atualizaCodigo2() {
-        codigo++;
-        return codigo;
-    }
 
     public void cadastrar2(Item_VendaBEAN w) {
         itvDAO.cadastrar(w);

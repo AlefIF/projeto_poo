@@ -21,27 +21,21 @@ public class ConsoleHiber {
     private static EntityTransaction tx = manager.getTransaction();
 
     public ArrayList<ConsoleBEAN> listarCon() {
-        começar();
-        Query q = manager.createQuery("from console");
+        Query q = manager.createQuery("from ConsoleBEAN");
         ArrayList<ConsoleBEAN> conList = (ArrayList<ConsoleBEAN>) q.getResultList();
         tx.commit();
-        fechar();
         return conList;
     }
 
     public void cadCon(ConsoleBEAN c) {
-        começar();
         manager.persist(c);
         tx.commit();
-        fechar();
     }
 
     public boolean deleteCon(int c) {
         try {
-            começar();
             ConsoleBEAN a = manager.find(ConsoleBEAN.class, c);
             manager.remove(a);
-            tx.commit();
             fechar();
             return true;
         } catch (Exception e) {
@@ -51,10 +45,8 @@ public class ConsoleHiber {
 
     public boolean editarCon(ConsoleBEAN c) {
         try {
-            começar();
             manager.flush();
             tx.commit();
-            fechar();
             return true;
         } catch (Exception e) {
             return false;

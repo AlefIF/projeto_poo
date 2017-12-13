@@ -11,12 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Maycon Jonathan
  */
 @Entity
+@Table(name="devolucao")
 public class DevolucaoBEAN {
 
     private int cod;
@@ -29,7 +31,7 @@ public class DevolucaoBEAN {
     private float valor;
     private ClienteBEAN cliente;
     private LocacaoBEAN locacao;
-    private FunSql funcionario;
+    private FuncionarioBEAN funcionario;
 
     @Id
     @GeneratedValue
@@ -98,7 +100,6 @@ public class DevolucaoBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name = "dev_cliCodigo")
     public ClienteBEAN getCliente() {
         return cliente;
     }
@@ -108,7 +109,6 @@ public class DevolucaoBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name = "dev_locCodigo")
     public LocacaoBEAN getLocacao() {
         return locacao;
     }
@@ -118,12 +118,11 @@ public class DevolucaoBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name = "dev_funCodigo")
-    public FunSql getFuncionario() {
+    public FuncionarioBEAN getFuncionario() {
         return funcionario;
     }
 
-    public void setFuncionario(FunSql funcionario) {
+    public void setFuncionario(FuncionarioBEAN funcionario) {
         this.funcionario = funcionario;
     }
 

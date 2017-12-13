@@ -6,23 +6,24 @@
 package Modelo;
 
 import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author admin
  */
 @Entity
+@Table(name="console")
 public class ConsoleBEAN {
 
     private int conCodigo;
     private String conNome;
     private String conMarca;
-    private List<JogoBEAN> jogo;
+    private List<Con_jogoBEAN> jogo;
 
     @Id
     @GeneratedValue
@@ -49,15 +50,14 @@ public class ConsoleBEAN {
     public void setConMarca(String conMarca) {
         this.conMarca = conMarca;
     }
-
-    @ManyToMany(mappedBy = "cjg_joCodigo")
-    @Column(nullable = false)
-    public List<JogoBEAN> getJogo() {
+    
+    @OneToMany(mappedBy = "cjg_conCodigo")
+    public List<Con_jogoBEAN> getCon() {
         return jogo;
     }
 
-    public void setJogo(List<JogoBEAN> jogo) {
-        this.jogo = jogo;
+    public void setCon(List<Con_jogoBEAN> con) {
+        this.jogo = con;
     }
 
     @Override

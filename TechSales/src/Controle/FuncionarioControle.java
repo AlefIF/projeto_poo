@@ -8,44 +8,29 @@ package Controle;
 //import Modelo.ConnectionFactory;
 import Modelo.FuncionarioBEAN;
 import Modelo.FuncionarioDAO;
+import Modelo.FuncionarioHiber;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author LUCASP
  */
 public class FuncionarioControle {
+    
 
-    FuncionarioBEAN user = new FuncionarioBEAN();
     FuncionarioDAO dao = new FuncionarioDAO();
-
-    public void cadastrar(String nome, int idade, String endereco, String cpf, String np, String nomeusuario, String senha, String telefone) {
-        user.setNome(nome);
-        user.setIdade(idade);
-        user.setEndereco(endereco);
-        user.setCpf(cpf);
-        user.setNisPis(np);
-        user.setNomeUsuario(nomeusuario);
-        user.setSenha(senha);
-        user.setTelefone(telefone);
-        dao.cadastrar(user);
+    FuncionarioHiber funH = new FuncionarioHiber();
+    
+    public void cadastrar(FuncionarioBEAN c) {      
+        dao.cadastrar(c);
     }
 
     public boolean verificaLogin(String senha) {
         return dao.verificaLogin(senha);
     }
 
-    public void editar(String nome, int idade, String endereco, String cpf, String np, String nomeusuario, String senha, String telefone) {
-        user.setNome(nome);
-        user.setIdade(idade);
-        user.setEndereco(endereco);
-        user.setCpf(cpf);
-        user.setNisPis(np);
-        user.setNomeUsuario(nomeusuario);
-        user.setSenha(senha);
-        user.setTelefone(telefone);
-        dao.editar(user);
+    public void editar(FuncionarioBEAN c) {  
+        dao.editar(c);
     }
 
     public ArrayList<FuncionarioBEAN> ListarALL() {
@@ -54,11 +39,20 @@ public class FuncionarioControle {
     }
 
     public void excluir(int codigo) {
-        user.setCodigo(codigo);
-        dao.excluir(user);
+        dao.remover(codigo);
     }
 
     public boolean verificaLogin2(String login, String senha) {
         return dao.verificaLogin2(login, senha);
     }
+    
+       
+    public void iniciar(){
+        funH.começar();
+    }
+    public void fechar(){
+        funH.fechar();
+    }
+
+
 }

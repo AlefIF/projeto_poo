@@ -20,16 +20,17 @@ import javax.swing.table.TableRowSorter;
  */
 public class FRMCategoria extends javax.swing.JFrame {
 
+    private CategoriaControle catCon = new CategoriaControle();
+    private ArrayList<CategoriaBEAN> caDados;
+    private DefaultTableModel dTable;
+
     /**
      * Creates new form FRMCategoria
      */
     public FRMCategoria() {
         initComponents();
+       // catCon.iniciar();
     }
-    
-    private CategoriaControle catCon = new CategoriaControle();
-    private ArrayList<CategoriaBEAN> caDados;
-    private DefaultTableModel dTable;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -336,12 +337,11 @@ public class FRMCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        CategoriaBEAN c = new CategoriaBEAN();
-        c.setCatCodigo(Integer.parseInt(lbCodCat.getText()));
+        CategoriaBEAN c = catCon.localizar(Integer.parseInt(lbCodCat.getText()));      
         c.setCatNome(tfNome.getText());
-        //chama o método de controle para editar
+
         boolean retorno = catCon.editar(c);
-        //se a variavel retorno for igual a true o usuario foi editado
+
         if (retorno == true) {
             JOptionPane.showMessageDialog(null, "Categoria MODIFICADA com sucesso");
             //solicita a atualização da tabela ou seja preenche ela toda novamente
@@ -379,8 +379,10 @@ public class FRMCategoria extends javax.swing.JFrame {
     }
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
         FRMPrincipalFun fun = new FRMPrincipalFun();
+        catCon.fechar();
         this.dispose();
         fun.setVisible(true);
+
     }//GEN-LAST:event_btVoltarActionPerformed
 
     private void tableCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCategoriaMouseClicked

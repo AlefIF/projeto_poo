@@ -12,6 +12,7 @@ import Modelo.FuncionarioDAO;
 import java.awt.Color;
 import static java.awt.Color.BLACK;
 import static java.awt.Color.GRAY;
+import java.sql.SQLException;
 
 import java.util.ArrayList;
 
@@ -441,27 +442,59 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_jbExcluirFunActionPerformed
 
     private void jbEditarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarFunActionPerformed
-        if (lbCodigo.getText().equals("...")) {
-            JOptionPane.showMessageDialog(null, "É preciso selecionar um funcionário na tabela de consulta");
-        } else if (tfNomeFun.getText().equals("") || tfIdadeFun.getText().equals("") || tfEnderecoFun.getText().equals("") || tfCpfFun.getText().equals("")
-                || tfNPFun.getText().equals("") || tfNomeUserFun.getText().equals("") || tfSenhaUserFun.getText().equals("") || tfTelefoneFun.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios");
+        if (verificaCampos() == true) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         } else {
-            ct.editar(tfNomeFun.getText(), Integer.parseInt(tfIdadeFun.getText()), tfEnderecoFun.getText(), tfCpfFun.getText(),
-                    tfNPFun.getText(), tfNomeUserFun.getText(), tfSenhaUserFun.getText(), tfTelefoneFun.getText());
-            limpaCampos();
+            editar();
             this.preencheTabela();
-            jbCadastrarFun.setEnabled(true);
+            limpaCampos();
         }
+        jbCadastrarFun.setEnabled(true);
+
     }//GEN-LAST:event_jbEditarFunActionPerformed
 
-    private void jbCadastrarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarFunActionPerformed
-        if (tfNomeFun.getText().equals("") || tfIdadeFun.getText().equals("") || tfEnderecoFun.getText().equals("") || tfCpfFun.getText().equals("")
-                || tfNPFun.getText().equals("") || tfNomeUserFun.getText().equals("") || tfSenhaUserFun.getText().equals("") || tfTelefoneFun.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios");
+    public void cadastrar() {
+        FuncionarioBEAN c = new FuncionarioBEAN();
+        c.setNome(tfNomeFun.getText());
+        c.setIdade(Integer.parseInt(tfIdadeFun.getText()));
+        c.setEndereco(tfEnderecoFun.getText());
+        c.setCpf(tfCpfFun.getText());
+        c.setNisPis(tfNPFun.getText());
+        c.setNomeUsuario(tfNomeUserFun.getText());
+        c.setSenha(tfSenhaUserFun.getText());
+        c.setTelefone(tfTelefoneFun.getText());
+        ct.cadastrar(c);
+    }
+
+    public void editar() {
+        FuncionarioBEAN c = new FuncionarioBEAN();
+        c.setNome(tfNomeFun.getText());
+        c.setIdade(Integer.parseInt(tfIdadeFun.getText()));
+        c.setEndereco(tfEnderecoFun.getText());
+        c.setCpf(tfCpfFun.getText());
+        c.setNisPis(tfNPFun.getText());
+        c.setNomeUsuario(tfNomeUserFun.getText());
+        c.setSenha(tfSenhaUserFun.getText());
+        c.setTelefone(tfTelefoneFun.getText());
+        c.setCodigo(Integer.valueOf(lbCodigo.getText()));
+        ct.editar(c);
+    }
+
+    public boolean verificaCampos() {
+        if (tfNomeFun.getText().equals("") || tfIdadeFun.getText().equals("")
+                || tfEnderecoFun.getText().equals("") || tfCpfFun.getText().equals("")
+                || tfNPFun.getText().equals("") || tfNomeUserFun.getText().equals("")
+                || tfSenhaUserFun.getText().equals("") || tfTelefoneFun.getText().equals("")) {
+            return false;
         } else {
-            ct.cadastrar(tfNomeFun.getText(), Integer.parseInt(tfIdadeFun.getText()), tfEnderecoFun.getText(), tfCpfFun.getText(),
-                    tfNPFun.getText(), tfNomeUserFun.getText(), tfSenhaUserFun.getText(), tfTelefoneFun.getText());
+            return true;
+        }
+    }
+    private void jbCadastrarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarFunActionPerformed
+        if (verificaCampos() == true) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        } else {
+            cadastrar();
             this.preencheTabela();
             limpaCampos();
         }

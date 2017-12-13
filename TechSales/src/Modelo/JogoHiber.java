@@ -21,28 +21,22 @@ public class JogoHiber {
     private static EntityTransaction tx = manager.getTransaction();
 
     public ArrayList<JogoBEAN> listarJog() {
-        começar();
-        Query q = manager.createQuery("from jogo");
+        Query q = manager.createQuery("from JogoBEAN");
         ArrayList<JogoBEAN> jogList = (ArrayList<JogoBEAN>) q.getResultList();
         tx.commit();
-        fechar();
         return jogList;
     }
 
     public void cadJog(JogoBEAN c) {
-        começar();
         manager.persist(c);
         tx.commit();
-        fechar();
     }
 
     public boolean deleteJog(int c) {
         try {
-            começar();
             JogoBEAN a = manager.find(JogoBEAN.class, c);
             manager.remove(a);
             tx.commit();
-            fechar();
             return true;
         } catch (Exception e) {
             return false;
@@ -51,10 +45,8 @@ public class JogoHiber {
 
     public boolean editarJog(JogoBEAN c) {
         try {
-            começar();
             manager.flush();
             tx.commit();
-            fechar();
             return true;
         } catch (Exception e) {
             return false;

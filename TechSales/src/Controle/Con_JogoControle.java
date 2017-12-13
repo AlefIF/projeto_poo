@@ -39,4 +39,6 @@ public class Con_JogoControle {
     public ArrayList<Con_jogoBEAN> listarALL() {
         return cjDAO.listarALL();
     }
+    
+    
 }

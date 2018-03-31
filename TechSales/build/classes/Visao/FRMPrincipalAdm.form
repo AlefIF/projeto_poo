@@ -73,56 +73,60 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel5" max="32767" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="tfNomeUserFun" alignment="0" pref="184" max="32767" attributes="0"/>
-                                  <Component id="tfNPFun" max="32767" attributes="0"/>
-                                  <Component id="tfCpfFun" max="32767" attributes="0"/>
-                                  <Component id="tfTelefoneFun" max="32767" attributes="0"/>
-                                  <Component id="lbCodigo" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tfSenhaUserFun" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="tfEnderecoFun" alignment="0" pref="183" max="32767" attributes="0"/>
-                                  <Component id="tfNomeFun" alignment="0" pref="183" max="32767" attributes="0"/>
-                                  <Component id="tfIdadeFun" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jbCadastrarFun" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jbCadastrarFun" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jbEditarFun" min="-2" pref="91" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jbLocalizarFun" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jbExcluirFun" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jLabel5" max="32767" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="tfNomeUserFun" alignment="0" pref="184" max="32767" attributes="0"/>
+                                          <Component id="tfNPFun" max="32767" attributes="0"/>
+                                          <Component id="tfCpfFun" max="32767" attributes="0"/>
+                                          <Component id="tfTelefoneFun" max="32767" attributes="0"/>
+                                          <Component id="lbCodigo" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tfSenhaUserFun" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="tfEnderecoFun" alignment="0" pref="183" max="32767" attributes="0"/>
+                                          <Component id="tfNomeFun" alignment="0" pref="183" max="32767" attributes="0"/>
+                                          <Component id="tfIdadeFun" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="72" pref="72" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -137,7 +141,7 @@
                               <Component id="tfNomeFun" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="tfIdadeFun" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="tfEnderecoFun" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -180,13 +184,11 @@
                           <Component id="lbCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jbEditarFun" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jbLocalizarFun" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jbExcluirFun" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jbCadastrarFun" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jbEditarFun" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbLocalizarFun" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbExcluirFun" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbCadastrarFun" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="87" max="32767" attributes="0"/>
                   </Group>
@@ -214,17 +216,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tfNomeUserFun">
-            </Component>
-            <Component class="javax.swing.JButton" name="jbCadastrarFun">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Visao/icons/Bot&#xf5;es/JLabelFun.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Cadastrar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbCadastrarFunActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="jbEditarFun">
               <Properties>
@@ -299,11 +290,6 @@
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{&#xd;&#xa;   javax.swing.text.MaskFormatter tel= new javax.swing.text.MaskFormatter(&quot;(##)# ####-####&quot;);&#xd;&#xa;   tfTelefoneFun = new javax.swing.JFormattedTextField(tel);&#xd;&#xa;}&#xd;&#xa;   catch (Exception e){&#xd;&#xa;}"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="tfIdadeFun">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{&#xd;&#xa;   javax.swing.text.MaskFormatter idade= new javax.swing.text.MaskFormatter(&quot;##&quot;);&#xd;&#xa;   tfIdadeFun = new javax.swing.JFormattedTextField(idade);&#xd;&#xa;}&#xd;&#xa;   catch (Exception e){&#xd;&#xa;}"/>
-              </AuxValues>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
                 <Property name="text" type="java.lang.String" value="C&#xf3;digo:"/>
@@ -315,6 +301,22 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="tfSenhaUserFun">
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfIdadeFun">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfIdadeFunKeyTyped"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="jbCadastrarFun">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Visao/icons/Bot&#xf5;es/JButtonAddFun.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Cadastrar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbCadastrarFunActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -22,17 +22,16 @@ public class DevolucaoControle {
 
     private DevolucaoDAO dDAO = new DevolucaoDAO();
     private DevolucaoHiber dvH = new DevolucaoHiber();
-    
+
     public void cadastrar(DevolucaoBEAN d) {
         //dDAO.cadastrar(d);
         dvH.cadDev(d);
     }
-    
-     public ArrayList<DevolucaoBEAN> listarALL() {
+
+    public ArrayList<DevolucaoBEAN> listarALL() {
 
         return dvH.listarDev();
     }
-
 
     public boolean editar(DevolucaoBEAN l) {
         //return lDAO.editar(l);
@@ -43,11 +42,12 @@ public class DevolucaoControle {
         //return lDAO.remover(codigo);
         return dvH.deleteDev(codigo);
     }
-    
-     public void iniciar(){
+
+    public void iniciar() {
         dvH.começar();
     }
-    public void fechar(){
+
+    public void fechar() {
         dvH.fechar();
     }
 

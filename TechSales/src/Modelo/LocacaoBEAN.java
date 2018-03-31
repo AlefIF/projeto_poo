@@ -20,7 +20,7 @@ import javax.persistence.Table;
  * @author Maycon Jonathan
  */
 @Entity
-@Table(name="locacao")
+@Table(name = "locacao")
 public class LocacaoBEAN {
 
     private int cod;
@@ -34,7 +34,6 @@ public class LocacaoBEAN {
     private FuncionarioBEAN funcionario;
     private List<DevolucaoBEAN> devolucao;
 
-    
     @Id
     @GeneratedValue
     public int getCod() {

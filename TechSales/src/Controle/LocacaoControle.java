@@ -56,13 +56,13 @@ public class LocacaoControle {
     public ArrayList<LocacaoBEAN> localizarCli(int cod) {
         return lDAO.localizarCLi(cod);
     }
-    
-    public void iniciar(){
+
+    public void iniciar() {
         locHN.começar();
     }
-    public void fechar(){
+
+    public void fechar() {
         locHN.fechar();
     }
-    
 
 }

@@ -43,14 +43,27 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         tbUsers = this.criaTabela();
         tbUsers.addColumn("Código");
         tbUsers.addColumn("Nome");
+        tbUsers.addColumn("telefone");
+        tbUsers.addColumn("endereco");
+        tbUsers.addColumn("nisPis");
         tbUsers.addColumn("CPF");
+        tbUsers.addColumn("idade");
+        tbUsers.addColumn("nomeUsuario");
+        tbUsers.addColumn("senha");
+
         userD = ct.ListarALL();
 
         for (FuncionarioBEAN d : userD) {
             tbUsers.addRow(new Object[]{
                 d.getCodigo(),
                 d.getNome(),
-                d.getCpf(),});
+                d.getTelefone(),
+                d.getEndereco(),
+                d.getNisPis(),
+                d.getCpf(),
+                d.getIdade(),
+                d.getNomeUsuario(),
+                d.getSenha(),});
         }
         //set o modelo da tabela
         tbPesquisa.setModel(tbUsers);
@@ -75,7 +88,6 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         tfEnderecoFun = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         tfNomeUserFun = new javax.swing.JTextField();
-        jbCadastrarFun = new javax.swing.JButton();
         jbEditarFun = new javax.swing.JToggleButton();
         jbLocalizarFun = new javax.swing.JToggleButton();
         jbExcluirFun = new javax.swing.JToggleButton();
@@ -87,10 +99,11 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         tfNPFun = new javax.swing.JFormattedTextField();
         tfCpfFun = new javax.swing.JFormattedTextField();
         tfTelefoneFun = new javax.swing.JFormattedTextField();
-        tfIdadeFun = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
         lbCodigo = new javax.swing.JLabel();
         tfSenhaUserFun = new javax.swing.JPasswordField();
+        tfIdadeFun = new javax.swing.JTextField();
+        jbCadastrarFun = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbPesquisa = new javax.swing.JTable();
@@ -119,14 +132,6 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         jLabel2.setText("Endereço:");
 
         jLabel3.setText("Nome de usuário:");
-
-        jbCadastrarFun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JLabelFun.png"))); // NOI18N
-        jbCadastrarFun.setText("Cadastrar");
-        jbCadastrarFun.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCadastrarFunActionPerformed(evt);
-            }
-        });
 
         jbEditarFun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonEdit.png"))); // NOI18N
         jbEditarFun.setText("Editar");
@@ -183,64 +188,74 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         catch (Exception e){
         }
 
-        try{
-            javax.swing.text.MaskFormatter idade= new javax.swing.text.MaskFormatter("##");
-            tfIdadeFun = new javax.swing.JFormattedTextField(idade);
-        }
-        catch (Exception e){
-        }
-
         jLabel11.setText("Código:");
 
         lbCodigo.setText("...");
+
+        tfIdadeFun.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfIdadeFunKeyTyped(evt);
+            }
+        });
+
+        jbCadastrarFun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonAddFun.png"))); // NOI18N
+        jbCadastrarFun.setText("Cadastrar");
+        jbCadastrarFun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCadastrarFunActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(0, 17, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfNomeUserFun, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                            .addComponent(tfNPFun)
-                            .addComponent(tfCpfFun)
-                            .addComponent(tfTelefoneFun)
-                            .addComponent(lbCodigo)
-                            .addComponent(tfSenhaUserFun))
-                        .addGap(72, 72, 72))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(65, 65, 65)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(tfEnderecoFun, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                            .addComponent(tfNomeFun, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                            .addComponent(tfIdadeFun))
-                        .addGap(72, 72, 72))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbCadastrarFun)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbCadastrarFun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbEditarFun, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbLocalizarFun)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbExcluirFun)
-                        .addGap(32, 32, 32))))
+                        .addGap(32, 32, 32))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGap(0, 17, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfNomeUserFun, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                                    .addComponent(tfNPFun)
+                                    .addComponent(tfCpfFun)
+                                    .addComponent(tfTelefoneFun)
+                                    .addComponent(lbCodigo)
+                                    .addComponent(tfSenhaUserFun))
+                                .addGap(72, 72, 72))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(65, 65, 65)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(tfEnderecoFun, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                                    .addComponent(tfNomeFun, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                                    .addComponent(tfIdadeFun))
+                                .addGap(72, 72, 72))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,7 +266,7 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
                         .addComponent(tfNomeFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfIdadeFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfEnderecoFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -285,11 +300,10 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addComponent(lbCodigo))
                 .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jbEditarFun)
-                        .addComponent(jbLocalizarFun)
-                        .addComponent(jbExcluirFun))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbEditarFun)
+                    .addComponent(jbLocalizarFun)
+                    .addComponent(jbExcluirFun)
                     .addComponent(jbCadastrarFun))
                 .addContainerGap(87, Short.MAX_VALUE))
         );
@@ -421,12 +435,18 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_tbPesquisaKeyReleased
 
     private void tbPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPesquisaMouseClicked
-        jbCadastrarFun.setEnabled(false);
+
         jtbPesquisa.setSelectedIndex(0);
         if (tbPesquisa.getSelectedRow() != -1) {
             lbCodigo.setText((String) tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 0).toString());
             tfNomeFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 1).toString());
-            tfCpfFun.setText((String) tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 2).toString());
+            tfTelefoneFun.setText((String) tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 2).toString());
+            tfEnderecoFun.setText((String) tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 3).toString());
+            tfNPFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 4).toString());
+            tfCpfFun.setText((String) tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 5).toString());
+            tfIdadeFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 6).toString());
+            tfNomeUserFun.setText((String) tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 7).toString());
+            tfSenhaUserFun.setText((String) tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 8).toString());
         }
     }//GEN-LAST:event_tbPesquisaMouseClicked
 
@@ -440,18 +460,6 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jbExcluirFunActionPerformed
-
-    private void jbEditarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarFunActionPerformed
-        if (verificaCampos() == true) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-        } else {
-            editar();
-            this.preencheTabela();
-            limpaCampos();
-        }
-        jbCadastrarFun.setEnabled(true);
-
-    }//GEN-LAST:event_jbEditarFunActionPerformed
 
     public void cadastrar() {
         FuncionarioBEAN c = new FuncionarioBEAN();
@@ -467,7 +475,7 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
     }
 
     public void editar() {
-        FuncionarioBEAN c = new FuncionarioBEAN();
+        FuncionarioBEAN c = ct.localizarCodigo(Integer.parseInt(lbCodigo.getText()));
         c.setNome(tfNomeFun.getText());
         c.setIdade(Integer.parseInt(tfIdadeFun.getText()));
         c.setEndereco(tfEnderecoFun.getText());
@@ -483,15 +491,23 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
     public boolean verificaCampos() {
         if (tfNomeFun.getText().equals("") || tfIdadeFun.getText().equals("")
                 || tfEnderecoFun.getText().equals("") || tfCpfFun.getText().equals("")
-                || tfNPFun.getText().equals("") || tfNomeUserFun.getText().equals("")
-                || tfSenhaUserFun.getText().equals("") || tfTelefoneFun.getText().equals("")) {
+                || tfNPFun.getText().equals("") || tfTelefoneFun.getText().equals("")
+                || tfNomeUserFun.getText().equals("") || tfSenhaUserFun.getText().equals("")) {
             return false;
         } else {
             return true;
         }
     }
+
+    private void tfIdadeFunKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdadeFunKeyTyped
+        String caracteres = "0123456789.";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfIdadeFunKeyTyped
+
     private void jbCadastrarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarFunActionPerformed
-        if (verificaCampos() == true) {
+        if (verificaCampos() == false) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         } else {
             cadastrar();
@@ -499,6 +515,16 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
             limpaCampos();
         }
     }//GEN-LAST:event_jbCadastrarFunActionPerformed
+
+    private void jbEditarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarFunActionPerformed
+        if (verificaCampos() == false) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        } else {
+            editar();
+            this.preencheTabela();
+            limpaCampos();
+        }
+    }//GEN-LAST:event_jbEditarFunActionPerformed
 
     private void jbLocalizarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLocalizarFunActionPerformed
         jtbPesquisa.setSelectedIndex(1);
@@ -618,7 +644,7 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
     private javax.swing.JTable tbPesquisa;
     private javax.swing.JFormattedTextField tfCpfFun;
     private javax.swing.JTextField tfEnderecoFun;
-    private javax.swing.JFormattedTextField tfIdadeFun;
+    private javax.swing.JTextField tfIdadeFun;
     private javax.swing.JFormattedTextField tfNPFun;
     private javax.swing.JTextField tfNomeFun;
     private javax.swing.JTextField tfNomeUserFun;

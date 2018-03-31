@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * @author LUCASP
  */
 @Entity
-@Table(name="funcionario")
+@Table(name = "funcionario")
 public class FuncionarioBEAN {
 
     private int codigo;

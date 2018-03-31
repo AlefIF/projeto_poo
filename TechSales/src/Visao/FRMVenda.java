@@ -7,7 +7,6 @@ package Visao;
 
 import Controle.CategoriaControle;
 import Controle.ClienteControle;
-import Controle.Con_JogoControle;
 import Controle.ConsoleControle;
 import Controle.FuncionarioControle;
 import Controle.ItemVendaControle;
@@ -15,7 +14,6 @@ import Controle.JogoControle;
 import Controle.VendaControle;
 import Modelo.CategoriaBEAN;
 import Modelo.ClienteBEAN;
-import Modelo.Con_jogoBEAN;
 import Modelo.ConsoleBEAN;
 import Modelo.Item_VendaBEAN;
 import Modelo.JogoBEAN;
@@ -38,7 +36,6 @@ import javax.swing.table.TableRowSorter;
 public class FRMVenda extends javax.swing.JFrame {
 
     private JogoControle jControle = new JogoControle();
-    private Con_JogoControle cjc = new Con_JogoControle();
     private ConsoleControle cControle = new ConsoleControle();
     private CategoriaControle catControle = new CategoriaControle();
     private DefaultTableModel dTable;
@@ -47,7 +44,6 @@ public class FRMVenda extends javax.swing.JFrame {
     private DefaultTableModel rcTable;
     private ArrayList<JogoBEAN> jDados;
     private ArrayList<CategoriaBEAN> catDados;
-    private ArrayList<Con_jogoBEAN> cjDados;
     private ArrayList<ConsoleBEAN> cDados;
     private ClienteControle cCliente = new ClienteControle();
     private ItemVendaControle cItv = new ItemVendaControle();
@@ -93,20 +89,15 @@ public class FRMVenda extends javax.swing.JFrame {
         jDados = jControle.listarALL();
         catDados = catControle.listarALL();
         cDados = cControle.listarALL();
-        cjDados = cjc.listarALL();
 
         for (JogoBEAN dado : jDados) {
             for (CategoriaBEAN dado2 : catDados) {
                 if (dado.getJo_catCodigo() == dado2.getCatCodigo()) {
-                    for (Con_jogoBEAN dado3 : cjDados) {
-                        if (dado3.getCjg_joCodigo() == dado.getJoCodigo()) {
-                            for (ConsoleBEAN dado4 : cDados) {
-                                if (dado3.getCjg_conCodigo() == dado4.getConCodigo()) {
-                                    dTable.addRow(new Object[]{dado.getJoCodigo(), dado.getJoNome(),
-                                        dado.getJoFaixaEtaria(), dado.getJoPrecoPadrao(), dado.getJoTipo(),
-                                        dado2.getCatNome(), dado4.getConNome(), dado.getJoLote(), dado.getJoQtd()});
-                                }
-                            }
+                    for (ConsoleBEAN c : cDados) {
+                        if (dado.getConsole().getConCodigo() == c.getConCodigo()) {
+                            dTable.addRow(new Object[]{dado.getJoCodigo(), dado.getJoNome(),
+                                dado.getJoFaixaEtaria(), dado.getJoPrecoPadrao(), dado.getJoTipo(),
+                                dado2.getCatNome(), c.getConNome(), dado.getJoLote(), dado.getJoQtd()});
                         }
                     }
                 }

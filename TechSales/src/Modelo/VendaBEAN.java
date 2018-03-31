@@ -11,9 +11,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,7 +21,7 @@ import javax.persistence.Table;
  * @author Alef
  */
 @Entity
-@Table(name="venda")
+@Table(name = "venda")
 public class VendaBEAN {
 
     private int venCodigo;
@@ -29,9 +29,9 @@ public class VendaBEAN {
     private Date venData;
     private int ven_funCodigo;
     private int cliente_cliCodigo;
-    private List<JogoBEAN> jogo;
     private FuncionarioBEAN funcionario;
     private ClienteBEAN cliente;
+    private List<Item_VendaBEAN> itv;
 
     @Id
     @GeneratedValue
@@ -75,16 +75,6 @@ public class VendaBEAN {
         this.cliente_cliCodigo = cliente_cliCodigo;
     }
 
-    @ManyToMany(mappedBy = "venda")
-    @Column(nullable = false)
-    public List<JogoBEAN> getJogo() {
-        return jogo;
-    }
-
-    public void setJogo(List<JogoBEAN> jogo) {
-        this.jogo = jogo;
-    }
-
     @ManyToOne
     public FuncionarioBEAN getFuncionario() {
         return funcionario;
@@ -101,6 +91,16 @@ public class VendaBEAN {
 
     public void setCliente(ClienteBEAN cliente) {
         this.cliente = cliente;
+    }
+
+    @OneToMany(mappedBy = "venda")
+    @Column(nullable = false)
+    public List<Item_VendaBEAN> getItv() {
+        return itv;
+    }
+
+    public void setItv(List<Item_VendaBEAN> itv) {
+        this.itv = itv;
     }
 
 }

@@ -5,7 +5,7 @@
  */
 package Modelo;
 
-import com.bdii.TechSales.JpaUtil.JpaUtil;
+import jpa.JpaUtil;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -21,6 +21,7 @@ public class LocacaoHiber {
     private static EntityTransaction tx = manager.getTransaction();
 
     public ArrayList<LocacaoBEAN> listarLoc() {
+        começar();
         Query q = manager.createQuery("from LocacaoBEAN");
         ArrayList<LocacaoBEAN> locList = (ArrayList<LocacaoBEAN>) q.getResultList();
         tx.commit();
@@ -28,13 +29,15 @@ public class LocacaoHiber {
     }
 
     public void cadLoc(LocacaoBEAN c) {
+        começar();
         manager.persist(c);
         tx.commit();
     }
 
     public boolean deleteLoc(int c) {
         try {
-            LocacaoBEAN a = manager.find(LocacaoBEAN.class, c);
+            começar();
+            LocacaoBEAN a = listarPorCod(c);
             manager.remove(a);
             tx.commit();
             return true;
@@ -45,12 +48,17 @@ public class LocacaoHiber {
 
     public boolean editarLoc(LocacaoBEAN c) {
         try {
-            manager.flush();
+            começar();
             tx.commit();
             return true;
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public LocacaoBEAN listarPorCod(int c) {
+        LocacaoBEAN a = manager.find(LocacaoBEAN.class, c);
+        return a;
     }
 
     public static void começar() {

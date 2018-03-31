@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * @author Maycon Jonathan
  */
 @Entity
-@Table(name="devolucao")
+@Table(name = "devolucao")
 public class DevolucaoBEAN {
 
     private int cod;

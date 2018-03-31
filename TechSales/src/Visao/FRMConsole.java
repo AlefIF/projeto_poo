@@ -381,8 +381,7 @@ public class FRMConsole extends javax.swing.JFrame {
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        ConsoleBEAN c = new ConsoleBEAN();
-        c.setConCodigo(Integer.parseInt(lbCodCon.getText()));
+        ConsoleBEAN c = cCon.localizar(Integer.parseInt(lbCodCon.getText()));
         c.setConNome(tfNome.getText());
         c.setConMarca(tfMarca.getText());
         //chama o método de controle para editar

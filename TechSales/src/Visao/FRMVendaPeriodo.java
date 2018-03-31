@@ -7,7 +7,6 @@ package Visao;
 
 import Controle.RelatorioVendas;
 
-
 /**
  *
  * @author Maycon Jonathan

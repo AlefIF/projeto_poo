@@ -21,7 +21,7 @@ public class JogoControle {
 
     public void cadastrar(JogoBEAN c) {
         //jDAO.cadastrar(c);
-       jogHN.cadJog(c);
+        jogHN.cadJog(c);
     }
 
     public ArrayList<JogoBEAN> listarALL() {
@@ -35,7 +35,8 @@ public class JogoControle {
     }
 
     public boolean editarINVAL(JogoBEAN c) {
-        return jDAO.editarINVAL(c);
+        //return jDAO.editarINVAL(c);
+        return jogHN.editarJog(c);
     }
 
     public boolean remover(int codigo) {
@@ -51,14 +52,16 @@ public class JogoControle {
         return jDAO.localizarNome(nome);
     }
 
-    public Object localizarCodigo(int loc_jogCodigo) {
-        return jDAO.localizarCodigo(loc_jogCodigo);
+    public JogoBEAN localizarCodigo(int a) {
+        //return jDAO.localizarCodigo(loc_jogCodigo);
+        return jogHN.listarPorCod(a);
     }
-    
-    public void iniciar(){
+
+    public void iniciar() {
         jogHN.começar();
     }
-    public void fechar(){
+
+    public void fechar() {
         jogHN.fechar();
     }
 

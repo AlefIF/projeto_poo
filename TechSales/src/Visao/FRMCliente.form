@@ -87,7 +87,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tfTelCli" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tfTelCli" alignment="0" pref="304" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
@@ -100,10 +100,10 @@
                               <Component id="tfNomeCli" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tfIdadeCli" alignment="0" min="-2" pref="63" max="-2" attributes="0"/>
+                                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tfIdadeCli" min="-2" pref="51" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="tfEnderecoCli" alignment="0" min="-2" pref="422" max="-2" attributes="0"/>
@@ -112,7 +112,7 @@
                               <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="89" max="32767" attributes="0"/>
+                      <EmptySpace pref="105" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
@@ -338,20 +338,17 @@
                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{&#xd;&#xa;   javax.swing.text.MaskFormatter tel= new javax.swing.text.MaskFormatter(&quot;(##)# ####-####&quot;);&#xd;&#xa;   tfTelCli = new javax.swing.JFormattedTextField(tel);&#xd;&#xa;}&#xd;&#xa;   catch (Exception e){&#xd;&#xa;}"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="tfIdadeCli">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfIdadeCliActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{&#xd;&#xa;   javax.swing.text.MaskFormatter idade= new javax.swing.text.MaskFormatter(&quot;##&quot;);&#xd;&#xa;   tfIdadeCli = new javax.swing.JFormattedTextField(idade);&#xd;&#xa;}&#xd;&#xa;   catch (Exception e){&#xd;&#xa;}"/>
-              </AuxValues>
-            </Component>
             <Component class="javax.swing.JButton" name="btRelatorio">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Gerar Relatorio"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRelatorioActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfIdadeCli">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfIdadeCliKeyTyped"/>
               </Events>
             </Component>
           </SubComponents>

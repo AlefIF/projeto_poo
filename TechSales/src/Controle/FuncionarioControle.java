@@ -16,43 +16,44 @@ import java.util.ArrayList;
  * @author LUCASP
  */
 public class FuncionarioControle {
-    
 
-    FuncionarioDAO dao = new FuncionarioDAO();
     FuncionarioHiber funH = new FuncionarioHiber();
-    
-    public void cadastrar(FuncionarioBEAN c) {      
-        dao.cadastrar(c);
+
+    public void cadastrar(FuncionarioBEAN c) {
+        funH.cadFun(c);
     }
 
     public boolean verificaLogin(String senha) {
-        return dao.verificaLogin(senha);
+        return funH.verificaLogin(senha);
     }
 
-    public void editar(FuncionarioBEAN c) {  
-        dao.editar(c);
+    public void editar(FuncionarioBEAN c) {
+        funH.editarFun(c);
+    }
+
+    public FuncionarioBEAN localizarCodigo(int cod) {
+        return funH.listarPorCod(cod);
     }
 
     public ArrayList<FuncionarioBEAN> ListarALL() {
-        ArrayList<FuncionarioBEAN> auxAL = (ArrayList<FuncionarioBEAN>) dao.ListarALL();
+        ArrayList<FuncionarioBEAN> auxAL = (ArrayList<FuncionarioBEAN>) funH.listarFun();
         return auxAL;
     }
 
     public void excluir(int codigo) {
-        dao.remover(codigo);
+        funH.deleteFun(codigo);
     }
 
     public boolean verificaLogin2(String login, String senha) {
-        return dao.verificaLogin2(login, senha);
-    }
-    
-       
-    public void iniciar(){
-        funH.começar();
-    }
-    public void fechar(){
-        funH.fechar();
+        return funH.verificaLogin2(login, senha);
     }
 
+    public void iniciar() {
+        funH.começar();
+    }
+
+    public void fechar() {
+        funH.fechar();
+    }
 
 }

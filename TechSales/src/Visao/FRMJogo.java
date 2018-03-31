@@ -6,22 +6,17 @@
 package Visao;
 
 import Controle.CategoriaControle;
-import Controle.Con_JogoControle;
 import Controle.ConsoleControle;
 import Modelo.CategoriaBEAN;
 import Modelo.CategoriaMysqlDAO;
 import Modelo.ConsoleBEAN;
-import Modelo.ConsoleMySqlDAO;
 import Controle.JogoControle;
-import Modelo.Con_jogoBEAN;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Modelo.JogoBEAN;
 import Modelo.InsertBean;
-import javax.swing.DefaultCellEditor;
 import javax.swing.RowFilter;
-import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -32,12 +27,10 @@ import javax.swing.table.TableRowSorter;
 public class FRMJogo extends javax.swing.JFrame {
 
     private JogoControle jControle = new JogoControle();
-    private Con_JogoControle cjc = new Con_JogoControle();
     private ConsoleControle cControle = new ConsoleControle();
     private CategoriaControle catControle = new CategoriaControle();
     private ArrayList<JogoBEAN> jDados;
     private ArrayList<CategoriaBEAN> catDados;
-    private ArrayList<Con_jogoBEAN> cjDados;
     private ArrayList<ConsoleBEAN> cDados;
     private DefaultTableModel dTable;
     private DefaultTableModel dTable2;
@@ -53,16 +46,13 @@ public class FRMJogo extends javax.swing.JFrame {
     public FRMJogo() {
         initComponents();
         setResizable(false);
-
-        ConsoleMySqlDAO consDAO = new ConsoleMySqlDAO();
-        for (ConsoleBEAN e : consDAO.listarALL()) {
+        for (ConsoleBEAN e : cControle.listarALL()) {
             cbCon.addItem(e);
         }
         CategoriaMysqlDAO catDAO = new CategoriaMysqlDAO();
-        for (CategoriaBEAN d : catDAO.listarALL()) {
+        for (CategoriaBEAN d : catControle.listarALL()) {
             cbCat.addItem(d);
         }
-
         preencheTabela();
     }
 
@@ -82,30 +72,21 @@ public class FRMJogo extends javax.swing.JFrame {
         jDados = jControle.listarALL();
         catDados = catControle.listarALL();
         cDados = cControle.listarALL();
-        cjDados = cjc.listarALL();
 
         for (JogoBEAN dado : jDados) {
             for (CategoriaBEAN dado2 : catDados) {
                 if (dado.getJo_catCodigo() == dado2.getCatCodigo()) {
-                    for (Con_jogoBEAN dado3 : cjDados) {
-                        if (dado3.getCjg_joCodigo() == dado.getJoCodigo()) {
-                            for (ConsoleBEAN dado4 : cDados) {
-                                if (dado3.getCjg_conCodigo() == dado4.getConCodigo()) {
-                                    dTable.addRow(new Object[]{dado.getJoCodigo(), dado.getJoNome(),
-                                        dado.getJoFaixaEtaria(), dado.getJoPrecoPadrao(), dado.getJoTipo(),
-                                        dado2.getCatNome(), dado4.getConNome(), dado.getJoLote(), dado.getJoQtd()});
-                                }
-                            }
+                    for (ConsoleBEAN c : cDados) {
+                        if (dado.getConsole().getConCodigo() == c.getConCodigo()) {
+                            dTable.addRow(new Object[]{dado.getJoCodigo(), dado.getJoNome(),
+                                dado.getJoFaixaEtaria(), dado.getJoPrecoPadrao(), dado.getJoTipo(),
+                                dado2.getCatNome(), c.getConNome(), dado.getJoLote(), dado.getJoQtd()});
                         }
                     }
                 }
             }
         }
-
-        //set o modelo da tabela
         tableJogo.setModel(dTable);
-        //TableColumn tc= tableJogo.getColumnModel().getColumn(7);
-        // tc.setCellEditor(new DefaultCellEditor (cbCat));
     }
 
     private DefaultTableModel criaTabela() {
@@ -113,9 +94,16 @@ public class FRMJogo extends javax.swing.JFrame {
         DefaultTableModel dTable = new DefaultTableModel() {
             //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
             Class[] types = new Class[]{
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class,
-                java.lang.Double.class, java.lang.String.class, java.lang.String.class,
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class};
+                java.lang.Integer.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.Double.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.Integer.class
+            };
             //define se os campos podem ser editados na propria tabela
             boolean[] canEdit = new boolean[]{
                 false, false, false, false, false, false, false, false, false};
@@ -692,13 +680,11 @@ public class FRMJogo extends javax.swing.JFrame {
                     jogo.setJoQtd(insert.getJoQtd());
                     jogo.setJoLote(insert.getJoLote());
                     jogo.setJoTipo(insert.getJoTipo());
+                    ConsoleBEAN w = (ConsoleBEAN) cbCon.getSelectedItem();
+                    jogo.setConsole(w);
                     jControle.cadastrar(jogo);
-                    Con_jogoBEAN w = new Con_jogoBEAN();
-                    w.setCjg_conCodigo(cDado.getConCodigo());
-                    cjc.cadastrar2(w);
                 }
             }
-
         }
         resultado();
     }
@@ -729,11 +715,9 @@ public class FRMJogo extends javax.swing.JFrame {
         jogo.setJoQtd(Integer.parseInt(tfQtde.getText()));
         jogo.setJoLote(tfLote.getText());
         jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
-        jControle.cadastrar(jogo);
         ConsoleBEAN w = (ConsoleBEAN) cbCon.getSelectedItem();
-        Con_jogoBEAN a = new Con_jogoBEAN();
-        a.setCjg_conCodigo(w.getConCodigo());
-        cjc.cadastrar2(a);
+        jogo.setConsole(w);
+        jControle.cadastrar(jogo);
         resultado();
     }
 
@@ -748,18 +732,8 @@ public class FRMJogo extends javax.swing.JFrame {
             return true;
         }
     }
-
-    private boolean verificaCampos2() {
-        if (tfFaixa.getText().equals("+(  )")
-                || tfNome.getText().equals("") || tfFaixa.getText().equals("")
-                || cbCat.getSelectedIndex() == (0)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        if (verificaCampos2()) {
+        if (verificaCampos()) {
             int z = verificarInserir();
             if (z == 0) {
                 int v = verificaLote1();
@@ -783,8 +757,7 @@ public class FRMJogo extends javax.swing.JFrame {
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         if (verificaCampos() == true) {
-            JogoBEAN jogo = new JogoBEAN();
-            jogo.setJoCodigo(Integer.parseInt(lbCodigoJogo.getText()));
+            JogoBEAN jogo = jControle.localizarCodigo(Integer.parseInt(lbCodigoJogo.getText()));
             jogo.setJoNome(tfNome.getText());
             jogo.setJoDisponibilidade(0);
             jogo.setJoFaixaEtaria(tfFaixa.getText());
@@ -794,41 +767,9 @@ public class FRMJogo extends javax.swing.JFrame {
             jogo.setJoLote(String.valueOf(tfLote.getText()));
             CategoriaBEAN c = (CategoriaBEAN) cbCat.getSelectedItem();
             jogo.setJo_catCodigo(c.getCatCodigo());
-            Con_jogoBEAN w = new Con_jogoBEAN();
-            ConsoleBEAN d = (ConsoleBEAN) cbCon.getSelectedItem();
-            w.setCjg_joCodigo(Integer.parseInt(lbCodigoJogo.getText()));
-            w.setCjg_conCodigo(d.getConCodigo());
-            //chama o método de controle para editar
-            boolean retorno1 = cjc.editar2(w);
-            if (retorno1 == true) {
-                boolean retorno = jControle.editar(jogo);
-                //se a variavel retorno for igual a true o usuario foi editado
-                if (retorno == true) {
-                    JOptionPane.showMessageDialog(null, "Jogo MODIFICADO com sucesso");
-                    //solicita a atualização da tabela ou seja preenche ela toda novamente
-                    this.preencheTabela();
-                    //chama o método para limpar campos
-                    this.limparCampos();
-                } else {
-                    //mensagem de erro
-                    JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
-                }
-            } else {
-                //mensagem de erro
-                JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro! Insira todos os valores");
-        }
-    }//GEN-LAST:event_btEditarActionPerformed
-
-    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        if (verificaCampos() == true) {
-            JogoBEAN jogo = new JogoBEAN();
-            jogo.setJoCodigo(Integer.parseInt(lbCodigoJogo.getText()));
-            jogo.setJoQtd(0);
-            jogo.setJoDisponibilidade(1);
-            boolean retorno = jControle.editarINVAL(jogo);
+            ConsoleBEAN w = (ConsoleBEAN) cbCon.getSelectedItem();
+            jogo.setConsole(w);
+            boolean retorno = jControle.editar(jogo);
             //se a variavel retorno for igual a true o usuario foi editado
             if (retorno == true) {
                 JOptionPane.showMessageDialog(null, "Jogo MODIFICADO com sucesso");
@@ -844,6 +785,28 @@ public class FRMJogo extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Erro! Insira todos os valores");
         }
+    }//GEN-LAST:event_btEditarActionPerformed
+
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        if (verificaCampos() == true) {
+            JogoBEAN jogo = jControle.localizarCodigo(Integer.parseInt(lbCodigoJogo.getText()));
+            jogo.setJoQtd(0);
+            jogo.setJoDisponibilidade(1);
+            boolean retorno = jControle.editar(jogo);
+            //se a variavel retorno for igual a true o usuario foi editado
+            if (retorno == true) {
+                JOptionPane.showMessageDialog(null, "Jogo MODIFICADO com sucesso");
+                //solicita a atualização da tabela ou seja preenche ela toda novamente
+                this.preencheTabela();
+                //chama o método para limpar campos
+                this.limparCampos();
+            } else {
+                //mensagem de erro
+                JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro! Insira todos os valores");
+        }
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLocalizarActionPerformed
@@ -855,7 +818,6 @@ public class FRMJogo extends javax.swing.JFrame {
         FRMPrincipalFun fun = new FRMPrincipalFun();
         this.dispose();
         fun.setVisible(true);
-        // TODO add your handling code here:
     }//GEN-LAST:event_btVoltarActionPerformed
 
     private void tableJogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableJogoMouseClicked
@@ -961,12 +923,10 @@ public class FRMJogo extends javax.swing.JFrame {
         dTable2.addColumn("Console");
         dTable2.addColumn("Lote");
         dTable2.addColumn("Quantidade");
-
         for (InsertBean as : insertDados) {
             dTable2.addRow(new Object[]{as.getJoPrecoPadrao(), as.getJoTipo(),
                 as.getConNome(), as.getJoLote(), as.getJoQtd()});
         }
-
         //set o modelo da tabela
         tableM.setModel(dTable2);
     }
@@ -976,8 +936,12 @@ public class FRMJogo extends javax.swing.JFrame {
         DefaultTableModel dTable2 = new DefaultTableModel() {
             //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
             Class[] types = new Class[]{
-                java.lang.Double.class, java.lang.String.class, java.lang.String.class,
-                java.lang.String.class, java.lang.Integer.class};
+                java.lang.Double.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.Integer.class
+            };
             //define se os campos podem ser editados na propria tabela
             boolean[] canEdit = new boolean[]{
                 false, false, false, false, false};
@@ -987,7 +951,6 @@ public class FRMJogo extends javax.swing.JFrame {
                 return canEdit[columnIndex];
             }
         ;
-
         };
         //retorna o DefaultTableModel
     return dTable2;
@@ -997,10 +960,8 @@ public class FRMJogo extends javax.swing.JFrame {
         InsertBean jogo = new InsertBean();
         jogo.setJoPrecoPadrao(Float.parseFloat((tfPreco.getText())));
         jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
-
         ConsoleBEAN w = (ConsoleBEAN) cbCon.getSelectedItem();
         jogo.setConNome(w.getConNome());
-
         jogo.setJoLote(tfLote.getText());
         jogo.setJoQtd(Integer.parseInt(tfQtde.getText()));
         insertDados.add(jogo);
@@ -1013,19 +974,19 @@ public class FRMJogo extends javax.swing.JFrame {
         cbCon.setSelectedIndex(0);
         cbTipo.setSelectedIndex(0);
     }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         cadastroTeste();
         preencheTabela2();
         limparCampos2();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tfLoteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLoteKeyTyped
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_tfLoteKeyTyped
 
     private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_cbTipoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1035,7 +996,6 @@ public class FRMJogo extends javax.swing.JFrame {
             preencheTabela2();
         } else {
             JOptionPane.showMessageDialog(null, "Erro! Nenhum dado selecionado na tabela");
-
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -1046,6 +1006,7 @@ public class FRMJogo extends javax.swing.JFrame {
     private void tfChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfChaveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfChaveActionPerformed
+
     private void limparCampos() {
         lbCodigoJogo.setText("");
         tfNome.setText("");
@@ -1072,16 +1033,24 @@ public class FRMJogo extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FRMJogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMJogo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FRMJogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMJogo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FRMJogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMJogo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FRMJogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMJogo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -1141,5 +1110,4 @@ public class FRMJogo extends javax.swing.JFrame {
     private javax.swing.JTextField tfQtde;
     private javax.swing.JTabbedPane tpGuia;
     // End of variables declaration//GEN-END:variables
-
 }

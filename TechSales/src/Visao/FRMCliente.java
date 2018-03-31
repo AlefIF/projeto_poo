@@ -49,8 +49,8 @@ public class FRMCliente extends javax.swing.JFrame {
         jLabelCodigo = new javax.swing.JLabel();
         tfCpfCli = new javax.swing.JFormattedTextField();
         tfTelCli = new javax.swing.JFormattedTextField();
-        tfIdadeCli = new javax.swing.JFormattedTextField();
         btRelatorio = new javax.swing.JButton();
+        tfIdadeCli = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCliente = new javax.swing.JTable();
@@ -184,22 +184,16 @@ public class FRMCliente extends javax.swing.JFrame {
         catch (Exception e){
         }
 
-        try{
-            javax.swing.text.MaskFormatter idade= new javax.swing.text.MaskFormatter("##");
-            tfIdadeCli = new javax.swing.JFormattedTextField(idade);
-        }
-        catch (Exception e){
-        }
-        tfIdadeCli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfIdadeCliActionPerformed(evt);
-            }
-        });
-
         btRelatorio.setText("Gerar Relatorio");
         btRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRelatorioActionPerformed(evt);
+            }
+        });
+
+        tfIdadeCli.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfIdadeCliKeyTyped(evt);
             }
         });
 
@@ -217,7 +211,7 @@ public class FRMCliente extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
-                            .addComponent(tfTelCli)))
+                            .addComponent(tfTelCli, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel9)
                         .addGroup(jPanel2Layout.createSequentialGroup()
@@ -228,13 +222,13 @@ public class FRMCliente extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel10)
-                                .addComponent(tfIdadeCli, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
+                                .addComponent(tfIdadeCli, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel11)
                                 .addComponent(tfEnderecoCli, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btRelatorio)
@@ -441,7 +435,7 @@ public class FRMCliente extends javax.swing.JFrame {
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
 
-        ClienteBEAN cliente = new ClienteBEAN();
+        ClienteBEAN cliente = cCliente.localizarCodigo((Integer.parseInt(jLabelCodigo.getText())));
         cliente.setCod(Integer.parseInt(jLabelCodigo.getText()));
         cliente.setEndereco(tfEnderecoCli.getText());
         cliente.setIdade(Integer.parseInt(tfIdadeCli.getText()));
@@ -489,10 +483,6 @@ public class FRMCliente extends javax.swing.JFrame {
         fun.setVisible(true);
 
     }//GEN-LAST:event_btVoltarActionPerformed
-
-    private void tfIdadeCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIdadeCliActionPerformed
-
-    }//GEN-LAST:event_tfIdadeCliActionPerformed
 
     private void tfNomeCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNomeCliActionPerformed
 
@@ -567,6 +557,13 @@ public class FRMCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btRelatorioActionPerformed
 
+    private void tfIdadeCliKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdadeCliKeyTyped
+        String caracteres = "0123456789.";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfIdadeCliKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -635,7 +632,7 @@ public class FRMCliente extends javax.swing.JFrame {
     private javax.swing.JTable tableCliente;
     private javax.swing.JFormattedTextField tfCpfCli;
     private javax.swing.JTextField tfEnderecoCli;
-    private javax.swing.JFormattedTextField tfIdadeCli;
+    private javax.swing.JTextField tfIdadeCli;
     private javax.swing.JTextField tfLocalizarNome;
     private javax.swing.JTextField tfNomeCli;
     private javax.swing.JFormattedTextField tfTelCli;
@@ -698,10 +695,4 @@ public class FRMCliente extends javax.swing.JFrame {
     return cTable;
     }
 
-    private void tfIdadeKeyTyped(java.awt.event.KeyEvent evt) {
-        String caracteres = "0987654321";
-        if (!caracteres.contains(evt.getKeyChar() + "")) {
-            evt.consume();
-        }
-    }
 }

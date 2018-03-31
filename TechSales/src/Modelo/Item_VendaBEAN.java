@@ -5,47 +5,28 @@
  */
 package Modelo;
 
-import Controle.ItemVendaControle;
-import Controle.JogoControle;
-import Controle.VendaControle;
 import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Alef
  */
+@Entity
 public class Item_VendaBEAN {
 
     private int iv_venCodigo;
     private int iv_joCodigo;
     private int vQtd;
     private Float ivPrecoUnitReal;
+    private JogoBEAN jogo;
+    private VendaBEAN venda;
 
-    String jogo = "a";
-    int qtd = 1;
-    float preco = 1;
-
-    public Item_VendaBEAN renomear(ArrayList<VendaBEAN> vba, ArrayList<Item_VendaBEAN> tvb, ArrayList<JogoBEAN> jgL) {
-        Item_VendaBEAN iOa = new Item_VendaBEAN();
-        for (VendaBEAN vO : vba) {
-            for (Item_VendaBEAN iO : tvb) {
-                if (vO.getVenCodigo() == iO.getIv_venCodigo()) {
-                    for (JogoBEAN jg : jgL) {
-                        if (iO.getIv_joCodigo() == jg.getJoCodigo()) {
-
-                            String jogo = jg.getJoNome();
-                            qtd = iO.getvQtd();
-                            preco = iO.getIvPrecoUnitReal();
-
-                        }
-                    }
-                }
-            }
-        }
-
-        return iOa;
-    }
-
+    @Id
+    @GeneratedValue
     public int getIv_venCodigo() {
         return iv_venCodigo;
     }
@@ -76,6 +57,73 @@ public class Item_VendaBEAN {
 
     public void setIvPrecoUnitReal(Float ivPrecoUnitReal) {
         this.ivPrecoUnitReal = ivPrecoUnitReal;
+    }
+
+    @ManyToOne
+    public JogoBEAN getJogo() {
+        return jogo;
+    }
+
+    public void setJogo(JogoBEAN jogo) {
+        this.jogo = jogo;
+    }
+
+    @ManyToOne
+    public VendaBEAN getVenda() {
+        return venda;
+    }
+
+    public void setVenda(VendaBEAN venda) {
+        this.venda = venda;
+    }
+
+    public String getJogos() {
+        return jogos;
+    }
+
+    public void setJogos(String jogos) {
+        this.jogos = jogos;
+    }
+
+    public int getQtd() {
+        return qtd;
+    }
+
+    public void setQtd(int qtd) {
+        this.qtd = qtd;
+    }
+
+    public float getPreco() {
+        return preco;
+    }
+
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
+
+    String jogos = "a";
+    int qtd = 1;
+    float preco = 1;
+
+    public Item_VendaBEAN renomear(ArrayList<VendaBEAN> vba, ArrayList<Item_VendaBEAN> tvb, ArrayList<JogoBEAN> jgL) {
+        Item_VendaBEAN iOa = new Item_VendaBEAN();
+        for (VendaBEAN vO : vba) {
+            for (Item_VendaBEAN iO : tvb) {
+                if (vO.getVenCodigo() == iO.getIv_venCodigo()) {
+                    for (JogoBEAN jg : jgL) {
+                        if (iO.getIv_joCodigo() == jg.getJoCodigo()) {
+
+                            String jogo = jg.getJoNome();
+                            qtd = iO.getvQtd();
+                            preco = iO.getIvPrecoUnitReal();
+
+                        }
+                    }
+                }
+            }
+        }
+
+        return iOa;
     }
 
     @Override

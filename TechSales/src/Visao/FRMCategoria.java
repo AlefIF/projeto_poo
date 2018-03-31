@@ -29,7 +29,7 @@ public class FRMCategoria extends javax.swing.JFrame {
      */
     public FRMCategoria() {
         initComponents();
-       // catCon.iniciar();
+        // catCon.iniciar();
     }
 
     /**
@@ -337,7 +337,7 @@ public class FRMCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        CategoriaBEAN c = catCon.localizar(Integer.parseInt(lbCodCat.getText()));      
+        CategoriaBEAN c = catCon.localizar(Integer.parseInt(lbCodCat.getText()));
         c.setCatNome(tfNome.getText());
 
         boolean retorno = catCon.editar(c);

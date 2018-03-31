@@ -30,6 +30,10 @@ public class ConsoleControle {
 
     }
 
+    public ConsoleBEAN localizar(int a) {
+        return conHN.listarPorCod(a);
+    }
+
     public boolean editar(ConsoleBEAN c) {
         //return conDAO.editar(c);
         return conHN.editarCon(c);
@@ -39,11 +43,12 @@ public class ConsoleControle {
         //return conDAO.remover(codigo);
         return conHN.deleteCon(codigo);
     }
-    
-    public void iniciar(){
+
+    public void iniciar() {
         conHN.começar();
     }
-    public void fechar(){
+
+    public void fechar() {
         conHN.fechar();
     }
 }

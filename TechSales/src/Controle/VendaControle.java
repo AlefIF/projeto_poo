@@ -5,13 +5,10 @@
  */
 package Controle;
 
-import Modelo.LocacaoHiber;
 import Modelo.VendaBEAN;
 import Modelo.VendaDAO;
 import Modelo.VendaHiber;
-import com.bdii.TechSales.JpaUtil.JpaUtil;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *

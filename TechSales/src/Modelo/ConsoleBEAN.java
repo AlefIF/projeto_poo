@@ -17,13 +17,12 @@ import javax.persistence.Table;
  * @author admin
  */
 @Entity
-@Table(name="console")
+@Table(name = "console")
 public class ConsoleBEAN {
 
     private int conCodigo;
     private String conNome;
     private String conMarca;
-    private List<Con_jogoBEAN> jogo;
 
     @Id
     @GeneratedValue
@@ -49,15 +48,6 @@ public class ConsoleBEAN {
 
     public void setConMarca(String conMarca) {
         this.conMarca = conMarca;
-    }
-    
-    @OneToMany(mappedBy = "cjg_conCodigo")
-    public List<Con_jogoBEAN> getCon() {
-        return jogo;
-    }
-
-    public void setCon(List<Con_jogoBEAN> con) {
-        this.jogo = con;
     }
 
     @Override

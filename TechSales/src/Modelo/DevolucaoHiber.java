@@ -5,7 +5,7 @@
  */
 package Modelo;
 
-import com.bdii.TechSales.JpaUtil.JpaUtil;
+import jpa.JpaUtil;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -21,6 +21,7 @@ public class DevolucaoHiber {
     private static EntityTransaction tx = manager.getTransaction();
 
     public ArrayList<DevolucaoBEAN> listarDev() {
+        começar();
         Query q = manager.createQuery("from DevolucaoBEAN");
         ArrayList<DevolucaoBEAN> devList = (ArrayList<DevolucaoBEAN>) q.getResultList();
         tx.commit();
@@ -28,13 +29,15 @@ public class DevolucaoHiber {
     }
 
     public void cadDev(DevolucaoBEAN c) {
+        começar();
         manager.persist(c);
         tx.commit();
     }
 
     public boolean deleteDev(int c) {
         try {
-            DevolucaoBEAN a = manager.find(DevolucaoBEAN.class, c);
+            começar();
+            DevolucaoBEAN a = listarPorCod(c);
             manager.remove(a);
             tx.commit();
             return true;
@@ -45,12 +48,17 @@ public class DevolucaoHiber {
 
     public boolean editarDev(DevolucaoBEAN c) {
         try {
-            manager.flush();
+            começar();
             tx.commit();
             return true;
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public DevolucaoBEAN listarPorCod(int c) {
+        DevolucaoBEAN a = manager.find(DevolucaoBEAN.class, c);
+        return a;
     }
 
     public static void começar() {

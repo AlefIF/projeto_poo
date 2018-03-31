@@ -26,14 +26,14 @@ public class CategoriaControle {
     }
 
     public ArrayList<CategoriaBEAN> listarALL() {
-       // return catDAO.listarALL();
+        // return catDAO.listarALL();
         return catHN.listarCat();
     }
 
-      public CategoriaBEAN localizar(int a){
-           return catHN.listarPorCod(a);         
-      }
-    
+    public CategoriaBEAN localizar(int a) {
+        return catHN.listarPorCod(a);
+    }
+
     public boolean editar(CategoriaBEAN a) {
         //return catDAO.editar(c);    
         return catHN.editarCat(a);
@@ -43,13 +43,12 @@ public class CategoriaControle {
         //return catDAO.remover(codigo);
         return catHN.deleteCat(codigo);
     }
-    
-    
-    
-    public void iniciar(){
+
+    public void iniciar() {
         catHN.começar();
     }
-    public void fechar(){
+
+    public void fechar() {
         catHN.fechar();
     }
 

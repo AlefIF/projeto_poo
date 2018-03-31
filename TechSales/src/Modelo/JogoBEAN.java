@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -21,7 +22,7 @@ import javax.persistence.Table;
  * @author admin
  */
 @Entity
-@Table(name="jogo")
+@Table(name = "jogo")
 public class JogoBEAN {
 
     private int joCodigo;
@@ -33,9 +34,9 @@ public class JogoBEAN {
     private int jo_catCodigo;
     private int joQtd;
     private int joDisponibilidade;
-    private CategoriaBEAN cat;  
-    private List<Con_jogoBEAN> con;
-    private List<VendaBEAN> venda;
+    private CategoriaBEAN cat;
+    private ConsoleBEAN console;
+    private List<Item_VendaBEAN> itv;
     private List<LocacaoBEAN> alug;
 
     @Id
@@ -121,23 +122,23 @@ public class JogoBEAN {
         this.cat = cat;
     }
 
-    @OneToMany(mappedBy = "cjg_joCodigo")
-    public List<Con_jogoBEAN> getCon() {
-        return con;
+    @ManyToOne
+    public ConsoleBEAN getConsole() {
+        return console;
     }
 
-    public void setCon(List<Con_jogoBEAN> con) {
-        this.con = con;
+    public void setConsole(ConsoleBEAN console) {
+        this.console = console;
     }
 
-    @ManyToMany
+    @OneToMany(mappedBy = "jogo")
     @Column(nullable = false)
-    public List<VendaBEAN> getVenda() {
-        return venda;
+    public List<Item_VendaBEAN> getItv() {
+        return itv;
     }
 
-    public void setVenda(List<VendaBEAN> venda) {
-        this.venda = venda;
+    public void setItv(List<Item_VendaBEAN> itv) {
+        this.itv = itv;
     }
 
     @OneToMany(mappedBy = "jogo")

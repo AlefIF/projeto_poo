@@ -13,8 +13,7 @@ import Modelo.ClienteMySqlDAO;
 public class ClienteControle {
 
     private ClienteHiber cliHN = new ClienteHiber();
-    private ClienteMySqlDAO cDAO = new ClienteMySqlDAO();
-
+    //private ClienteMySqlDAO cDAO = new ClienteMySqlDAO();
 
     public void cadastrar(ClienteBEAN c) {
         // cDAO.cadastrar(c);
@@ -22,14 +21,14 @@ public class ClienteControle {
     }
 
     public ArrayList<ClienteBEAN> listarALL() {
-       //return cDAO.listarALL();
-       return cliHN.listarCli();
+        //return cDAO.listarALL();
+        return cliHN.listarCli();
     }
 
+    /*
     public ClienteBEAN localizarCPF(String cpf) {
         return cDAO.localizarCPF(cpf);
-    }
-
+    }*/
     public boolean editar(ClienteBEAN c) {
         //return cDAO.editar(c);
         return cliHN.editarCli(c);
@@ -41,17 +40,19 @@ public class ClienteControle {
     }
 
     public ClienteBEAN localizarCodigo(int busca) {
-        return cDAO.localizarCodigo(busca);
+        //return cDAO.localizarCodigo(busca);
+        return cliHN.listarPorCod(busca);
     }
 
+    /*
     public ArrayList<ClienteBEAN> localizarNome(String busca) {
-        return cDAO.localizarNome(busca);
-    }
-    
-    public void iniciar(){
+        //return cDAO.localizarNome(busca);
+    }*/
+    public void iniciar() {
         cliHN.começar();
     }
-    public void fechar(){
+
+    public void fechar() {
         cliHN.fechar();
     }
 

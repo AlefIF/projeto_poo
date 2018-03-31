@@ -5,7 +5,7 @@
  */
 package Modelo;
 
-import com.bdii.techSales.jpa.JpaUtil;
+import jpa.JpaUtil;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -22,7 +22,7 @@ public class CategoriaHiber {
     EntityTransaction tx = manager.getTransaction();
 
     public ArrayList<CategoriaBEAN> listarCat() {
-        começar(); 
+        começar();
         Query q = manager.createQuery("from CategoriaBEAN");
         ArrayList<CategoriaBEAN> catList = (ArrayList<CategoriaBEAN>) q.getResultList();
         tx.commit();
@@ -40,7 +40,7 @@ public class CategoriaHiber {
     public boolean deleteCat(int c) {
         try {
             começar();
-            CategoriaBEAN a = manager.find(CategoriaBEAN.class, c);
+            CategoriaBEAN a = listarPorCod(c);
             manager.remove(a);
             tx.commit();
             //fechar();
@@ -52,7 +52,7 @@ public class CategoriaHiber {
 
     public boolean editarCat(CategoriaBEAN c) {
         try {
-            começar(); 
+            começar();
             tx.commit();
             // fechar();
             return true;

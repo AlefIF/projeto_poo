@@ -24,19 +24,19 @@ public class LocacaoControle {
     private LocacaoDAO lDAO = new LocacaoDAO();
 
     public void cadastrar(LocacaoBEAN l) {
-        //lDAO.cadastrar(l);
-        locHN.cadLoc(l);
+        lDAO.cadastrar(l);
+        //locHN.cadLoc(l);
     }
 
     public ArrayList<LocacaoBEAN> listarALL() {
-        /*try {
-             return lDAO.listarALL();
+        try {
+            return lDAO.listarALL();
             //return locHN.listarLoc();
         } catch (SQLException ex) {
             Logger.getLogger(LocacaoControle.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;*/
-        return locHN.listarLoc();
+        return null;
+        //return locHN.listarLoc();
     }
 
     public LocacaoBEAN localizar(String codigo) {
@@ -44,13 +44,13 @@ public class LocacaoControle {
     }
 
     public boolean editar(LocacaoBEAN l) {
-        //return lDAO.editar(l);
-        return locHN.editarLoc(l);
+        return lDAO.editar(l);
+        //return locHN.editarLoc(l);
     }
 
     public boolean remover(int codigo) {
-        //return lDAO.remover(codigo);
-        return locHN.deleteLoc(codigo);
+        return lDAO.remover(codigo);
+        //return locHN.deleteLoc(codigo);
     }
 
     public ArrayList<LocacaoBEAN> localizarCli(int cod) {

@@ -235,7 +235,7 @@ public class JogoMySqlDAO {
         return jogoAL;
     }
 
-    public Object localizarCodigo(int loc_jogCodigo) {
+    public JogoBEAN localizarCodigo(int loc_jogCodigo) {
         String sql = "select * from jogo where joCodigo = ?;";
         ArrayList<JogoBEAN> jogoAL = new ArrayList<JogoBEAN>();
         try {

@@ -45,7 +45,7 @@ public class FuncionarioDAO {
         }
     }
 
-    public void editar(FuncionarioBEAN user) {
+    public boolean editar(FuncionarioBEAN user) {
         connection = ConnectionFactory.getConnection();
         try {
             stmt = connection.prepareStatement("UPDATE funcionario SET funNome=?,funIdade=?,"
@@ -61,23 +61,25 @@ public class FuncionarioDAO {
             stmt.setString(7, user.getTelefone());
             stmt.setString(8, user.getNisPis());
             stmt.setInt(9, user.getCodigo());
-            stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Atualizado com sucesso");
 
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar:\n" + ex);
-        } finally {
-            ConnectionFactory.closeConnection(connection, stmt);
-
+            int linhasAtualizadas = stmt.executeUpdate();
+            stmt.close();
+            //apenas se quiser saber quantas linhas foram alteradas
+            if (linhasAtualizadas > 0) {
+                System.out.println("Foram alterados " + linhasAtualizadas + " registros");
+            }
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public List<FuncionarioBEAN> ListarALL() {
+    public ArrayList<FuncionarioBEAN> listarALL() {
         connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        List<FuncionarioBEAN> users = new ArrayList<FuncionarioBEAN>();
+        ArrayList<FuncionarioBEAN> users = new ArrayList<FuncionarioBEAN>();
         try {
             // prepared statement para seleção
             stmt = connection.prepareStatement("SELECT * from funcionario");
@@ -219,4 +221,38 @@ public class FuncionarioDAO {
         }
         return users;
     }
+
+    public FuncionarioBEAN localizarCodigo(int funCodigo) {
+        String sql = "select * from funcionario where funCodigo = ?;";
+        ArrayList<FuncionarioBEAN> users = new ArrayList<FuncionarioBEAN>();
+        try {
+            // prepared statement para seleção
+            stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, funCodigo);
+
+            // executa a consulta SQL usando o comando executeQuery
+            ResultSet rs = stmt.executeQuery();
+            //joga resultado da consulta no ArrayList
+            while (rs.next()) {
+                //joga os dados do rs dentro de um objeto c do tipo ContatoBEAN
+                FuncionarioBEAN user = new FuncionarioBEAN();
+                user.setCodigo(rs.getInt(1));
+                user.setNome(rs.getString(2));
+                user.setIdade(rs.getInt(3));
+                user.setEndereco(rs.getString(3));
+                user.setCpf(rs.getString(4));
+                user.setNomeUsuario(rs.getString(5));
+                user.setSenha(rs.getString(6));
+                user.setTelefone(rs.getString(7));
+                user.setNisPis(rs.getString(8));
+                //adiciona os dados no ArrayLIst
+                users.add(user);
+            }
+            stmt.close();//fecha conexão - OBRIGATORIO SEMPRE!
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return users.get(0);
+    }
+
 }

@@ -18,7 +18,7 @@ public class FRMLogin extends javax.swing.JFrame {
 
     static FuncionarioBEAN user = new FuncionarioBEAN();
     FuncionarioControle ct = new FuncionarioControle();
-    ArrayList<FuncionarioBEAN> al = ct.ListarALL();
+    ArrayList<FuncionarioBEAN> al = ct.listarALL();
 
     /**
      * Creates new form FRMLogin
@@ -118,35 +118,35 @@ public class FRMLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_rbSenhaActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        al = ct.ListarALL();
+        // al = ct.listarALL();
         String nome = tfUser.getText();
         String senha = tfSenha.getText();
-        try {
+        /* try {
             if (!nome.equals("") && !senha.equals("")) {
                 for (FuncionarioBEAN user : al) {
                     if (user.getNomeUsuario().equals(nome) && user.getSenha().equals(senha)) {
                         this.user = user;
                     }
                 }
-                if (user != null) {
-                    if (user.getNomeUsuario().equals("ADM")) {
-                        FRMPrincipalAdm adm = new FRMPrincipalAdm();
-                        this.dispose();
-                        adm.setVisible(true);
-                    } else {
+                if (user != null) {*/
+        if (nome.equals("ADM") && (senha.equals("ADM"))) {
+            FRMPrincipalAdm adm = new FRMPrincipalAdm();
+            this.dispose();
+            adm.setVisible(true);
+            /* } else {
                         FRMPrincipalFun fun = new FRMPrincipalFun();
                         this.dispose();
                         fun.setVisible(true);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Usuário  não encontrado!");
-                }
-            } else {
+                    }*/
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário  não encontrado!");
+        }
+        /* } else {
                 JOptionPane.showMessageDialog(null, "Insira todos os dados!");
             }
         } catch (java.lang.NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Usuário  não encontrado!");
-        }
+        }*/
 
     }//GEN-LAST:event_jButton3ActionPerformed
 

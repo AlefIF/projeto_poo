@@ -34,7 +34,7 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
      */
     public FRMPrincipalAdm() {
         initComponents();
-        setResizable(false);
+        this.setExtendedState(MAXIMIZED_BOTH);
         this.preencheTabela();
 
     }
@@ -51,7 +51,7 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         tbUsers.addColumn("nomeUsuario");
         tbUsers.addColumn("senha");
 
-        userD = ct.ListarALL();
+        userD = ct.listarALL();
 
         for (FuncionarioBEAN d : userD) {
             tbUsers.addRow(new Object[]{
@@ -69,6 +69,18 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         tbPesquisa.setModel(tbUsers);
     }
 
+    private void limparCampos() {
+        lbCodigo.setText("");
+        tfNomeFun.setText("");
+        tfCpfFun.setText("");
+        tfEnderecoFun.setText("");
+        tfNomeUserFun.setText("");
+        tfIdadeFun.setText("");
+        tfNPFun.setText("");
+        tfTelefoneFun.setText("");
+        tfSenhaUserFun.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,7 +92,6 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
-        jtbPesquisa = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         tfNomeFun = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -89,7 +100,6 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         tfNomeUserFun = new javax.swing.JTextField();
         jbEditarFun = new javax.swing.JToggleButton();
-        jbLocalizarFun = new javax.swing.JToggleButton();
         jbExcluirFun = new javax.swing.JToggleButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -104,28 +114,17 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         tfSenhaUserFun = new javax.swing.JPasswordField();
         tfIdadeFun = new javax.swing.JTextField();
         jbCadastrarFun = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         tbPesquisa = new javax.swing.JTable();
+        jLabel13 = new javax.swing.JLabel();
         tfPesquisaFun = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         btSair = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrador");
         getContentPane().setLayout(null);
 
-        jtbPesquisa.setBackground(new java.awt.Color(204, 204, 255));
-        jtbPesquisa.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jtbPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jtbPesquisaFocusGained(evt);
-            }
-        });
-
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setText("Nome:");
 
@@ -138,14 +137,6 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         jbEditarFun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbEditarFunActionPerformed(evt);
-            }
-        });
-
-        jbLocalizarFun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonConsultarCliente.png"))); // NOI18N
-        jbLocalizarFun.setText("Localizar");
-        jbLocalizarFun.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbLocalizarFunActionPerformed(evt);
             }
         });
 
@@ -206,110 +197,6 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbCadastrarFun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbEditarFun, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbLocalizarFun)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbExcluirFun)
-                        .addGap(32, 32, 32))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(0, 17, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfNomeUserFun, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                                    .addComponent(tfNPFun)
-                                    .addComponent(tfCpfFun)
-                                    .addComponent(tfTelefoneFun)
-                                    .addComponent(lbCodigo)
-                                    .addComponent(tfSenhaUserFun))
-                                .addGap(72, 72, 72))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(65, 65, 65)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(tfEnderecoFun, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                                    .addComponent(tfNomeFun, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                                    .addComponent(tfIdadeFun))
-                                .addGap(72, 72, 72))))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(tfNomeFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfIdadeFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfEnderecoFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfCpfFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfNPFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(tfTelefoneFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfNomeUserFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(tfSenhaUserFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(lbCodigo))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbEditarFun)
-                    .addComponent(jbLocalizarFun)
-                    .addComponent(jbExcluirFun)
-                    .addComponent(jbCadastrarFun))
-                .addContainerGap(87, Short.MAX_VALUE))
-        );
-
-        jtbPesquisa.addTab("Gerenciar usuários", jPanel1);
-
         tbPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -328,7 +215,9 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
                 tbPesquisaKeyReleased(evt);
             }
         });
-        jScrollPane1.setViewportView(tbPesquisa);
+        jScrollPane2.setViewportView(tbPesquisa);
+
+        jLabel13.setText("Buscar:");
 
         tfPesquisaFun.setForeground(new java.awt.Color(204, 204, 204));
         tfPesquisaFun.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -350,37 +239,6 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("Nome:");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jLabel8)
-                .addGap(39, 39, 39)
-                .addComponent(tfPesquisaFun, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfPesquisaFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
-        );
-
-        jtbPesquisa.addTab("Consultar Funcionários", jPanel2);
-
-        getContentPane().add(jtbPesquisa);
-        jtbPesquisa.setBounds(30, 0, 440, 400);
-
         btSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
         btSair.setText("Sair");
         btSair.addActionListener(new java.awt.event.ActionListener() {
@@ -388,18 +246,138 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
                 btSairActionPerformed(evt);
             }
         });
-        getContentPane().add(btSair);
-        btSair.setBounds(480, 10, 80, 20);
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonAdm.png"))); // NOI18N
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(0, 0, 50, 40);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbCodigo)
+                        .addGap(233, 233, 233)
+                        .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel1)
+                        .addGap(36, 36, 36)
+                        .addComponent(tfNomeFun, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfIdadeFun, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(tfCpfFun, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel10)
+                        .addGap(10, 10, 10)
+                        .addComponent(tfNPFun, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfEnderecoFun, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel6)
+                        .addGap(4, 4, 4)
+                        .addComponent(tfTelefoneFun, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel3)
+                        .addGap(10, 10, 10)
+                        .addComponent(tfNomeUserFun, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfSenhaUserFun, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jbCadastrarFun)
+                        .addGap(29, 29, 29)
+                        .addComponent(jbEditarFun, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(jbExcluirFun))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel13)
+                        .addGap(49, 49, 49)
+                        .addComponent(tfPesquisaFun, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(lbCodigo)
+                    .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfNomeFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel7)
+                            .addComponent(tfIdadeFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfCpfFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfNPFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel10))))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfEnderecoFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(tfTelefoneFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfNomeUserFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(tfSenhaUserFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(50, 50, 50)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbCadastrarFun)
+                    .addComponent(jbEditarFun)
+                    .addComponent(jbExcluirFun))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel13))
+                    .addComponent(tfPesquisaFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/back2.png"))); // NOI18N
-        getContentPane().add(jLabel12);
-        jLabel12.setBounds(-20, -10, 640, 440);
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(-1, 0, 440, 490);
 
-        setSize(new java.awt.Dimension(579, 438));
+        setSize(new java.awt.Dimension(453, 526));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -409,12 +387,8 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         login.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btSairActionPerformed
 
-    private void jtbPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtbPesquisaFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtbPesquisaFocusGained
-
     private void tfPesquisaFunKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisaFunKeyTyped
-        readJTableForNome(tfPesquisaFun.getText());
+        // TODO add your handling code here:
     }//GEN-LAST:event_tfPesquisaFunKeyTyped
 
     private void tfPesquisaFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPesquisaFunActionPerformed
@@ -422,44 +396,72 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPesquisaFunActionPerformed
 
     private void tfPesquisaFunFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfPesquisaFunFocusLost
-        tfPesquisaFun.setForeground(GRAY);
+        // TODO add your handling code here:
     }//GEN-LAST:event_tfPesquisaFunFocusLost
 
     private void tfPesquisaFunFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfPesquisaFunFocusGained
-        tfPesquisaFun.setText("");
-        tfPesquisaFun.setForeground(BLACK);
+        // TODO add your handling code here:
     }//GEN-LAST:event_tfPesquisaFunFocusGained
 
     private void tbPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbPesquisaKeyReleased
-
+        // TODO add your handling code here:
     }//GEN-LAST:event_tbPesquisaKeyReleased
 
     private void tbPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPesquisaMouseClicked
+        limparCampos();
 
-        jtbPesquisa.setSelectedIndex(0);
         if (tbPesquisa.getSelectedRow() != -1) {
-            lbCodigo.setText((String) tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 0).toString());
-            tfNomeFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 1).toString());
-            tfTelefoneFun.setText((String) tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 2).toString());
-            tfEnderecoFun.setText((String) tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 3).toString());
-            tfNPFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 4).toString());
-            tfCpfFun.setText((String) tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 5).toString());
-            tfIdadeFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 6).toString());
-            tfNomeUserFun.setText((String) tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 7).toString());
-            tfSenhaUserFun.setText((String) tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 8).toString());
+            if (Integer.parseInt(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 8).toString()) > 0) {
+                lbCodigo.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 0).toString());
+                tfNomeFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 1).toString());
+                tfTelefoneFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 2).toString());
+                tfEnderecoFun.setText((tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 3).toString()));
+                tfNPFun.setText((tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 4).toString()));
+                tfCpfFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 5).toString());
+                tfIdadeFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 6).toString());
+                tfNomeUserFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 7).toString());
+                tfSenhaUserFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 8).toString());
+            }
         }
     }//GEN-LAST:event_tbPesquisaMouseClicked
+
+    private void jbCadastrarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarFunActionPerformed
+        if (verificaCampos() == false) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        } else {
+            cadastrar();
+            this.preencheTabela();
+            limpaCampos();
+        }
+    }//GEN-LAST:event_jbCadastrarFunActionPerformed
+
+    private void tfIdadeFunKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdadeFunKeyTyped
+        String caracteres = "0123456789";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfIdadeFunKeyTyped
 
     private void jbExcluirFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirFunActionPerformed
         if (lbCodigo.getText().equals("...")) {
             JOptionPane.showMessageDialog(null, "É preciso ter localizado um usuário!");
         } else {
-            ct.excluir(Integer.parseInt(lbCodigo.getText()));
+            ct.remover(Integer.parseInt(lbCodigo.getText()));
             limpaCampos();
             this.preencheTabela();
 
         }
     }//GEN-LAST:event_jbExcluirFunActionPerformed
+
+    private void jbEditarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarFunActionPerformed
+        if (verificaCampos() == false) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        } else {
+            editar();
+            this.preencheTabela();
+            limpaCampos();
+        }
+    }//GEN-LAST:event_jbEditarFunActionPerformed
 
     public void cadastrar() {
         FuncionarioBEAN c = new FuncionarioBEAN();
@@ -499,36 +501,6 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         }
     }
 
-    private void tfIdadeFunKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdadeFunKeyTyped
-        String caracteres = "0123456789.";
-        if (!caracteres.contains(evt.getKeyChar() + "")) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_tfIdadeFunKeyTyped
-
-    private void jbCadastrarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarFunActionPerformed
-        if (verificaCampos() == false) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-        } else {
-            cadastrar();
-            this.preencheTabela();
-            limpaCampos();
-        }
-    }//GEN-LAST:event_jbCadastrarFunActionPerformed
-
-    private void jbEditarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarFunActionPerformed
-        if (verificaCampos() == false) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-        } else {
-            editar();
-            this.preencheTabela();
-            limpaCampos();
-        }
-    }//GEN-LAST:event_jbEditarFunActionPerformed
-
-    private void jbLocalizarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLocalizarFunActionPerformed
-        jtbPesquisa.setSelectedIndex(1);
-    }//GEN-LAST:event_jbLocalizarFunActionPerformed
     public void limpaCampos() {
         tfNomeFun.setText("");
         tfIdadeFun.setText("");
@@ -623,23 +595,18 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbCadastrarFun;
     private javax.swing.JToggleButton jbEditarFun;
     private javax.swing.JToggleButton jbExcluirFun;
-    private javax.swing.JToggleButton jbLocalizarFun;
-    private javax.swing.JTabbedPane jtbPesquisa;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JTable tbPesquisa;
     private javax.swing.JFormattedTextField tfCpfFun;

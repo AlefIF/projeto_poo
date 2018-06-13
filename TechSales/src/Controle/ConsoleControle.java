@@ -20,13 +20,13 @@ public class ConsoleControle {
     private ConsoleMySqlDAO conDAO = new ConsoleMySqlDAO();
 
     public void cadastrar(ConsoleBEAN c) {
-        //conDAO.cadastrar(c);
-        conHN.cadCon(c);
+        conDAO.cadastrar(c);
+        //conHN.cadCon(c);
     }
 
     public ArrayList<ConsoleBEAN> listarALL() {
-        //return conDAO.listarALL();
-        return conHN.listarCon();
+        return conDAO.listarALL();
+        //return conHN.listarCon();
 
     }
 
@@ -35,13 +35,13 @@ public class ConsoleControle {
     }
 
     public boolean editar(ConsoleBEAN c) {
-        //return conDAO.editar(c);
-        return conHN.editarCon(c);
+        return conDAO.editar(c);
+        //return conHN.editarCon(c);
     }
 
     public boolean remover(int codigo) {
-        //return conDAO.remover(codigo);
-        return conHN.deleteCon(codigo);
+        return conDAO.remover(codigo);
+        //return conHN.deleteCon(codigo);
     }
 
     public void iniciar() {

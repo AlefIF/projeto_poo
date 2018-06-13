@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class FuncionarioControle {
 
-    FuncionarioHiber funH = new FuncionarioHiber();
+    /* FuncionarioHiber funH = new FuncionarioHiber();
 
     public void cadastrar(FuncionarioBEAN c) {
         funH.cadFun(c);
@@ -54,6 +54,26 @@ public class FuncionarioControle {
 
     public void fechar() {
         funH.fechar();
+    }*/
+    private FuncionarioDAO fDAO = new FuncionarioDAO();
+
+    public void cadastrar(FuncionarioBEAN c) {
+        fDAO.cadastrar(c);
     }
 
+    public ArrayList<FuncionarioBEAN> listarALL() {
+        return fDAO.listarALL();
+    }
+
+    public boolean editar(FuncionarioBEAN c) {
+        return fDAO.editar(c);
+    }
+
+    public boolean remover(int codigo) {
+        return fDAO.remover(codigo);
+    }
+
+    public FuncionarioBEAN localizarCodigo(int a) {
+        return fDAO.localizarCodigo(a);
+    }
 }

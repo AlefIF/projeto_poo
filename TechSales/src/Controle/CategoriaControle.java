@@ -20,14 +20,13 @@ public class CategoriaControle {
     private CategoriaMysqlDAO catDAO = new CategoriaMysqlDAO();
 
     public void cadastrar(CategoriaBEAN c) {
-        //c.setCatCodigo(this.atualizaCodigo());
-        //catDAO.cadastrar(c);
-        catHN.cadCat(c);
+        catDAO.cadastrar(c);
+        //catHN.cadCat(c);
     }
 
     public ArrayList<CategoriaBEAN> listarALL() {
-        // return catDAO.listarALL();
-        return catHN.listarCat();
+        return catDAO.listarALL();
+        //return catHN.listarCat();
     }
 
     public CategoriaBEAN localizar(int a) {
@@ -35,13 +34,13 @@ public class CategoriaControle {
     }
 
     public boolean editar(CategoriaBEAN a) {
-        //return catDAO.editar(c);    
-        return catHN.editarCat(a);
+        return catDAO.editar(a);
+        //return catHN.editarCat(a);
     }
 
     public boolean remover(int codigo) {
-        //return catDAO.remover(codigo);
-        return catHN.deleteCat(codigo);
+        return catDAO.remover(codigo);
+        //return catHN.deleteCat(codigo);
     }
 
     public void iniciar() {

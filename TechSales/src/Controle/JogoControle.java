@@ -16,32 +16,32 @@ import Modelo.JogoMySqlDAO;
  */
 public class JogoControle {
 
-    private JogoHiber jogHN = new JogoHiber();
+    //private JogoHiber jogHN = new JogoHiber();
     private JogoMySqlDAO jDAO = new JogoMySqlDAO();
 
     public void cadastrar(JogoBEAN c) {
-        //jDAO.cadastrar(c);
-        jogHN.cadJog(c);
+        jDAO.cadastrar(c);
+        //jogHN.cadJog(c);
     }
 
     public ArrayList<JogoBEAN> listarALL() {
-        //return jDAO.listarALL();
-        return jogHN.listarJog();
+        return jDAO.listarALL();
+        //return jogHN.listarJog();
     }
 
     public boolean editar(JogoBEAN c) {
-        //return jDAO.editar(c);
-        return jogHN.editarJog(c);
+        return jDAO.editar(c);
+        //return jogHN.editarJog(c);
     }
 
     public boolean editarINVAL(JogoBEAN c) {
-        //return jDAO.editarINVAL(c);
-        return jogHN.editarJog(c);
+        return jDAO.editarINVAL(c);
+        //return jogHN.editarJog(c);
     }
 
     public boolean remover(int codigo) {
-        //return jDAO.remover(codigo);
-        return jogHN.deleteJog(codigo);
+        return jDAO.remover(codigo);
+        //return jogHN.deleteJog(codigo);
     }
 
     public void editarDisponibilidade(JogoBEAN l) {
@@ -53,16 +53,16 @@ public class JogoControle {
     }
 
     public JogoBEAN localizarCodigo(int a) {
-        //return jDAO.localizarCodigo(loc_jogCodigo);
-        return jogHN.listarPorCod(a);
+        return jDAO.localizarCodigo(a);
+        //return jogHN.listarPorCod(a);
     }
-
+    /*
     public void iniciar() {
         jogHN.começar();
     }
 
     public void fechar() {
         jogHN.fechar();
-    }
+    }*/
 
 }

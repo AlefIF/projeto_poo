@@ -9,6 +9,7 @@ import Modelo.DevolucaoBEAN;
 import Modelo.DevolucaoDAO;
 import Modelo.DevolucaoHiber;
 import Modelo.LocacaoBEAN;
+import Modelo.LocacaoDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -21,34 +22,34 @@ import java.util.logging.Logger;
 public class DevolucaoControle {
 
     private DevolucaoDAO dDAO = new DevolucaoDAO();
-    private DevolucaoHiber dvH = new DevolucaoHiber();
+    private LocacaoDAO lDao = new LocacaoDAO();
+    //private DevolucaoHiber dvH = new DevolucaoHiber();
 
     public void cadastrar(DevolucaoBEAN d) {
-        //dDAO.cadastrar(d);
-        dvH.cadDev(d);
+        dDAO.cadastrar(d);
+        //dvH.cadDev(d);
     }
 
     public ArrayList<DevolucaoBEAN> listarALL() {
-
-        return dvH.listarDev();
+        return dDAO.listarALL();
+        //return dvH.listarDev();
     }
 
     public boolean editar(DevolucaoBEAN l) {
-        //return lDAO.editar(l);
-        return dvH.editarDev(l);
+        return dDAO.editar(l);
+        //return dvH.editarDev(l);
     }
 
     public boolean remover(int codigo) {
-        //return lDAO.remover(codigo);
-        return dvH.deleteDev(codigo);
+        return dDAO.remover(codigo);
+        //return dvH.deleteDev(codigo);
     }
 
-    public void iniciar() {
+    /*public void iniciar() {
         dvH.começar();
     }
 
     public void fechar() {
         dvH.fechar();
-    }
-
+    }*/
 }

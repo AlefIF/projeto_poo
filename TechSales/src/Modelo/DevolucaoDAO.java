@@ -52,26 +52,30 @@ public class DevolucaoDAO {
         }
     }
 
-    /*public ArrayList<DevolucaoBEAN> listarALL() throws SQLException {
+    public ArrayList<DevolucaoBEAN> listarALL() {
         String sql = "select * from devolucao;";
         ArrayList<DevolucaoBEAN> devolucaoAL = new ArrayList<>();
-        try{
+        try {
             stmt = connection.prepareStatement(sql);
-            
+
             //executa
             ResultSet rs = stmt.executeQuery();
             //joga resultado da consulta no arrayList
-            while (rs.next()){
+            while (rs.next()) {
                 DevolucaoBEAN d = new DevolucaoBEAN();
-                d.setCod(rs.getString(1));
-                d.setNome(rs.getString(2));
-                d.setValor(rs.getFloat(3));
-                
+                d.setCod(rs.getInt(1));
+                d.setDev_funCodigo(rs.getInt(2));
+                d.setDev_loCodigo(rs.getInt(3));
+                d.setDev_cliCodigo(rs.getInt(4));
+                d.setDataDev(rs.getDate(5));
+                d.setValor(rs.getFloat(6));
+                d.setMulta(rs.getFloat(7));
+                d.setNf(rs.getString(8));
                 //adiciona os dados no array
                 devolucaoAL.add(d);
             }
             stmt.close();
-        }catch (SQLException e ){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return devolucaoAL;
@@ -80,22 +84,26 @@ public class DevolucaoDAO {
     public DevolucaoBEAN localizar(String codigo) {
         String sql = "select * from devolucao where devCodigo = ?;";
         DevolucaoBEAN d = new DevolucaoBEAN();
-        try{
+        try {
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, codigo);
-            
+
             //executa
             ResultSet rs = stmt.executeQuery();
-            
+
             //joga resultado da consulta no arrayList
-            while (rs.next()){
-                d.setCod(rs.getString(1));
-                d.setNome(rs.getString(2));
-                d.setValor(rs.getFloat(3));
-                
+            while (rs.next()) {
+                d.setCod(rs.getInt(1));
+                d.setDev_funCodigo(rs.getInt(2));
+                d.setDev_loCodigo(rs.getInt(3));
+                d.setDev_cliCodigo(rs.getInt(4));
+                d.setDataDev(rs.getDate(5));
+                d.setValor(rs.getFloat(6));
+                d.setMulta(rs.getFloat(7));
+                d.setNf(rs.getString(8));
             }
             stmt.close();
-        }catch (SQLException e ){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return d;
@@ -103,49 +111,54 @@ public class DevolucaoDAO {
 
     public boolean editar(DevolucaoBEAN d) {
         String sql = "update devolucao set devCodigo = ?,dev_Nome = ?,dev_Valor = ?;";
-        
-        try{
+
+        try {
             //prepared statement para inserção
             stmt = connection.prepareStatement(sql);
-            
+
             //seta os valores
-            stmt.setString(1, d.getCod());
-            stmt.setString(2, d.getNome());
-            stmt.setFloat(3, d.getValor());
-        
+            stmt.setInt(1, d.getCod());
+            stmt.setInt(2, d.getDev_funCodigo());
+            stmt.setInt(3, d.getDev_loCodigo());
+            stmt.setInt(4, d.getDev_cliCodigo());
+            stmt.setDate(5, d.getDataDev());
+            stmt.setFloat(6, d.getValor());
+            stmt.setFloat(7, d.getMulta());
+            stmt.setString(8, d.getNf());
+
             //executa
             int linhasAtualizadas = stmt.executeUpdate();
             stmt.close();
-            if (linhasAtualizadas > 0){
+            if (linhasAtualizadas > 0) {
                 System.out.println("Foram alterados " + linhasAtualizadas + " resgistros");
             }
             return true;
-            
-        }catch (SQLException e){
+
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public boolean remover(String codigo) {
+    public boolean remover(int codigo) {
         String sql = "delete from devolucao where devCodigo = ?";
-        
-        try{
+
+        try {
             //prepared statement para inserção
             stmt = connection.prepareStatement(sql);
-            
+
             //seta os valores
-            stmt.setString(1, codigo);
-            
+            stmt.setInt(1, codigo);
+
             //executa
             stmt.execute();
             stmt.close();
             return true;
-            
-        }catch (SQLException e){
+
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    
+    /*
     public ArrayList<DevolucaoBEAN> listarProduto() {
     String sql = "select dev_Nome from devolucao;";
         ArrayList<DevolucaoBEAN> proAL = new ArrayList<DevolucaoBEAN>();

@@ -13,41 +13,41 @@ import Modelo.ClienteMySqlDAO;
 public class ClienteControle {
 
     private ClienteHiber cliHN = new ClienteHiber();
-    //private ClienteMySqlDAO cDAO = new ClienteMySqlDAO();
+    private ClienteMySqlDAO cDAO = new ClienteMySqlDAO();
 
     public void cadastrar(ClienteBEAN c) {
-        // cDAO.cadastrar(c);
-        cliHN.cadCli(c);
+        cDAO.cadastrar(c);
+        //cliHN.cadCli(c);
     }
 
     public ArrayList<ClienteBEAN> listarALL() {
-        //return cDAO.listarALL();
-        return cliHN.listarCli();
+        return cDAO.listarALL();
+        //return cliHN.listarCli();
     }
 
-    /*
     public ClienteBEAN localizarCPF(String cpf) {
         return cDAO.localizarCPF(cpf);
-    }*/
+    }
+
     public boolean editar(ClienteBEAN c) {
-        //return cDAO.editar(c);
-        return cliHN.editarCli(c);
+        return cDAO.editar(c);
+        //return cliHN.editarCli(c);
     }
 
     public boolean remover(int codigo) {
-        //return cDAO.remover(codigo);
-        return cliHN.deleteCli(codigo);
+        return cDAO.remover(codigo);
+        //return cliHN.deleteCli(codigo);
     }
 
     public ClienteBEAN localizarCodigo(int busca) {
-        //return cDAO.localizarCodigo(busca);
-        return cliHN.listarPorCod(busca);
+        return cDAO.localizarCodigo(busca);
+        //return cliHN.listarPorCod(busca);
     }
 
-    /*
     public ArrayList<ClienteBEAN> localizarNome(String busca) {
-        //return cDAO.localizarNome(busca);
-    }*/
+        return cDAO.localizarNome(busca);
+    }
+
     public void iniciar() {
         cliHN.começar();
     }

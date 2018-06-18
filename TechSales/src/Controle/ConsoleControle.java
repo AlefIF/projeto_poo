@@ -6,9 +6,12 @@
 package Controle;
 
 import Modelo.ConsoleBEAN;
-import Modelo.ConsoleHiber;
-import Modelo.ConsoleMySqlDAO;
 import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import jpa.JpaUtil;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -16,39 +19,62 @@ import java.util.ArrayList;
  */
 public class ConsoleControle {
 
-    private ConsoleHiber conHN = new ConsoleHiber();
-    private ConsoleMySqlDAO conDAO = new ConsoleMySqlDAO();
+    private static EntityManager manager = JpaUtil.getEntityManager();
+    private static EntityTransaction tx = manager.getTransaction();
+
+    public static void começar() {
+        tx.begin();
+    }
+
+    public static void fechar() {
+        manager.close();
+        JpaUtil.close();
+    }
 
     public void cadastrar(ConsoleBEAN c) {
-        conDAO.cadastrar(c);
-        //conHN.cadCon(c);
+        começar();
+        manager.persist(c);
+        tx.commit();
     }
 
     public ArrayList<ConsoleBEAN> listarALL() {
-        return conDAO.listarALL();
-        //return conHN.listarCon();
-
+        começar();
+        Query q = manager.createQuery("from ConsoleBEAN");
+        ArrayList<ConsoleBEAN> conList = (ArrayList<ConsoleBEAN>) q.getResultList();
+        tx.commit();
+        return conList;
     }
 
     public ConsoleBEAN localizar(int a) {
-        return conHN.listarPorCod(a);
+
+        ConsoleBEAN b = manager.find(ConsoleBEAN.class, a);
+        return b;
     }
 
     public boolean editar(ConsoleBEAN c) {
-        return conDAO.editar(c);
-        //return conHN.editarCon(c);
+
+        try {
+            começar();
+            tx.commit();
+            return true;
+        } catch (HibernateException e) {
+            return false;
+        }
+
     }
 
-    public boolean remover(int codigo) {
-        return conDAO.remover(codigo);
-        //return conHN.deleteCon(codigo);
+    public boolean remover(int c) {
+
+        try {
+            começar();
+            ConsoleBEAN a = localizar(c);
+            manager.remove(a);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
-    public void iniciar() {
-        conHN.começar();
-    }
-
-    public void fechar() {
-        conHN.fechar();
-    }
 }

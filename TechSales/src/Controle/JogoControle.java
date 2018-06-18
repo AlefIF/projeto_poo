@@ -7,8 +7,10 @@ package Controle;
 
 import java.util.ArrayList;
 import Modelo.JogoBEAN;
-import Modelo.JogoHiber;
-import Modelo.JogoMySqlDAO;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import jpa.JpaUtil;
 
 /**
  *
@@ -16,53 +18,72 @@ import Modelo.JogoMySqlDAO;
  */
 public class JogoControle {
 
-    //private JogoHiber jogHN = new JogoHiber();
-    private JogoMySqlDAO jDAO = new JogoMySqlDAO();
+    private static EntityManager manager = JpaUtil.getEntityManager();
+    private static EntityTransaction tx = manager.getTransaction();
+    
+     public static void começar() {
+        tx.begin();
+    }
+
+    public static void fechar() {
+        manager.close();
+        JpaUtil.close();
+    }
+    
+    
 
     public void cadastrar(JogoBEAN c) {
-        jDAO.cadastrar(c);
-        //jogHN.cadJog(c);
+        começar();
+        manager.persist(c);
+        tx.commit();
     }
 
     public ArrayList<JogoBEAN> listarALL() {
-        return jDAO.listarALL();
-        //return jogHN.listarJog();
+        começar();
+        Query q = manager.createQuery("from JogoBEAN");
+        ArrayList<JogoBEAN> jogList = (ArrayList<JogoBEAN>) q.getResultList();
+        tx.commit();
+        return jogList;
     }
 
     public boolean editar(JogoBEAN c) {
-        return jDAO.editar(c);
-        //return jogHN.editarJog(c);
+         try {
+            começar();
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public boolean editarINVAL(JogoBEAN c) {
-        return jDAO.editarINVAL(c);
-        //return jogHN.editarJog(c);
+        
     }
 
-    public boolean remover(int codigo) {
-        return jDAO.remover(codigo);
-        //return jogHN.deleteJog(codigo);
+    public boolean remover(int c) {
+      try {
+            começar();
+            JogoBEAN a = localizarCodigo(c);
+            manager.remove(a);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public void editarDisponibilidade(JogoBEAN l) {
-        jDAO.editarDisponibilidade(l);
+      
     }
 
     public ArrayList<JogoBEAN> localizarNome(String nome) {
-        return jDAO.localizarNome(nome);
+        
     }
 
-    public JogoBEAN localizarCodigo(int a) {
-        return jDAO.localizarCodigo(a);
-        //return jogHN.listarPorCod(a);
-    }
-    /*
-    public void iniciar() {
-        jogHN.começar();
+    public JogoBEAN localizarCodigo(int c) {
+         JogoBEAN a = manager.find(JogoBEAN.class, c);
+        return a;
     }
 
-    public void fechar() {
-        jogHN.fechar();
-    }*/
 
 }

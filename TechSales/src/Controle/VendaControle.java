@@ -6,9 +6,12 @@
 package Controle;
 
 import Modelo.VendaBEAN;
-import Modelo.VendaDAO;
-import Modelo.VendaHiber;
+import static Modelo.VendaHiber.começar;
 import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import jpa.JpaUtil;
 
 /**
  *
@@ -16,41 +19,59 @@ import java.util.ArrayList;
  */
 public class VendaControle {
 
-    private VendaHiber venHN = new VendaHiber();
-    private VendaDAO venDAO = new VendaDAO();
+    private static EntityManager manager = JpaUtil.getEntityManager();
+    private static EntityTransaction tx = manager.getTransaction();
+
+    public static void começar() {
+        tx.begin();
+    }
+
+    public static void fechar() {
+        manager.close();
+        JpaUtil.close();
+    }
 
     public int cadastrar(VendaBEAN c) {
-
-        int cod = venDAO.cadastrar(c);
-        //int cod = venHN.cadVen(c);
-        return cod;
+        começar();
+        manager.persist(c);
+        tx.commit();
+        return c.getVenCodigo();
     }
 
     public ArrayList<VendaBEAN> listarALL() {
-        return venDAO.listarALL();
-        //return venHN.listarVen();
+        começar();
+        Query q = manager.createQuery("from VendaBEAN");
+        ArrayList<VendaBEAN> venList = (ArrayList<VendaBEAN>) q.getResultList();
+        tx.commit();
+        return venList;
     }
 
     public boolean editar(VendaBEAN c) {
-        return venDAO.editar(c);
-        //return venHN.editarVen(c);
+        try {
+            começar();
+            manager.flush();
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public boolean remover(int codigo) {
-        return venDAO.remover(codigo);
-        //return venHN.deleteVen(codigo);
+    public boolean remover(int c) {
+        try {
+            começar();
+            VendaBEAN a = localizar(c);
+            manager.remove(a);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public ArrayList consultar(String consulta) {
-        return venDAO.consultar(consulta);
-    }
-
-    public void iniciar() {
-        venHN.começar();
-    }
-
-    public void fechar() {
-        venHN.fechar();
+    public VendaBEAN localizar(int c) {
+        VendaBEAN a = manager.find(VendaBEAN.class, c);
+        return a;
     }
 
 }

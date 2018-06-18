@@ -7,53 +7,67 @@ package Controle;
 
 import java.util.ArrayList;
 import Modelo.ClienteBEAN;
-import Modelo.ClienteHiber;
-import Modelo.ClienteMySqlDAO;
+import static Modelo.ClienteHiber.começar;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import jpa.JpaUtil;
 
 public class ClienteControle {
 
-    private ClienteHiber cliHN = new ClienteHiber();
-    private ClienteMySqlDAO cDAO = new ClienteMySqlDAO();
+    private static EntityManager manager = JpaUtil.getEntityManager();
+    private static EntityTransaction tx = manager.getTransaction();
+
+    public static void começar() {
+        tx.begin();
+    }
+
+    public static void fechar() {
+        manager.close();
+        JpaUtil.close();
+    }
 
     public void cadastrar(ClienteBEAN c) {
-        cDAO.cadastrar(c);
-        //cliHN.cadCli(c);
+        começar();
+        manager.persist(c);
+        tx.commit();
     }
 
     public ArrayList<ClienteBEAN> listarALL() {
-        return cDAO.listarALL();
-        //return cliHN.listarCli();
+        começar();
+        Query q = manager.createQuery("from ClienteBEAN");
+        ArrayList<ClienteBEAN> cliList = (ArrayList<ClienteBEAN>) q.getResultList();
+        tx.commit();
+        return cliList;
     }
 
-    public ClienteBEAN localizarCPF(String cpf) {
-        return cDAO.localizarCPF(cpf);
-    }
 
     public boolean editar(ClienteBEAN c) {
-        return cDAO.editar(c);
-        //return cliHN.editarCli(c);
+        try {
+            começar();
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public boolean remover(int codigo) {
-        return cDAO.remover(codigo);
-        //return cliHN.deleteCli(codigo);
+    public boolean remover(int c) {
+        try {
+            começar();
+            ClienteBEAN a = localizarCodigo(c);
+            manager.remove(a);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public ClienteBEAN localizarCodigo(int busca) {
-        return cDAO.localizarCodigo(busca);
-        //return cliHN.listarPorCod(busca);
+    public ClienteBEAN localizarCodigo(int c) {
+        ClienteBEAN a = manager.find(ClienteBEAN.class, c);
+        return a;
     }
 
-    public ArrayList<ClienteBEAN> localizarNome(String busca) {
-        return cDAO.localizarNome(busca);
-    }
-
-    public void iniciar() {
-        cliHN.começar();
-    }
-
-    public void fechar() {
-        cliHN.fechar();
-    }
-
+ 
 }

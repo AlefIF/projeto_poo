@@ -5,11 +5,12 @@
  */
 package Controle;
 
-//import Modelo.ConnectionFactory;
 import Modelo.FuncionarioBEAN;
-import Modelo.FuncionarioDAO;
-import Modelo.FuncionarioHiber;
 import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import jpa.JpaUtil;
 
 /**
  *
@@ -17,63 +18,80 @@ import java.util.ArrayList;
  */
 public class FuncionarioControle {
 
-    /* FuncionarioHiber funH = new FuncionarioHiber();
+    private static EntityManager manager = JpaUtil.getEntityManager();
+    private static EntityTransaction tx = manager.getTransaction();
+
+    public static void começar() {
+        tx.begin();
+    }
+
+    public static void fechar() {
+        manager.close();
+        JpaUtil.close();
+    }
 
     public void cadastrar(FuncionarioBEAN c) {
-        funH.cadFun(c);
+        começar();
+        manager.persist(c);
+        tx.commit();
     }
 
     public boolean verificaLogin(String senha) {
-        return funH.verificaLogin(senha);
-    }
-
-    public void editar(FuncionarioBEAN c) {
-        funH.editarFun(c);
-    }
-
-    public FuncionarioBEAN localizarCodigo(int cod) {
-        return funH.listarPorCod(cod);
-    }
-
-    public ArrayList<FuncionarioBEAN> ListarALL() {
-        ArrayList<FuncionarioBEAN> auxAL = (ArrayList<FuncionarioBEAN>) funH.listarFun();
-        return auxAL;
-    }
-
-    public void excluir(int codigo) {
-        funH.deleteFun(codigo);
-    }
-
-    public boolean verificaLogin2(String login, String senha) {
-        return funH.verificaLogin2(login, senha);
-    }
-
-    public void iniciar() {
-        funH.começar();
-    }
-
-    public void fechar() {
-        funH.fechar();
-    }*/
-    private FuncionarioDAO fDAO = new FuncionarioDAO();
-
-    public void cadastrar(FuncionarioBEAN c) {
-        fDAO.cadastrar(c);
-    }
-
-    public ArrayList<FuncionarioBEAN> listarALL() {
-        return fDAO.listarALL();
+        boolean verifica = false;
+        ArrayList<FuncionarioBEAN> al = ListarALL();
+        for (FuncionarioBEAN f : al) {
+            if ((f.getNome().equals("ADM")) && (f.getSenha().equals(senha))) {
+                verifica = true;
+            }
+        }
+        return verifica;
     }
 
     public boolean editar(FuncionarioBEAN c) {
-        return fDAO.editar(c);
+        try {
+            começar();
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public boolean remover(int codigo) {
-        return fDAO.remover(codigo);
+    public FuncionarioBEAN localizarCodigo(int c) {
+        FuncionarioBEAN a = manager.find(FuncionarioBEAN.class, c);
+        return a;
+
     }
 
-    public FuncionarioBEAN localizarCodigo(int a) {
-        return fDAO.localizarCodigo(a);
+    public ArrayList<FuncionarioBEAN> ListarALL() {
+        começar();
+        Query q = manager.createQuery("from FuncionarioBEAN");
+        ArrayList<FuncionarioBEAN> funList = (ArrayList<FuncionarioBEAN>) q.getResultList();
+        tx.commit();
+        return funList;
     }
+
+    public boolean excluir(int c) {
+        try {
+            começar();
+            FuncionarioBEAN a = localizarCodigo(c);
+            manager.remove(a);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean verificaLogin2(String login, String senha) {
+        boolean verifica = false;
+        ArrayList<FuncionarioBEAN> al = ListarALL();
+        for (FuncionarioBEAN f : al) {
+            if ((f.getNome().equals(login)) && (f.getSenha().equals(senha))) {
+                verifica = true;
+            }
+        }
+        return verifica;
+    }
+
 }

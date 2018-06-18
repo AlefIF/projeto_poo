@@ -6,13 +6,11 @@
 package Controle;
 
 import Modelo.LocacaoBEAN;
-import Modelo.LocacaoDAO;
-import Modelo.LocacaoHiber;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.hibernate.HibernateException;
+import java.util.ArrayList;;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import jpa.JpaUtil;
 
 /**
  *
@@ -20,49 +18,61 @@ import org.hibernate.HibernateException;
  */
 public class LocacaoControle {
 
-    private LocacaoHiber locHN = new LocacaoHiber();
-    private LocacaoDAO lDAO = new LocacaoDAO();
+    private static EntityManager manager = JpaUtil.getEntityManager();
+    private static EntityTransaction tx = manager.getTransaction();
+
+    public static void começar() {
+        tx.begin();
+    }
+
+    public static void fechar() {
+        manager.close();
+        JpaUtil.close();
+    }
 
     public void cadastrar(LocacaoBEAN l) {
-        lDAO.cadastrar(l);
-        //locHN.cadLoc(l);
+        começar();
+        manager.persist(l);
+        tx.commit();
     }
 
     public ArrayList<LocacaoBEAN> listarALL() {
-        try {
-            return lDAO.listarALL();
-            //return locHN.listarLoc();
-        } catch (SQLException ex) {
-            Logger.getLogger(LocacaoControle.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-        //return locHN.listarLoc();
+        começar();
+        Query q = manager.createQuery("from LocacaoBEAN");
+        ArrayList<LocacaoBEAN> locList = (ArrayList<LocacaoBEAN>) q.getResultList();
+        tx.commit();
+        return locList;
     }
 
-    public LocacaoBEAN localizar(String codigo) {
-        return lDAO.localizar(codigo);
+    public LocacaoBEAN localizarLoc(int c) {
+        LocacaoBEAN a = manager.find(LocacaoBEAN.class, c);
+        return a;
     }
 
     public boolean editar(LocacaoBEAN l) {
-        return lDAO.editar(l);
-        //return locHN.editarLoc(l);
+        try {
+            começar();
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public boolean remover(int codigo) {
-        return lDAO.remover(codigo);
-        //return locHN.deleteLoc(codigo);
+    public boolean remover(int c) {
+        try {
+            começar();
+            LocacaoBEAN a = localizarLoc(c);
+            manager.remove(a);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public ArrayList<LocacaoBEAN> localizarCli(int cod) {
-        return lDAO.localizarCLi(cod);
-    }
+    public LocacaoBEAN localizarCli(int c) {
 
-    public void iniciar() {
-        locHN.começar();
-    }
-
-    public void fechar() {
-        locHN.fechar();
     }
 
 }

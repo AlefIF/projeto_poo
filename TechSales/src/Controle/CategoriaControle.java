@@ -6,9 +6,12 @@
 package Controle;
 
 import Modelo.CategoriaBEAN;
-import Modelo.CategoriaHiber;
-import Modelo.CategoriaMysqlDAO;
 import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import jpa.JpaUtil;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -16,39 +19,60 @@ import java.util.ArrayList;
  */
 public class CategoriaControle {
 
-    private CategoriaHiber catHN = new CategoriaHiber();
-    private CategoriaMysqlDAO catDAO = new CategoriaMysqlDAO();
+    EntityManager manager = JpaUtil.getEntityManager();
+    EntityTransaction tx = manager.getTransaction();
 
-    public void cadastrar(CategoriaBEAN c) {
-        catDAO.cadastrar(c);
-        //catHN.cadCat(c);
-    }
-
-    public ArrayList<CategoriaBEAN> listarALL() {
-        return catDAO.listarALL();
-        //return catHN.listarCat();
-    }
-
-    public CategoriaBEAN localizar(int a) {
-        return catHN.listarPorCod(a);
-    }
-
-    public boolean editar(CategoriaBEAN a) {
-        return catDAO.editar(a);
-        //return catHN.editarCat(a);
-    }
-
-    public boolean remover(int codigo) {
-        return catDAO.remover(codigo);
-        //return catHN.deleteCat(codigo);
-    }
-
-    public void iniciar() {
-        catHN.começar();
+    public void começar() {
+        tx.begin();
     }
 
     public void fechar() {
-        catHN.fechar();
+        manager.close();
+        JpaUtil.close();
+    }
+
+    public void cadastrar(CategoriaBEAN c) {
+        começar();
+        manager.persist(c);
+        tx.commit();
+    }
+
+    public ArrayList<CategoriaBEAN> listarALL() {
+        começar();
+        Query q = manager.createQuery("from CategoriaBEAN");
+        ArrayList<CategoriaBEAN> catList = (ArrayList<CategoriaBEAN>) q.getResultList();
+        tx.commit();
+        //fechar();
+        return catList;
+    }
+
+    public CategoriaBEAN localizar(int a) {
+        CategoriaBEAN c = manager.find(CategoriaBEAN.class, a);
+        return c;
+    }
+
+    public boolean editar(CategoriaBEAN a) {
+        try {
+            começar();
+            tx.commit();
+            // fechar();
+            return true;
+        } catch (HibernateException e) {
+            return false;
+        }
+    }
+
+    public boolean remover(int c) {
+        try {
+            começar();
+            CategoriaBEAN a = localizar(c);
+            manager.remove(a);
+            tx.commit();
+            //fechar();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 }

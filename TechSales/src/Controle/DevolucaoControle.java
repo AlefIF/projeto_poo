@@ -6,14 +6,11 @@
 package Controle;
 
 import Modelo.DevolucaoBEAN;
-import Modelo.DevolucaoDAO;
-import Modelo.DevolucaoHiber;
-import Modelo.LocacaoBEAN;
-import Modelo.LocacaoDAO;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import jpa.JpaUtil;
 
 /**
  *
@@ -21,35 +18,57 @@ import java.util.logging.Logger;
  */
 public class DevolucaoControle {
 
-    private DevolucaoDAO dDAO = new DevolucaoDAO();
-    private LocacaoDAO lDao = new LocacaoDAO();
-    //private DevolucaoHiber dvH = new DevolucaoHiber();
+    private static EntityManager manager = JpaUtil.getEntityManager();
+    private static EntityTransaction tx = manager.getTransaction();
+
+    public static void começar() {
+        tx.begin();
+    }
+
+    public static void fechar() {
+        manager.close();
+        JpaUtil.close();
+    }
 
     public void cadastrar(DevolucaoBEAN d) {
-        dDAO.cadastrar(d);
-        //dvH.cadDev(d);
+        começar();
+        manager.persist(d);
+        tx.commit();
     }
 
     public ArrayList<DevolucaoBEAN> listarALL() {
-        return dDAO.listarALL();
-        //return dvH.listarDev();
+        começar();
+        Query q = manager.createQuery("from DevolucaoBEAN");
+        ArrayList<DevolucaoBEAN> devList = (ArrayList<DevolucaoBEAN>) q.getResultList();
+        tx.commit();
+        return devList;
     }
 
     public boolean editar(DevolucaoBEAN l) {
-        return dDAO.editar(l);
-        //return dvH.editarDev(l);
+        try {
+            começar();
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public boolean remover(int codigo) {
-        return dDAO.remover(codigo);
-        //return dvH.deleteDev(codigo);
+    public DevolucaoBEAN localizar(int c) {
+        DevolucaoBEAN a = manager.find(DevolucaoBEAN.class, c);
+        return a;
     }
 
-    /*public void iniciar() {
-        dvH.começar();
+    public boolean remover(int c) {
+        try {
+            começar();
+            DevolucaoBEAN a = localizar(c);
+            manager.remove(a);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public void fechar() {
-        dvH.fechar();
-    }*/
 }

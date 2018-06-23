@@ -8,10 +8,6 @@ package Visao;
 import Controle.FuncionarioControle;
 
 import Modelo.FuncionarioBEAN;
-import Modelo.FuncionarioDAO;
-import java.awt.Color;
-import static java.awt.Color.BLACK;
-import static java.awt.Color.GRAY;
 import java.sql.SQLException;
 
 import java.util.ArrayList;
@@ -446,7 +442,7 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         if (lbCodigo.getText().equals("...")) {
             JOptionPane.showMessageDialog(null, "É preciso ter localizado um usuário!");
         } else {
-            ct.remover(Integer.parseInt(lbCodigo.getText()));
+            ct.excluir(Integer.parseInt(lbCodigo.getText()));
             limpaCampos();
             this.preencheTabela();
 
@@ -517,7 +513,7 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tbPesquisa.getModel();
 
         model.setNumRows(0);
-        FuncionarioDAO dao = new FuncionarioDAO();
+        FuncionarioControle dao = new FuncionarioControle();
 
         for (FuncionarioBEAN d : dao.readForNome(funNome)) {
             tbUsers.addRow(new Object[]{

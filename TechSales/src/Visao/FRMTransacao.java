@@ -14,7 +14,6 @@ import Modelo.ClienteBEAN;
 import Modelo.DevolucaoBEAN;
 import Modelo.JogoBEAN;
 import Modelo.LocacaoBEAN;
-import Modelo.LocacaoDAO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
@@ -643,7 +642,7 @@ public class FRMTransacao extends javax.swing.JFrame {
 
     private void btAlugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlugarActionPerformed
         if (clienteSelecionado != null && jogoSelecionado != null) {
-            LocacaoDAO locDAO = new LocacaoDAO();
+            LocacaoControle locCon= new LocacaoControle();
             LocacaoBEAN l = new LocacaoBEAN();
             l.setValor(Float.parseFloat("" + tfPrecoAluguel.getText()));
             Date utilDate = new Date();
@@ -652,7 +651,7 @@ public class FRMTransacao extends javax.swing.JFrame {
             l.setLoc_cliCodigo(clienteSelecionado.getCod());
             l.setLoc_jogCodigo(jogoSelecionado.getJoCodigo());
             l.setLoc_funCodigo(FRMLogin.user.getCodigo());
-            locDAO.cadastrar(l);
+            locCon.cadastrar(l);
             JOptionPane.showMessageDialog(null, "Locação realizada com sucesso!");
             clienteSelecionado = null;
             jogoSelecionado = null;

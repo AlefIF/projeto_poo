@@ -21,7 +21,7 @@ public class Item_VendaBEAN {
     private int iv_venCodigo;
     private int iv_joCodigo;
     private int vQtd;
-    private Float ivPrecoUnitReal;
+    private float ivPrecoUnitReal;
     private JogoBEAN jogo;
     private VendaBEAN venda;
 
@@ -51,11 +51,11 @@ public class Item_VendaBEAN {
         this.vQtd = vQtd;
     }
 
-    public Float getIvPrecoUnitReal() {
+    public float getIvPrecoUnitReal() {
         return ivPrecoUnitReal;
     }
 
-    public void setIvPrecoUnitReal(Float ivPrecoUnitReal) {
+    public void setIvPrecoUnitReal(float ivPrecoUnitReal) {
         this.ivPrecoUnitReal = ivPrecoUnitReal;
     }
 
@@ -112,7 +112,6 @@ public class Item_VendaBEAN {
                 if (vO.getVenCodigo() == iO.getIv_venCodigo()) {
                     for (JogoBEAN jg : jgL) {
                         if (iO.getIv_joCodigo() == jg.getJoCodigo()) {
-
                             String jogo = jg.getJoNome();
                             qtd = iO.getvQtd();
                             preco = iO.getIvPrecoUnitReal();
@@ -122,7 +121,6 @@ public class Item_VendaBEAN {
                 }
             }
         }
-
         return iOa;
     }
 

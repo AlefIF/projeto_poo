@@ -20,8 +20,8 @@ public class JogoControle {
 
     private static EntityManager manager = JpaUtil.getEntityManager();
     private static EntityTransaction tx = manager.getTransaction();
-    
-     public static void começar() {
+
+    public static void começar() {
         tx.begin();
     }
 
@@ -29,8 +29,6 @@ public class JogoControle {
         manager.close();
         JpaUtil.close();
     }
-    
-    
 
     public void cadastrar(JogoBEAN c) {
         começar();
@@ -47,7 +45,7 @@ public class JogoControle {
     }
 
     public boolean editar(JogoBEAN c) {
-         try {
+        try {
             começar();
             tx.commit();
             return true;
@@ -56,12 +54,8 @@ public class JogoControle {
         }
     }
 
-    public boolean editarINVAL(JogoBEAN c) {
-        
-    }
-
     public boolean remover(int c) {
-      try {
+        try {
             começar();
             JogoBEAN a = localizarCodigo(c);
             manager.remove(a);
@@ -72,18 +66,31 @@ public class JogoControle {
         }
     }
 
-    public void editarDisponibilidade(JogoBEAN l) {
-      
-    }
-
-    public ArrayList<JogoBEAN> localizarNome(String nome) {
-        
+    public ArrayList<JogoBEAN> localizarNome(String a) {
+        começar();
+        Query q = manager.createQuery("from JogoBEAN where joNome like " + a);
+        ArrayList<JogoBEAN> jogListN = (ArrayList<JogoBEAN>) q.getResultList();
+        tx.commit();
+        return jogListN;
     }
 
     public JogoBEAN localizarCodigo(int c) {
-         JogoBEAN a = manager.find(JogoBEAN.class, c);
+        JogoBEAN a = manager.find(JogoBEAN.class, c);
         return a;
     }
 
+    public boolean editarDisponibilidade(JogoBEAN l) {
+        JogoBEAN a = localizarCodigo(l.getJoCodigo());
+        try {
+            começar();
+            Query q = manager.createQuery("update JogoBEAN set joDisponibilidade = "+l.getJoDisponibilidade()
+                    + " where joCodigo ="+l.getJoCodigo() +";");
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
 
 }

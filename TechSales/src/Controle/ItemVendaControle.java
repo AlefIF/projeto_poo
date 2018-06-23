@@ -6,8 +6,11 @@
 package Controle;
 
 import Modelo.Item_VendaBEAN;
-import Modelo.Item_VendaDAO;
 import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import jpa.JpaUtil;
 
 /**
  *
@@ -15,21 +18,56 @@ import java.util.ArrayList;
  */
 public class ItemVendaControle {
 
-    private Item_VendaDAO itvDAO = new Item_VendaDAO();
+    private static EntityManager manager = JpaUtil.getEntityManager();
+    private static EntityTransaction tx = manager.getTransaction();
+
+    public static void começar() {
+        tx.begin();
+    }
+
+    public static void fechar() {
+        manager.close();
+        JpaUtil.close();
+    }
 
     public void cadastrar2(Item_VendaBEAN w) {
-        itvDAO.cadastrar(w);
+        começar();
+        manager.persist(w);
+        tx.commit();
+    }
+
+    public Item_VendaBEAN localizarCodigo(int c) {
+        Item_VendaBEAN a = manager.find(Item_VendaBEAN.class, c);
+        return a;
     }
 
     public boolean editar2(Item_VendaBEAN w) {
-        return itvDAO.editar(w);
+        try {
+            começar();
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public boolean remover2(int codigo) {
-        return itvDAO.remover(codigo);
+    public boolean remover2(int c) {
+        try {
+            começar();
+            Item_VendaBEAN a = localizarCodigo(c);
+            manager.remove(a);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public ArrayList<Item_VendaBEAN> listarALL() {
-        return itvDAO.listarALL();
+        começar();
+        Query q = manager.createQuery("from Item_VendaBEAN");
+        ArrayList<Item_VendaBEAN> itvList = (ArrayList<Item_VendaBEAN>) q.getResultList();
+        tx.commit();
+        return itvList;
     }
 }

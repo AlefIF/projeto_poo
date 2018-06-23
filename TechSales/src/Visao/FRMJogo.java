@@ -8,7 +8,6 @@ package Visao;
 import Controle.CategoriaControle;
 import Controle.ConsoleControle;
 import Modelo.CategoriaBEAN;
-import Modelo.CategoriaMysqlDAO;
 import Modelo.ConsoleBEAN;
 import Controle.JogoControle;
 import java.util.ArrayList;
@@ -49,7 +48,7 @@ public class FRMJogo extends javax.swing.JFrame {
         for (ConsoleBEAN e : cControle.listarALL()) {
             cbCon.addItem(e);
         }
-        CategoriaMysqlDAO catDAO = new CategoriaMysqlDAO();
+
         for (CategoriaBEAN d : catControle.listarALL()) {
             cbCat.addItem(d);
         }

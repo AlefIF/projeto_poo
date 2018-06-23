@@ -6,7 +6,8 @@
 package Controle;
 
 import Modelo.LocacaoBEAN;
-import java.util.ArrayList;;
+import java.util.ArrayList;
+;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
@@ -16,6 +17,8 @@ import jpa.JpaUtil;
  *
  * @author Maycon Jonathan
  */
+
+
 public class LocacaoControle {
 
     private static EntityManager manager = JpaUtil.getEntityManager();
@@ -71,8 +74,12 @@ public class LocacaoControle {
         }
     }
 
-    public LocacaoBEAN localizarCli(int c) {
-
+    public ArrayList<LocacaoBEAN> localizarCli(int c) {
+        começar();
+        Query q = manager.createQuery("from LocacaoBEAN where loc_cliCodigo ="+c);
+        ArrayList<LocacaoBEAN> locList = (ArrayList<LocacaoBEAN>) q.getResultList();
+        tx.commit();
+        return locList;
     }
 
 }

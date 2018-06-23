@@ -7,7 +7,6 @@ package Controle;
 
 import java.util.ArrayList;
 import Modelo.ClienteBEAN;
-import static Modelo.ClienteHiber.começar;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
@@ -41,7 +40,6 @@ public class ClienteControle {
         return cliList;
     }
 
-
     public boolean editar(ClienteBEAN c) {
         try {
             começar();
@@ -69,5 +67,12 @@ public class ClienteControle {
         return a;
     }
 
- 
+    public ArrayList<ClienteBEAN> localizarNome(String a) {
+        começar();
+        Query q = manager.createQuery("from ClienteBEAN where cliNome like "+a+";");
+        ArrayList<ClienteBEAN> cliList = (ArrayList<ClienteBEAN>) q.getResultList();
+        tx.commit();
+        return cliList;
+    }
+
 }

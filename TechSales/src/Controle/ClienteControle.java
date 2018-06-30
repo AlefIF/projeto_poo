@@ -69,7 +69,7 @@ public class ClienteControle {
 
     public ArrayList<ClienteBEAN> localizarNome(String a) {
         começar();
-        Query q = manager.createQuery("from ClienteBEAN where cliNome like "+a+";");
+        Query q = manager.createQuery("from ClienteBEAN where cliNome like " + a + ";");
         ArrayList<ClienteBEAN> cliList = (ArrayList<ClienteBEAN>) q.getResultList();
         tx.commit();
         return cliList;

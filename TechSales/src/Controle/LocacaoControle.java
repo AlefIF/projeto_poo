@@ -76,7 +76,7 @@ public class LocacaoControle {
 
     public ArrayList<LocacaoBEAN> localizarCli(int c) {
         começar();
-        Query q = manager.createQuery("from LocacaoBEAN where loc_cliCodigo ="+c);
+        Query q = manager.createQuery("from LocacaoBEAN where loc_cliCodigo =" + c);
         ArrayList<LocacaoBEAN> locList = (ArrayList<LocacaoBEAN>) q.getResultList();
         tx.commit();
         return locList;

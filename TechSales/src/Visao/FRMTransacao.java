@@ -9,7 +9,7 @@ import Controle.ClienteControle;
 import Controle.DevolucaoControle;
 import Controle.JogoControle;
 import Controle.LocacaoControle;
-import Modelo.AutoCompleteComboBox;
+import Controle.AutoCompleteComboBox;
 import Modelo.ClienteBEAN;
 import Modelo.DevolucaoBEAN;
 import Modelo.JogoBEAN;
@@ -642,7 +642,7 @@ public class FRMTransacao extends javax.swing.JFrame {
 
     private void btAlugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlugarActionPerformed
         if (clienteSelecionado != null && jogoSelecionado != null) {
-            LocacaoControle locCon= new LocacaoControle();
+            LocacaoControle locCon = new LocacaoControle();
             LocacaoBEAN l = new LocacaoBEAN();
             l.setValor(Float.parseFloat("" + tfPrecoAluguel.getText()));
             Date utilDate = new Date();

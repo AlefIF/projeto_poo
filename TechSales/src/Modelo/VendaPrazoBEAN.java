@@ -6,18 +6,28 @@
 package Modelo;
 
 import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Alef
  */
+@Entity
+@Table(name = "vendaAPrazo")
 public class VendaPrazoBEAN {
-    
+
     private int vnpCodigo;
     private Date vnpDataParcela;
     private float vnpValorParcela;
     private int vnp_venCdogo;
+    private VendaBEAN vend;
 
+    @Id
+    @GeneratedValue
     public int getVnpCodigo() {
         return vnpCodigo;
     }
@@ -49,6 +59,14 @@ public class VendaPrazoBEAN {
     public void setVnp_venCdogo(int vnp_venCdogo) {
         this.vnp_venCdogo = vnp_venCdogo;
     }
-    
-    
+
+    @ManyToOne
+    public VendaBEAN getVend() {
+        return vend;
+    }
+
+    public void setVend(VendaBEAN vend) {
+        this.vend = vend;
+    }
+
 }

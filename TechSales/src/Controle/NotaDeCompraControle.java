@@ -18,7 +18,7 @@ import org.hibernate.HibernateException;
  * @author Alef
  */
 public class NotaDeCompraControle {
-    
+
     EntityManager manager = JpaUtil.getEntityManager();
     EntityTransaction tx = manager.getTransaction();
 

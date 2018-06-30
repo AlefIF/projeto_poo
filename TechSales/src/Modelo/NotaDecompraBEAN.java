@@ -6,11 +6,18 @@
 package Modelo;
 
 import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Alef
  */
+@Entity
+@Table(name = "notaDeCompra")
 public class NotaDecompraBEAN {
 
     private int ndcCodigo;
@@ -18,11 +25,14 @@ public class NotaDecompraBEAN {
     private float ndcPrecoTotal;
     private int ndcParcelas;
     private float ndcPrecoParcela;
-    private float ndcEntrada; 
+    private float ndcEntrada;
     private int ndc_forCodigo;
     private String ndcDescricao;
     private int ndcSit;
+    private FornecedorBEAN forne;
 
+    @Id
+    @GeneratedValue
     public int getNdcCodigo() {
         return ndcCodigo;
     }
@@ -94,8 +104,14 @@ public class NotaDecompraBEAN {
     public void setNdcSit(int ndcSit) {
         this.ndcSit = ndcSit;
     }
-    
-    
-            
-            
+
+    @ManyToOne
+    public FornecedorBEAN getForne() {
+        return forne;
+    }
+
+    public void setForne(FornecedorBEAN forne) {
+        this.forne = forne;
+    }
+
 }

@@ -94,11 +94,9 @@ public class FuncionarioControle {
         return verifica;
     }
 
-    
-
     public ArrayList<FuncionarioBEAN> readForNome(String a) {
         começar();
-        Query q = manager.createQuery("from FuncionarioBEAN WHERE funNome LIKE"+a);
+        Query q = manager.createQuery("from FuncionarioBEAN WHERE funNome LIKE" + a);
         ArrayList<FuncionarioBEAN> funList = (ArrayList<FuncionarioBEAN>) q.getResultList();
         tx.commit();
         return funList;

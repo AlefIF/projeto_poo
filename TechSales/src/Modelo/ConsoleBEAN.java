@@ -5,11 +5,10 @@
  */
 package Modelo;
 
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -23,6 +22,7 @@ public class ConsoleBEAN {
     private int conCodigo;
     private String conNome;
     private String conMarca;
+    private LucroBEAN luc;
 
     @Id
     @GeneratedValue
@@ -48,6 +48,15 @@ public class ConsoleBEAN {
 
     public void setConMarca(String conMarca) {
         this.conMarca = conMarca;
+    }
+
+    @ManyToOne
+    public LucroBEAN getLuc() {
+        return luc;
+    }
+
+    public void setLuc(LucroBEAN luc) {
+        this.luc = luc;
     }
 
     @Override

@@ -5,11 +5,21 @@
  */
 package Visao;
 
+import Controle.FornecedorControle;
+import Modelo.FornecedorBEAN;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author Alef
  */
 public class FRMFornecedor extends javax.swing.JFrame {
+
+    private FornecedorControle forCon = new FornecedorControle();
+    private DefaultTableModel dTable;
+    private ArrayList<FornecedorBEAN> fDados;
 
     /**
      * Creates new form FRMFornecedor
@@ -43,8 +53,9 @@ public class FRMFornecedor extends javax.swing.JFrame {
         tfCNPJ = new javax.swing.JTextField();
         tfPais = new javax.swing.JTextField();
         tfEndereco = new javax.swing.JTextField();
-        tfAnotacao = new javax.swing.JTextField();
         btSair = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tfanotacao = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jbCadastrarFun = new javax.swing.JButton();
         jbEditarFun = new javax.swing.JToggleButton();
@@ -52,7 +63,7 @@ public class FRMFornecedor extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         tfPesquisaFun = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbPesquisa = new javax.swing.JTable();
+        tableFornecedor = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -95,6 +106,10 @@ public class FRMFornecedor extends javax.swing.JFrame {
             }
         });
 
+        tfanotacao.setColumns(20);
+        tfanotacao.setRows(5);
+        jScrollPane1.setViewportView(tfanotacao);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -117,9 +132,9 @@ public class FRMFornecedor extends javax.swing.JFrame {
                             .addComponent(tfTelefone)
                             .addComponent(tfCNPJ)
                             .addComponent(tfPais)
+                            .addComponent(tfNome)
                             .addComponent(tfEndereco)
-                            .addComponent(tfAnotacao)
-                            .addComponent(tfNome))
+                            .addComponent(jScrollPane1))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel11)
@@ -162,14 +177,14 @@ public class FRMFornecedor extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(tfAnotacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 440, 300);
+        jPanel1.setBounds(0, 0, 440, 330);
 
         jbCadastrarFun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonAddFun.png"))); // NOI18N
         jbCadastrarFun.setText("Cadastrar");
@@ -217,7 +232,7 @@ public class FRMFornecedor extends javax.swing.JFrame {
             }
         });
 
-        tbPesquisa.setModel(new javax.swing.table.DefaultTableModel(
+        tableFornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -225,17 +240,17 @@ public class FRMFornecedor extends javax.swing.JFrame {
 
             }
         ));
-        tbPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
+        tableFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbPesquisaMouseClicked(evt);
+                tableFornecedorMouseClicked(evt);
             }
         });
-        tbPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+        tableFornecedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                tbPesquisaKeyReleased(evt);
+                tableFornecedorKeyReleased(evt);
             }
         });
-        jScrollPane2.setViewportView(tbPesquisa);
+        jScrollPane2.setViewportView(tableFornecedor);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -252,15 +267,13 @@ public class FRMFornecedor extends javax.swing.JFrame {
                         .addComponent(jbExcluirFun)
                         .addGap(42, 42, 42))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfPesquisaFun, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfPesquisaFun, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(184, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,16 +287,81 @@ public class FRMFornecedor extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(tfPesquisaFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 310, 440, 220);
+        jPanel2.setBounds(0, 340, 440, 210);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private DefaultTableModel criaTabela() {
+        //sempre que usar JTable é necessário ter um DefaulttableModel
+        DefaultTableModel dTable = new DefaultTableModel() {
+            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
+            Class[] types = new Class[]{
+                java.lang.Integer.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.Double.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.String.class,
+               
+            };
+            //define se os campos podem ser editados na propria tabela
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false, false};
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        ;
+
+        };
+        //retorna o DefaultTableModel
+    return dTable;
+    }
+
+    private void preencheTabela() {
+        dTable = criaTabela();
+        //seta o nome das colunas da tabela
+        dTable.addColumn("Código");
+        dTable.addColumn("Nome");
+        dTable.addColumn("Email");
+        dTable.addColumn("Telefone");
+        dTable.addColumn("CNPJ");
+        dTable.addColumn("País");
+        dTable.addColumn("Endereço");
+        dTable.addColumn("Anotações");
+        //pega os dados do ArrayList
+        fDados = forCon.listarALL();
+
+        for (FornecedorBEAN d : fDados) {
+            dTable.addRow(new Object[]{d.getForCodigo(), d.getForNomeEmpresa(),
+                d.getForEmail(), d.getForTelefoneContato(), d.getForCNPJ(),
+                d.getForPais(), d.getForEndereco(), d.getForAnotacoes()});
+        }
+
+        tableFornecedor.setModel(dTable);
+    }
+
+    private void limpaCampos() {
+        lbCodigo.setText("");
+        tfNome.setText("");
+        tfCNPJ.setText("");
+        tfEmail.setText("");
+        tfEndereco.setText("");
+        tfPais.setText("");
+        tfTelefone.setText("");
+        tfanotacao.setText("");
+    }
+
 
     private void tfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNomeActionPerformed
         // TODO add your handling code here:
@@ -292,12 +370,28 @@ public class FRMFornecedor extends javax.swing.JFrame {
     private void tfPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPaisActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfPaisActionPerformed
-
+    private boolean verificaCampos() {
+        if (tfNome.getText().equals("")
+                || tfCNPJ.getText().equals("") || tfEmail.getText().equals("")
+                || tfEndereco.getText().equals("") || tfPais.getText().equals("")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     private void jbCadastrarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarFunActionPerformed
         if (verificaCampos() == false) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         } else {
-            cadastrar();
+            FornecedorBEAN f = new FornecedorBEAN();
+            f.setForNomeEmpresa(tfNome.getText());
+            f.setForCNPJ(tfCNPJ.getText());
+            f.setForEmail(tfEmail.getText());
+            f.setForEndereco(tfEndereco.getText());
+            f.setForPais(tfPais.getText());
+            f.setForTelefoneContato(tfTelefone.getText());
+            f.setForAnotacoes(tfanotacao.getText());
+            forCon.cadastrar(f);
             this.preencheTabela();
             limpaCampos();
         }
@@ -307,7 +401,15 @@ public class FRMFornecedor extends javax.swing.JFrame {
         if (verificaCampos() == false) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         } else {
-            editar();
+            FornecedorBEAN f = forCon.localizar(Integer.parseInt(lbCodigo.getText()));
+            f.setForNomeEmpresa(tfNome.getText());
+            f.setForCNPJ(tfCNPJ.getText());
+            f.setForEmail(tfEmail.getText());
+            f.setForEndereco(tfEndereco.getText());
+            f.setForPais(tfPais.getText());
+            f.setForTelefoneContato(tfTelefone.getText());
+            f.setForAnotacoes(tfanotacao.getText());
+            forCon.editar(f);
             this.preencheTabela();
             limpaCampos();
         }
@@ -315,12 +417,11 @@ public class FRMFornecedor extends javax.swing.JFrame {
 
     private void jbExcluirFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirFunActionPerformed
         if (lbCodigo.getText().equals("...")) {
-            JOptionPane.showMessageDialog(null, "É preciso ter localizado um usuário!");
+            JOptionPane.showMessageDialog(null, "É preciso ter localizado um Forcenedor!");
         } else {
-            ct.excluir(Integer.parseInt(lbCodigo.getText()));
+            forCon.remover(Integer.parseInt(lbCodigo.getText()));
             limpaCampos();
             this.preencheTabela();
-
         }
     }//GEN-LAST:event_jbExcluirFunActionPerformed
 
@@ -340,27 +441,25 @@ public class FRMFornecedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfPesquisaFunKeyTyped
 
-    private void tbPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPesquisaMouseClicked
-        limparCampos();
-
-        if (tbPesquisa.getSelectedRow() != -1) {
-            if (Integer.parseInt(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 8).toString()) > 0) {
-                lbCodigo.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 0).toString());
-                tfNomeFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 1).toString());
-                tfTelefoneFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 2).toString());
-                tfEnderecoFun.setText((tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 3).toString()));
-                tfNPFun.setText((tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 4).toString()));
-                tfCpfFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 5).toString());
-                tfIdadeFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 6).toString());
-                tfNomeUserFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 7).toString());
-                tfSenhaUserFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 8).toString());
+    private void tableFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableFornecedorMouseClicked
+        limpaCampos();
+        if (tableFornecedor.getSelectedRow() != -1) {
+            if (Integer.parseInt(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 8).toString()) > 0) {
+                lbCodigo.setText(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 0).toString());
+                tfNome.setText(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 1).toString());
+                tfEmail.setText(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 2).toString());
+                tfTelefone.setText((tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 3).toString()));
+                tfCNPJ.setText((tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 4).toString()));
+                tfPais.setText(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 5).toString());
+                tfEndereco.setText(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 6).toString());
+                tfanotacao.setText(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 7).toString());
             }
         }
-    }//GEN-LAST:event_tbPesquisaMouseClicked
+    }//GEN-LAST:event_tableFornecedorMouseClicked
 
-    private void tbPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbPesquisaKeyReleased
+    private void tableFornecedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableFornecedorKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_tbPesquisaKeyReleased
+    }//GEN-LAST:event_tableFornecedorKeyReleased
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
         FRMLogin login = new FRMLogin();
@@ -416,13 +515,13 @@ public class FRMFornecedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbCadastrarFun;
     private javax.swing.JToggleButton jbEditarFun;
     private javax.swing.JToggleButton jbExcluirFun;
     private javax.swing.JLabel lbCodigo;
-    private javax.swing.JTable tbPesquisa;
-    private javax.swing.JTextField tfAnotacao;
+    private javax.swing.JTable tableFornecedor;
     private javax.swing.JTextField tfCNPJ;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfEndereco;
@@ -430,5 +529,6 @@ public class FRMFornecedor extends javax.swing.JFrame {
     private javax.swing.JTextField tfPais;
     private javax.swing.JTextField tfPesquisaFun;
     private javax.swing.JTextField tfTelefone;
+    private javax.swing.JTextArea tfanotacao;
     // End of variables declaration//GEN-END:variables
 }

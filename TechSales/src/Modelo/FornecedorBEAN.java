@@ -5,10 +5,17 @@
  */
 package Modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author Alef
  */
+@Entity
+@Table(name = "fornecedor")
 public class FornecedorBEAN {
 
     private int forCodigo;
@@ -20,6 +27,8 @@ public class FornecedorBEAN {
     private String forEndereco;
     private String forAnotacoes;
 
+    @Id
+    @GeneratedValue
     public int getForCodigo() {
         return forCodigo;
     }
@@ -83,6 +92,5 @@ public class FornecedorBEAN {
     public void setForAnotacoes(String forAnotacoes) {
         this.forAnotacoes = forAnotacoes;
     }
-    
-    
+
 }

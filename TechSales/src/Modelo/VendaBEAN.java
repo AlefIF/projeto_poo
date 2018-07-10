@@ -11,7 +11,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -29,6 +28,9 @@ public class VendaBEAN {
     private Date venData;
     private int ven_funCodigo;
     private int cliente_cliCodigo;
+    private int venNparcelas;
+    private float venPrecoParcela;
+    private float venEntrada;
     private FuncionarioBEAN funcionario;
     private ClienteBEAN cliente;
     private List<Item_VendaBEAN> itv;
@@ -73,6 +75,30 @@ public class VendaBEAN {
 
     public void setCliente_cliCodigo(int cliente_cliCodigo) {
         this.cliente_cliCodigo = cliente_cliCodigo;
+    }
+
+    public int getVenNparcelas() {
+        return venNparcelas;
+    }
+
+    public void setVenNparcelas(int venNparcelas) {
+        this.venNparcelas = venNparcelas;
+    }
+
+    public float getVenPrecoParcela() {
+        return venPrecoParcela;
+    }
+
+    public void setVenPrecoParcela(float venPrecoParcela) {
+        this.venPrecoParcela = venPrecoParcela;
+    }
+
+    public float getVenEntrada() {
+        return venEntrada;
+    }
+
+    public void setVenEntrada(float venEntrada) {
+        this.venEntrada = venEntrada;
     }
 
     @ManyToOne

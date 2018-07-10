@@ -9,7 +9,6 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -25,11 +24,9 @@ public class DevolucaoBEAN {
     private Date dataDev;
     private float multa;
     private int dev_funCodigo;
-    private int dev_cliCodigo;
     private int dev_loCodigo;
     private String nf;
     private float valor;
-    private ClienteBEAN cliente;
     private LocacaoBEAN locacao;
     private FuncionarioBEAN funcionario;
 
@@ -67,14 +64,6 @@ public class DevolucaoBEAN {
         this.dev_funCodigo = dev_funCodigo;
     }
 
-    public int getDev_cliCodigo() {
-        return dev_cliCodigo;
-    }
-
-    public void setDev_cliCodigo(int dev_cliCodigo) {
-        this.dev_cliCodigo = dev_cliCodigo;
-    }
-
     public int getDev_loCodigo() {
         return dev_loCodigo;
     }
@@ -97,15 +86,6 @@ public class DevolucaoBEAN {
 
     public void setValor(float valor) {
         this.valor = valor;
-    }
-
-    @ManyToOne
-    public ClienteBEAN getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(ClienteBEAN cliente) {
-        this.cliente = cliente;
     }
 
     @ManyToOne

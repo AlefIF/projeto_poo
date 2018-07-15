@@ -36,17 +36,6 @@ public class FuncionarioControle {
         tx.commit();
     }
 
-    public boolean verificaLogin(String senha) {
-        boolean verifica = false;
-        ArrayList<FuncionarioBEAN> al = listarALL();
-        for (FuncionarioBEAN f : al) {
-            if ((f.getNome().equals("ADM")) && (f.getSenha().equals(senha))) {
-                verifica = true;
-            }
-        }
-        return verifica;
-    }
-
     public boolean editar(FuncionarioBEAN c) {
         try {
             começar();
@@ -81,25 +70,6 @@ public class FuncionarioControle {
         } catch (Exception e) {
             return false;
         }
-    }
-
-    public boolean verificaLogin2(String login, String senha) {
-        boolean verifica = false;
-        ArrayList<FuncionarioBEAN> al = listarALL();
-        for (FuncionarioBEAN f : al) {
-            if ((f.getNome().equals(login)) && (f.getSenha().equals(senha))) {
-                verifica = true;
-            }
-        }
-        return verifica;
-    }
-
-    public ArrayList<FuncionarioBEAN> readForNome(String a) {
-        começar();
-        Query q = manager.createQuery("from FuncionarioBEAN WHERE funNome LIKE" + a);
-        ArrayList<FuncionarioBEAN> funList = (ArrayList<FuncionarioBEAN>) q.getResultList();
-        tx.commit();
-        return funList;
     }
 
 }

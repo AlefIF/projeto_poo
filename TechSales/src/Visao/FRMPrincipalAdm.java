@@ -44,22 +44,19 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         tbUsers.addColumn("nisPis");
         tbUsers.addColumn("CPF");
         tbUsers.addColumn("idade");
-        tbUsers.addColumn("nomeUsuario");
-        tbUsers.addColumn("senha");
+
 
         userD = ct.listarALL();
 
         for (FuncionarioBEAN d : userD) {
             tbUsers.addRow(new Object[]{
-                d.getCodigo(),
-                d.getNome(),
-                d.getTelefone(),
-                d.getEndereco(),
-                d.getNisPis(),
-                d.getCpf(),
-                d.getIdade(),
-                d.getNomeUsuario(),
-                d.getSenha(),});
+                d.getFunCodigo(),
+                d.getFunNome(),
+                d.getFunTelefone(),
+                d.getFunEndereco(),
+                d.getFunNisPis(),
+                d.getFunCpf(),
+                d.getFunIdade(),});
         }
         //set o modelo da tabela
         tbPesquisa.setModel(tbUsers);
@@ -415,8 +412,6 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
                 tfNPFun.setText((tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 4).toString()));
                 tfCpfFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 5).toString());
                 tfIdadeFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 6).toString());
-                tfNomeUserFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 7).toString());
-                tfSenhaUserFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 8).toString());
             }
         }
     }//GEN-LAST:event_tbPesquisaMouseClicked
@@ -461,28 +456,24 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
 
     public void cadastrar() {
         FuncionarioBEAN c = new FuncionarioBEAN();
-        c.setNome(tfNomeFun.getText());
-        c.setIdade(Integer.parseInt(tfIdadeFun.getText()));
-        c.setEndereco(tfEnderecoFun.getText());
-        c.setCpf(tfCpfFun.getText());
-        c.setNisPis(tfNPFun.getText());
-        c.setNomeUsuario(tfNomeUserFun.getText());
-        c.setSenha(tfSenhaUserFun.getText());
-        c.setTelefone(tfTelefoneFun.getText());
+        c.setFunNome(tfNomeFun.getText());
+        c.setFunIdade(Integer.parseInt(tfIdadeFun.getText()));
+        c.setFunEndereco(tfEnderecoFun.getText());
+        c.setFunCpf(tfCpfFun.getText());
+        c.setFunNisPis(tfNPFun.getText());
+        c.setFunTelefone(tfTelefoneFun.getText());
         ct.cadastrar(c);
     }
 
     public void editar() {
         FuncionarioBEAN c = ct.localizarCodigo(Integer.parseInt(lbCodigo.getText()));
-        c.setNome(tfNomeFun.getText());
-        c.setIdade(Integer.parseInt(tfIdadeFun.getText()));
-        c.setEndereco(tfEnderecoFun.getText());
-        c.setCpf(tfCpfFun.getText());
-        c.setNisPis(tfNPFun.getText());
-        c.setNomeUsuario(tfNomeUserFun.getText());
-        c.setSenha(tfSenhaUserFun.getText());
-        c.setTelefone(tfTelefoneFun.getText());
-        c.setCodigo(Integer.valueOf(lbCodigo.getText()));
+        c.setFunNome(tfNomeFun.getText());
+        c.setFunIdade(Integer.parseInt(tfIdadeFun.getText()));
+        c.setFunEndereco(tfEnderecoFun.getText());
+        c.setFunCpf(tfCpfFun.getText());
+        c.setFunNisPis(tfNPFun.getText());
+        c.setFunTelefone(tfTelefoneFun.getText());
+        c.setFunCodigo(Integer.valueOf(lbCodigo.getText()));
         ct.editar(c);
     }
 
@@ -517,9 +508,9 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
 
         for (FuncionarioBEAN d : dao.readForNome(funNome)) {
             tbUsers.addRow(new Object[]{
-                d.getCodigo(),
-                d.getNome(),
-                d.getCpf(),});
+                d.getFunCodigo(),
+                d.getFunNome(),
+                d.getFunCpf(),});
 
         }
         //set o modelo da tabela

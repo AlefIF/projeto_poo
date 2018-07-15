@@ -45,7 +45,7 @@ public class Listar_venda extends javax.swing.JFrame {
         df = (DefaultTableModel) tb1.getModel();
         for (VendaBEAN vO : vb) {
             for (Item_VendaBEAN iO : tvb) {
-                if (vO.getVenCodigo() == iO.getIv_venCodigo()) {
+                if (vO.getVendaCodigo() == iO.getIv_venCodigo()) {
                     JComboBox<Item_VendaBEAN> comboBox = new JComboBox<Item_VendaBEAN>();
                     TableColumn comboColuna = tb1.getColumnModel().getColumn(5);
                     comboColuna.setCellEditor(new DefaultCellEditor(comboBox));
@@ -56,8 +56,8 @@ public class Listar_venda extends javax.swing.JFrame {
                         }
                     }
 
-                    df.addRow(new Object[]{vO.getVenCodigo(), vO.getVenNNF(),
-                        vO.getVenData(), vO.getVen_funCodigo(), vO.getCliente_cliCodigo(), comboBox});
+                    df.addRow(new Object[]{vO.getVendaCodigo(), vO.getVendaNNF(),
+                        vO.getVendaData(), vO.getVenda_venCodigo(), vO.getVenda_cliCodigo(), comboBox});
 
                 }
             }

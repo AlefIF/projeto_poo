@@ -21,121 +21,99 @@ import javax.persistence.Table;
 @Table(name = "funcionario")
 public class FuncionarioBEAN {
 
-    private int codigo;
-    private String nome;
-    private int idade;
-    private String endereco;
-    private String cpf;
-    private String nomeUsuario;
-    private String senha;
-    private String telefone;
-    private String nisPis;
-    private List<LocacaoBEAN> loc;
-    private List<DevolucaoBEAN> dev;
-    private List<VendaBEAN> venda;
+    private int funCodigo;
+    private String funNome;
+    private int funIdade;
+    private String funEndereco;
+    private String funCpf;
+    private String funTelefone;
+    private String funNisPis;
+    private float funSalario;
+    private String funTrabalho;
+    private List<VendedorBEAN> vendedor;
 
     @Id
     @GeneratedValue
-    public int getCodigo() {
-        return codigo;
+    public int getFunCodigo() {
+        return funCodigo;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setFunCodigo(int funCodigo) {
+        this.funCodigo = funCodigo;
     }
 
-    public String getNome() {
-        return nome;
+    public String getFunNome() {
+        return funNome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setFunNome(String funNome) {
+        this.funNome = funNome;
     }
 
-    public int getIdade() {
-        return idade;
+    public int getFunIdade() {
+        return funIdade;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public void setFunIdade(int funIdade) {
+        this.funIdade = funIdade;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getFunEndereco() {
+        return funEndereco;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setFunEndereco(String funEndereco) {
+        this.funEndereco = funEndereco;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getFunCpf() {
+        return funCpf;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setFunCpf(String funCpf) {
+        this.funCpf = funCpf;
     }
 
-    public String getNomeUsuario() {
-        return nomeUsuario;
+    public String getFunTelefone() {
+        return funTelefone;
     }
 
-    public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
+    public void setFunTelefone(String funTelefone) {
+        this.funTelefone = funTelefone;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getFunNisPis() {
+        return funNisPis;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setFunNisPis(String funNisPis) {
+        this.funNisPis = funNisPis;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public float getFunSalario() {
+        return funSalario;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setFunSalario(float funSalario) {
+        this.funSalario = funSalario;
     }
 
-    public String getNisPis() {
-        return nisPis;
+    public String getFunTrabalho() {
+        return funTrabalho;
     }
 
-    public void setNisPis(String nisPis) {
-        this.nisPis = nisPis;
-    }
-
-    @OneToMany(mappedBy = "loc_funCodigo")
-    @Column(nullable = true)
-    public List<LocacaoBEAN> getLoc() {
-        return loc;
-    }
-
-    public void setLoc(List<LocacaoBEAN> loc) {
-        this.loc = loc;
-    }
-
-    @OneToMany(mappedBy = "dev_funCodigo")
-    @Column(nullable = true)
-    public List<DevolucaoBEAN> getDev() {
-        return dev;
-    }
-
-    public void setDev(List<DevolucaoBEAN> dev) {
-        this.dev = dev;
+    public void setFunTrabalho(String funTrabalho) {
+        this.funTrabalho = funTrabalho;
     }
 
     @OneToMany(mappedBy = "ven_funCodigo")
     @Column(nullable = true)
-    public List<VendaBEAN> getVenda() {
-        return venda;
+    public List<VendedorBEAN> getVendedor() {
+        return vendedor;
     }
 
-    public void setVenda(List<VendaBEAN> venda) {
-        this.venda = venda;
+    public void setVendedor(List<VendedorBEAN> vendedor) {
+        this.vendedor = vendedor;
     }
 
 }

@@ -5,53 +5,59 @@
  */
 package Controle;
 
-import Modelo.VendaBEAN;
+import Modelo.ContasBEAN;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import jpa.JpaUtil;
+import org.hibernate.HibernateException;
 
 /**
  *
  * @author Alef
  */
-public class VendaControle {
+public class ContasControle {
+    
+     EntityManager manager = JpaUtil.getEntityManager();
+    EntityTransaction tx = manager.getTransaction();
 
-    private static EntityManager manager = JpaUtil.getEntityManager();
-    private static EntityTransaction tx = manager.getTransaction();
-
-    public static void começar() {
+    public void começar() {
         tx.begin();
     }
 
-    public static void fechar() {
+    public void fechar() {
         manager.close();
         JpaUtil.close();
     }
 
-    public int cadastrar(VendaBEAN c) {
+    public void cadastrar(ContasBEAN c) {
         começar();
         manager.persist(c);
         tx.commit();
-        return c.getVendaCodigo();
     }
 
-    public ArrayList<VendaBEAN> listarALL() {
+    public ArrayList<ContasBEAN> listarALL() {
         começar();
-        Query q = manager.createQuery("from VendaBEAN");
-        ArrayList<VendaBEAN> venList = (ArrayList<VendaBEAN>) q.getResultList();
+        Query q = manager.createQuery("from ContasBEAN");
+        ArrayList<ContasBEAN> catList = (ArrayList<ContasBEAN>) q.getResultList();
         tx.commit();
-        return venList;
+        //fechar();
+        return catList;
     }
 
-    public boolean editar(VendaBEAN c) {
+    public ContasBEAN localizar(int a) {
+        ContasBEAN c = manager.find(ContasBEAN.class, a);
+        return c;
+    }
+
+    public boolean editar(ContasBEAN a) {
         try {
             começar();
-            manager.flush();
             tx.commit();
+            // fechar();
             return true;
-        } catch (Exception e) {
+        } catch (HibernateException e) {
             return false;
         }
     }
@@ -59,18 +65,14 @@ public class VendaControle {
     public boolean remover(int c) {
         try {
             começar();
-            VendaBEAN a = localizar(c);
+            ContasBEAN a = localizar(c);
             manager.remove(a);
             tx.commit();
+            //fechar();
             return true;
         } catch (Exception e) {
             return false;
         }
     }
-
-    public VendaBEAN localizar(int c) {
-        VendaBEAN a = manager.find(VendaBEAN.class, c);
-        return a;
-    }
-
+    
 }

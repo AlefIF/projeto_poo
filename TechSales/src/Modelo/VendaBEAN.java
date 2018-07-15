@@ -23,91 +23,92 @@ import javax.persistence.Table;
 @Table(name = "venda")
 public class VendaBEAN {
 
-    private int venCodigo;
-    private String venNNF;
-    private Date venData;
-    private int ven_funCodigo;
-    private int cliente_cliCodigo;
-    private int venNparcelas;
-    private float venPrecoParcela;
-    private float venEntrada;
-    private FuncionarioBEAN funcionario;
+    private int vendaCodigo;
+    private String vendaNNF;
+    private Date vendaData;
+    private int venda_venCodigo;
+    private int venda_cliCodigo;
+    private int vendaNparcelas;
+    private float vendaPrecoParcela;
+    private float vendaEntrada;
+    private VendedorBEAN vendedor;
     private ClienteBEAN cliente;
     private List<Item_VendaBEAN> itv;
 
     @Id
     @GeneratedValue
-    public int getVenCodigo() {
-        return venCodigo;
+
+    public int getVendaCodigo() {
+        return vendaCodigo;
     }
 
-    public void setVenCodigo(int venCodigo) {
-        this.venCodigo = venCodigo;
+    public void setVendaCodigo(int vendaCodigo) {
+        this.vendaCodigo = vendaCodigo;
     }
 
-    public String getVenNNF() {
-        return venNNF;
+    public String getVendaNNF() {
+        return vendaNNF;
     }
 
-    public void setVenNNF(String venNNF) {
-        this.venNNF = venNNF;
+    public void setVendaNNF(String vendaNNF) {
+        this.vendaNNF = vendaNNF;
     }
 
-    public Date getVenData() {
-        return venData;
+    public Date getVendaData() {
+        return vendaData;
     }
 
-    public void setVenData(Date venData) {
-        this.venData = venData;
+    public void setVendaData(Date vendaData) {
+        this.vendaData = vendaData;
     }
 
-    public int getVen_funCodigo() {
-        return ven_funCodigo;
+    public int getVenda_venCodigo() {
+        return venda_venCodigo;
     }
 
-    public void setVen_funCodigo(int ven_funCodigo) {
-        this.ven_funCodigo = ven_funCodigo;
+    public void setVenda_venCodigo(int venda_venCodigo) {
+        this.venda_venCodigo = venda_venCodigo;
     }
 
-    public int getCliente_cliCodigo() {
-        return cliente_cliCodigo;
+    public int getVenda_cliCodigo() {
+        return venda_cliCodigo;
     }
 
-    public void setCliente_cliCodigo(int cliente_cliCodigo) {
-        this.cliente_cliCodigo = cliente_cliCodigo;
+    public void setVenda_cliCodigo(int venda_cliCodigo) {
+        this.venda_cliCodigo = venda_cliCodigo;
     }
 
-    public int getVenNparcelas() {
-        return venNparcelas;
+    public int getVendaNparcelas() {
+        return vendaNparcelas;
     }
 
-    public void setVenNparcelas(int venNparcelas) {
-        this.venNparcelas = venNparcelas;
+    public void setVendaNparcelas(int vendaNparcelas) {
+        this.vendaNparcelas = vendaNparcelas;
     }
 
-    public float getVenPrecoParcela() {
-        return venPrecoParcela;
+    public float getVendaPrecoParcela() {
+        return vendaPrecoParcela;
     }
 
-    public void setVenPrecoParcela(float venPrecoParcela) {
-        this.venPrecoParcela = venPrecoParcela;
+    public void setVendaPrecoParcela(float vendaPrecoParcela) {
+        this.vendaPrecoParcela = vendaPrecoParcela;
     }
 
-    public float getVenEntrada() {
-        return venEntrada;
+    public float getVendaEntrada() {
+        return vendaEntrada;
     }
 
-    public void setVenEntrada(float venEntrada) {
-        this.venEntrada = venEntrada;
+    public void setVendaEntrada(float vendaEntrada) {
+        this.vendaEntrada = vendaEntrada;
     }
 
     @ManyToOne
-    public FuncionarioBEAN getFuncionario() {
-        return funcionario;
+    public VendedorBEAN getVendedor() {
+        return vendedor;
     }
 
-    public void setFuncionario(FuncionarioBEAN funcionario) {
-        this.funcionario = funcionario;
+    public void setVendedor(VendedorBEAN vendedor) {
+        this.vendedor = vendedor;
     }
 
     @ManyToOne

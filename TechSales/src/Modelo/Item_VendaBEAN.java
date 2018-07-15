@@ -109,7 +109,7 @@ public class Item_VendaBEAN {
         Item_VendaBEAN iOa = new Item_VendaBEAN();
         for (VendaBEAN vO : vba) {
             for (Item_VendaBEAN iO : tvb) {
-                if (vO.getVenCodigo() == iO.getIv_venCodigo()) {
+                if (vO.getVendaCodigo() == iO.getIv_venCodigo()) {
                     for (JogoBEAN jg : jgL) {
                         if (iO.getIv_joCodigo() == jg.getJoCodigo()) {
                             String jogo = jg.getJoNome();

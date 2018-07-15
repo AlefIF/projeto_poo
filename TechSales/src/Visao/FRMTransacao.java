@@ -650,7 +650,7 @@ public class FRMTransacao extends javax.swing.JFrame {
             l.setData(data);
             l.setLoc_cliCodigo(clienteSelecionado.getCod());
             l.setLoc_jogCodigo(jogoSelecionado.getJoCodigo());
-            l.setLoc_funCodigo(FRMLogin.user.getCodigo());
+            l.setLoc_funCodigo(FRMLogin.user.getFunCodigo());
             locCon.cadastrar(l);
             JOptionPane.showMessageDialog(null, "Locação realizada com sucesso!");
             clienteSelecionado = null;
@@ -676,9 +676,8 @@ public class FRMTransacao extends javax.swing.JFrame {
 
             } else {
                 dev.setMulta(Float.parseFloat("" + tfMulta.getText()));
-                dev.setDev_cliCodigo(clienteSelecionado.getCod());
                 dev.setDev_loCodigo(locSelecionada.getCod());
-                dev.setDev_funCodigo(FRMLogin.user.getCodigo());
+                dev.setDev_funCodigo(FRMLogin.user.getFunCodigo());
                 Date utilDate = new Date();
                 java.sql.Date data = new java.sql.Date(utilDate.getTime());
                 dev.setDataDev(data);

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Controle;
+
 import Modelo.ListaDesejoBEAN;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
@@ -11,12 +12,13 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import jpa.JpaUtil;
 import org.hibernate.HibernateException;
+
 /**
  *
  * @author Alef
  */
 public class ListaDesejoControle {
-    
+
     EntityManager manager = JpaUtil.getEntityManager();
     EntityTransaction tx = manager.getTransaction();
 
@@ -72,5 +74,5 @@ public class ListaDesejoControle {
             return false;
         }
     }
-    
+
 }

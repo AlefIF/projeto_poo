@@ -26,11 +26,11 @@ public class VendaBEAN {
     private int vendaCodigo;
     private String vendaNNF;
     private Date vendaData;
+    private float vendaEntrada;
+    private int vendaNparcelas;
+    private float vendaValorTOtal;
     private int venda_venCodigo;
     private int venda_cliCodigo;
-    private int vendaNparcelas;
-    private float vendaPrecoParcela;
-    private float vendaEntrada;
     private VendedorBEAN vendedor;
     private ClienteBEAN cliente;
     private List<Item_VendaBEAN> itv;
@@ -86,12 +86,12 @@ public class VendaBEAN {
         this.vendaNparcelas = vendaNparcelas;
     }
 
-    public float getVendaPrecoParcela() {
-        return vendaPrecoParcela;
+    public float getVendaValorTOtal() {
+        return vendaValorTOtal;
     }
 
-    public void setVendaPrecoParcela(float vendaPrecoParcela) {
-        this.vendaPrecoParcela = vendaPrecoParcela;
+    public void setVendaValorTOtal(float vendaValorTOtal) {
+        this.vendaValorTOtal = vendaValorTOtal;
     }
 
     public float getVendaEntrada() {

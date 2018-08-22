@@ -310,9 +310,7 @@ public class FRMFornecedor extends javax.swing.JFrame {
                 java.lang.String.class,
                 java.lang.String.class,
                 java.lang.String.class,
-                java.lang.String.class,
-               
-            };
+                java.lang.String.class,};
             //define se os campos podem ser editados na propria tabela
             boolean[] canEdit = new boolean[]{
                 false, false, false, false, false, false, false, false};
@@ -361,7 +359,6 @@ public class FRMFornecedor extends javax.swing.JFrame {
         tfTelefone.setText("");
         tfanotacao.setText("");
     }
-
 
     private void tfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNomeActionPerformed
         // TODO add your handling code here:

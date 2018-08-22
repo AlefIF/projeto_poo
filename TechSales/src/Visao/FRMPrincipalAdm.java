@@ -45,7 +45,6 @@ public class FRMPrincipalAdm extends javax.swing.JFrame {
         tbUsers.addColumn("CPF");
         tbUsers.addColumn("idade");
 
-
         userD = ct.listarALL();
 
         for (FuncionarioBEAN d : userD) {

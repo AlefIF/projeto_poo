@@ -33,7 +33,7 @@ public class JogoControle {
     public void cadastrar(JogoBEAN c) {
         começar();
         manager.persist(c);
-        tx.commit();                
+        tx.commit();
     }
 
     public ArrayList<JogoBEAN> listarALL() {

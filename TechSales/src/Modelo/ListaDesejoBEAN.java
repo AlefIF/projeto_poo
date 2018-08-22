@@ -16,7 +16,7 @@ import javax.persistence.Table;
  * @author Alef
  */
 @Entity
-@Table(name = "jogo")
+@Table(name = "listaDesejo")
 public class ListaDesejoBEAN {
 
     private int lisCodigo;

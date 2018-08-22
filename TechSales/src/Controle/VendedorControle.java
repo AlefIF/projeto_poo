@@ -75,8 +75,8 @@ public class VendedorControle {
         }
     }
     //Perguntar ao Manoel
-    
-      public boolean verificaLogin(String senha) {
+
+    public boolean verificaLogin(String senha) {
         boolean verifica = false;
         ArrayList<VendedorBEAN> al = listarALL();
         for (VendedorBEAN f : al) {
@@ -86,7 +86,8 @@ public class VendedorControle {
         }
         return verifica;
     }
-      public boolean verificaLogin2(String login, String senha) {
+
+    public boolean verificaLogin2(String login, String senha) {
         boolean verifica = false;
         ArrayList<VendedorBEAN> al = listarALL();
         for (VendedorBEAN f : al) {
@@ -104,6 +105,5 @@ public class VendedorControle {
         tx.commit();
         return funList;
     }
-
 
 }

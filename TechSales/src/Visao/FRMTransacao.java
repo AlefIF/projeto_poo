@@ -183,7 +183,6 @@ public class FRMTransacao extends javax.swing.JFrame {
         tbJogo = new javax.swing.JTable();
         btAtualizar = new javax.swing.JButton();
         btVoltar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         tfPrecoVenda = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -620,10 +619,6 @@ public class FRMTransacao extends javax.swing.JFrame {
         getContentPane().add(btVoltar);
         btVoltar.setBounds(610, 10, 80, 20);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/back2.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(-10, -10, 730, 410);
-
         tfPrecoVenda.setText("jTextField1");
         getContentPane().add(tfPrecoVenda);
         tfPrecoVenda.setBounds(440, 10, 59, 20);
@@ -855,7 +850,6 @@ public class FRMTransacao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;

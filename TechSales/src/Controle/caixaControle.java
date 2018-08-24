@@ -5,17 +5,23 @@
  */
 package Controle;
 
+
+import Modelo.caixaBEAN;
 import java.util.ArrayList;
-import Modelo.ClienteBEAN;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import jpa.JpaUtil;
+import org.hibernate.HibernateException;
 
-public class ClienteControle {
-
+/**
+ *
+ * @author Alef
+ */
+public class caixaControle {
     private static EntityManager manager = JpaUtil.getEntityManager();
     private static EntityTransaction tx = manager.getTransaction();
+
     public static void começar() {
         tx.begin();
     }
@@ -25,53 +31,50 @@ public class ClienteControle {
         JpaUtil.close();
     }
 
-    public void cadastrar(ClienteBEAN c) {
+    public void cadastrar(caixaBEAN c) {
         começar();
         manager.persist(c);
         tx.commit();
     }
 
-    public ArrayList<ClienteBEAN> listarALL() {
+    public ArrayList<caixaBEAN> listarALL() {
         começar();
-        Query q = manager.createQuery("from ClienteBEAN");
-        ArrayList<ClienteBEAN> cliList = (ArrayList<ClienteBEAN>) q.getResultList();
+        Query q = manager.createQuery("from CaixaBEAN");
+        ArrayList<caixaBEAN> caixaList = (ArrayList<caixaBEAN>) q.getResultList();
         tx.commit();
-        return cliList;
+        return caixaList;
     }
 
-    public boolean editar(ClienteBEAN c) {
+    public caixaBEAN localizar(int a) {
+
+        caixaBEAN c = manager.find(caixaBEAN.class, a);
+        return c;
+    }
+
+    public boolean editar(caixaBEAN c) {
+
         try {
             começar();
             tx.commit();
             return true;
-        } catch (Exception e) {
+        } catch (HibernateException e) {
             return false;
         }
+
     }
 
     public boolean remover(int c) {
+
         try {
             começar();
-            ClienteBEAN a = localizarCodigo(c);
+            caixaBEAN a = localizar(c);
             manager.remove(a);
             tx.commit();
             return true;
         } catch (Exception e) {
             return false;
         }
-    }
 
-    public ClienteBEAN localizarCodigo(int c) {
-        ClienteBEAN a = manager.find(ClienteBEAN.class, c);
-        return a;
     }
-
-    public ArrayList<ClienteBEAN> localizarNome(String a) {
-        começar();
-        Query q = manager.createQuery("from ClienteBEAN where cliNome like " + a + ";");
-        ArrayList<ClienteBEAN> cliList = (ArrayList<ClienteBEAN>) q.getResultList();
-        tx.commit();
-        return cliList;
-    }
-
+    
 }

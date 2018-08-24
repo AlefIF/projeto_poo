@@ -34,7 +34,6 @@ public class EnderecoBEAN {
 
     @Id
     @GeneratedValue
-
     public int getEndCodigo() {
         return endCodigo;
     }

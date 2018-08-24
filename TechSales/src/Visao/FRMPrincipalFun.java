@@ -38,7 +38,6 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
         btRTransacao = new javax.swing.JButton();
         btSair = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Funcionário");
@@ -126,10 +125,6 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/logo3.png"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(180, 20, 150, 80);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/back2.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(-70, -10, 640, 370);
 
         setSize(new java.awt.Dimension(527, 379));
         setLocationRelativeTo(null);
@@ -234,7 +229,6 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
     private javax.swing.JButton btRTransacao;
     private javax.swing.JButton btRVenda;
     private javax.swing.JButton btSair;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton jbGerenciarCategoria;

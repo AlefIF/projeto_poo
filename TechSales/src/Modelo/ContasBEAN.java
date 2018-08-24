@@ -9,6 +9,7 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,7 +25,8 @@ public class ContasBEAN {
     private float conValorTotal;
     private Date conData;
     private int conNparcelas;
-    private float conPrecoParcela;
+    private int con_forCodigo;
+    private FuncionarioBEAN funcionario;
 
     @Id
     @GeneratedValue
@@ -68,12 +70,22 @@ public class ContasBEAN {
         this.conNparcelas = conNparcelas;
     }
 
-    public float getConPrecoParcela() {
-        return conPrecoParcela;
+    public int getCon_forCodigo() {
+        return con_forCodigo;
     }
 
-    public void setConPrecoParcela(float conPrecoParcela) {
-        this.conPrecoParcela = conPrecoParcela;
+    public void setCon_forCodigo(int con_forCodigo) {
+        this.con_forCodigo = con_forCodigo;
     }
+    
+    @ManyToOne
+    public FuncionarioBEAN getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(FuncionarioBEAN funcionario) {
+        this.funcionario = funcionario;
+    }
+
 
 }

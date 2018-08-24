@@ -345,7 +345,7 @@ public class FRMCategoria extends javax.swing.JFrame {
 
     private void tableCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCategoriaMouseClicked
 //        this.pegaSelecionado();
-        tpGuia.setSelectedIndex(0);
+
         if (tableCategoria.getSelectedRow() != -1) {
             lbCodCat.setText(tableCategoria.getValueAt(tableCategoria.getSelectedRow(), 0).toString());
             tfNome.setText(tableCategoria.getValueAt(tableCategoria.getSelectedRow(), 1).toString());

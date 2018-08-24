@@ -80,7 +80,6 @@ public class FRMConsole extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btVoltar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableConsole = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
@@ -98,19 +97,10 @@ public class FRMConsole extends javax.swing.JFrame {
         btEditar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-
-        btVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
-        btVoltar.setText("Voltar");
-        btVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btVoltarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btVoltar);
-        btVoltar.setBounds(290, 10, 80, 20);
 
         tableConsole.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tableConsole.setModel(new javax.swing.table.DefaultTableModel(
@@ -296,6 +286,16 @@ public class FRMConsole extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(100, 0, 190, 30);
 
+        btVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
+        btVoltar.setText("Voltar");
+        btVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btVoltar);
+        btVoltar.setBounds(300, 10, 80, 20);
+
         setSize(new java.awt.Dimension(405, 505));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -362,7 +362,6 @@ public class FRMConsole extends javax.swing.JFrame {
 
     private void tableConsoleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableConsoleMouseClicked
 //        this.pegaSelecionado();
-        tpGuia.setSelectedIndex(0);
         if (tableConsole.getSelectedRow() != -1) {
             lbCodCon.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 0).toString());
             tfNome.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 1).toString());

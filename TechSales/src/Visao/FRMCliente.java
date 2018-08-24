@@ -425,7 +425,7 @@ public class FRMCliente extends javax.swing.JFrame {
 
     private void tableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableClienteMouseClicked
 
-        tpGuia.setSelectedIndex(0);
+
 
         if (tableCliente.getSelectedRow() != -1) {
             jLabelCodigo.setText(tableCliente.getValueAt(tableCliente.getSelectedRow(), 0).toString());

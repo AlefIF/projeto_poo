@@ -128,6 +128,7 @@ public class FRMJogo extends javax.swing.JFrame {
     private void initComponents() {
 
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
         tpGuia = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -166,8 +167,11 @@ public class FRMJogo extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         tfChave = new javax.swing.JTextField();
         btVoltar = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jogo");
@@ -588,7 +592,7 @@ public class FRMJogo extends javax.swing.JFrame {
         tpGuia.addTab("Consultar jogo", jPanel2);
 
         getContentPane().add(tpGuia);
-        tpGuia.setBounds(20, 20, 520, 470);
+        tpGuia.setBounds(10, 40, 520, 470);
 
         btVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
         btVoltar.setText("Voltar");
@@ -598,9 +602,14 @@ public class FRMJogo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btVoltar);
-        btVoltar.setBounds(450, 10, 80, 20);
+        btVoltar.setBounds(450, 20, 80, 20);
 
-        setSize(new java.awt.Dimension(576, 534));
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel11.setText("Cadastro de jogos");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(150, 10, 220, 30);
+
+        setSize(new java.awt.Dimension(553, 546));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1028,7 +1037,9 @@ public class FRMJogo extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

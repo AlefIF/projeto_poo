@@ -5,8 +5,8 @@
  */
 package Visao;
 
-import Controle.FuncionarioControle;
-import Modelo.FuncionarioBEAN;
+import Controle.VendedorControle;
+import Modelo.VendedorBEAN;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -16,9 +16,9 @@ import javax.swing.JOptionPane;
  */
 public class FRMLogin extends javax.swing.JFrame {
 
-    static FuncionarioBEAN user = new FuncionarioBEAN();
-    FuncionarioControle ct = new FuncionarioControle();
-    ArrayList<FuncionarioBEAN> al = ct.listarALL();
+    static VendedorBEAN user = new VendedorBEAN();
+    VendedorControle vc = new VendedorControle();
+    ArrayList<VendedorBEAN> al = vc.listarALL();
 
     /**
      * Creates new form FRMLogin
@@ -46,7 +46,6 @@ public class FRMLogin extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -100,10 +99,6 @@ public class FRMLogin extends javax.swing.JFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(170, 30, 160, 94);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/Background.jpg"))); // NOI18N
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(-10, -10, 520, 360);
-
         setSize(new java.awt.Dimension(501, 362));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -121,32 +116,28 @@ public class FRMLogin extends javax.swing.JFrame {
         // al = ct.listarALL();
         String nome = tfUser.getText();
         String senha = tfSenha.getText();
-        /* try {
-            if (!nome.equals("") && !senha.equals("")) {
-                for (FuncionarioBEAN user : al) {
-                    if (user.getNomeUsuario().equals(nome) && user.getSenha().equals(senha)) {
-                        this.user = user;
-                    }
-                }
-                if (user != null) {*/
+       
+
         if (nome.equals("ADM") && (senha.equals("ADM"))) {
             FRMPrincipalAdm adm = new FRMPrincipalAdm();
             this.dispose();
             adm.setVisible(true);
-            /* } else {
-                        FRMPrincipalFun fun = new FRMPrincipalFun();
-                        this.dispose();
-                        fun.setVisible(true);
-                    }*/
         } else {
-            JOptionPane.showMessageDialog(null, "Usuário  não encontrado!");
-        }
-        /* } else {
-                JOptionPane.showMessageDialog(null, "Insira todos os dados!");
+            for (VendedorBEAN vendedor : al) {
+                if (vendedor.getVenNomeUsuario().equals(nome) && vendedor.getVenSenha().equals(senha)) {
+                    user = vendedor;
+                }
             }
-        } catch (java.lang.NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Usuário  não encontrado!");
-        }*/
+            if (user != null) {
+                FRMPrincipalFun fun = new FRMPrincipalFun();
+                this.dispose();
+                fun.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário  não encontrado!");
+            }
+
+        }
+
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -202,7 +193,6 @@ public class FRMLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btSairPrograma;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

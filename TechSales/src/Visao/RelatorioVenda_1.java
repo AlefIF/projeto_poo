@@ -37,7 +37,6 @@ public class RelatorioVenda_1 extends javax.swing.JFrame {
         tfDataFinal = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/back2.png"))); // NOI18N
 
@@ -75,11 +74,6 @@ public class RelatorioVenda_1 extends javax.swing.JFrame {
         jLabel6.setText("Insira as datas: YYYY-MM-DD");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(60, 40, 190, 14);
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/back2.png"))); // NOI18N
-        jLabel5.setText("jLabel1");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(0, 0, 430, 220);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -149,7 +143,6 @@ public class RelatorioVenda_1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JTextField tfDataFinal;

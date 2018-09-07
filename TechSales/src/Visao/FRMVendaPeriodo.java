@@ -41,14 +41,11 @@ public class FRMVendaPeriodo extends javax.swing.JFrame {
         btRelatorioCliente = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
 
         jInternalFrame1.setVisible(true);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
 
         jLabel2.setText("DataInicio:");
 
@@ -126,10 +123,6 @@ public class FRMVendaPeriodo extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(70, 70, 12, 14);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/Background.jpg"))); // NOI18N
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(0, 0, 540, 350);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -202,7 +195,6 @@ public class FRMVendaPeriodo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

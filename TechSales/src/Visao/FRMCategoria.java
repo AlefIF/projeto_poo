@@ -260,6 +260,7 @@ public class FRMCategoria extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(10, 50, 410, 350);
 
+        btVoltar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
         btVoltar.setText("Voltar");
         btVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -268,7 +269,7 @@ public class FRMCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btVoltar);
-        btVoltar.setBounds(330, 10, 80, 20);
+        btVoltar.setBounds(330, 20, 90, 25);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setText("Cadastro Categoria");

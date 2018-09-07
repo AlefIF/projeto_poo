@@ -602,7 +602,7 @@ public class FRMJogo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btVoltar);
-        btVoltar.setBounds(450, 20, 80, 20);
+        btVoltar.setBounds(450, 30, 80, 20);
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel11.setText("Cadastro de jogos");

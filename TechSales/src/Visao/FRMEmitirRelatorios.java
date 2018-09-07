@@ -151,7 +151,7 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btVoltar);
-        btVoltar.setBounds(350, 10, 80, 20);
+        btVoltar.setBounds(350, 20, 80, 20);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Relatórios");

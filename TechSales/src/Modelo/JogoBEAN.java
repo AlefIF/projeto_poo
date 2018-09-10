@@ -5,13 +5,10 @@
  */
 package Modelo;
 
-import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -33,8 +30,6 @@ public class JogoBEAN {
     private int joDisponibilidade;
     private CategoriaBEAN cat;
     private ConsoleBEAN console;
-    private List<Item_VendaBEAN> itv;
-    private List<LocacaoBEAN> alug;
 
     @Id
     @GeneratedValue
@@ -126,26 +121,6 @@ public class JogoBEAN {
 
     public void setConsole(ConsoleBEAN console) {
         this.console = console;
-    }
-
-    @OneToMany(mappedBy = "jogo")
-    @Column(nullable = false)
-    public List<Item_VendaBEAN> getItv() {
-        return itv;
-    }
-
-    public void setItv(List<Item_VendaBEAN> itv) {
-        this.itv = itv;
-    }
-
-    @OneToMany(mappedBy = "jogo")
-    @Column(nullable = false)
-    public List<LocacaoBEAN> getAlug() {
-        return alug;
-    }
-
-    public void setAlug(List<LocacaoBEAN> alug) {
-        this.alug = alug;
     }
 
     @Override

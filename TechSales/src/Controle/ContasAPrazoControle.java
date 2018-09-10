@@ -18,6 +18,7 @@ import org.hibernate.HibernateException;
  * @author Alef
  */
 public class ContasAPrazoControle {
+
     EntityManager manager = JpaUtil.getEntityManager();
     EntityTransaction tx = manager.getTransaction();
 
@@ -73,5 +74,5 @@ public class ContasAPrazoControle {
             return false;
         }
     }
-    
+
 }

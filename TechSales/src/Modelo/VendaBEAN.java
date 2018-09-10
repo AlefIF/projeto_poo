@@ -6,13 +6,10 @@
 package Modelo;
 
 import java.sql.Date;
-import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -33,7 +30,6 @@ public class VendaBEAN {
     private int venda_cliCodigo;
     private VendedorBEAN vendedor;
     private ClienteBEAN cliente;
-    private List<Item_VendaBEAN> itv;
 
     @Id
     @GeneratedValue
@@ -118,16 +114,6 @@ public class VendaBEAN {
 
     public void setCliente(ClienteBEAN cliente) {
         this.cliente = cliente;
-    }
-
-    @OneToMany(mappedBy = "venda")
-    @Column(nullable = false)
-    public List<Item_VendaBEAN> getItv() {
-        return itv;
-    }
-
-    public void setItv(List<Item_VendaBEAN> itv) {
-        this.itv = itv;
     }
 
 }

@@ -529,6 +529,7 @@ public class FRMFornecedor extends javax.swing.JFrame {
         tfTelefone.setText("");
         tfanotacao.setText("");
     }
+
     private boolean verificaCampos() {
         if (tfNome.getText().equals("")
                 || tfCNPJ.getText().equals("") || tfEmail.getText().equals("")

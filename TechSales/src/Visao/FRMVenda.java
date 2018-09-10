@@ -24,10 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -188,7 +185,7 @@ public class FRMVenda extends javax.swing.JFrame {
         //ccTable.addRow(new Object[]{i, a, b});
         //cada célula do arrayList vira uma linha(row) na tabela
         //set o modelo da tabela
-        tableCli.setModel(ccTable);
+        tableJogoCarrinho.setModel(ccTable);
     }
 
     private DefaultTableModel criaTabela3() {
@@ -270,7 +267,7 @@ public class FRMVenda extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        tableCli = new javax.swing.JTable();
+        tableJogoCarrinho = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
@@ -478,7 +475,7 @@ public class FRMVenda extends javax.swing.JFrame {
             }
         });
 
-        tableCli.setModel(new javax.swing.table.DefaultTableModel(
+        tableJogoCarrinho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -486,12 +483,12 @@ public class FRMVenda extends javax.swing.JFrame {
                 "Jogo", "Preço", "Quantidade"
             }
         ));
-        tableCli.addMouseListener(new java.awt.event.MouseAdapter() {
+        tableJogoCarrinho.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableCliMouseClicked(evt);
+                tableJogoCarrinhoMouseClicked(evt);
             }
         });
-        jScrollPane5.setViewportView(tableCli);
+        jScrollPane5.setViewportView(tableJogoCarrinho);
 
         jButton5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton5.setText("Realizar Venda");
@@ -738,14 +735,15 @@ public class FRMVenda extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void tableCliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCliMouseClicked
+    private void tableJogoCarrinhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableJogoCarrinhoMouseClicked
         int i = tableCR.getSelectedRow();
-    }//GEN-LAST:event_tableCliMouseClicked
+    }//GEN-LAST:event_tableJogoCarrinhoMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (tableJogo.getSelectedRow() != -1) {
-            int i = tableCli.getSelectedRow();
+            int i = tableJogo.getSelectedRow();
             ccTable.removeRow(i);
+            rcTable.removeRow(i);
             //   rcTable.removeRow(i);
         } else {
             JOptionPane.showMessageDialog(null, "Selecione o jogo");
@@ -906,9 +904,9 @@ public class FRMVenda extends javax.swing.JFrame {
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JLabel lbTotal;
     private javax.swing.JTable tableCR;
-    private javax.swing.JTable tableCli;
     private javax.swing.JTable tableCliente;
     private javax.swing.JTable tableJogo;
+    private javax.swing.JTable tableJogoCarrinho;
     private javax.swing.JTextField tfChave1;
     private javax.swing.JTextField tfChave4;
     private javax.swing.JTextField tfNff;

@@ -6,7 +6,6 @@
 package Visao;
 
 import Controle.GeraRelatorio;
-import javax.swing.JTextField;
 
 /**
  *

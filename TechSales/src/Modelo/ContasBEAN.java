@@ -77,7 +77,7 @@ public class ContasBEAN {
     public void setCon_forCodigo(int con_forCodigo) {
         this.con_forCodigo = con_forCodigo;
     }
-    
+
     @ManyToOne
     public FuncionarioBEAN getFuncionario() {
         return funcionario;
@@ -86,6 +86,5 @@ public class ContasBEAN {
     public void setFuncionario(FuncionarioBEAN funcionario) {
         this.funcionario = funcionario;
     }
-
 
 }

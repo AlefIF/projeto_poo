@@ -10,7 +10,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -25,11 +24,10 @@ public class LocacaoBEAN {
 
     private int cod;
     private int loc_cliCodigo;
-    private int loc_funCodigo;
+    private int loc_venCodigo;
     private int loc_jogCodigo;
     private float valor;
     private Date data;
-    private JogoBEAN jogo;
     private ClienteBEAN cliente;
     private FuncionarioBEAN funcionario;
     private List<DevolucaoBEAN> devolucao;
@@ -52,13 +50,15 @@ public class LocacaoBEAN {
         this.loc_cliCodigo = loc_cliCodigo;
     }
 
-    public int getLoc_funCodigo() {
-        return loc_funCodigo;
+    public int getLoc_venCodigo() {
+        return loc_venCodigo;
     }
 
-    public void setLoc_funCodigo(int loc_funCodigo) {
-        this.loc_funCodigo = loc_funCodigo;
+    public void setLoc_venCodigo(int loc_venCodigo) {
+        this.loc_venCodigo = loc_venCodigo;
     }
+
+    
 
     public int getLoc_jogCodigo() {
         return loc_jogCodigo;
@@ -82,15 +82,6 @@ public class LocacaoBEAN {
 
     public void setData(Date data) {
         this.data = data;
-    }
-
-    @ManyToOne
-    public JogoBEAN getJogo() {
-        return jogo;
-    }
-
-    public void setJogo(JogoBEAN jogo) {
-        this.jogo = jogo;
     }
 
     @ManyToOne

@@ -20,7 +20,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
  *
  * @author Wayne
  */
-public class Barra extends javax.swing.JFrame {
+public class VendaPorAno extends javax.swing.JFrame {
 
     private VendaControle cVenda = new VendaControle();
     private ArrayList<GraficoBEAN> alG = new ArrayList<>();
@@ -28,7 +28,7 @@ public class Barra extends javax.swing.JFrame {
     /**
      * Creates new form Barra
      */
-    public Barra() {
+    public VendaPorAno() {
         initComponents();
         setSize(400, 350);
         setResizable(false);
@@ -203,7 +203,7 @@ public class Barra extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Barra().setVisible(true);
+                new VendaPorAno().setVisible(true);
             }
         });
     }

@@ -5,7 +5,6 @@
  */
 package Controle;
 
-
 import Modelo.caixaBEAN;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
@@ -19,6 +18,7 @@ import org.hibernate.HibernateException;
  * @author Alef
  */
 public class caixaControle {
+
     private static EntityManager manager = JpaUtil.getEntityManager();
     private static EntityTransaction tx = manager.getTransaction();
 
@@ -76,5 +76,5 @@ public class caixaControle {
         }
 
     }
-    
+
 }

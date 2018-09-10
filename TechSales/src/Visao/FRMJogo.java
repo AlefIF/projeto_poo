@@ -277,14 +277,24 @@ public class FRMJogo extends javax.swing.JFrame {
 
         tableM.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-
+                "Preço", "Qtde.", "Lote", "Console", "Tipo"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Float.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         tableM.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tableM.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -351,13 +361,13 @@ public class FRMJogo extends javax.swing.JFrame {
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -381,8 +391,8 @@ public class FRMJogo extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(cbCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -876,21 +886,6 @@ public class FRMJogo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tfChaveKeyTyped
 
-    private void preencheTabela2() {
-        dTable2 = criaTabela2();
-        dTable2.addColumn("Preço Padrão");
-        dTable2.addColumn("Tipo de Jogo");
-        dTable2.addColumn("Console");
-        dTable2.addColumn("Lote");
-        dTable2.addColumn("Quantidade");
-        for (InsertBean as : insertDados) {
-            dTable2.addRow(new Object[]{as.getJoPrecoPadrao(), as.getJoTipo(),
-                as.getConNome(), as.getJoLote(), as.getJoQtd()});
-        }
-        //set o modelo da tabela
-        tableM.setModel(dTable2);
-    }
-
     private DefaultTableModel criaTabela2() {
         //sempre que usar JTable é necessário ter um DefaulttableModel
         DefaultTableModel dTable2 = new DefaultTableModel() {
@@ -935,10 +930,29 @@ public class FRMJogo extends javax.swing.JFrame {
         cbTipo.setSelectedIndex(0);
     }
 
+    private void preencheTabela2() {
+        dTable2 = criaTabela2();
+        dTable2.addColumn("Preço Padrão");
+        dTable2.addColumn("Quantidade");
+        dTable2.addColumn("Lote");
+        dTable2.addColumn("Console");
+        dTable2.addColumn("Tipo de Jogo");
+
+        tableM.setModel(dTable2);
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cadastroTeste();
+        //cadastroTeste();     
         preencheTabela2();
         limparCampos2();
+        String lote = tfLote.getText();
+        int qtde = Integer.parseInt(tfQtde.getText());
+        float preco = Float.parseFloat(tfPreco.getText());
+        ConsoleBEAN console = (ConsoleBEAN) cbCon.getSelectedItem();
+        String tipo = (String.valueOf(cbTipo.getSelectedItem()));
+
+        dTable2.addRow(new Object[]{preco, qtde, lote, console, tipo});
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tfLoteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLoteKeyTyped

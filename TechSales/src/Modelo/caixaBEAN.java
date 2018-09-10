@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "caixa")
 public class caixaBEAN {
-    
+
     private int caixaCodigo;
     private float caixaDinheiro;
 
@@ -39,6 +39,4 @@ public class caixaBEAN {
         this.caixaDinheiro = caixaDinheiro;
     }
 
-    
-    
 }

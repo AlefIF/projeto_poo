@@ -211,7 +211,7 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        RelatorioVenda i = new RelatorioVenda();
+        RelatorioDeVendas i = new RelatorioDeVendas();
         i.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -239,7 +239,7 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btnVendaAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaAnoActionPerformed
-        Barra b = new Barra();
+        VendaPorAno b = new VendaPorAno();
         b.setVisible(true);
     }//GEN-LAST:event_btnVendaAnoActionPerformed
 

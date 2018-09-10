@@ -7,7 +7,6 @@ package Visao;
 
 import Controle.VendedorControle;
 import Modelo.VendedorBEAN;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,8 +16,7 @@ import javax.swing.JOptionPane;
 public class FRMLogin extends javax.swing.JFrame {
 
     static VendedorBEAN user = new VendedorBEAN();
-    VendedorControle vc = new VendedorControle();
-    ArrayList<VendedorBEAN> al = vc.listarALL();
+    //VendedorControle vc = new VendedorControle();
 
     /**
      * Creates new form FRMLogin
@@ -116,7 +114,6 @@ public class FRMLogin extends javax.swing.JFrame {
         // al = ct.listarALL();
         String nome = tfUser.getText();
         String senha = tfSenha.getText();
-       
 
         if (nome.equals("ADM") && (senha.equals("ADM"))) {
             FRMPrincipalAdm adm = new FRMPrincipalAdm();
@@ -137,7 +134,6 @@ public class FRMLogin extends javax.swing.JFrame {
             }
 
         }
-
 
     }//GEN-LAST:event_jButton3ActionPerformed
 

@@ -23,7 +23,7 @@ public class DevolucaoBEAN {
     private int cod;
     private Date dataDev;
     private float multa;
-    private int dev_funCodigo;
+    private int dev_venCodigo;
     private int dev_loCodigo;
     private String nf;
     private float valor;
@@ -56,13 +56,15 @@ public class DevolucaoBEAN {
         this.multa = multa;
     }
 
-    public int getDev_funCodigo() {
-        return dev_funCodigo;
+    public int getDev_venCodigo() {
+        return dev_venCodigo;
     }
 
-    public void setDev_funCodigo(int dev_funCodigo) {
-        this.dev_funCodigo = dev_funCodigo;
+    public void setDev_venCodigo(int dev_venCodigo) {
+        this.dev_venCodigo = dev_venCodigo;
     }
+
+    
 
     public int getDev_loCodigo() {
         return dev_loCodigo;

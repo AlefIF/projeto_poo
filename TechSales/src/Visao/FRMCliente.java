@@ -533,14 +533,12 @@ public class FRMCliente extends javax.swing.JFrame {
 
     private void tableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableClienteMouseClicked
 
-
-
         if (tableCliente.getSelectedRow() != -1) {
             jLabelCodigo.setText(tableCliente.getValueAt(tableCliente.getSelectedRow(), 0).toString());
             tfNomeCli.setText(tableCliente.getValueAt(tableCliente.getSelectedRow(), 1).toString());
             tfTelefone.setText(tableCliente.getValueAt(tableCliente.getSelectedRow(), 2).toString());
             tfCpfCli.setText((tableCliente.getValueAt(tableCliente.getSelectedRow(), 3).toString()));
-         
+
             tfIdade.setText(tableCliente.getValueAt(tableCliente.getSelectedRow(), 5).toString());
         }
 
@@ -572,7 +570,6 @@ public class FRMCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_tfLocalizarNomeMouseClicked
 
     private void tfLocalizarNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfLocalizarNomeFocusLost
-
 
     }//GEN-LAST:event_tfLocalizarNomeFocusLost
 

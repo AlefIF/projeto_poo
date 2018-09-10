@@ -8,7 +8,6 @@ package Modelo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,7 +20,7 @@ public class CategoriaBEAN {
 
     private int catCodigo;
     private String catNome;
-    private LucroBEAN luc;
+    
 
     @Id
     @GeneratedValue
@@ -39,15 +38,6 @@ public class CategoriaBEAN {
 
     public void setCatNome(String catNome) {
         this.catNome = catNome;
-    }
-
-    @ManyToOne
-    public LucroBEAN getLuc() {
-        return luc;
-    }
-
-    public void setLuc(LucroBEAN luc) {
-        this.luc = luc;
     }
 
     @Override

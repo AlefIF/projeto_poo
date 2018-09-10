@@ -8,6 +8,7 @@ package Modelo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -25,7 +26,6 @@ public class JogoBEAN {
     private float joPrecoPadrao;
     private String joTipo;
     private String joLote;
-    private int jo_catCodigo;
     private int joQtd;
     private int joDisponibilidade;
     private CategoriaBEAN cat;
@@ -81,14 +81,6 @@ public class JogoBEAN {
         this.joLote = joLote;
     }
 
-    public int getJo_catCodigo() {
-        return jo_catCodigo;
-    }
-
-    public void setJo_catCodigo(int jo_catCodigo) {
-        this.jo_catCodigo = jo_catCodigo;
-    }
-
     public int getJoQtd() {
         return joQtd;
     }
@@ -106,6 +98,7 @@ public class JogoBEAN {
     }
 
     @ManyToOne
+    @JoinColumn(name="jo_catCodigo")
     public CategoriaBEAN getCat() {
         return cat;
     }
@@ -115,6 +108,7 @@ public class JogoBEAN {
     }
 
     @ManyToOne
+    @JoinColumn(name="jo_conCodigo")
     public ConsoleBEAN getConsole() {
         return console;
     }

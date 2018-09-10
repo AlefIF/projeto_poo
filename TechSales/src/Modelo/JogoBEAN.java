@@ -30,6 +30,7 @@ public class JogoBEAN {
     private int joDisponibilidade;
     private CategoriaBEAN cat;
     private ConsoleBEAN console;
+    private LucroBEAN lucro;
 
     @Id
     @GeneratedValue
@@ -117,6 +118,17 @@ public class JogoBEAN {
         this.console = console;
     }
 
+    @ManyToOne
+    @JoinColumn(name="jo_lucCodigo")
+    public LucroBEAN getLucro() {
+        return lucro;
+    }
+
+    public void setLucro(LucroBEAN lucro) {
+        this.lucro = lucro;
+    }
+
+    
     @Override
     public String toString() {
         return getJoNome();

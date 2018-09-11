@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -15,7 +16,7 @@ import javax.persistence.ManyToOne;
  * @author Alef
  */
 @Embeddable
-public class JogoLocacaoPK {
+public class JogoLocacaoPK implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "joCod")

@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,6 +27,7 @@ public class FornecedorBEAN {
     private String forPais;
     private String forEndereco;
     private String forAnotacoes;
+    private EnderecoBEAN endereco;
 
     @Id
     @GeneratedValue
@@ -93,4 +95,12 @@ public class FornecedorBEAN {
         this.forAnotacoes = forAnotacoes;
     }
 
+    @Embedded
+    public EnderecoBEAN getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(EnderecoBEAN endereco) {
+        this.endereco = endereco;
+    }
 }

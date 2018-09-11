@@ -5,35 +5,24 @@
  */
 package Modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.Embeddable;
+
 
 /**
  *
  * @author Alef
  */
-@Entity
-@Table(name = "endereco")
+@Embeddable
 public class EnderecoBEAN {
 
     private int endCodigo;
     private int endNumero;
     private String endRua;
     private String endBairro;
+    private String endCidade;
     private String endEstado;
     private String endPais;
-    private int endCliCodigo;
-    private int endFuncodigo;
-    private int endForcodigo;
-    private ClienteBEAN cliente;
-    private FuncionarioBEAN funcionario;
-    private FornecedorBEAN fornecedor;
 
-    @Id
-    @GeneratedValue
     public int getEndCodigo() {
         return endCodigo;
     }
@@ -66,6 +55,14 @@ public class EnderecoBEAN {
         this.endBairro = endBairro;
     }
 
+    public String getEndCidade() {
+        return endCidade;
+    }
+
+    public void setEndCidade(String endCidade) {
+        this.endCidade = endCidade;
+    }
+
     public String getEndEstado() {
         return endEstado;
     }
@@ -82,54 +79,5 @@ public class EnderecoBEAN {
         this.endPais = endPais;
     }
 
-    public int getEndCliCodigo() {
-        return endCliCodigo;
-    }
-
-    public void setEndCliCodigo(int endCliCodigo) {
-        this.endCliCodigo = endCliCodigo;
-    }
-
-    public int getEndFuncodigo() {
-        return endFuncodigo;
-    }
-
-    public void setEndFuncodigo(int endFuncodigo) {
-        this.endFuncodigo = endFuncodigo;
-    }
-
-    public int getEndForcodigo() {
-        return endForcodigo;
-    }
-
-    public void setEndForcodigo(int endForcodigo) {
-        this.endForcodigo = endForcodigo;
-    }
-
-    @ManyToOne
-    public ClienteBEAN getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(ClienteBEAN cliente) {
-        this.cliente = cliente;
-    }
-
-    @ManyToOne
-    public FuncionarioBEAN getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(FuncionarioBEAN funcionario) {
-        this.funcionario = funcionario;
-    }
-
-    @ManyToOne
-    public FornecedorBEAN getFornecedor() {
-        return fornecedor;
-    }
-
-    public void setFornecedor(FornecedorBEAN fornecedor) {
-        this.fornecedor = fornecedor;
-    }
+  
 }

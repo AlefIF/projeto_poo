@@ -5,12 +5,11 @@
  */
 package Modelo;
 
-import java.util.List;
-import javax.persistence.Column;
+
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,11 +20,9 @@ public class ClienteBEAN {
     private String nome;
     private int idade;
     private String cpf;
-    private String endereco;
     private String telefone;
-    private List<VendaBEAN> venda;
-    private List<LocacaoBEAN> locacao;
-    private List<DevolucaoBEAN> devolucao;
+    private EnderecoBEAN endereco;
+    
 
     @Id
     @GeneratedValue
@@ -61,14 +58,6 @@ public class ClienteBEAN {
         this.cpf = cpf;
     }
 
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
     public String getTelefone() {
         return telefone;
     }
@@ -77,34 +66,15 @@ public class ClienteBEAN {
         this.telefone = telefone;
     }
 
-    @OneToMany(mappedBy = "cliente")
-    @Column(nullable = true)
-    public List<VendaBEAN> getVenda() {
-        return venda;
+    @Embedded
+    public EnderecoBEAN getEndereco() {
+        return endereco;
     }
 
-    public void setVenda(List<VendaBEAN> venda) {
-        this.venda = venda;
+    public void setEndereco(EnderecoBEAN endereco) {
+        this.endereco = endereco;
     }
-
-    @OneToMany(mappedBy = "cliente")
-    @Column(nullable = true)
-    public List<LocacaoBEAN> getLocacao() {
-        return locacao;
-    }
-
-    public void setLocacao(List<LocacaoBEAN> aluguel) {
-        this.locacao = aluguel;
-    }
-
-    @OneToMany(mappedBy = "cliente")
-    @Column(nullable = true)
-    public List<DevolucaoBEAN> getDevolucao() {
-        return devolucao;
-    }
-
-    public void setDevolucao(List<DevolucaoBEAN> devolucao) {
-        this.devolucao = devolucao;
-    }
+    
+    
 
 }

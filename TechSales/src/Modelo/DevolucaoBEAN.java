@@ -9,6 +9,7 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,14 +22,12 @@ import javax.persistence.Table;
 public class DevolucaoBEAN {
 
     private int cod;
-    private Date dataDev;
+    private Date dataDev; 
     private float multa;
-    private int dev_venCodigo;
-    private int dev_loCodigo;
-    private String nf;
     private float valor;
     private LocacaoBEAN locacao;
-    private FuncionarioBEAN funcionario;
+    private VendedorBEAN vendedor;
+    private caixaBEAN caixa;
 
     @Id
     @GeneratedValue
@@ -56,32 +55,6 @@ public class DevolucaoBEAN {
         this.multa = multa;
     }
 
-    public int getDev_venCodigo() {
-        return dev_venCodigo;
-    }
-
-    public void setDev_venCodigo(int dev_venCodigo) {
-        this.dev_venCodigo = dev_venCodigo;
-    }
-
-    
-
-    public int getDev_loCodigo() {
-        return dev_loCodigo;
-    }
-
-    public void setDev_loCodigo(int dev_loCodigo) {
-        this.dev_loCodigo = dev_loCodigo;
-    }
-
-    public String getNf() {
-        return nf;
-    }
-
-    public void setNf(String nf) {
-        this.nf = nf;
-    }
-
     public float getValor() {
         return valor;
     }
@@ -91,6 +64,7 @@ public class DevolucaoBEAN {
     }
 
     @ManyToOne
+    @JoinColumn(name="dev_loCodigo")
     public LocacaoBEAN getLocacao() {
         return locacao;
     }
@@ -100,12 +74,25 @@ public class DevolucaoBEAN {
     }
 
     @ManyToOne
-    public FuncionarioBEAN getFuncionario() {
-        return funcionario;
+    @JoinColumn(name="dev_venCodigo")
+    public VendedorBEAN getVendedor() {
+        return vendedor;
     }
 
-    public void setFuncionario(FuncionarioBEAN funcionario) {
-        this.funcionario = funcionario;
+    public void setVendedor(VendedorBEAN vendedor) {
+        this.vendedor = vendedor;
     }
 
+    @ManyToOne
+    @JoinColumn(name="dev_caixaCodigo")
+    public caixaBEAN getCaixa() {
+        return caixa;
+    }
+
+    public void setCaixa(caixaBEAN caixa) {
+        this.caixa = caixa;
+    }
+
+    
+    
 }

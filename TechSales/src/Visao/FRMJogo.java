@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Modelo.JogoBEAN;
-import Modelo.InsertBean;
 import javax.swing.RowFilter;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -33,7 +32,7 @@ public class FRMJogo extends javax.swing.JFrame {
     private ArrayList<ConsoleBEAN> cDados;
     private DefaultTableModel dTable;
     private DefaultTableModel dTable2;
-    private ArrayList<InsertBean> insertDados = new ArrayList<InsertBean>();
+    
 
     /**
      * Creates new form FRMJogo
@@ -74,7 +73,7 @@ public class FRMJogo extends javax.swing.JFrame {
 
         for (JogoBEAN dado : jDados) {
             for (CategoriaBEAN dado2 : catDados) {
-                if (dado.getJo_catCodigo() == dado2.getCatCodigo()) {
+                if (dado.getCat().getCatCodigo()== dado2.getCatCodigo()) {
                     for (ConsoleBEAN c : cDados) {
                         if (dado.getConsole().getConCodigo() == c.getConCodigo()) {
                             dTable.addRow(new Object[]{dado.getJoCodigo(), dado.getJoNome(),

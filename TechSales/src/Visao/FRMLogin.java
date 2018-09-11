@@ -7,6 +7,7 @@ package Visao;
 
 import Controle.VendedorControle;
 import Modelo.VendedorBEAN;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,7 +17,8 @@ import javax.swing.JOptionPane;
 public class FRMLogin extends javax.swing.JFrame {
 
     static VendedorBEAN user = new VendedorBEAN();
-    //VendedorControle vc = new VendedorControle();
+    VendedorControle vc = new VendedorControle();
+    ArrayList<VendedorBEAN> al = vc.listarALL();
 
     /**
      * Creates new form FRMLogin
@@ -48,6 +50,8 @@ public class FRMLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(600, 300));
+        setSize(new java.awt.Dimension(600, 300));
         getContentPane().setLayout(null);
         getContentPane().add(tfSenha);
         tfSenha.setBounds(200, 190, 120, 30);
@@ -111,29 +115,26 @@ public class FRMLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_rbSenhaActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // al = ct.listarALL();
         String nome = tfUser.getText();
         String senha = tfSenha.getText();
 
-        if (nome.equals("ADM") && (senha.equals("ADM"))) {
-            FRMPrincipalAdm adm = new FRMPrincipalAdm();
-            this.dispose();
-            adm.setVisible(true);
-        } else {
-            for (VendedorBEAN vendedor : al) {
-                if (vendedor.getVenNomeUsuario().equals(nome) && vendedor.getVenSenha().equals(senha)) {
-                    user = vendedor;
-                }
-            }
-            if (user != null) {
+        for (VendedorBEAN vendedor : al) {
+            if (vendedor.getVenNomeUsuario().equals(nome) && vendedor.getVenSenha().equals(senha)) {
+                user = vendedor;
                 FRMPrincipalFun fun = new FRMPrincipalFun();
                 this.dispose();
                 fun.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuário  não encontrado!");
             }
-
         }
+
+        if (nome.equals("ADM") && (senha.equals("ADM"))) {
+            FRMMenuADM adm = new FRMMenuADM();
+            this.dispose();
+            adm.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário  não encontrado!");
+        }
+
 
     }//GEN-LAST:event_jButton3ActionPerformed
 

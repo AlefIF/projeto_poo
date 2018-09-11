@@ -9,6 +9,7 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -26,14 +27,12 @@ public class VendaBEAN {
     private float vendaEntrada;
     private int vendaNparcelas;
     private float vendaValorTOtal;
-    private int venda_venCodigo;
-    private int venda_cliCodigo;
     private VendedorBEAN vendedor;
     private ClienteBEAN cliente;
-
+    private caixaBEAN caixa;
+    
     @Id
     @GeneratedValue
-
     public int getVendaCodigo() {
         return vendaCodigo;
     }
@@ -56,22 +55,6 @@ public class VendaBEAN {
 
     public void setVendaData(Date vendaData) {
         this.vendaData = vendaData;
-    }
-
-    public int getVenda_venCodigo() {
-        return venda_venCodigo;
-    }
-
-    public void setVenda_venCodigo(int venda_venCodigo) {
-        this.venda_venCodigo = venda_venCodigo;
-    }
-
-    public int getVenda_cliCodigo() {
-        return venda_cliCodigo;
-    }
-
-    public void setVenda_cliCodigo(int venda_cliCodigo) {
-        this.venda_cliCodigo = venda_cliCodigo;
     }
 
     public int getVendaNparcelas() {
@@ -99,6 +82,7 @@ public class VendaBEAN {
     }
 
     @ManyToOne
+    @JoinColumn(name="venda_venCodigo")
     public VendedorBEAN getVendedor() {
         return vendedor;
     }
@@ -108,6 +92,7 @@ public class VendaBEAN {
     }
 
     @ManyToOne
+    @JoinColumn(name="venda_cliCodigo")
     public ClienteBEAN getCliente() {
         return cliente;
     }
@@ -115,5 +100,17 @@ public class VendaBEAN {
     public void setCliente(ClienteBEAN cliente) {
         this.cliente = cliente;
     }
+
+    @ManyToOne
+    @JoinColumn(name="venda_caixaCodigo")
+    public caixaBEAN getCaixa() {
+        return caixa;
+    }
+
+    public void setCaixa(caixaBEAN caixa) {
+        this.caixa = caixa;
+    }
+    
+    
 
 }

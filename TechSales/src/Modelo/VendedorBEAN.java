@@ -5,12 +5,12 @@
  */
 package Modelo;
 
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,10 +24,8 @@ public class VendedorBEAN {
     private int venCodigo;
     private String venNomeUsuario;
     private String venSenha;
-    private int ven_funCodigo;
-    private List<LocacaoBEAN> loc;
-    private List<DevolucaoBEAN> dev;
-    private List<VendaBEAN> venda;
+    private FuncionarioBEAN funcionario;
+  
 
     @Id
     @GeneratedValue
@@ -55,42 +53,16 @@ public class VendedorBEAN {
         this.venSenha = venSenha;
     }
 
-    public int getVen_funCodigo() {
-        return ven_funCodigo;
+    @ManyToOne
+    @JoinColumn(name="ven_funCodigo")
+    public FuncionarioBEAN getFuncionario() {
+        return funcionario;
     }
 
-    public void setVen_funCodigo(int ven_funCodigo) {
-        this.ven_funCodigo = ven_funCodigo;
+    public void setFuncionario(FuncionarioBEAN funcionario) {
+        this.funcionario = funcionario;
     }
 
-    @OneToMany(mappedBy = "loc_venCodigo")
-    @Column(nullable = true)
-    public List<LocacaoBEAN> getLoc() {
-        return loc;
-    }
-
-    public void setLoc(List<LocacaoBEAN> loc) {
-        this.loc = loc;
-    }
-
-    @OneToMany(mappedBy = "dev_venCodigo")
-    @Column(nullable = true)
-    public List<DevolucaoBEAN> getDev() {
-        return dev;
-    }
-
-    public void setDev(List<DevolucaoBEAN> dev) {
-        this.dev = dev;
-    }
-
-    @OneToMany(mappedBy = "venda_venCodigo")
-    @Column(nullable = true)
-    public List<VendaBEAN> getVenda() {
-        return venda;
-    }
-
-    public void setVenda(List<VendaBEAN> venda) {
-        this.venda = venda;
-    }
+    
 
 }

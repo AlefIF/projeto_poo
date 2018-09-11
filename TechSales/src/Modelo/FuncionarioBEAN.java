@@ -5,12 +5,12 @@
  */
 package Modelo;
 
-import java.util.List;
-import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -30,7 +30,9 @@ public class FuncionarioBEAN {
     private String funNisPis;
     private float funSalario;
     private String funTrabalho;
-    private List<VendedorBEAN> vendedor;
+    private EnderecoBEAN endereco;
+    private caixaBEAN caixa;
+    private EmpregoBEAN emprego;
 
     @Id
     @GeneratedValue
@@ -105,15 +107,38 @@ public class FuncionarioBEAN {
     public void setFunTrabalho(String funTrabalho) {
         this.funTrabalho = funTrabalho;
     }
-
-    @OneToMany(mappedBy = "ven_funCodigo")
-    @Column(nullable = true)
-    public List<VendedorBEAN> getVendedor() {
-        return vendedor;
+    
+    @Embedded
+    public EnderecoBEAN getEndereco() {
+        return endereco;
     }
 
-    public void setVendedor(List<VendedorBEAN> vendedor) {
-        this.vendedor = vendedor;
+    public void setEndereco(EnderecoBEAN endereco) {
+        this.endereco = endereco;
     }
+
+    @ManyToOne
+    @JoinColumn(name="fun_caixaCodigo")
+    public caixaBEAN getCaixa() {
+        return caixa;
+    }
+
+    public void setCaixa(caixaBEAN caixa) {
+        this.caixa = caixa;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="fun_empCodigo")
+    public EmpregoBEAN getEmprego() {
+        return emprego;
+    }
+
+    public void setEmprego(EmpregoBEAN emprego) {
+        this.emprego = emprego;
+    }
+    
+    
+    
+    
 
 }

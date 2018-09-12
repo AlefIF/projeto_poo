@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pendencia_Relatorio" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="94668a01-0ef2-4f45-b8dc-e8347b1ba227">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="Mysql"/>
+    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+    <queryString>
+		<![CDATA[SELECT  cliCodigo, cliNome, joNome, devDataDevolucao
+FROM cliente JOIN jogo JOIN  locacao JOIN devolucao
+WHERE TIMESTAMPDIFF
+(DAY, loDataAluguel, devDataDevolucao) >= 7
+ AND loc_cliCodigo = cliCodigo
+ AND joCodigo = loc_joCodigo
+ AND dev_loCodigo = loCodigo
+ AND cliente_cliCodigo = cliCodigo
+ GROUP BY cliCodigo]]>
+    </queryString>
+    <field name="cliCodigo" class="java.lang.Integer"/>
+    <field name="cliNome" class="java.lang.String"/>
+    <field name="joNome" class="java.lang.String"/>
+    <field name="devDataDevolucao" class="java.sql.Date"/>
+    <group name="Group1"/>
+    <group name="Group2"/>
+    <group name="Group3"/>
+    <group name="Group4"/>
+    <background>
+        <band/>
+    </background>
+    <title>
+        <band height="72">
+            <frame>
+                <reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="142a8cd0-273a-4bca-b5d1-8eca94e71326"/>
+                <staticText>
+                    <reportElement x="20" y="20" width="436" height="43" forecolor="#FFFFFF" uuid="5014d1b2-36a1-4e67-8232-c8ab936fb4e1"/>
+                    <textElement textAlignment="Justified">
+                        <font size="34" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Clientes devedores]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="1d9f9ab7-5cb5-4525-86a0-597d22fb0ca6"/>
+                    <textElement textAlignment="Right">
+                        <font size="14" isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[TechSales]]></text>
+                </staticText>
+            </frame>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="34"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="20">
+            <staticText>
+                <reportElement mode="Opaque" x="-1" y="0" width="61" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c185ea7c-a514-4600-984a-bd6711723edd">
+                    <property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+                </reportElement>
+                <textElement textAlignment="Left">
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Código]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="60" y="0" width="170" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2e9ed12f-0607-42dd-b518-a73c80f6bbd7"/>
+                <textElement textAlignment="Left">
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Nome]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="230" y="0" width="140" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="9ea35da4-c350-4dc4-a27c-1737562e7be6"/>
+                <textElement textAlignment="Left">
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Jogo]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="370" y="0" width="110" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="fa7f6e16-312c-442a-84c8-619bc0d0d4c7"/>
+                <textElement textAlignment="Left">
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Data de devolução]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="480" y="0" width="75" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="62528790-735d-4cd6-a419-2b5b60b22605"/>
+                <textElement textAlignment="Left">
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Situação]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="33">
+            <textField>
+                <reportElement x="-1" y="1" width="61" height="18" uuid="27ace901-c3aa-4069-9d2f-3eb8954a2166"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{cliCodigo}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="60" y="0" width="170" height="19" uuid="b02a2e1b-8d82-4dc6-b068-5209bf2c0fdf"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{cliNome}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="230" y="1" width="140" height="18" uuid="2c6025e4-c9e9-4f84-a941-85d4fa83c8c7"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{joNome}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="370" y="0" width="110" height="19" uuid="6547fac2-4e8c-4666-bbfa-6f3728bba802"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{devDataDevolucao}]]></textFieldExpression>
+            </textField>
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="bceafb47-9b6c-463e-adff-190c7394dff8"/>
+            </line>
+        </band>
+    </detail>
+    <pageFooter>
+        <band height="17">
+            <textField>
+                <reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="7484f0de-05e3-4c3f-814a-fda7884b765e"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="9d44ece0-9c42-4756-84c2-90eac64f4347"/>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <textField pattern="EEEEE dd MMMMM yyyy">
+                <reportElement x="0" y="4" width="100" height="13" uuid="c6bbbbc1-1566-4025-a1ce-79d2dac0216a"/>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+    <summary>
+        <band/>
+    </summary>
+</jasperReport>

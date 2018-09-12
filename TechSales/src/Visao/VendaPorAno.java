@@ -108,7 +108,6 @@ public class VendaPorAno extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         tfAno = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gráfico de Barras");
@@ -145,10 +144,6 @@ public class VendaPorAno extends javax.swing.JFrame {
         jLabel5.setBounds(10, 250, 30, 14);
         getContentPane().add(tfAno);
         tfAno.setBounds(60, 250, 63, 20);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/Background.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 540, 370);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -210,7 +205,6 @@ public class VendaPorAno extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField tfAno;

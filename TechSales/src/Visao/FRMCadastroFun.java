@@ -6,6 +6,7 @@
 package Visao;
 
 import Controle.FuncionarioControle;
+import Modelo.EmpregoBEAN;
 
 import Modelo.FuncionarioBEAN;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     private ArrayList<FuncionarioBEAN> userD;
     private DefaultTableModel tbUsers;
     FuncionarioControle ct = new FuncionarioControle();
+   
 
     /**
      * Creates new form FRMAdm

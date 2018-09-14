@@ -5,17 +5,31 @@
  */
 package Visao;
 
+import Controle.EmpregoControle;
+import Modelo.EmpregoBEAN;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Alef
  */
 public class FRMEmpregro extends javax.swing.JFrame {
 
+    private EmpregoControle ec = new EmpregoControle();
+    private DefaultTableModel tabEmp = new DefaultTableModel();
+
     /**
      * Creates new form FRMEmpregro
      */
     public FRMEmpregro() {
         initComponents();
+        preencheTabela();
+        btExcluir.setEnabled(false);
     }
 
     /**
@@ -29,24 +43,24 @@ public class FRMEmpregro extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lbCodCon = new javax.swing.JLabel();
+        lbCod = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        tfNome = new javax.swing.JTextField();
+        tfFuncao = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        tfMarca = new javax.swing.JTextField();
+        tfSalario = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         btCadastrar = new javax.swing.JButton();
         btEditar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        tfDescricao = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         tfChave = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tableConsole = new javax.swing.JTable();
+        tabelaEmprego = new javax.swing.JTable();
         btVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,14 +70,20 @@ public class FRMEmpregro extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel1.setText("Código :");
 
-        lbCodCon.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbCodCon.setText("...");
+        lbCod.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lbCod.setText("...");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel3.setText("Função :");
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setText("Descrição:");
+
+        tfSalario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfSalarioKeyTyped(evt);
+            }
+        });
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
@@ -123,9 +143,9 @@ public class FRMEmpregro extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setText("salário padrão:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        tfDescricao.setColumns(20);
+        tfDescricao.setRows(5);
+        jScrollPane1.setViewportView(tfDescricao);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -139,19 +159,18 @@ public class FRMEmpregro extends javax.swing.JFrame {
                         .addGap(23, 23, 23)
                         .addComponent(jScrollPane1))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lbCodCon)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel2)
-                            .addGap(18, 18, 18)
-                            .addComponent(tfMarca))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbCod)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfSalario))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -160,13 +179,13 @@ public class FRMEmpregro extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(lbCodCon)
+                    .addComponent(lbCod)
                     .addComponent(jLabel2)
-                    .addComponent(tfMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -214,8 +233,8 @@ public class FRMEmpregro extends javax.swing.JFrame {
                 .addGap(0, 9, Short.MAX_VALUE))
         );
 
-        tableConsole.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        tableConsole.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaEmprego.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tabelaEmprego.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -226,17 +245,17 @@ public class FRMEmpregro extends javax.swing.JFrame {
 
             }
         ));
-        tableConsole.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelaEmprego.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableConsoleMouseClicked(evt);
+                tabelaEmpregoMouseClicked(evt);
             }
         });
-        tableConsole.addKeyListener(new java.awt.event.KeyAdapter() {
+        tabelaEmprego.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                tableConsoleKeyTyped(evt);
+                tabelaEmpregoKeyTyped(evt);
             }
         });
-        jScrollPane2.setViewportView(tableConsole);
+        jScrollPane2.setViewportView(tabelaEmprego);
 
         btVoltar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
@@ -286,46 +305,112 @@ public class FRMEmpregro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void limpaCampos() {
+        lbCod.setText("...");
+        tfFuncao.setText("");
+        tfDescricao.setText("");
+        tfSalario.setText("");
+        btExcluir.setEnabled(false);
+    }
+
+    public boolean verificaCampos() {
+        if (tfFuncao.getText().equals("")
+                || tfDescricao.getText().equals("")
+                || tfSalario.getText().equals("")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void cadastrar() {
+        EmpregoBEAN emp = new EmpregoBEAN();
+        emp.setEmpNome(tfFuncao.getText());
+        emp.setEmpSalarioPadrao(Float.parseFloat(tfSalario.getText()));
+        emp.setEmpDescricao(tfDescricao.getText());
+        ec.cadastrar(emp);
+    }
+
+    private void preencheTabela() {
+        tabEmp = this.criaTabela();
+        tabEmp.addColumn("Código");
+        tabEmp.addColumn("Função");
+        tabEmp.addColumn("Salário");
+        tabEmp.addColumn("Descrição");
+
+        ArrayList<EmpregoBEAN> empL = ec.listarALL();
+
+        for (EmpregoBEAN e : empL) {
+            tabEmp.addRow(new Object[]{
+                e.getEmpCodigo(),
+                e.getEmpNome(),
+                e.getEmpSalarioPadrao(),
+                e.getEmpDescricao()});
+        }
+        //set o modelo da tabela
+        tabelaEmprego.setModel(tabEmp);
+    }
+
+    private DefaultTableModel criaTabela() {
+        //sempre que usar JTable é necessário ter um DefaulttableModel
+        DefaultTableModel dTable = new DefaultTableModel() {
+            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
+            Class[] types = new Class[]{
+                java.lang.Integer.class,
+                java.lang.String.class,
+                java.lang.Float.class,
+                java.lang.String.class,};
+            //define se os campos podem ser editados na propria tabela
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false};
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        ;
+        };
+        //retorna o DefaultTableModel
+    return dTable;
+    }
+
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        ConsoleBEAN console = new ConsoleBEAN();
-        console.setConNome(tfNome.getText());
-        console.setConMarca(tfMarca.getText());
-        cCon.cadastrar(console);
-        this.preencheTabela();
-        limparCampos();
-        JOptionPane.showMessageDialog(null, "Console CADASTRADO com sucesso");
+        if (verificaCampos() == false) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        } else {
+            cadastrar();
+            this.preencheTabela();
+            limpaCampos();
+            JOptionPane.showMessageDialog(null, "Emprego CADASTRADO com sucesso");
+        }
+
+
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        ConsoleBEAN c = cCon.localizar(Integer.parseInt(lbCodCon.getText()));
-        c.setConNome(tfNome.getText());
-        c.setConMarca(tfMarca.getText());
-        //chama o método de controle para editar
-        boolean retorno = cCon.editar(c);
-        //se a variavel retorno for igual a true o usuario foi editado
+        EmpregoBEAN c = ec.localizarCodigo(Integer.parseInt(lbCod.getText()));
+        c.setEmpNome(tfFuncao.getText());
+        c.setEmpSalarioPadrao(Float.parseFloat(tfSalario.getText()));
+        c.setEmpDescricao(tfDescricao.getText());
+
+        boolean retorno = ec.editar(c);
+
         if (retorno == true) {
-            JOptionPane.showMessageDialog(null, "Console MODIFICADO com sucesso");
-            //solicita a atualização da tabela ou seja preenche ela toda novamente
+            JOptionPane.showMessageDialog(null, "Emprego MODIFICADO com sucesso");
             this.preencheTabela();
-            //chama o método para limpar campos
-            this.limparCampos();
+            this.limpaCampos();
         } else {
-            //mensagem de erro
             JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
         }
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        boolean retorno = cCon.remover(Integer.parseInt(lbCodCon.getText()));
-        //se a variavel retorno for igual a true o usuario foi exluido
+        boolean retorno = ec.remover(Integer.parseInt(lbCod.getText()));
         if (retorno == true) {
-            JOptionPane.showMessageDialog(null, "Console EXCLUÍDO com sucesso");
-            //solicita a atualização da tabela ou seja preenche ela toda novamente
+            JOptionPane.showMessageDialog(null, "Emprego EXCLUÍDO com sucesso");
             this.preencheTabela();
-            //chama o método para limpar campos
-            this.limparCampos();
+            this.limpaCampos();
         } else {
-            //mensagem de erro
             JOptionPane.showMessageDialog(null, "ERRO na exclusão");
         }
     }//GEN-LAST:event_btExcluirActionPerformed
@@ -336,31 +421,40 @@ public class FRMEmpregro extends javax.swing.JFrame {
 
     private void tfChaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyTyped
         TableRowSorter sorter = null;
-        DefaultTableModel model = (DefaultTableModel) tableConsole.getModel();
+        DefaultTableModel model = (DefaultTableModel) tabelaEmprego.getModel();
         sorter = new TableRowSorter<TableModel>(model);
-        tableConsole.setRowSorter(sorter);
+        tabelaEmprego.setRowSorter(sorter);
         String text = tfChave.getText();
         sorter.setRowFilter(RowFilter.regexFilter(text));
     }//GEN-LAST:event_tfChaveKeyTyped
 
-    private void tableConsoleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableConsoleMouseClicked
+    private void tabelaEmpregoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEmpregoMouseClicked
         //        this.pegaSelecionado();
-        if (tableConsole.getSelectedRow() != -1) {
-            lbCodCon.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 0).toString());
-            tfNome.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 1).toString());
-            tfMarca.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 2).toString());
+        if (tabelaEmprego.getSelectedRow() != -1) {
+            lbCod.setText(tabelaEmprego.getValueAt(tabelaEmprego.getSelectedRow(), 0).toString());
+            tfFuncao.setText(tabelaEmprego.getValueAt(tabelaEmprego.getSelectedRow(), 1).toString());
+            tfSalario.setText(tabelaEmprego.getValueAt(tabelaEmprego.getSelectedRow(), 2).toString());
+            tfDescricao.setText(tabelaEmprego.getValueAt(tabelaEmprego.getSelectedRow(), 3).toString());
+            btExcluir.setEnabled(true);
         }
-    }//GEN-LAST:event_tableConsoleMouseClicked
+    }//GEN-LAST:event_tabelaEmpregoMouseClicked
 
-    private void tableConsoleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableConsoleKeyTyped
+    private void tabelaEmpregoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabelaEmpregoKeyTyped
 
-    }//GEN-LAST:event_tableConsoleKeyTyped
+    }//GEN-LAST:event_tabelaEmpregoKeyTyped
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
         FRMMenuADM fun = new FRMMenuADM();
         this.dispose();
         fun.setVisible(true);
     }//GEN-LAST:event_btVoltarActionPerformed
+
+    private void tfSalarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfSalarioKeyTyped
+     String caracteres = "0123456789.";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfSalarioKeyTyped
 
     /**
      * @param args the command line arguments
@@ -413,11 +507,11 @@ public class FRMEmpregro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel lbCodCon;
-    private javax.swing.JTable tableConsole;
+    private javax.swing.JLabel lbCod;
+    private javax.swing.JTable tabelaEmprego;
     private javax.swing.JTextField tfChave;
-    private javax.swing.JTextField tfMarca;
-    private javax.swing.JTextField tfNome;
+    private javax.swing.JTextArea tfDescricao;
+    private javax.swing.JTextField tfFuncao;
+    private javax.swing.JTextField tfSalario;
     // End of variables declaration//GEN-END:variables
 }

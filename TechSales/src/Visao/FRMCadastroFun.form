@@ -133,7 +133,7 @@
                   <EmptySpace pref="32" max="32767" attributes="0"/>
                   <Component id="jbEditarFun" min="-2" pref="91" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="jbExcluirFun" min="-2" max="-2" attributes="0"/>
+                  <Component id="btExcluir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -145,7 +145,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jbCadastrarFun" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbEditarFun" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbExcluirFun" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -181,7 +181,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbEditarFunActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jbExcluirFun">
+        <Component class="javax.swing.JToggleButton" name="btExcluir">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="1"/>
@@ -192,7 +192,7 @@
             <Property name="text" type="java.lang.String" value="Excluir"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbExcluirFunActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExcluirActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -319,6 +319,9 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="tfSalario">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfSalarioKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
@@ -329,6 +332,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="tfNPFun">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfNPFunKeyTyped"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{&#xd;&#xa;   javax.swing.text.MaskFormatter nis= new javax.swing.text.MaskFormatter(&quot;###.#####.##-#&quot;);&#xd;&#xa;   tfNPFun = new javax.swing.JFormattedTextField(nis);&#xd;&#xa;}&#xd;&#xa;   catch (Exception e){&#xd;&#xa;}"/>
           </AuxValues>
@@ -365,6 +371,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="tfCpfFun">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCpfFunKeyTyped"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{&#xd;&#xa;   javax.swing.text.MaskFormatter cpf= new javax.swing.text.MaskFormatter(&quot;###.###.###-##&quot;);&#xd;&#xa;   tfCpfFun = new javax.swing.JFormattedTextField(cpf);&#xd;&#xa;}&#xd;&#xa;   catch (Exception e){&#xd;&#xa;}"/>
           </AuxValues>
@@ -477,9 +486,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tfNomeUser">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="tfNomeUser.setEditable(false);&#xd;&#xa;"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel19">
               <Properties>
@@ -635,6 +641,9 @@
         <Component class="javax.swing.JTextField" name="tfRua">
         </Component>
         <Component class="javax.swing.JTextField" name="tfNumero">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfNumeroKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="tfPais">
         </Component>
@@ -666,7 +675,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tbPesquisa">
+        <Component class="javax.swing.JTable" name="tbFuncionario">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="0" rowCount="0"/>
@@ -679,8 +688,8 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbPesquisaMouseClicked"/>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbPesquisaKeyReleased"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbFuncionarioMouseClicked"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbFuncionarioKeyReleased"/>
           </Events>
         </Component>
       </SubComponents>

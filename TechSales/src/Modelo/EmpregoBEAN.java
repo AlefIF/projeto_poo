@@ -56,5 +56,8 @@ public class EmpregoBEAN {
         this.empSalarioPadrao = empSalarioPadrao;
     }
     
-    
+    @Override
+    public String toString() {
+        return getEmpNome();
+    }
 }

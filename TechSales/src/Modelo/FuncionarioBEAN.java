@@ -31,7 +31,7 @@ public class FuncionarioBEAN {
     private float funSalario;
     private String funTrabalho;
     private EnderecoBEAN endereco;
-    private caixaBEAN caixa;
+    private CaixaBEAN caixa;
     private EmpregoBEAN emprego;
 
     @Id
@@ -119,11 +119,11 @@ public class FuncionarioBEAN {
 
     @ManyToOne
     @JoinColumn(name="fun_caixaCodigo")
-    public caixaBEAN getCaixa() {
+    public CaixaBEAN getCaixa() {
         return caixa;
     }
 
-    public void setCaixa(caixaBEAN caixa) {
+    public void setCaixa(CaixaBEAN caixa) {
         this.caixa = caixa;
     }
 

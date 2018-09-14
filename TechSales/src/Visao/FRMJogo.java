@@ -814,14 +814,19 @@ public class FRMJogo extends javax.swing.JFrame {
                 tfFaixa.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 2).toString());
                 tfPreco.setText((tableJogo.getValueAt(tableJogo.getSelectedRow(), 3).toString()));
                 cbTipo.setSelectedItem(tableJogo.getValueAt(tableJogo.getSelectedRow(), 4).toString());
+
+                int i = 0;
                 for (CategoriaBEAN dado2 : catDados) {
+                    i++;
                     if ((tableJogo.getValueAt(tableJogo.getSelectedRow(), 5).toString().equals(dado2.getCatNome()))) {
-                        cbCat.setSelectedIndex(dado2.getCatCodigo());
+                        cbCat.setSelectedIndex(i);
                     }
                 }
+                int z = 0;
                 for (ConsoleBEAN dado4 : cDados) {
+                    z++;
                     if ((tableJogo.getValueAt(tableJogo.getSelectedRow(), 6).toString().equals(dado4.getConNome()))) {
-                        cbCon.setSelectedIndex(dado4.getConCodigo());
+                        cbCon.setSelectedIndex(z);
                     }
                 }
                 tfLote.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 7).toString());

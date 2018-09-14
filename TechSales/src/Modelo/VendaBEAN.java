@@ -29,7 +29,7 @@ public class VendaBEAN {
     private float vendaValorTOtal;
     private VendedorBEAN vendedor;
     private ClienteBEAN cliente;
-    private caixaBEAN caixa;
+    private CaixaBEAN caixa;
     
     @Id
     @GeneratedValue
@@ -103,11 +103,11 @@ public class VendaBEAN {
 
     @ManyToOne
     @JoinColumn(name="venda_caixaCodigo")
-    public caixaBEAN getCaixa() {
+    public CaixaBEAN getCaixa() {
         return caixa;
     }
 
-    public void setCaixa(caixaBEAN caixa) {
+    public void setCaixa(CaixaBEAN caixa) {
         this.caixa = caixa;
     }
     

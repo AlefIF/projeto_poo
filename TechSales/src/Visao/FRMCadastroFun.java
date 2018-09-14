@@ -5,10 +5,13 @@
  */
 package Visao;
 
+import Controle.EmpregoControle;
 import Controle.FuncionarioControle;
+import Controle.VendedorControle;
 import Modelo.EmpregoBEAN;
-
+import Modelo.EnderecoBEAN;
 import Modelo.FuncionarioBEAN;
+import Modelo.VendedorBEAN;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -23,8 +26,9 @@ public class FRMCadastroFun extends javax.swing.JFrame {
 
     private ArrayList<FuncionarioBEAN> userD;
     private DefaultTableModel tbUsers;
-    FuncionarioControle ct = new FuncionarioControle();
-   
+    private FuncionarioControle ct = new FuncionarioControle();
+    private VendedorControle vc = new VendedorControle();
+    private EmpregoControle ec= new EmpregoControle();
 
     /**
      * Creates new form FRMAdm
@@ -33,8 +37,8 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         initComponents();
         this.preencheTabela();
 
-        for (EmpregoBEAN e : cControle.listarALL()) {
-            cbCon.addItem(e);
+        for (EmpregoBEAN e : ec.listarALL()) {
+            cbEmprego.addItem(e);
         }
     }
 
@@ -71,8 +75,8 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         tfIdadeFun.setText("");
         tfNPFun.setText("");
         tfTelefoneFun.setText("");
-        tfNomeUserFun.setText("");
-        tfSenhaUserFun.setText("");
+        tfNomeUser.setText("");
+        tfSenhaUser.setText("");
     }
 
     /**
@@ -93,7 +97,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         jbEditarFun = new javax.swing.JToggleButton();
         jbExcluirFun = new javax.swing.JToggleButton();
         jPanel7 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
+        tfSalario = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         tfNPFun = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -111,22 +115,23 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         lbCodigo = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
-        tfNomeUserFun = new javax.swing.JTextField();
+        tfNomeUser = new javax.swing.JTextField();
+        tfNomeUser.setEditable(false);
         jLabel19 = new javax.swing.JLabel();
-        tfSenhaUserFun = new javax.swing.JPasswordField();
+        tfSenhaUser = new javax.swing.JPasswordField();
         jPanel5 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        tfRua = new javax.swing.JTextField();
+        tfNumero = new javax.swing.JTextField();
+        tfPais = new javax.swing.JTextField();
+        tfEstado = new javax.swing.JTextField();
+        tfBairro = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        tfCidade = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbPesquisa = new javax.swing.JTable();
         btVoltar = new javax.swing.JButton();
@@ -301,7 +306,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         cbEmprego.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel8.setText("Trabalho :");
+        jLabel8.setText("Emprego:");
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel11.setText("Código:");
@@ -325,20 +330,20 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfNomeUserFun, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfNomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfSenhaUserFun, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfSenhaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel18)
-                .addComponent(tfNomeUserFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfNomeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jLabel19)
-                .addComponent(tfSenhaUserFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(tfSenhaUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -381,7 +386,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jLabel9)
                         .addGap(4, 4, 4)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -413,7 +418,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfNPFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbEmprego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -461,12 +466,12 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                             .addComponent(jLabel12))
                         .addGap(10, 10, 10)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tfRua, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField5)))
+                        .addComponent(tfEstado)))
                 .addGap(8, 8, 8)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -475,14 +480,14 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                             .addComponent(jLabel16))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                            .addComponent(jTextField6))
+                            .addComponent(tfPais, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                            .addComponent(tfBairro))
                         .addGap(0, 19, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(jLabel13)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10))))
         );
         jPanel5Layout.setVerticalGroup(
@@ -491,20 +496,20 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -562,7 +567,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                 lbCodigo.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 0).toString());
                 tfNomeFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 1).toString());
                 tfTelefoneFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 2).toString());
-                
+
                 tfNPFun.setText((tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 4).toString()));
                 tfCpfFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 5).toString());
                 tfIdadeFun.setText(tbPesquisa.getValueAt(tbPesquisa.getSelectedRow(), 6).toString());
@@ -616,7 +621,6 @@ public class FRMCadastroFun extends javax.swing.JFrame {
 
     private void tfLocalizarNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfLocalizarNomeFocusLost
 
-
         // TODO add your handling code here:
     }//GEN-LAST:event_tfLocalizarNomeFocusLost
 
@@ -629,13 +633,13 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     }//GEN-LAST:event_tfLocalizarNomeActionPerformed
 
     private void tfLocalizarNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLocalizarNomeKeyTyped
-
+/*
         TableRowSorter sorter = null;
         DefaultTableModel model = (DefaultTableModel) tableCliente.getModel();
         sorter = new TableRowSorter<TableModel>(model);
         tableCliente.setRowSorter(sorter);
         String text = tfLocalizarNome.getText();
-        sorter.setRowFilter(RowFilter.regexFilter(text));
+        sorter.setRowFilter(RowFilter.regexFilter(text));*/
     }//GEN-LAST:event_tfLocalizarNomeKeyTyped
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
@@ -645,21 +649,43 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     }//GEN-LAST:event_btVoltarActionPerformed
 
     public void cadastrar() {
-        FuncionarioBEAN c = new FuncionarioBEAN();
+        
+        FuncionarioBEAN c = new FuncionarioBEAN();    
         c.setFunNome(tfNomeFun.getText());
-        c.setFunIdade(Integer.parseInt(tfIdadeFun.getText()));
-        c.setFunEndereco(tfEnderecoFun.getText());
         c.setFunCpf(tfCpfFun.getText());
-        c.setFunNisPis(tfNPFun.getText());
+        c.setFunIdade(Integer.parseInt(tfIdadeFun.getText()));
         c.setFunTelefone(tfTelefoneFun.getText());
-        ct.cadastrar(c);
+        c.setFunNisPis(tfNPFun.getText());
+        EmpregoBEAN e = (EmpregoBEAN) cbEmprego.getSelectedItem();
+        c.setEmprego(e);
+        c.setFunSalario(Float.parseFloat(tfSalario.getText()));
+       
+        EnderecoBEAN end= new EnderecoBEAN();     
+        end.setEndRua(tfRua.getText());
+        end.setEndNumero(Integer.parseInt(tfNumero.getText()));
+        end.setEndBairro(tfBairro.getText());
+        end.setEndCidade(tfCidade.getText());
+        end.setEndEstado(tfEstado.getText());
+        end.setEndPais(tfPais.getText());
+        
+        c.setEndereco(end);
+        ct.cadastrar(c);     
+        
+        if (e.getEmpNome().equals("Vendedor")) {
+            VendedorBEAN v = new VendedorBEAN();
+            v.setFuncionario(c);
+            v.setVenNomeUsuario(tfNomeUser.getText());
+            v.setVenSenha(tfSenhaUser.getText());
+            vc.cadastrar(v);
+        }
+
     }
 
     public void editar() {
         FuncionarioBEAN c = ct.localizarCodigo(Integer.parseInt(lbCodigo.getText()));
         c.setFunNome(tfNomeFun.getText());
         c.setFunIdade(Integer.parseInt(tfIdadeFun.getText()));
-       
+
         c.setFunCpf(tfCpfFun.getText());
         c.setFunNisPis(tfNPFun.getText());
         c.setFunTelefone(tfTelefoneFun.getText());
@@ -669,9 +695,9 @@ public class FRMCadastroFun extends javax.swing.JFrame {
 
     public boolean verificaCampos() {
         if (tfNomeFun.getText().equals("") || tfIdadeFun.getText().equals("")
-                || tfEnderecoFun.getText().equals("") || tfCpfFun.getText().equals("")
+                ||  tfCpfFun.getText().equals("")
                 || tfNPFun.getText().equals("") || tfTelefoneFun.getText().equals("")
-                || tfNomeUserFun.getText().equals("") || tfSenhaUserFun.getText().equals("")) {
+                || tfNomeUser.getText().equals("") || tfSenhaUser.getText().equals("")) {
             return false;
         } else {
             return true;
@@ -681,11 +707,11 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     public void limpaCampos() {
         tfNomeFun.setText("");
         tfIdadeFun.setText("");
-       
+
         tfCpfFun.setText("");
         tfNPFun.setText("");
-        tfNomeUserFun.setText("");
-        tfSenhaUserFun.setText("");
+        tfNomeUser.setText("");
+        tfSenhaUser.setText("");
         tfTelefoneFun.setText("");
         lbCodigo.setText("...");
     }
@@ -696,13 +722,13 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         model.setNumRows(0);
         FuncionarioControle dao = new FuncionarioControle();
 
-        for (FuncionarioBEAN d : dao.readForNome(funNome)) {
+        /*for (FuncionarioBEAN d : dao.readForNome(funNome)) {
             tbUsers.addRow(new Object[]{
                 d.getFunCodigo(),
                 d.getFunNome(),
                 d.getFunCpf(),});
 
-        }
+        }*/
         //set o modelo da tabela
         tbPesquisa.setModel(tbUsers);
     }
@@ -746,13 +772,13 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FRMPrincipalAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMCadastroFun.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FRMPrincipalAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMCadastroFun.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FRMPrincipalAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMCadastroFun.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FRMPrincipalAdm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMCadastroFun.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -792,25 +818,25 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JButton jbCadastrarFun;
     private javax.swing.JToggleButton jbEditarFun;
     private javax.swing.JToggleButton jbExcluirFun;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JTable tbPesquisa;
+    private javax.swing.JTextField tfBairro;
+    private javax.swing.JTextField tfCidade;
     private javax.swing.JFormattedTextField tfCpfFun;
+    private javax.swing.JTextField tfEstado;
     private javax.swing.JTextField tfIdadeFun;
     private javax.swing.JTextField tfLocalizarNome;
     private javax.swing.JFormattedTextField tfNPFun;
     private javax.swing.JTextField tfNomeFun;
-    private javax.swing.JTextField tfNomeUserFun;
-    private javax.swing.JPasswordField tfSenhaUserFun;
+    private javax.swing.JTextField tfNomeUser;
+    private javax.swing.JTextField tfNumero;
+    private javax.swing.JTextField tfPais;
+    private javax.swing.JTextField tfRua;
+    private javax.swing.JTextField tfSalario;
+    private javax.swing.JPasswordField tfSenhaUser;
     private javax.swing.JFormattedTextField tfTelefoneFun;
     // End of variables declaration//GEN-END:variables
 

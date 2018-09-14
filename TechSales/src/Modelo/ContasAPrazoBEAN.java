@@ -18,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "contasAPRazo")
-public class contasAPrazoBEAN {
+public class ContasAPrazoBEAN {
 
     private int vapCodigo;
     private Date vapData;

@@ -5,7 +5,7 @@
  */
 package Controle;
 
-import Modelo.caixaBEAN;
+import Modelo.CaixaBEAN;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -31,27 +31,27 @@ public class CaixaControle {
         JpaUtil.close();
     }
 
-    public void cadastrar(caixaBEAN c) {
+    public void cadastrar(CaixaBEAN c) {
         começar();
         manager.persist(c);
         tx.commit();
     }
 
-    public ArrayList<caixaBEAN> listarALL() {
+    public ArrayList<CaixaBEAN> listarALL() {
         começar();
         Query q = manager.createQuery("from CaixaBEAN");
-        ArrayList<caixaBEAN> caixaList = (ArrayList<caixaBEAN>) q.getResultList();
+        ArrayList<CaixaBEAN> caixaList = (ArrayList<CaixaBEAN>) q.getResultList();
         tx.commit();
         return caixaList;
     }
 
-    public caixaBEAN localizar(int a) {
+    public CaixaBEAN localizar(int a) {
 
-        caixaBEAN c = manager.find(caixaBEAN.class, a);
+        CaixaBEAN c = manager.find(CaixaBEAN.class, a);
         return c;
     }
 
-    public boolean editar(caixaBEAN c) {
+    public boolean editar(CaixaBEAN c) {
 
         try {
             começar();
@@ -67,7 +67,7 @@ public class CaixaControle {
 
         try {
             começar();
-            caixaBEAN a = localizar(c);
+            CaixaBEAN a = localizar(c);
             manager.remove(a);
             tx.commit();
             return true;

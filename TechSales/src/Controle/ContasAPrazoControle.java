@@ -5,7 +5,7 @@
  */
 package Controle;
 
-import Modelo.contasAPrazoBEAN;
+import Modelo.ContasAPrazoBEAN;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -31,27 +31,27 @@ public class ContasAPrazoControle {
         JpaUtil.close();
     }
 
-    public void cadastrar(contasAPrazoBEAN c) {
+    public void cadastrar(ContasAPrazoBEAN c) {
         começar();
         manager.persist(c);
         tx.commit();
     }
 
-    public ArrayList<contasAPrazoBEAN> listarALL() {
+    public ArrayList<ContasAPrazoBEAN> listarALL() {
         começar();
-        Query q = manager.createQuery("from contasAPrazoBEAN");
-        ArrayList<contasAPrazoBEAN> capList = (ArrayList<contasAPrazoBEAN>) q.getResultList();
+        Query q = manager.createQuery("from ContasAPrazoBEAN");
+        ArrayList<ContasAPrazoBEAN> capList = (ArrayList<ContasAPrazoBEAN>) q.getResultList();
         tx.commit();
         //fechar();
         return capList;
     }
 
-    public contasAPrazoBEAN localizar(int a) {
-        contasAPrazoBEAN c = manager.find(contasAPrazoBEAN.class, a);
+    public ContasAPrazoBEAN localizar(int a) {
+        ContasAPrazoBEAN c = manager.find(ContasAPrazoBEAN.class, a);
         return c;
     }
 
-    public boolean editar(contasAPrazoBEAN a) {
+    public boolean editar(ContasAPrazoBEAN a) {
         try {
             começar();
             tx.commit();
@@ -65,7 +65,7 @@ public class ContasAPrazoControle {
     public boolean remover(int c) {
         try {
             começar();
-            contasAPrazoBEAN a = localizar(c);
+            ContasAPrazoBEAN a = localizar(c);
             manager.remove(a);
             tx.commit();
             //fechar();

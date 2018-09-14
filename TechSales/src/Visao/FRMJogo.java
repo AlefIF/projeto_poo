@@ -32,7 +32,6 @@ public class FRMJogo extends javax.swing.JFrame {
     private ArrayList<ConsoleBEAN> cDados;
     private DefaultTableModel dTable;
     private DefaultTableModel dTable2;
-    
 
     /**
      * Creates new form FRMJogo
@@ -73,7 +72,7 @@ public class FRMJogo extends javax.swing.JFrame {
 
         for (JogoBEAN dado : jDados) {
             for (CategoriaBEAN dado2 : catDados) {
-                if (dado.getCat().getCatCodigo()== dado2.getCatCodigo()) {
+                if (dado.getCat().getCatCodigo() == dado2.getCatCodigo()) {
                     for (ConsoleBEAN c : cDados) {
                         if (dado.getConsole().getConCodigo() == c.getConCodigo()) {
                             dTable.addRow(new Object[]{dado.getJoCodigo(), dado.getJoNome(),
@@ -696,14 +695,12 @@ public class FRMJogo extends javax.swing.JFrame {
         JogoBEAN jogo = new JogoBEAN();
         jogo.setJoNome(tfNome.getText());
         jogo.setJoFaixaEtaria(tfFaixa.getText());
-        CategoriaBEAN c = (CategoriaBEAN) cbCat.getSelectedItem();
-        jogo.setJo_catCodigo(c.getCatCodigo());
+        jogo.setCat((CategoriaBEAN) cbCat.getSelectedItem());
         jogo.setJoPrecoPadrao(Float.parseFloat(tfPreco.getText()));
         jogo.setJoQtd(Integer.parseInt(tfQtde.getText()));
         jogo.setJoLote(tfLote.getText());
         jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
-        ConsoleBEAN w = (ConsoleBEAN) cbCon.getSelectedItem();
-        jogo.setConsole(w);
+        jogo.setConsole((ConsoleBEAN) cbCon.getSelectedItem());
         jControle.cadastrar(jogo);
         resultado();
     }

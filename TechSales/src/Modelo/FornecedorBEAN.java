@@ -23,7 +23,7 @@ public class FornecedorBEAN {
     private String forNomeEmpresa;
     private String forEmail;
     private String forTelefoneContato;
-    private String forCNPJ;
+    private String forCNPJ_CPF;
     private String forPais;
     private String forEndereco;
     private String forAnotacoes;
@@ -64,11 +64,11 @@ public class FornecedorBEAN {
     }
 
     public String getForCNPJ() {
-        return forCNPJ;
+        return forCNPJ_CPF;
     }
 
     public void setForCNPJ(String forCNPJ) {
-        this.forCNPJ = forCNPJ;
+        this.forCNPJ_CPF = forCNPJ;
     }
 
     public String getForPais() {

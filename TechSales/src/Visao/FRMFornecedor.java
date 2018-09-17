@@ -34,8 +34,8 @@ public class FRMFornecedor extends javax.swing.JFrame {
     public FRMFornecedor() {
         initComponents();
         setResizable(false);
+        preencheTabela();
         tfCNPJ.setEnabled(false);
-
         btExcluir.setEnabled(false);
         btEditar.setEnabled(false);
     }
@@ -227,9 +227,10 @@ public class FRMFornecedor extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(tfCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                            .addComponent(tfCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 2, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         tableFornecedor.setModel(new javax.swing.table.DefaultTableModel(
@@ -559,8 +560,9 @@ public class FRMFornecedor extends javax.swing.JFrame {
 
     public boolean verificaCampos() {
         if (tfNome.getText().equals("")
-                || cbTipo.getSelectedIndex() == 0
                 || tfEmail.getText().equals("") || tfTelefone.getText().equals("")
+                || tfCNPJ.getText().equals("   .   .   -  ") || tfCNPJ.getText().equals("   .   .   /    -  ")
+                || tfCNPJ.getText().equals("")
                 || tfanotacao.getText().equals("")
                 || tfRua.getText().equals("")
                 || tfNumero.getText().equals("")
@@ -595,10 +597,21 @@ public class FRMFornecedor extends javax.swing.JFrame {
         btEditar.setEnabled(false);
 
     }
+
+    private int verificaCPFCNPJ() {
+        int cod = 0;
+        for (FornecedorBEAN f : fDados) {
+            if (f.getForCNPJ().equals(tfCNPJ.getText())) {
+                cod = f.getForCodigo();
+            }
+        }
+        return cod;
+    }
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
+        int c = verificaCPFCNPJ();
         if (verificaCampos() == false) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-        } else {
+        } else if (c == 0) {
             FornecedorBEAN f = new FornecedorBEAN();
             f.setForNomeEmpresa(tfNome.getText());
             f.setForTelefoneContato(tfTelefone.getText());
@@ -619,13 +632,16 @@ public class FRMFornecedor extends javax.swing.JFrame {
             forCon.cadastrar(f);
             this.preencheTabela();
             limpaCampos();
+        } else {
+            JOptionPane.showMessageDialog(null, "Cpf ou CNPJ já cadastrado no sistema. Código: " + c);
         }
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
+        int c = verificaCPFCNPJ();
         if (verificaCampos() == false) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-        } else {
+        } else if (c == 0) {
             FornecedorBEAN f = forCon.localizar(Integer.parseInt(lbCodigo.getText()));
             f.setForNomeEmpresa(tfNome.getText());
             f.setForTelefoneContato(tfTelefone.getText());
@@ -644,17 +660,15 @@ public class FRMFornecedor extends javax.swing.JFrame {
 
             this.preencheTabela();
             limpaCampos();
+        } else {
+            JOptionPane.showMessageDialog(null, "Cpf ou CNPJ já cadastrado no sistema. Código: " + c);
         }
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        if (lbCodigo.getText().equals("...")) {
-            JOptionPane.showMessageDialog(null, "É preciso ter localizado um Forcenedor!");
-        } else {
-            forCon.remover(Integer.parseInt(lbCodigo.getText()));
-            limpaCampos();
-            this.preencheTabela();
-        }
+        forCon.remover(Integer.parseInt(lbCodigo.getText()));
+        limpaCampos();
+        this.preencheTabela();
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void tableFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableFornecedorMouseClicked
@@ -667,8 +681,8 @@ public class FRMFornecedor extends javax.swing.JFrame {
             tfTelefone.setText(f.getForTelefoneContato());
             tfEmail.setText(f.getForEmail());
             tfCNPJ.setText(f.getForCNPJ());
-            tfanotacao.setText(f.getForAnotacoes());               
-            
+            tfanotacao.setText(f.getForAnotacoes());
+
             tfRua.setText(f.getEndereco().getEndRua());
             tfNumero.setText(String.valueOf(f.getEndereco().getEndNumero()));
             tfBairro.setText(f.getEndereco().getEndBairro());
@@ -676,6 +690,7 @@ public class FRMFornecedor extends javax.swing.JFrame {
             tfEstado.setText(f.getEndereco().getEndEstado());
             tfPais.setText(f.getEndereco().getEndPais());
 
+            tfCNPJ.setEnabled(true);
             btExcluir.setEnabled(true);
             btEditar.setEnabled(true);
         }
@@ -690,7 +705,7 @@ public class FRMFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_tfLocalizarNomeFocusGained
 
     private void tfLocalizarNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfLocalizarNomeFocusLost
- 
+
     }//GEN-LAST:event_tfLocalizarNomeFocusLost
 
     private void tfLocalizarNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfLocalizarNomeMouseClicked

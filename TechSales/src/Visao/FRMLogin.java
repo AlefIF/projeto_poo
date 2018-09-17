@@ -117,24 +117,25 @@ public class FRMLogin extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String nome = tfUser.getText();
         String senha = tfSenha.getText();
-
+        int i = 0;
         for (VendedorBEAN vendedor : al) {
             if (vendedor.getVenNomeUsuario().equals(nome) && vendedor.getVenSenha().equals(senha)) {
                 user = vendedor;
                 FRMPrincipalFun fun = new FRMPrincipalFun();
                 this.dispose();
                 fun.setVisible(true);
+                i++;
             }
         }
-
-        if (nome.equals("ADM") && (senha.equals("ADM"))) {
-            FRMMenuADM adm = new FRMMenuADM();
-            this.dispose();
-            adm.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Usuário  não encontrado!");
+        if (i == 0) {
+            if (nome.equals("ADM") && (senha.equals("ADM"))) {
+                FRMMenuADM adm = new FRMMenuADM();
+                this.dispose();
+                adm.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário  não encontrado!");
+            }
         }
-
 
     }//GEN-LAST:event_jButton3ActionPerformed
 

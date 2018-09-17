@@ -737,7 +737,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
             if (e.getEmpNome().equals("Vendedor")) {
                 tfNomeUser.setEnabled(true);
                 tfSenhaUser.setEnabled(true);
-            }else{
+            } else {
                 tfNomeUser.setEnabled(false);
                 tfSenhaUser.setEnabled(false);
             }
@@ -816,7 +816,15 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         if (tfNomeFun.getText().equals("") || tfIdadeFun.getText().equals("")
                 || tfCpfFun.getText().equals("")
                 || tfNPFun.getText().equals("") || tfTelefoneFun.getText().equals("")
-                ||tfSenhaUser.getText().equals("")||tfNomeUser.getText().equals("")) {
+                || tfSenhaUser.getText().equals("") || tfNomeUser.getText().equals("")
+                || cbEmprego.getSelectedIndex() == 0
+                || tfRua.getText().equals("")
+                || tfNumero.getText().equals("")
+                || tfBairro.getText().equals("")
+                || tfCidade.getText().equals("")
+                || tfEstado.getText().equals("")
+                || tfPais.getText().equals("")) {
+
             return false;
         } else {
             return true;

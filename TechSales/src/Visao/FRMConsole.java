@@ -100,7 +100,6 @@ public class FRMConsole extends javax.swing.JFrame {
         btVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
 
         tableConsole.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tableConsole.setModel(new javax.swing.table.DefaultTableModel(
@@ -126,9 +125,6 @@ public class FRMConsole extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableConsole);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 310, 370, 143);
-
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Refinar pesquisa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -151,7 +147,7 @@ public class FRMConsole extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfChave, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                .addComponent(tfChave)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -161,11 +157,8 @@ public class FRMConsole extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(tfChave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 9, Short.MAX_VALUE))
+                .addGap(0, 4, Short.MAX_VALUE))
         );
-
-        getContentPane().add(jPanel4);
-        jPanel4.setBounds(10, 240, 370, 56);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -278,13 +271,8 @@ public class FRMConsole extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(10, 40, 370, 190);
-
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setText("Cadastro console");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(100, 0, 190, 30);
 
         btVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
         btVoltar.setText("Voltar");
@@ -293,10 +281,48 @@ public class FRMConsole extends javax.swing.JFrame {
                 btVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(btVoltar);
-        btVoltar.setBounds(300, 10, 80, 20);
 
-        setSize(new java.awt.Dimension(405, 505));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+
+        setSize(new java.awt.Dimension(405, 476));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private int retornaLinha() {
@@ -312,6 +338,39 @@ public class FRMConsole extends javax.swing.JFrame {
         tfNome.setText(cDados.get(linha).getConNome());
         tfMarca.setText(cDados.get(linha).getConMarca());
     }
+    private void tableConsoleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableConsoleKeyTyped
+
+    }//GEN-LAST:event_tableConsoleKeyTyped
+
+    private void tableConsoleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableConsoleMouseClicked
+//        this.pegaSelecionado();
+        if (tableConsole.getSelectedRow() != -1) {
+            lbCodCon.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 0).toString());
+            tfNome.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 1).toString());
+            tfMarca.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 2).toString());
+        }
+    }//GEN-LAST:event_tableConsoleMouseClicked
+
+    private void tfChaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyPressed
+
+    }//GEN-LAST:event_tfChaveKeyPressed
+
+    private void tfChaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyTyped
+        TableRowSorter sorter = null;
+        DefaultTableModel model = (DefaultTableModel) tableConsole.getModel();
+        sorter = new TableRowSorter<TableModel>(model);
+        tableConsole.setRowSorter(sorter);
+        String text = tfChave.getText();
+        sorter.setRowFilter(RowFilter.regexFilter(text));
+
+    }//GEN-LAST:event_tfChaveKeyTyped
+
+    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
+        FRMPrincipalFun fun = new FRMPrincipalFun();
+        this.dispose();
+        fun.setVisible(true);
+    }//GEN-LAST:event_btVoltarActionPerformed
+
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         boolean retorno = cCon.remover(Integer.parseInt(lbCodCon.getText()));
         //se a variavel retorno for igual a true o usuario foi exluido
@@ -355,39 +414,6 @@ public class FRMConsole extends javax.swing.JFrame {
         limparCampos();
         JOptionPane.showMessageDialog(null, "Console CADASTRADO com sucesso");
     }//GEN-LAST:event_btCadastrarActionPerformed
-
-    private void tableConsoleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableConsoleKeyTyped
-
-    }//GEN-LAST:event_tableConsoleKeyTyped
-
-    private void tableConsoleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableConsoleMouseClicked
-//        this.pegaSelecionado();
-        if (tableConsole.getSelectedRow() != -1) {
-            lbCodCon.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 0).toString());
-            tfNome.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 1).toString());
-            tfMarca.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 2).toString());
-        }
-    }//GEN-LAST:event_tableConsoleMouseClicked
-
-    private void tfChaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyPressed
-
-    }//GEN-LAST:event_tfChaveKeyPressed
-
-    private void tfChaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyTyped
-        TableRowSorter sorter = null;
-        DefaultTableModel model = (DefaultTableModel) tableConsole.getModel();
-        sorter = new TableRowSorter<TableModel>(model);
-        tableConsole.setRowSorter(sorter);
-        String text = tfChave.getText();
-        sorter.setRowFilter(RowFilter.regexFilter(text));
-
-    }//GEN-LAST:event_tfChaveKeyTyped
-
-    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
-        FRMPrincipalFun fun = new FRMPrincipalFun();
-        this.dispose();
-        fun.setVisible(true);
-    }//GEN-LAST:event_btVoltarActionPerformed
     private void limparCampos() {
         lbCodCon.setText("");
         tfNome.setText("");

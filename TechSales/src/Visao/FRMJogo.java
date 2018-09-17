@@ -32,6 +32,7 @@ public class FRMJogo extends javax.swing.JFrame {
     private ArrayList<ConsoleBEAN> cDados;
     private DefaultTableModel dTable;
     private DefaultTableModel dTable2;
+    private ArrayList<JogoBEAN> insert = new ArrayList<JogoBEAN>();
 
     /**
      * Creates new form FRMJogo
@@ -275,11 +276,7 @@ public class FRMJogo extends javax.swing.JFrame {
 
         tableM.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Preço", "Qtde.", "Lote", "Console", "Tipo"
@@ -630,7 +627,7 @@ public class FRMJogo extends javax.swing.JFrame {
     private int verificaLote() {
         int j = 0;
         jDados = jControle.listarALL();
-        for (InsertBean insert : insertDados) {
+        for (JogoBEAN insert : insert) {
             for (JogoBEAN jDado : jDados) {
                 if (jDado.getJoLote().equals(insert.getJoLote())) {
                     j = jDado.getJoCodigo();
@@ -654,20 +651,19 @@ public class FRMJogo extends javax.swing.JFrame {
     private void cadastroInserir() {
         cDados = cControle.listarALL();
         jDados = jControle.listarALL();
-        for (InsertBean insert : insertDados) {
+        for (JogoBEAN insert : insert) {
             for (ConsoleBEAN cDado : cDados) {
-                if (cDado.getConNome().equals(insert.getConNome())) {
+                if (cDado.equals(insert.getConsole())) {
                     JogoBEAN jogo = new JogoBEAN();
                     jogo.setJoNome(tfNome.getText());
                     jogo.setJoFaixaEtaria(tfFaixa.getText());
                     CategoriaBEAN c = (CategoriaBEAN) cbCat.getSelectedItem();
-                    jogo.setJo_catCodigo(c.getCatCodigo());
+                    jogo.setCat(c);
                     jogo.setJoPrecoPadrao(insert.getJoPrecoPadrao());
                     jogo.setJoQtd(insert.getJoQtd());
                     jogo.setJoLote(insert.getJoLote());
                     jogo.setJoTipo(insert.getJoTipo());
-                    ConsoleBEAN w = (ConsoleBEAN) cbCon.getSelectedItem();
-                    jogo.setConsole(w);
+                    jogo.setConsole(cDado);
                     jControle.cadastrar(jogo);
                 }
             }
@@ -677,14 +673,14 @@ public class FRMJogo extends javax.swing.JFrame {
 
     private int verificarInserir() {
         int j = 0;
-        for (InsertBean insert : insertDados) {
+        for (JogoBEAN a : insert) {
             j++;
         }
         return j;
     }
 
     private void resultado() {
-        insertDados.clear();
+        insert.clear();
         preencheTabela2();
         this.preencheTabela();
         limparCampos();
@@ -716,10 +712,19 @@ public class FRMJogo extends javax.swing.JFrame {
             return true;
         }
     }
+
+    private boolean verificaCampos2() {
+        if (tfFaixa.getText().equals("+(  )") || tfNome.getText().equals("")
+                || cbCat.getSelectedIndex() == (0)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        if (verificaCampos()) {
-            int z = verificarInserir();
-            if (z == 0) {
+        int z = verificarInserir();
+        if (z == 0) {
+            if (verificaCampos()) {
                 int v = verificaLote1();
                 if (v == 0) {
                     this.cadastroNormal();
@@ -727,16 +732,19 @@ public class FRMJogo extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Erro! Lote já existente,Código do produto:" + v);
                 }
             } else {
-                int x = verificaLote();
-                if (x == 0) {
-                    this.cadastroInserir();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Erro! Lote já existente,Código do produto:" + x);
-                }
+                JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
+            }
+        } else if (verificaCampos2()) {
+            int x = verificaLote();
+            if (x == 0) {
+                this.cadastroInserir();
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro! Lote já existente,Código do produto:" + x);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Erro! Insira todos os valores");
+            JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
         }
+
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
@@ -750,7 +758,7 @@ public class FRMJogo extends javax.swing.JFrame {
             jogo.setJoQtd(Integer.parseInt(String.valueOf(tfQtde.getText())));
             jogo.setJoLote(String.valueOf(tfLote.getText()));
             CategoriaBEAN c = (CategoriaBEAN) cbCat.getSelectedItem();
-            jogo.setJo_catCodigo(c.getCatCodigo());
+            jogo.setCat(c);
             ConsoleBEAN w = (ConsoleBEAN) cbCon.getSelectedItem();
             jogo.setConsole(w);
             boolean retorno = jControle.editar(jogo);
@@ -912,17 +920,6 @@ public class FRMJogo extends javax.swing.JFrame {
     return dTable2;
     }
 
-    private void cadastroTeste() {
-        InsertBean jogo = new InsertBean();
-        jogo.setJoPrecoPadrao(Float.parseFloat((tfPreco.getText())));
-        jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
-        ConsoleBEAN w = (ConsoleBEAN) cbCon.getSelectedItem();
-        jogo.setConNome(w.getConNome());
-        jogo.setJoLote(tfLote.getText());
-        jogo.setJoQtd(Integer.parseInt(tfQtde.getText()));
-        insertDados.add(jogo);
-    }
-
     private void limparCampos2() {
         tfLote.setText("");
         tfPreco.setText("");
@@ -939,21 +936,26 @@ public class FRMJogo extends javax.swing.JFrame {
         dTable2.addColumn("Console");
         dTable2.addColumn("Tipo de Jogo");
 
+        for (JogoBEAN o : insert) {
+            dTable2.addRow(new Object[]{o.getJoPrecoPadrao(),
+                o.getJoQtd(), o.getJoLote(), o.getConsole(), o.getJoTipo()});
+        }
+
         tableM.setModel(dTable2);
     }
 
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //cadastroTeste();     
+        JogoBEAN jogo = new JogoBEAN();
+        jogo.setJoPrecoPadrao(Float.parseFloat((tfPreco.getText())));
+        jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
+        jogo.setJoQtd(Integer.parseInt(String.valueOf(tfQtde.getText())));
+        jogo.setJoLote(String.valueOf(tfLote.getText()));
+        ConsoleBEAN w = (ConsoleBEAN) cbCon.getSelectedItem();
+        jogo.setConsole(w);
+        insert.add(jogo);
         preencheTabela2();
         limparCampos2();
-        String lote = tfLote.getText();
-        int qtde = Integer.parseInt(tfQtde.getText());
-        float preco = Float.parseFloat(tfPreco.getText());
-        ConsoleBEAN console = (ConsoleBEAN) cbCon.getSelectedItem();
-        String tipo = (String.valueOf(cbTipo.getSelectedItem()));
-
-        dTable2.addRow(new Object[]{preco, qtde, lote, console, tipo});
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tfLoteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLoteKeyTyped
@@ -967,7 +969,7 @@ public class FRMJogo extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int i = tableM.getSelectedRow();
         if (i != -1) {
-            insertDados.remove(i);
+            insert.remove(i);
             preencheTabela2();
         } else {
             JOptionPane.showMessageDialog(null, "Erro! Nenhum dado selecionado na tabela");

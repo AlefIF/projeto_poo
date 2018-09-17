@@ -787,16 +787,13 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         EmpregoBEAN e = (EmpregoBEAN) cbEmprego.getSelectedItem();
         c.setEmprego(e);
         c.setFunSalario(Float.parseFloat(tfSalario.getText()));
-
-        EnderecoBEAN end = new EnderecoBEAN();
-        end.setEndRua(tfRua.getText());
-        end.setEndNumero(Integer.parseInt(tfNumero.getText()));
-        end.setEndBairro(tfBairro.getText());
-        end.setEndCidade(tfCidade.getText());
-        end.setEndEstado(tfEstado.getText());
-        end.setEndPais(tfPais.getText());
-
-        c.setEndereco(end);
+     
+        c.getEndereco().setEndRua(tfRua.getText());
+        c.getEndereco().setEndNumero(Integer.parseInt(tfNumero.getText()));
+        c.getEndereco().setEndBairro(tfBairro.getText());
+        c.getEndereco().setEndCidade(tfCidade.getText());
+        c.getEndereco().setEndEstado(tfEstado.getText());
+        c.getEndereco().setEndPais(tfPais.getText());
 
         ct.editar(c);
 

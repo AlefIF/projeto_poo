@@ -8,17 +8,15 @@ package Visao;
 import Controle.FornecedorControle;
 import Modelo.EnderecoBEAN;
 import Modelo.FornecedorBEAN;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.ParseException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFormattedTextField;
+import javax.swing.RowFilter;
+import javax.swing.table.TableModel;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -37,6 +35,9 @@ public class FRMFornecedor extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         tfCNPJ.setEnabled(false);
+
+        btExcluir.setEnabled(false);
+        btEditar.setEnabled(false);
     }
 
     /**
@@ -631,7 +632,16 @@ public class FRMFornecedor extends javax.swing.JFrame {
             f.setForEmail(tfEmail.getText());
             f.setForCNPJ(tfCNPJ.getText());
             f.setForAnotacoes(tfanotacao.getText());
+
+            f.getEndereco().setEndRua(tfRua.getText());
+            f.getEndereco().setEndNumero(Integer.parseInt(tfNumero.getText()));
+            f.getEndereco().setEndBairro(tfBairro.getText());
+            f.getEndereco().setEndCidade(tfCidade.getText());
+            f.getEndereco().setEndEstado(tfEstado.getText());
+            f.getEndereco().setEndPais(tfPais.getText());
+
             forCon.editar(f);
+
             this.preencheTabela();
             limpaCampos();
         }
@@ -650,15 +660,24 @@ public class FRMFornecedor extends javax.swing.JFrame {
     private void tableFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableFornecedorMouseClicked
         limpaCampos();
         if (tableFornecedor.getSelectedRow() != -1) {
-            if (Integer.parseInt(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 8).toString()) > 0) {
-                lbCodigo.setText(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 0).toString());
-                tfNome.setText(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 1).toString());
-                tfEmail.setText(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 2).toString());
-                tfTelefone.setText((tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 3).toString()));
-                tfCNPJ.setText((tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 4).toString()));
-                tfPais.setText(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 5).toString());
-                tfanotacao.setText(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 7).toString());
-            }
+            FornecedorBEAN f = forCon.localizar(Integer.parseInt(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 0).toString()));
+
+            lbCodigo.setText(String.valueOf(f.getForCodigo()));
+            tfNome.setText(f.getForNomeEmpresa());
+            tfTelefone.setText(f.getForTelefoneContato());
+            tfEmail.setText(f.getForEmail());
+            tfCNPJ.setText(f.getForCNPJ());
+            tfanotacao.setText(f.getForAnotacoes());               
+            
+            tfRua.setText(f.getEndereco().getEndRua());
+            tfNumero.setText(String.valueOf(f.getEndereco().getEndNumero()));
+            tfBairro.setText(f.getEndereco().getEndBairro());
+            tfCidade.setText(f.getEndereco().getEndCidade());
+            tfEstado.setText(f.getEndereco().getEndEstado());
+            tfPais.setText(f.getEndereco().getEndPais());
+
+            btExcluir.setEnabled(true);
+            btEditar.setEnabled(true);
         }
     }//GEN-LAST:event_tableFornecedorMouseClicked
 
@@ -667,15 +686,11 @@ public class FRMFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_tableFornecedorKeyReleased
 
     private void tfLocalizarNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfLocalizarNomeFocusGained
-        tfLocalizarNome.setText("");
-        tfLocalizarNome.setForeground(BLACK);
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_tfLocalizarNomeFocusGained
 
     private void tfLocalizarNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfLocalizarNomeFocusLost
-        rbgLocalizar.getSelection();
-
-        // TODO add your handling code here:
+ 
     }//GEN-LAST:event_tfLocalizarNomeFocusLost
 
     private void tfLocalizarNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfLocalizarNomeMouseClicked
@@ -687,11 +702,10 @@ public class FRMFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_tfLocalizarNomeActionPerformed
 
     private void tfLocalizarNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLocalizarNomeKeyTyped
-
         TableRowSorter sorter = null;
-        DefaultTableModel model = (DefaultTableModel) tableCliente.getModel();
+        DefaultTableModel model = (DefaultTableModel) tableFornecedor.getModel();
         sorter = new TableRowSorter<TableModel>(model);
-        tableCliente.setRowSorter(sorter);
+        tableFornecedor.setRowSorter(sorter);
         String text = tfLocalizarNome.getText();
         sorter.setRowFilter(RowFilter.regexFilter(text));
     }//GEN-LAST:event_tfLocalizarNomeKeyTyped

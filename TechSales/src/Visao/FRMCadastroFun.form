@@ -489,6 +489,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tfNomeUser">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Vendedor"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel19">
               <Properties>
@@ -499,6 +502,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JPasswordField" name="tfSenhaUser">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="x"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

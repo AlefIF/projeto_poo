@@ -336,8 +336,12 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel18.setText("Nome de usuário:");
 
+        tfNomeUser.setText("Vendedor");
+
         jLabel19.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel19.setText("Senha:");
+
+        tfSenhaUser.setText("x");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -605,10 +609,13 @@ public class FRMCadastroFun extends javax.swing.JFrame {
 
             tfSalario.setText(String.valueOf(f.getFunSalario()));
 
-            /*
-            tfNomeUser.setText("");
-            tfSenhaUser.setText("");
-             */
+            for (VendedorBEAN v : vc.listarALL()) {
+                if (v.getFuncionario().getFunCodigo() == f.getFunCodigo()) {
+                    tfNomeUser.setText(v.getVenNomeUsuario());
+                    tfSenhaUser.setText(v.getVenSenha());
+                }
+            }
+
             tfRua.setText(f.getEndereco().getEndRua());
             tfNumero.setText(String.valueOf(f.getEndereco().getEndNumero()));
             tfBairro.setText(f.getEndereco().getEndBairro());
@@ -642,6 +649,15 @@ public class FRMCadastroFun extends javax.swing.JFrame {
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         ct.excluir(Integer.parseInt(lbCodigo.getText()));
+
+        FuncionarioBEAN c = ct.localizarCodigo(Integer.parseInt(lbCodigo.getText()));
+        for (VendedorBEAN a : vc.listarALL()) {
+            if (a.getFuncionario().getFunCodigo() == c.getFunCodigo()) {
+                VendedorBEAN v = vc.localizar(a.getVenCodigo());
+                vc.remover(v.getVenCodigo());
+            }
+        }
+
         limpaCampos();
         this.preencheTabela();
     }//GEN-LAST:event_btExcluirActionPerformed
@@ -716,9 +732,16 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     }//GEN-LAST:event_tfNumeroKeyTyped
 
     private void cbEmpregoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbEmpregoItemStateChanged
-       if(cbEmprego.getSelectedItem().equals("Vendedor"))
-        tfNomeUser.setEnabled(true);
-        tfSenhaUser.setEnabled(true);
+        if (cbEmprego.getSelectedIndex() != 0) {
+            EmpregoBEAN e = (EmpregoBEAN) cbEmprego.getSelectedItem();
+            if (e.getEmpNome().equals("Vendedor")) {
+                tfNomeUser.setEnabled(true);
+                tfSenhaUser.setEnabled(true);
+            }else{
+                tfNomeUser.setEnabled(false);
+                tfSenhaUser.setEnabled(false);
+            }
+        }
     }//GEN-LAST:event_cbEmpregoItemStateChanged
 
     public void cadastrar() {
@@ -778,18 +801,22 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         ct.editar(c);
 
         if (e.getEmpNome().equals("Vendedor")) {
-            VendedorBEAN v = new VendedorBEAN();
-            v.setFuncionario(c);
-            v.setVenNomeUsuario(tfNomeUser.getText());
-            v.setVenSenha(tfSenhaUser.getText());
-            vc.editar(v);
+            for (VendedorBEAN a : vc.listarALL()) {
+                if (a.getFuncionario().getFunCodigo() == c.getFunCodigo()) {
+                    VendedorBEAN v = vc.localizar(a.getVenCodigo());
+                    v.setVenNomeUsuario(tfNomeUser.getText());
+                    v.setVenSenha(tfSenhaUser.getText());
+                    vc.editar(v);
+                }
+            }
         }
     }
 
     public boolean verificaCampos() {
         if (tfNomeFun.getText().equals("") || tfIdadeFun.getText().equals("")
                 || tfCpfFun.getText().equals("")
-                || tfNPFun.getText().equals("") || tfTelefoneFun.getText().equals("")) {
+                || tfNPFun.getText().equals("") || tfTelefoneFun.getText().equals("")
+                ||tfSenhaUser.getText().equals("")||tfNomeUser.getText().equals("")) {
             return false;
         } else {
             return true;

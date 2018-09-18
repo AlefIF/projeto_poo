@@ -628,11 +628,40 @@ public class FRMCadastroFun extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_tbFuncionarioMouseClicked
+ private int verificaCPF() {
+        int i = 0;
+        for (FuncionarioBEAN c : ct.listarALL()) {
+            if (c.getFunCpf().equals(tfCpfFun.getText())) {
+                if (c.getFunCodigo()!= (Integer.valueOf(lbCodigo.getText()))) {
+                    i = c.getFunCodigo();
+                }
 
+            }
+        }
+        return i;
+    }
+ 
+  private int verificapis() {
+        int i = 0;
+        for (FuncionarioBEAN c : ct.listarALL()) {
+            if (c.getFunNisPis().equals(tfNPFun.getText())) {
+                if (c.getFunCodigo()!= (Integer.valueOf(lbCodigo.getText()))) {
+                    i = c.getFunCodigo();
+                }
+
+            }
+        }
+        return i;
+    }
+ 
     private void jbCadastrarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarFunActionPerformed
+       int c = verificaCPF();
+        int e = verificapis();
+        
         if (verificaCampos() == false) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         } else {
+            
             cadastrar();
             this.preencheTabela();
             limpaCampos();

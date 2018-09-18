@@ -27,7 +27,6 @@ public class JogoBEAN {
     private String joTipo;
     private String joLote;
     private int joQtd;
-    private int joDisponibilidade;
     private CategoriaBEAN cat;
     private ConsoleBEAN console;
     private LucroBEAN lucro;
@@ -88,14 +87,6 @@ public class JogoBEAN {
 
     public void setJoQtd(int joQtd) {
         this.joQtd = joQtd;
-    }
-
-    public int getJoDisponibilidade() {
-        return joDisponibilidade;
-    }
-
-    public void setJoDisponibilidade(int joDisponibilidade) {
-        this.joDisponibilidade = joDisponibilidade;
     }
 
     @ManyToOne

@@ -5,7 +5,6 @@
  */
 package Modelo;
 
-
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,8 +20,8 @@ public class ClienteBEAN {
     private int idade;
     private String cpf;
     private String telefone;
+    private String email;
     private EnderecoBEAN endereco;
-    
 
     @Id
     @GeneratedValue
@@ -66,6 +65,14 @@ public class ClienteBEAN {
         this.telefone = telefone;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Embedded
     public EnderecoBEAN getEndereco() {
         return endereco;
@@ -74,7 +81,5 @@ public class ClienteBEAN {
     public void setEndereco(EnderecoBEAN endereco) {
         this.endereco = endereco;
     }
-    
-    
 
 }

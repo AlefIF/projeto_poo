@@ -751,7 +751,6 @@ public class FRMJogo extends javax.swing.JFrame {
         if (verificaCampos() == true) {
             JogoBEAN jogo = jControle.localizarCodigo(Integer.parseInt(lbCodigoJogo.getText()));
             jogo.setJoNome(tfNome.getText());
-            jogo.setJoDisponibilidade(0);
             jogo.setJoFaixaEtaria(tfFaixa.getText());
             jogo.setJoPrecoPadrao(Float.parseFloat((tfPreco.getText())));
             jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
@@ -783,7 +782,6 @@ public class FRMJogo extends javax.swing.JFrame {
         if (verificaCampos() == true) {
             JogoBEAN jogo = jControle.localizarCodigo(Integer.parseInt(lbCodigoJogo.getText()));
             jogo.setJoQtd(0);
-            jogo.setJoDisponibilidade(1);
             boolean retorno = jControle.editar(jogo);
             //se a variavel retorno for igual a true o usuario foi editado
             if (retorno == true) {

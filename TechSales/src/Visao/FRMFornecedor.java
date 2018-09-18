@@ -153,6 +153,12 @@ public class FRMFornecedor extends javax.swing.JFrame {
             }
         });
 
+        tfCNPJ.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfCNPJKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -602,7 +608,10 @@ public class FRMFornecedor extends javax.swing.JFrame {
         int cod = 0;
         for (FornecedorBEAN f : fDados) {
             if (f.getForCNPJ().equals(tfCNPJ.getText())) {
-                cod = f.getForCodigo();
+                if (f.getForCodigo() != (Integer.valueOf(lbCodigo.getText()))) {
+                    cod = f.getForCodigo();
+                }
+
             }
         }
         return cod;
@@ -768,6 +777,13 @@ public class FRMFornecedor extends javax.swing.JFrame {
     private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbTipoActionPerformed
+
+    private void tfCNPJKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCNPJKeyTyped
+        String caracteres = "0123456789";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfCNPJKeyTyped
 
     /**
      * @param args the command line arguments

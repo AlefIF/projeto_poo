@@ -119,7 +119,7 @@ public class FRMLogin extends javax.swing.JFrame {
         String senha = tfSenha.getText();
         int i = 0;
         for (VendedorBEAN vendedor : al) {
-            if (vendedor.getVenNomeUsuario().equals(nome) && vendedor.getVenSenha().equals(senha)) {
+            if (vendedor.getVenNomeUsuario().equals(nome) && vendedor.getVenSenha().equals(senha)) {          
                 user = vendedor;
                 FRMPrincipalFun fun = new FRMPrincipalFun();
                 this.dispose();

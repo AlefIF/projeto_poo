@@ -16,7 +16,7 @@ import javax.persistence.Embeddable;
 public class EnderecoBEAN {
 
     private int endCodigo;
-    private int endNumero;
+    private String endNumero;
     private String endRua;
     private String endBairro;
     private String endCidade;
@@ -31,11 +31,11 @@ public class EnderecoBEAN {
         this.endCodigo = endCodigo;
     }
 
-    public int getEndNumero() {
+    public String getEndNumero() {
         return endNumero;
     }
 
-    public void setEndNumero(int endNumero) {
+    public void setEndNumero(String endNumero) {
         this.endNumero = endNumero;
     }
 

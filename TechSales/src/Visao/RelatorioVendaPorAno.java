@@ -20,7 +20,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
  *
  * @author Wayne
  */
-public class VendaPorAno extends javax.swing.JFrame {
+public class RelatorioVendaPorAno extends javax.swing.JFrame {
 
     private VendaControle cVenda = new VendaControle();
     private ArrayList<GraficoBEAN> alG = new ArrayList<>();
@@ -28,7 +28,7 @@ public class VendaPorAno extends javax.swing.JFrame {
     /**
      * Creates new form Barra
      */
-    public VendaPorAno() {
+    public RelatorioVendaPorAno() {
         initComponents();
         setSize(400, 350);
         setResizable(false);
@@ -182,13 +182,13 @@ public class VendaPorAno extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Barra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioVendaPorAno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Barra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioVendaPorAno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Barra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioVendaPorAno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Barra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioVendaPorAno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -198,7 +198,7 @@ public class VendaPorAno extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VendaPorAno().setVisible(true);
+                new RelatorioVendaPorAno().setVisible(true);
             }
         });
     }

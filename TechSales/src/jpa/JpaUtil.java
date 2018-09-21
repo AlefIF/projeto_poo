@@ -18,7 +18,7 @@ public class JpaUtil {
     private static EntityManagerFactory factory;
 
     static {
-        factory = Persistence.createEntityManagerFactory("teste");
+        factory = Persistence.createEntityManagerFactory("poc");
     }
 
     public static EntityManager getEntityManager() {

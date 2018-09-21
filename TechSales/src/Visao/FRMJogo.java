@@ -272,7 +272,7 @@ public class FRMJogo extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel4.setText("Preço :");
+        jLabel4.setText("Preço de Custo :");
 
         tableM.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -642,7 +642,9 @@ public class FRMJogo extends javax.swing.JFrame {
         jDados = jControle.listarALL();
         for (JogoBEAN jDado : jDados) {
             if (jDado.getJoLote().equals(tfLote.getText())) {
+
                 j = jDado.getJoCodigo();
+
             }
         }
         return j;
@@ -744,10 +746,19 @@ public class FRMJogo extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
         }
-
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
+        int cod = verificaLote();
+        int cod2 = verificaLote1();
+        if (cod != Integer.valueOf(lbCodigoJogo.getText())) {
+            cod = 0;
+        }
+
+        if (cod2 != Integer.valueOf(lbCodigoJogo.getText())) {
+            cod2 = 0;
+        }
+
         if (verificaCampos() == true) {
             JogoBEAN jogo = jControle.localizarCodigo(Integer.parseInt(lbCodigoJogo.getText()));
             jogo.setJoNome(tfNome.getText());

@@ -606,12 +606,9 @@ public class FRMFornecedor extends javax.swing.JFrame {
 
     private int verificaCPFCNPJ() {
         int cod = 0;
-        for (FornecedorBEAN f : fDados) {
+        for (FornecedorBEAN f : forCon.listarALL()) {
             if (f.getForCNPJ().equals(tfCNPJ.getText())) {
-                if (f.getForCodigo() != (Integer.valueOf(lbCodigo.getText()))) {
-                    cod = f.getForCodigo();
-                }
-
+                cod = f.getForCodigo();
             }
         }
         return cod;
@@ -630,7 +627,7 @@ public class FRMFornecedor extends javax.swing.JFrame {
 
             EnderecoBEAN end = new EnderecoBEAN();
             end.setEndRua(tfRua.getText());
-            end.setEndNumero(Integer.parseInt(tfNumero.getText()));
+            end.setEndNumero(tfNumero.getText());
             end.setEndBairro(tfBairro.getText());
             end.setEndCidade(tfCidade.getText());
             end.setEndEstado(tfEstado.getText());
@@ -648,6 +645,9 @@ public class FRMFornecedor extends javax.swing.JFrame {
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         int c = verificaCPFCNPJ();
+        if (c == (Integer.valueOf(lbCodigo.getText()))) {
+            c = 0;
+        }
         if (verificaCampos() == false) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         } else if (c == 0) {
@@ -659,7 +659,7 @@ public class FRMFornecedor extends javax.swing.JFrame {
             f.setForAnotacoes(tfanotacao.getText());
 
             f.getEndereco().setEndRua(tfRua.getText());
-            f.getEndereco().setEndNumero(Integer.parseInt(tfNumero.getText()));
+            f.getEndereco().setEndNumero(tfNumero.getText());
             f.getEndereco().setEndBairro(tfBairro.getText());
             f.getEndereco().setEndCidade(tfCidade.getText());
             f.getEndereco().setEndEstado(tfEstado.getText());

@@ -15,7 +15,7 @@ import javax.swing.table.TableRowSorter;
 public class FRMCliente extends javax.swing.JFrame {
 
     private ClienteControle cCliente = new ClienteControle();
-    private ArrayList<ClienteBEAN> cdados;
+
     private DefaultTableModel cTable; //usado para trabalhar com JTable
 
     public FRMCliente() {
@@ -495,12 +495,9 @@ public class FRMCliente extends javax.swing.JFrame {
 
     private int verificaCPF() {
         int i = 0;
-        for (ClienteBEAN c : cdados) {
-            if (c.getCpf().equals(tfCpfCli.getText())) {
-                if (c.getCod() != (Integer.valueOf(lbCodigo.getText()))) {
-                    i = c.getCod();
-                }
-
+        for (ClienteBEAN c : cCliente.listarALL() ) {
+            if (c.getCpf().equals(tfCpfCli.getText())) {             
+                    i = c.getCod();             
             }
         }
         return i;
@@ -508,11 +505,9 @@ public class FRMCliente extends javax.swing.JFrame {
 
     private int verificaEmail() {
         int i = 0;
-        for (ClienteBEAN c : cdados) {
-            if (c.getEmail().equals(tfEmail.getText())) {
-                if (c.getCod() != (Integer.valueOf(lbCodigo.getText()))) {
-                    i = c.getCod();
-                }
+        for (ClienteBEAN c : cCliente.listarALL()) {
+            if (c.getEmail().equals(tfEmail.getText())) {            
+                    i = c.getCod();               
             }
         }
         return i;
@@ -528,7 +523,7 @@ public class FRMCliente extends javax.swing.JFrame {
 
         EnderecoBEAN end = new EnderecoBEAN();
         end.setEndRua(tfRua.getText());
-        end.setEndNumero(Integer.parseInt(tfNumero.getText()));
+        end.setEndNumero((tfNumero.getText()));
         end.setEndBairro(tfBairro.getText());
         end.setEndCidade(tfCidade.getText());
         end.setEndEstado(tfEstado.getText());
@@ -571,7 +566,7 @@ public class FRMCliente extends javax.swing.JFrame {
         cliente.setEmail(tfEmail.getText());
 
         cliente.getEndereco().setEndRua(tfRua.getText());
-        cliente.getEndereco().setEndNumero(Integer.parseInt(tfNumero.getText()));
+        cliente.getEndereco().setEndNumero(tfNumero.getText());
         cliente.getEndereco().setEndBairro(tfBairro.getText());
         cliente.getEndereco().setEndCidade(tfCidade.getText());
         cliente.getEndereco().setEndEstado(tfEstado.getText());
@@ -585,6 +580,15 @@ public class FRMCliente extends javax.swing.JFrame {
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         int c = verificaCPF();
         int e = verificaEmail();
+        
+         if (c == (Integer.valueOf(lbCodigo.getText()))) {
+             c=0;
+         }
+         
+         if (e == (Integer.valueOf(lbCodigo.getText()))) {
+             e=0;
+         }
+        
         if (verificaCampos()) {
             if (c == 0) {
                 if (e == 0) {
@@ -781,7 +785,7 @@ public class FRMCliente extends javax.swing.JFrame {
 
     private void preencheTabela() {
         cTable = criaTabela();
-        //seta o nome das colunas da tabela
+
         cTable.addColumn("Código");
         cTable.addColumn("Nome");
         cTable.addColumn("Idade");
@@ -789,11 +793,7 @@ public class FRMCliente extends javax.swing.JFrame {
         cTable.addColumn("CPF");
         cTable.addColumn("email");
 
-        //pega os dados do ArrayList
-        cdados = cCliente.listarALL();
-
-        //cada célula do arrayList vira uma linha(row) na tabela
-        for (ClienteBEAN dado : cdados) {
+        for (ClienteBEAN dado : cCliente.listarALL()) {
             cTable.addRow(new Object[]{dado.getCod(), dado.getNome(), dado.getIdade(),
                 dado.getTelefone(), dado.getCpf(), dado.getEmail()});
 

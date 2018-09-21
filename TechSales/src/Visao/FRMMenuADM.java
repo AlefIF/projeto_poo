@@ -209,15 +209,21 @@ public class FRMMenuADM extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+      FRMCaixa c= new FRMCaixa();
+      this.dispose();
+      c.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        FRMContas c = new FRMContas();
+        this.dispose();
+        c.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        FRMNotaDeCompra n = new FRMNotaDeCompra();
+        this.dispose();
+        n.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**

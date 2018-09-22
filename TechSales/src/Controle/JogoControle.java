@@ -79,18 +79,4 @@ public class JogoControle {
         return a;
     }
 
-    public boolean editarDisponibilidade(JogoBEAN l) {
-        JogoBEAN a = localizarCodigo(l.getJoCodigo());
-        try {
-            começar();
-            Query q = manager.createQuery("update JogoBEAN set joDisponibilidade = " + l.getJoDisponibilidade()
-                    + " where joCodigo =" + l.getJoCodigo() + ";");
-            tx.commit();
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-
-    }
-
 }

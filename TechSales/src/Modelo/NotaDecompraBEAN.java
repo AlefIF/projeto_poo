@@ -6,9 +6,9 @@
 package Modelo;
 
 import java.sql.Date;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -26,13 +26,12 @@ public class NotaDecompraBEAN {
     private int ndcParcelas;
     private float ndcPrecoParcela;
     private float ndcEntrada;
-    private int ndc_forCodigo;
-    private String ndcDescricao;
-    private int ndcSit;
-    private FornecedorBEAN forne;
+    private float ndcCustoUnitario;
+    private int ndcQtdComprada;
+    private Date ndcDataDaParcela;
+    private int ndcParcelaAtual;
+    private JogoBEAN jogo;
 
-    @Id
-    @GeneratedValue
     public int getNdcCodigo() {
         return ndcCodigo;
     }
@@ -81,37 +80,50 @@ public class NotaDecompraBEAN {
         this.ndcEntrada = ndcEntrada;
     }
 
-    public int getNdc_forCodigo() {
-        return ndc_forCodigo;
+    public float getNdcCustoUnitario() {
+        return ndcCustoUnitario;
     }
 
-    public void setNdc_forCodigo(int ndc_forCodigo) {
-        this.ndc_forCodigo = ndc_forCodigo;
+    public void setNdcCustoUnitario(float ndcCustoUnitario) {
+        this.ndcCustoUnitario = ndcCustoUnitario;
     }
 
-    public String getNdcDescricao() {
-        return ndcDescricao;
+
+    public int getNdcQtdComprada() {
+        return ndcQtdComprada;
     }
 
-    public void setNdcDescricao(String ndcDescricao) {
-        this.ndcDescricao = ndcDescricao;
+    public void setNdcQtdComprada(int ndcQtdComprada) {
+        this.ndcQtdComprada = ndcQtdComprada;
     }
 
-    public int getNdcSit() {
-        return ndcSit;
+    public Date getNdcDataDaParcela() {
+        return ndcDataDaParcela;
     }
 
-    public void setNdcSit(int ndcSit) {
-        this.ndcSit = ndcSit;
+    public void setNdcDataDaParcela(Date ndcDataDaParcela) {
+        this.ndcDataDaParcela = ndcDataDaParcela;
+    }
+
+    public int getNdcParcelaAtual() {
+        return ndcParcelaAtual;
+    }
+
+    public void setNdcParcelaAtual(int ndcParcelaAtual) {
+        this.ndcParcelaAtual = ndcParcelaAtual;
     }
 
     @ManyToOne
-    public FornecedorBEAN getForne() {
-        return forne;
+    @JoinColumn(name="ndc_joCodigo")
+    public JogoBEAN getJogo() {
+        return jogo;
     }
 
-    public void setForne(FornecedorBEAN forne) {
-        this.forne = forne;
+    public void setJogo(JogoBEAN jogo) {
+        this.jogo = jogo;
     }
+    
+    
+
 
 }

@@ -24,7 +24,6 @@ public class FuncionarioBEAN {
     private int funCodigo;
     private String funNome;
     private int funIdade;
-    private String funEndereco;
     private String funCpf;
     private String funTelefone;
     private String funNisPis;
@@ -59,14 +58,6 @@ public class FuncionarioBEAN {
 
     public void setFunIdade(int funIdade) {
         this.funIdade = funIdade;
-    }
-
-    public String getFunEndereco() {
-        return funEndereco;
-    }
-
-    public void setFunEndereco(String funEndereco) {
-        this.funEndereco = funEndereco;
     }
 
     public String getFunCpf() {

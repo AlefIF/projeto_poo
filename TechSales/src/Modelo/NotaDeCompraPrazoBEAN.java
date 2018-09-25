@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * @author Alef
  */
 @Entity
-@Table(name = "caixa")
+@Table(name = "compraPrazo")
 public class NotaDeCompraPrazoBEAN {
 
     private int napCodigo;

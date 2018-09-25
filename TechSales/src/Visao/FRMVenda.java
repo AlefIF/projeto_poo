@@ -642,7 +642,7 @@ public class FRMVenda extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btVoltar3);
-        btVoltar3.setBounds(530, 20, 90, 25);
+        btVoltar3.setBounds(690, 20, 90, 25);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

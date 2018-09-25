@@ -5,7 +5,6 @@
  */
 package Modelo;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -32,7 +31,7 @@ public class JogoBEAN {
     private ConsoleBEAN console;
     private LucroBEAN lucro;
     private FornecedorBEAN fornecedor;
-    private NotaDecompraBEAN notaDeCompra;
+    
 
     @Id
     @GeneratedValue
@@ -131,18 +130,7 @@ public class JogoBEAN {
     public void setFornecedor(FornecedorBEAN fornecedor) {
         this.fornecedor = fornecedor;
     }
-
-    @Embedded
-    public NotaDecompraBEAN getNotaDeCompra() {
-        return notaDeCompra;
-    }
-
-    public void setNotaDeCompra(NotaDecompraBEAN notaDeCompra) {
-        this.notaDeCompra = notaDeCompra;
-    }
-
-    
-    
+        
     @Override
     public String toString() {
         return getJoNome();

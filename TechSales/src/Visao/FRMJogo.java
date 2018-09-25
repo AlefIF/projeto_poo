@@ -7,16 +7,20 @@ package Visao;
 
 import Controle.CategoriaControle;
 import Controle.ConsoleControle;
+import Controle.FornecedorControle;
 import Modelo.CategoriaBEAN;
 import Modelo.ConsoleBEAN;
 import Controle.JogoControle;
+import Controle.LucroControle;
 import Controle.NotaDeCompraControle;
+import Modelo.FornecedorBEAN;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Modelo.JogoBEAN;
+import Modelo.LucroBEAN;
 import Modelo.NotaDecompraBEAN;
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.RowFilter;
@@ -33,6 +37,8 @@ public class FRMJogo extends javax.swing.JFrame {
     private ConsoleControle cControle = new ConsoleControle();
     private CategoriaControle catControle = new CategoriaControle();
     private NotaDeCompraControle notac = new NotaDeCompraControle();
+    private LucroControle lucroc = new LucroControle();
+    private FornecedorControle fc = new FornecedorControle();
     private ArrayList<JogoBEAN> jDados;
     private ArrayList<CategoriaBEAN> catDados;
     private ArrayList<ConsoleBEAN> cDados;
@@ -41,7 +47,6 @@ public class FRMJogo extends javax.swing.JFrame {
     private ArrayList<NotaDecompraBEAN> insert = new ArrayList<NotaDecompraBEAN>();
 
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/YYYY");
-    private String strData;
 
     /**
      * Creates new form FRMJogo
@@ -60,7 +65,13 @@ public class FRMJogo extends javax.swing.JFrame {
         for (CategoriaBEAN d : catControle.listarALL()) {
             cbCat.addItem(d);
         }
+
+        for (FornecedorBEAN f : fc.listarALL()) {
+            cbFornecedor.addItem(f);
+        }
+
         preencheTabela();
+
     }
 
     private void preencheTabela() {
@@ -68,6 +79,7 @@ public class FRMJogo extends javax.swing.JFrame {
         //seta o nome das colunas da tabela
         dTable.addColumn("Código");
         dTable.addColumn("Nome");
+        dTable.addColumn("Fornecedor");
         dTable.addColumn("Faixa Etária");
         dTable.addColumn("Preço Padrão");
         dTable.addColumn("Tipo de Jogo");
@@ -85,7 +97,7 @@ public class FRMJogo extends javax.swing.JFrame {
                 if (dado.getCat().getCatCodigo() == dado2.getCatCodigo()) {
                     for (ConsoleBEAN c : cDados) {
                         if (dado.getConsole().getConCodigo() == c.getConCodigo()) {
-                            dTable.addRow(new Object[]{dado.getJoCodigo(), dado.getJoNome(),
+                            dTable.addRow(new Object[]{dado.getJoCodigo(), dado.getJoNome(), dado.getFornecedor(),
                                 dado.getJoFaixaEtaria(), dado.getJoPrecoPadrao(), dado.getJoTipo(),
                                 dado2.getCatNome(), c.getConNome(), dado.getJoLote(), dado.getJoQtd()});
                         }
@@ -104,6 +116,7 @@ public class FRMJogo extends javax.swing.JFrame {
                 java.lang.Integer.class,
                 java.lang.String.class,
                 java.lang.String.class,
+                java.lang.String.class,
                 java.lang.Double.class,
                 java.lang.String.class,
                 java.lang.String.class,
@@ -113,7 +126,7 @@ public class FRMJogo extends javax.swing.JFrame {
             };
             //define se os campos podem ser editados na propria tabela
             boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false, false, false, false};
+                false, false, false, false, false, false, false, false, false, false};
 
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -135,8 +148,6 @@ public class FRMJogo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
         tpGuia = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -144,27 +155,6 @@ public class FRMJogo extends javax.swing.JFrame {
         btEditar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
         btLocalizar = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tableM = new javax.swing.JTable();
-        jLabel9 = new javax.swing.JLabel();
-        tfQtde = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jLabel14 = new javax.swing.JLabel();
-        tfPrecoTT = new javax.swing.JTextField();
-        tfValorEntrada = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        tfNParcelas = new javax.swing.JTextField();
-        tfPrecoParcela = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        tfPrecoUnit = new javax.swing.JTextField();
-        tfDataParcelas = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        tfDataCompra = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         cbCat = new javax.swing.JComboBox<>();
         tfFaixa = new javax.swing.JFormattedTextField();
@@ -182,6 +172,12 @@ public class FRMJogo extends javax.swing.JFrame {
         cbTipo = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         tfLote = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        tfQtde = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        tfPrecoUnit = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableJogo = new javax.swing.JTable();
@@ -191,15 +187,11 @@ public class FRMJogo extends javax.swing.JFrame {
         btVoltar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel1.setText("jLabel1");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Jogo");
-        getContentPane().setLayout(null);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(null);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
@@ -268,170 +260,8 @@ public class FRMJogo extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados da compra", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
-
-        jButton1.setText("inserir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel4.setText("Preço Unitario :");
-
-        tableM.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Data", "Preço"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Float.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        tableM.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tableM.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableMMouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(tableM);
-
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel9.setText("Quantidade :");
-
-        tfQtde.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfQtdeKeyTyped(evt);
-            }
-        });
-
-        jButton2.setText("Excluir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel14.setText("Preço Total:");
-
-        tfPrecoTT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPrecoTTActionPerformed(evt);
-            }
-        });
-
-        jLabel15.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel15.setText("Valor de entrada:");
-
-        jLabel16.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel16.setText("Número de parcelas:");
-
-        jLabel17.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel17.setText("Preço da parcela:");
-
-        jLabel18.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel18.setText("Data da parcela:");
-
-        jLabel19.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel19.setText("Data da Compra:");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel9))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfPrecoUnit, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                            .addComponent(tfQtde)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel14))
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfPrecoTT, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(tfValorEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfDataParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfDataCompra))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfPrecoParcela))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfNParcelas)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(48, 48, 48))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(2, 2, 2)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(tfPrecoUnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19)
-                    .addComponent(tfDataCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(tfQtde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16)
-                    .addComponent(tfNParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(tfValorEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18)
-                    .addComponent(tfDataParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(tfPrecoTT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17)
-                    .addComponent(tfPrecoParcela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1)))
-        );
+        jPanel1.add(jPanel3);
+        jPanel3.setBounds(140, 180, 507, 70);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados do Jogo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
@@ -509,111 +339,140 @@ public class FRMJogo extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel9.setText("Quantidade :");
+
+        tfQtde.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfQtdeKeyTyped(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel4.setText("Preço sugerido :");
+
+        jButton3.setText("Cadastrar Nota de Compra");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel1.setText("Não Cadastrada");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(jLabel3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfFaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(6, 6, 6)
+                        .addComponent(lbCodigoJogo)
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
                         .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbCat, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbCon, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(cbFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfLote, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel6Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel2)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(lbCodigoJogo)
-                    .addContainerGap(644, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addComponent(tfLote, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(4, 4, 4)
+                                .addComponent(tfFaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel7)
+                                .addGap(10, 10, 10)
+                                .addComponent(cbCat, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfQtde)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tfPrecoUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22)))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jButton3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(4, 4, 4)
+                                .addComponent(cbCon, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(cbFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(tfFaixa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(cbCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(cbCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(tfLote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel6Layout.createSequentialGroup()
-                    .addGap(6, 6, 6)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
                         .addComponent(lbCodigoJogo))
-                    .addContainerGap(59, Short.MAX_VALUE)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)
+                            .addComponent(tfLote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfFaixa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel8)
+                                .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(tfQtde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4))
+                    .addComponent(tfPrecoUnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton3)
+                        .addComponent(jLabel1)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
-        );
+        jPanel1.add(jPanel6);
+        jPanel6.setBounds(12, 13, 729, 150);
 
         tpGuia.addTab("Cadastrar jogo", jPanel1);
 
@@ -684,7 +543,7 @@ public class FRMJogo extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -692,16 +551,13 @@ public class FRMJogo extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         tpGuia.addTab("Consultar jogo", jPanel2);
-
-        getContentPane().add(tpGuia);
-        tpGuia.setBounds(10, 40, 760, 380);
 
         btVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
         btVoltar.setText("Voltar");
@@ -710,15 +566,39 @@ public class FRMJogo extends javax.swing.JFrame {
                 btVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(btVoltar);
-        btVoltar.setBounds(680, 30, 80, 20);
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel11.setText("Cadastro de jogos");
-        getContentPane().add(jLabel11);
-        jLabel11.setBounds(280, 10, 220, 30);
 
-        setSize(new java.awt.Dimension(792, 472));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(280, 280, 280)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(680, 680, 680)
+                        .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(tpGuia)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tpGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+        );
+
+        setSize(new java.awt.Dimension(792, 408));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -741,139 +621,49 @@ public class FRMJogo extends javax.swing.JFrame {
         return j;
     }
 
-    private void cadastroInserir() {
-        JogoBEAN jogo = new JogoBEAN();
-        jogo.setJoNome(tfNome.getText());
-        jogo.setJoFaixaEtaria(tfFaixa.getText());
-        jogo.setCat((CategoriaBEAN) cbCat.getSelectedItem());
-        jogo.setJoPrecoPadrao(Float.parseFloat(tfPrecoUnit.getText()));
-        jogo.setJoQtd(Integer.parseInt(tfQtde.getText()));
-        jogo.setJoLote(tfLote.getText());
-        jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
-        jogo.setConsole((ConsoleBEAN) cbCon.getSelectedItem());
-        jControle.cadastrar(jogo);
-
-        NotaDecompraBEAN ndc = new NotaDecompraBEAN();
-        ndc.setNdcCustoUnitario(Float.parseFloat(tfPrecoUnit.getText()));
-        ndc.setNdcQtdComprada(Integer.parseInt(tfQtde.getText()));
-        ndc.setNdcEntrada(Float.parseFloat(tfValorEntrada.getText()));
-        ndc.setNdcPrecoTotal(Float.parseFloat(tfPrecoTT.getText()));
-
-        strData = tfDataCompra.getText();
-        try {
-            Date date = (Date) sdf.parse(strData);
-            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-            ndc.setNdcData(sqlDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        for (NotaDecompraBEAN insert : insert) {
-            ndc.setNdcParcelas(insert.getNdcParcelas());
-            ndc.setNdcDataDaParcela(insert.getNdcDataDaParcela());
-            ndc.setNdcPrecoParcela(insert.getNdcPrecoParcela());
-            ndc.setNdcParcelaAtual(insert.getNdcParcelaAtual());
-            notac.cadastrar(ndc);
-
-        }
-
-        resultado();
-    }
-
-    private int verificarInserir() {
-        int j = 0;
-        for (NotaDecompraBEAN a : insert) {
-            j++;
-        }
-        return j;
-    }
-
-    private void resultado() {
-        insert.clear();
-        preencheTabela2();
-        this.preencheTabela();
-        limparCampos();
-        JOptionPane.showMessageDialog(null, "Jogo CADASTRADO com sucesso");
-    }
+    
 
     private void cadastroNormal() {
         JogoBEAN jogo = new JogoBEAN();
         jogo.setJoNome(tfNome.getText());
         jogo.setJoFaixaEtaria(tfFaixa.getText());
         jogo.setCat((CategoriaBEAN) cbCat.getSelectedItem());
-        jogo.setJoPrecoPadrao(Float.parseFloat(tfPrecoUnit.getText()));
+        LucroBEAN c = lucroc.localizar(1);
+        float preco = Float.parseFloat(tfPrecoUnit.getText())
+                + ((Float.parseFloat(tfPrecoUnit.getText()) * c.getLucPorcentagem()) / 100);
+        jogo.setJoPrecoPadrao(preco);
         jogo.setJoQtd(Integer.parseInt(tfQtde.getText()));
         jogo.setJoLote(tfLote.getText());
         jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
         jogo.setConsole((ConsoleBEAN) cbCon.getSelectedItem());
+
         jControle.cadastrar(jogo);
-        cadastroNota(jogo);
-    }
 
-    private void cadastroNota(JogoBEAN j) {
-        NotaDecompraBEAN ndc = new NotaDecompraBEAN();
-        ndc.setNdcCustoUnitario(Float.parseFloat(tfPrecoUnit.getText()));
-        ndc.setNdcQtdComprada(Integer.parseInt(tfQtde.getText()));
-        ndc.setNdcEntrada(Float.parseFloat(tfValorEntrada.getText()));
-        ndc.setNdcPrecoTotal(Float.parseFloat(tfPrecoTT.getText()));
-
-        strData = tfDataCompra.getText();
-        try {
-            Date date = (Date) sdf.parse(strData);
-            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-            ndc.setNdcData(sqlDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        strData = tfDataParcelas.getText();
-        try {
-            Date date1 = (Date) sdf.parse(strData);
-            java.sql.Date sqlDate1 = new java.sql.Date(date1.getTime());
-            ndc.setNdcDataDaParcela(sqlDate1);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        ndc.setNdcParcelas(Integer.parseInt(tfNParcelas.getText()));
-        ndc.setNdcPrecoParcela(Float.parseFloat(tfPrecoParcela.getText()));
-
-        ndc.setJogo(j);
-        notac.cadastrar(ndc);
-        resultado();
+        this.preencheTabela();
+        limparCampos();
+        JOptionPane.showMessageDialog(null, "Jogo CADASTRADO com sucesso");
     }
 
     private boolean verificaCampos() {
         if (tfFaixa.getText().equals("+(  )") || tfNome.getText().equals("")
-                || tfFaixa.getText().equals("") || cbCat.getSelectedIndex() == (0)
-                || tfPrecoUnit.getText().equals("") || tfQtde.getText().equals("")
-                || tfLote.getText().equals("") || cbCon.getSelectedIndex() == (0)
-                || cbTipo.getSelectedIndex() == (0)) {
+                || cbCat.getSelectedIndex() == (0) || tfLote.getText().equals("")
+                || cbCon.getSelectedIndex() == (0) || cbTipo.getSelectedIndex() == (0)
+                || cbFornecedor.getSelectedIndex() == (0)
+                || tfPrecoUnit.getText().equals("") || tfQtde.getText().equals("")) {
             return false;
         } else {
             return true;
         }
     }
 
-    
+
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        int z = verificarInserir();
-        if (z == 0) {
-            if (verificaCampos()) {
-                int v = verificaLote();
-                if (v == 0) {
-                    this.cadastroNormal();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Erro! Lote já existente,Código do produto:" + v);
-                }
+        if (verificaCampos()) {
+            int v = verificaLote();
+            if (v == 0) {
+                this.cadastroNormal();
             } else {
-                JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
-            }
-        } else if (verificaCampos()) {
-            int x = verificaLote();
-            if (x == 0) {
-                this.cadastroInserir();
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro! Lote já existente,Código do produto:" + x);
+                JOptionPane.showMessageDialog(null, "Erro! Lote já existente,Código do produto:" + v);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
@@ -882,11 +672,9 @@ public class FRMJogo extends javax.swing.JFrame {
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         int cod = verificaLote();
-
         if (cod != Integer.valueOf(lbCodigoJogo.getText())) {
             cod = 0;
         }
-
         if (verificaCampos() == true) {
             JogoBEAN jogo = jControle.localizarCodigo(Integer.parseInt(lbCodigoJogo.getText()));
             jogo.setJoNome(tfNome.getText());
@@ -899,6 +687,7 @@ public class FRMJogo extends javax.swing.JFrame {
             jogo.setCat(c);
             ConsoleBEAN w = (ConsoleBEAN) cbCon.getSelectedItem();
             jogo.setConsole(w);
+
             boolean retorno = jControle.editar(jogo);
             //se a variavel retorno for igual a true o usuario foi editado
             if (retorno == true) {
@@ -953,33 +742,60 @@ public class FRMJogo extends javax.swing.JFrame {
         limparCampos();
         tpGuia.setSelectedIndex(0);
         if (tableJogo.getSelectedRow() != -1) {
-            if (Integer.parseInt(tableJogo.getValueAt(tableJogo.getSelectedRow(), 8).toString()) > 0) {
-                lbCodigoJogo.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString());
-                tfNome.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 1).toString());
-                tfFaixa.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 2).toString());
-                tfPrecoUnit.setText((tableJogo.getValueAt(tableJogo.getSelectedRow(), 3).toString()));
-                cbTipo.setSelectedItem(tableJogo.getValueAt(tableJogo.getSelectedRow(), 4).toString());
-
-                int i = 0;
-                for (CategoriaBEAN dado2 : catDados) {
-                    i++;
-                    if ((tableJogo.getValueAt(tableJogo.getSelectedRow(), 5).toString().equals(dado2.getCatNome()))) {
-                        cbCat.setSelectedIndex(i);
-                    }
-                }
-                int z = 0;
-                for (ConsoleBEAN dado4 : cDados) {
-                    z++;
-                    if ((tableJogo.getValueAt(tableJogo.getSelectedRow(), 6).toString().equals(dado4.getConNome()))) {
-                        cbCon.setSelectedIndex(z);
-                    }
-                }
-                tfLote.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 7).toString());
-                tfQtde.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 8).toString());
+            JogoBEAN j = jControle.localizarCodigo(Integer.parseInt(tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString()));
+            lbCodigoJogo.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString());
+            tfNome.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 1).toString());
+            tfFaixa.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 2).toString());
+            if (j.getJoTipo().equals("Aluguel")) {
+                cbTipo.setSelectedIndex(2);
             } else {
-                JOptionPane.showMessageDialog(null, "Erro, jogo não disponível no estoque");
+                cbTipo.setSelectedIndex(1);
             }
+
+            int i = 0;
+            for (CategoriaBEAN cat : catControle.listarALL()) {
+                i++;
+                if (j.getCat().getCatCodigo() == cat.getCatCodigo()) {
+                    cbCat.setSelectedIndex(i);
+                }
+            }
+            int z = 0;
+            for (ConsoleBEAN console : cControle.listarALL()) {
+                z++;
+                if (j.getConsole().getConCodigo() == console.getConCodigo()) {
+                    cbCon.setSelectedIndex(z);
+                }
+            }
+            int x = 0;
+            for (FornecedorBEAN f : fc.listarALL()) {
+                x++;
+                if (j.getFornecedor().getForCodigo() == f.getForCodigo()) {
+                    cbFornecedor.setSelectedIndex(x);
+                }
+            }
+
+            tfLote.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 7).toString());
+            tfQtde.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 8).toString());
+            /*
+                JogoBEAN j = jControle.localizarCodigo(Integer.valueOf(tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString()));
+                for (NotaDecompraBEAN a : notac.listarALL()) {
+                    if (a.getJogo().getJoCodigo() == j.getJoCodigo()) {            
+                        tfPrecoUnit.setText(String.valueOf(a.getNdcCustoUnitario()));
+                        tfQtde.setText(String.valueOf(a.getNdcQtdComprada()));
+                        tfValorEntrada.setText(String.valueOf(a.getNdcEntrada()));
+                        tfPrecoTT.setText(String.valueOf(a.getNdcPrecoTotal()));
+                        tfDataCompra.setText(String.valueOf(a.getNdcData()));
+                        tfNParcelas.setText(String.valueOf(a.getNdcParcelas()));
+                        tfPrecoUnit.setText(String.valueOf(a.getNdcCustoUnitario()));
+                        insert.add(a);
+                    }
+                }*/
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro, jogo não disponível no estoque");
         }
+
+
     }//GEN-LAST:event_tableJogoMouseClicked
 
     private void tfFaixaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFaixaKeyTyped
@@ -996,13 +812,6 @@ public class FRMJogo extends javax.swing.JFrame {
     private void tfFaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfFaixaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfFaixaActionPerformed
-
-    private void tfQtdeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfQtdeKeyTyped
-        String caracteres = "0123456789";
-        if (!caracteres.contains(evt.getKeyChar() + "")) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_tfQtdeKeyTyped
 
     private void cbConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbConActionPerformed
 
@@ -1025,70 +834,8 @@ public class FRMJogo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tfChaveKeyTyped
 
-    private DefaultTableModel criaTabela2() {
-        //sempre que usar JTable é necessário ter um DefaulttableModel
-        DefaultTableModel dTable2 = new DefaultTableModel() {
-            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
-            Class[] types = new Class[]{
-                java.lang.Float.class,
-                java.lang.String.class,
-                java.lang.Integer.class,};
-            //define se os campos podem ser editados na propria tabela
-            boolean[] canEdit = new boolean[]{
-                false, false, false};
+   
 
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        ;
-        };
-        //retorna o DefaultTableModel
-    return dTable2;
-    }
-
-    private void limparCampos2() {
-        tfLote.setText("");
-        tfPrecoUnit.setText("");
-        tfQtde.setText("");
-        cbCon.setSelectedIndex(0);
-        cbTipo.setSelectedIndex(0);
-    }
-
-    private void preencheTabela2() {
-        dTable2 = criaTabela2();
-        dTable2.addColumn("Numero da parcela");
-        dTable2.addColumn("Data");
-        dTable2.addColumn("Preço");
-
-        for (NotaDecompraBEAN o : insert) {
-            dTable2.addRow(new Object[]{o.getNdcParcelaAtual(),
-                o.getNdcDataDaParcela(), o.getNdcPrecoParcela()});
-        }
-
-        tableM.setModel(dTable2);
-    }
-
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        NotaDecompraBEAN nota = new NotaDecompraBEAN();
-        nota.setNdcPrecoParcela(Float.parseFloat((tfPrecoParcela.getText())));
-
-        strData = tfDataParcelas.getText();
-        try {
-            Date date = (Date) sdf.parse(strData);
-            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-            nota.setNdcDataDaParcela(sqlDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        nota.setNdcParcelaAtual(insert.size() + 1);
-
-        insert.add(nota);
-        preencheTabela2();
-        limparCampos2();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tfLoteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLoteKeyTyped
 
@@ -1098,27 +845,20 @@ public class FRMJogo extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cbTipoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int i = tableM.getSelectedRow();
-        if (i != -1) {
-            insert.remove(i);
-            preencheTabela2();
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro! Nenhum dado selecionado na tabela");
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void tableMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMMouseClicked
-        int i = tableM.getSelectedRow();
-    }//GEN-LAST:event_tableMMouseClicked
-
     private void tfChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfChaveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfChaveActionPerformed
 
-    private void tfPrecoTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPrecoTTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfPrecoTTActionPerformed
+    private void tfQtdeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfQtdeKeyTyped
+        String caracteres = "0123456789";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfQtdeKeyTyped
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        FRMNotaDeCompra ndc = new FRMNotaDeCompra();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void limparCampos() {
         lbCodigoJogo.setText("");
@@ -1130,6 +870,10 @@ public class FRMJogo extends javax.swing.JFrame {
         cbCon.setSelectedIndex(0);
         cbTipo.setSelectedIndex(0);
         tfLote.setText("");
+
+        tfPrecoUnit.setText("");
+        tfQtde.setText("");
+
     }
 
     /**
@@ -1186,22 +930,14 @@ public class FRMJogo extends javax.swing.JFrame {
     private javax.swing.JButton btVoltar;
     private javax.swing.JComboBox<Object> cbCat;
     private javax.swing.JComboBox<Object> cbCon;
-    private javax.swing.JComboBox<String> cbFornecedor;
+    private javax.swing.JComboBox<Object> cbFornecedor;
     private javax.swing.JComboBox<String> cbTipo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1214,25 +950,16 @@ public class FRMJogo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lbCodigoJogo;
     private javax.swing.JTable tableJogo;
-    private javax.swing.JTable tableM;
     private javax.swing.JTextField tfChave;
-    private javax.swing.JTextField tfDataCompra;
-    private javax.swing.JTextField tfDataParcelas;
     private javax.swing.JFormattedTextField tfFaixa;
     private javax.swing.JTextField tfLote;
-    private javax.swing.JTextField tfNParcelas;
     private javax.swing.JTextField tfNome;
-    private javax.swing.JTextField tfPrecoParcela;
-    private javax.swing.JTextField tfPrecoTT;
     private javax.swing.JTextField tfPrecoUnit;
     private javax.swing.JTextField tfQtde;
-    private javax.swing.JTextField tfValorEntrada;
     private javax.swing.JTabbedPane tpGuia;
     // End of variables declaration//GEN-END:variables
 }

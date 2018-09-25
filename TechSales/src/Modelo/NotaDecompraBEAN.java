@@ -5,11 +5,12 @@
  */
 package Modelo;
 
-import java.sql.Date;
-import javax.persistence.Embeddable;
+import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,6 +20,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "notaDeCompra")
 public class NotaDecompraBEAN {
+    
 
     private int ndcCodigo;
     private Date ndcData;
@@ -29,9 +31,10 @@ public class NotaDecompraBEAN {
     private float ndcCustoUnitario;
     private int ndcQtdComprada;
     private Date ndcDataDaParcela;
-    private int ndcParcelaAtual;
     private JogoBEAN jogo;
 
+    @Id
+    @GeneratedValue
     public int getNdcCodigo() {
         return ndcCodigo;
     }
@@ -105,15 +108,7 @@ public class NotaDecompraBEAN {
         this.ndcDataDaParcela = ndcDataDaParcela;
     }
 
-    public int getNdcParcelaAtual() {
-        return ndcParcelaAtual;
-    }
-
-    public void setNdcParcelaAtual(int ndcParcelaAtual) {
-        this.ndcParcelaAtual = ndcParcelaAtual;
-    }
-
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="ndc_joCodigo")
     public JogoBEAN getJogo() {
         return jogo;

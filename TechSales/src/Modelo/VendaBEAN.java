@@ -22,7 +22,6 @@ import javax.persistence.Table;
 public class VendaBEAN {
 
     private int vendaCodigo;
-    private String vendaNNF;
     private Date vendaData;
     private float vendaEntrada;
     private int vendaNparcelas;
@@ -41,13 +40,6 @@ public class VendaBEAN {
         this.vendaCodigo = vendaCodigo;
     }
 
-    public String getVendaNNF() {
-        return vendaNNF;
-    }
-
-    public void setVendaNNF(String vendaNNF) {
-        this.vendaNNF = vendaNNF;
-    }
 
     public Date getVendaData() {
         return vendaData;

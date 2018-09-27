@@ -124,7 +124,6 @@ public class FRMLucro extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ll = lc.listarALL();
-        System.out.println(ll.size());
         if (ll.size() > 0) {
             for (LucroBEAN l : ll) {
                 lc.localizar(l.getLuCod());

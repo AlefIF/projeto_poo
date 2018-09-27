@@ -45,15 +45,8 @@ public class FRMJogo extends javax.swing.JFrame {
     private DefaultTableModel dTable;
     private DefaultTableModel dTable2;
 
-    static int jogoCod = 0;
+    static JogoBEAN jogoNota = new JogoBEAN();
 
-    /**
-     * Creates new form FRMJogo
-     */
-    //Notas
-    //O pega selecionado não funciona quando se usa a pesquisa refinada 
-    //Não consegui inserir os atributos de conosole na tabela, eles são de outro objeto
-    //Não implementei a funcionalidade inserir por falta de tempo
     public FRMJogo() {
         initComponents();
         setResizable(false);
@@ -456,11 +449,11 @@ public class FRMJogo extends javax.swing.JFrame {
                         .addComponent(tfQtde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4))
                     .addComponent(tfPrecoPadrao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel6);
-        jPanel6.setBounds(12, 13, 739, 150);
+        jPanel6.setBounds(12, 13, 739, 160);
 
         tpGuia.addTab("Cadastrar jogo", jPanel1);
 
@@ -762,6 +755,7 @@ public class FRMJogo extends javax.swing.JFrame {
             tfLote.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 7).toString());
             tfQtde.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 8).toString());
 
+            tfPrecoPadrao.setText(String.valueOf(j.getJoPrecoPadrao()));
             for (NotaDecompraBEAN n : notac.listarALL()) {
                 if (n.getJogo().getJoCodigo() == j.getJoCodigo()) {
                     c++;
@@ -800,7 +794,7 @@ public class FRMJogo extends javax.swing.JFrame {
     }//GEN-LAST:event_tfChaveActionPerformed
 
     private void btCadNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadNotaActionPerformed
-        jogoCod = Integer.valueOf(lbCodigoJogo.getText());
+        jogoNota = jControle.localizarCodigo(Integer.valueOf(lbCodigoJogo.getText()));
         FRMNotaDeCompra ndc = new FRMNotaDeCompra();
         ndc.setVisible(true);
         this.dispose();

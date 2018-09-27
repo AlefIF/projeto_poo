@@ -5,7 +5,7 @@
  */
 package Modelo;
 
-import java.util.Date;
+import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -30,7 +30,6 @@ public class NotaDecompraBEAN {
     private float ndcEntrada;
     private float ndcCustoUnitario;
     private int ndcQtdComprada;
-    private Date ndcDataDaParcela;
     private JogoBEAN jogo;
 
     @Id
@@ -98,14 +97,6 @@ public class NotaDecompraBEAN {
 
     public void setNdcQtdComprada(int ndcQtdComprada) {
         this.ndcQtdComprada = ndcQtdComprada;
-    }
-
-    public Date getNdcDataDaParcela() {
-        return ndcDataDaParcela;
-    }
-
-    public void setNdcDataDaParcela(Date ndcDataDaParcela) {
-        this.ndcDataDaParcela = ndcDataDaParcela;
     }
 
     @OneToOne

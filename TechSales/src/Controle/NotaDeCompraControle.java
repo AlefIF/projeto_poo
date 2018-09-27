@@ -42,7 +42,6 @@ public class NotaDeCompraControle {
         Query q = manager.createQuery("from NotaDecompraBEAN");
         ArrayList<NotaDecompraBEAN> notdList = (ArrayList<NotaDecompraBEAN>) q.getResultList();
         tx.commit();
-        //fechar();
         return notdList;
     }
 

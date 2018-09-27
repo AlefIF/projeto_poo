@@ -5,7 +5,11 @@
  */
 package Visao;
 
+import Controle.CaixaControle;
+import Controle.LucroControle;
 import Controle.VendedorControle;
+import Modelo.CaixaBEAN;
+import Modelo.LucroBEAN;
 import Modelo.VendedorBEAN;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -19,6 +23,8 @@ public class FRMLogin extends javax.swing.JFrame {
     static VendedorBEAN user = new VendedorBEAN();
     VendedorControle vc = new VendedorControle();
     ArrayList<VendedorBEAN> al = vc.listarALL();
+    CaixaControle caixaC= new CaixaControle();
+    LucroControle lucC = new LucroControle();
 
     /**
      * Creates new form FRMLogin
@@ -27,6 +33,26 @@ public class FRMLogin extends javax.swing.JFrame {
         setResizable(false);
         initComponents();
 
+        int qtc=0;
+        for (CaixaBEAN c : caixaC.listarALL()) {
+           qtc++; 
+        }
+        if(qtc==0){
+            CaixaBEAN a= new CaixaBEAN();
+            a.setCaixaDinheiro(0);
+            caixaC.cadastrar(a);
+        }
+        
+        int qtl=0;      
+        for (LucroBEAN l : lucC.listarALL()) {
+            qtl++;
+        }
+        
+        if(qtl==0){
+            LucroBEAN b= new LucroBEAN();
+            b.setLucPorcentagem(10);
+            lucC.cadastrar(b);
+        }
     }
 
     /**
@@ -105,13 +131,15 @@ public class FRMLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void rbSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSenhaActionPerformed
         if (rbSenha.isSelected()) {
-            tfSenha.setEchoChar((char) 0); //password = JPasswordField
+            tfSenha.setEchoChar((char) 0); 
         } else {
 
             tfSenha.setEchoChar('*');
-        }        // TODO add your handling code here:
+        }                   
     }//GEN-LAST:event_rbSenhaActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

@@ -1197,7 +1197,7 @@ public class FRMVenda extends javax.swing.JFrame {
         }
 
         cVenda.cadastrar(v);
-
+        limparCampos();
     }
 
     private void cadastroInserir() {
@@ -1235,7 +1235,6 @@ public class FRMVenda extends javax.swing.JFrame {
 
     private void resultado() {
         insertData.clear();
-
         limparCampos();
         JOptionPane.showMessageDialog(null, "Notas CADASTRADAS com sucesso");
     }
@@ -1264,7 +1263,7 @@ public class FRMVenda extends javax.swing.JFrame {
 
     private boolean verificaCampos2() {
         if (tfValorEntrada.getText().equals("") || tfPrecoTT.getText().equals("")
-                || tfNParcelas.getText().equals("") 
+                || tfNParcelas.getText().equals("")
                 || tfDataCompra.getText().equals("")
                 || lbCliCod.getText().equals("...")
                 || lbVenCodigo.getText().equals("...")
@@ -1293,6 +1292,7 @@ public class FRMVenda extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btPesquisarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCliente1ActionPerformed
@@ -1331,17 +1331,26 @@ public class FRMVenda extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void prencheTabelaCarro() {
+        for (JogoBEAN j : insertJogo) {
+            ccTable.addRow(new Object[]{j.getJoNome(), j.getJoPrecoPadrao(), j.getJoQtd()});
+            rcTable.addRow(new Object[]{j.getJoNome(), j.getJoPrecoPadrao(), j.getJoQtd()});
+        }
+
+    }
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (tableJogo.getSelectedRow() != -1) {
-            double preco = Double.parseDouble(JOptionPane.showInputDialog("Digite o preço praticado do Jogo"));
+            float preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preço praticado do Jogo"));
             if (preco > 0) {
                 int qtd = Integer.parseInt(JOptionPane.showInputDialog("Digite a Quantidade de jogos"));
                 if ((qtd <= Integer.parseInt(tableJogo.getValueAt(tableJogo.getSelectedRow(), 8).toString())) && (qtd >= 1)) {
                     if (tableJogo.getSelectedRow() != -1) {
                         JogoBEAN j = jControle.localizarCodigo(Integer.parseInt(tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString()));
+                        j.setJoPrecoPadrao(preco);
+                        j.setJoQtd(Integer.valueOf(qtd));
                         insertJogo.add(j);
-                        ccTable.addRow(new Object[]{j.getJoNome(), preco, qtd});
-                        rcTable.addRow(new Object[]{j.getJoCodigo(), j.getJoNome(), preco, qtd});
+                        prencheTabelaCarro();
                     } else {
                         JOptionPane.showMessageDialog(null, "Selecione o jogo");
                     }
@@ -1455,6 +1464,7 @@ public class FRMVenda extends javax.swing.JFrame {
         tfPrecoParcela.setText("");
         tfDataParcela2.setText("");
         tfPrecoParcela2.setText("");
+        insertJogo.clear();
 
     }
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed

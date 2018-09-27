@@ -807,7 +807,6 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
         tfPrecoTT.setText("");
         tfDataCompra.setText("");
         tfNParcelas.setText("");
-        // datePicker1.setText("");
         tfPrecoParcela.setText("");
         tfDataParcela2.setText("");
         tfPrecoParcela2.setText("");
@@ -830,7 +829,6 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
         if (tfPrecoUnit.getText().equals("") || tfQtde.getText().equals("")
                 || tfValorEntrada.getText().equals("") || tfPrecoTT.getText().equals("")
                 || tfNParcelas.getText().equals("") || tfPrecoParcela.getText().equals("")
-                //|| datePicker1.getText().equals("")
                 || tfDataCompra.getText().equals("")
                 || lbCodigoJogo.getText().equals("...")) {
             return false;

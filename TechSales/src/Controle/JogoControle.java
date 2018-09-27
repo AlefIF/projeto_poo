@@ -66,14 +66,6 @@ public class JogoControle {
         }
     }
 
-    public ArrayList<JogoBEAN> localizarNome(String a) {
-        começar();
-        Query q = manager.createQuery("from JogoBEAN where joNome like " + a);
-        ArrayList<JogoBEAN> jogListN = (ArrayList<JogoBEAN>) q.getResultList();
-        tx.commit();
-        return jogListN;
-    }
-
     public JogoBEAN localizarCodigo(int c) {
         JogoBEAN a = manager.find(JogoBEAN.class, c);
         return a;

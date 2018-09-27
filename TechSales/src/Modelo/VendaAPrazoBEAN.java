@@ -24,7 +24,7 @@ public class VendaAPrazoBEAN {
     private Date vapData;
     private int vapNumParcela;
     private float vapValorParcela;
-    private int vapVendaCodigo;
+    private String vapSituacao;
     private VendaBEAN venda;
 
     @Id
@@ -61,13 +61,15 @@ public class VendaAPrazoBEAN {
         this.vapValorParcela = vapValorParcela;
     }
 
-    public int getVapVendaCodigo() {
-        return vapVendaCodigo;
+    public String getVapSituacao() {
+        return vapSituacao;
     }
 
-    public void setVapVendaCodigo(int vapVendaCodigo) {
-        this.vapVendaCodigo = vapVendaCodigo;
+    public void setVapSituacao(String vapSituacao) {
+        this.vapSituacao = vapSituacao;
     }
+
+    
 
     @ManyToOne
     public VendaBEAN getVenda() {

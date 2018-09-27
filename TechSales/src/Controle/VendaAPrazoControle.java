@@ -5,7 +5,7 @@
  */
 package Controle;
 
-import Modelo.VendaBEAN;
+import Modelo.VendaAPrazoBEAN;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -16,7 +16,7 @@ import jpa.JpaUtil;
  *
  * @author Alef
  */
-public class VendaControle {
+public class VendaAPrazoControle {
 
     private static EntityManager manager = JpaUtil.getEntityManager();
     private static EntityTransaction tx = manager.getTransaction();
@@ -30,24 +30,23 @@ public class VendaControle {
         JpaUtil.close();
     }
 
-    public void cadastrar(VendaBEAN c) {
+    public void cadastrar(VendaAPrazoBEAN c) {
         começar();
         manager.persist(c);
         tx.commit();
     }
 
-    public ArrayList<VendaBEAN> listarALL() {
+    public ArrayList<VendaAPrazoBEAN> listarALL() {
         começar();
-        Query q = manager.createQuery("from VendaBEAN");
-        ArrayList<VendaBEAN> venList = (ArrayList<VendaBEAN>) q.getResultList();
+        Query q = manager.createQuery("from VendaAPrazoBEAN");
+        ArrayList<VendaAPrazoBEAN> jogList = (ArrayList<VendaAPrazoBEAN>) q.getResultList();
         tx.commit();
-        return venList;
+        return jogList;
     }
 
-    public boolean editar(VendaBEAN c) {
+    public boolean editar(VendaAPrazoBEAN c) {
         try {
             começar();
-            manager.flush();
             tx.commit();
             return true;
         } catch (Exception e) {
@@ -58,7 +57,7 @@ public class VendaControle {
     public boolean remover(int c) {
         try {
             começar();
-            VendaBEAN a = localizar(c);
+            VendaAPrazoBEAN a = localizarCodigo(c);
             manager.remove(a);
             tx.commit();
             return true;
@@ -67,9 +66,8 @@ public class VendaControle {
         }
     }
 
-    public VendaBEAN localizar(int c) {
-        VendaBEAN a = manager.find(VendaBEAN.class, c);
+    public VendaAPrazoBEAN localizarCodigo(int c) {
+        VendaAPrazoBEAN a = manager.find(VendaAPrazoBEAN.class, c);
         return a;
     }
-
 }

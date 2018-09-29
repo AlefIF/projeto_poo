@@ -6,12 +6,11 @@
 package Modelo;
 
 import java.sql.Date;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,69 +21,41 @@ import javax.persistence.Table;
 @Table(name = "locacao")
 public class LocacaoBEAN {
 
-    private int cod;
-    private int loc_cliCodigo;
-    private int loc_venCodigo;
-    private int loc_jogCodigo;
-    private float valor;
-    private Date data;
+    private int locCodigo;
+    private float locPreçoTotal;
+    private Date locDataAluguel;
     private ClienteBEAN cliente;
-    private FuncionarioBEAN funcionario;
-    private List<DevolucaoBEAN> devolucao;
+    private VendedorBEAN vendedor;
+   
 
     @Id
     @GeneratedValue
-    public int getCod() {
-        return cod;
+    public int getLocCodigo() {
+        return locCodigo;
     }
 
-    public void setCod(int cod) {
-        this.cod = cod;
+    public void setLocCodigo(int locCodigo) {
+        this.locCodigo = locCodigo;
     }
 
-    public int getLoc_cliCodigo() {
-        return loc_cliCodigo;
+    public float getLocPreçoTotal() {
+        return locPreçoTotal;
     }
 
-    public void setLoc_cliCodigo(int loc_cliCodigo) {
-        this.loc_cliCodigo = loc_cliCodigo;
+    public void setLocPreçoTotal(float locPreçoTotal) {
+        this.locPreçoTotal = locPreçoTotal;
     }
 
-    public int getLoc_venCodigo() {
-        return loc_venCodigo;
+    public Date getLocDataAluguel() {
+        return locDataAluguel;
     }
 
-    public void setLoc_venCodigo(int loc_venCodigo) {
-        this.loc_venCodigo = loc_venCodigo;
-    }
-
-    
-
-    public int getLoc_jogCodigo() {
-        return loc_jogCodigo;
-    }
-
-    public void setLoc_jogCodigo(int loc_jogCodigo) {
-        this.loc_jogCodigo = loc_jogCodigo;
-    }
-
-    public float getValor() {
-        return valor;
-    }
-
-    public void setValor(float valor) {
-        this.valor = valor;
-    }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
+    public void setLocDataAluguel(Date locDataAluguel) {
+        this.locDataAluguel = locDataAluguel;
     }
 
     @ManyToOne
+    @JoinColumn(name = "loc_clienteCodigo")
     public ClienteBEAN getCliente() {
         return cliente;
     }
@@ -94,21 +65,15 @@ public class LocacaoBEAN {
     }
 
     @ManyToOne
-    public FuncionarioBEAN getFuncionario() {
-        return funcionario;
+    @JoinColumn(name = "loc_vendedorCodigo")
+    public VendedorBEAN getVendedor() {
+        return vendedor;
     }
 
-    public void setFuncionario(FuncionarioBEAN funcionario) {
-        this.funcionario = funcionario;
+    public void setVendedor(VendedorBEAN vendedor) {
+        this.vendedor = vendedor;
     }
 
-    @OneToMany
-    public List<DevolucaoBEAN> getDevolucao() {
-        return devolucao;
-    }
-
-    public void setDevolucao(List<DevolucaoBEAN> devolucao) {
-        this.devolucao = devolucao;
-    }
-
+    
+   
 }

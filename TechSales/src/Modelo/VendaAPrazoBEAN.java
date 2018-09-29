@@ -9,6 +9,7 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -67,11 +68,10 @@ public class VendaAPrazoBEAN {
 
     public void setVapSituacao(String vapSituacao) {
         this.vapSituacao = vapSituacao;
-    }
-
-    
+    }   
 
     @ManyToOne
+    @JoinColumn(name="vap_vendaCodigo")
     public VendaBEAN getVenda() {
         return venda;
     }

@@ -21,50 +21,49 @@ import javax.persistence.Table;
 @Table(name = "devolucao")
 public class DevolucaoBEAN {
 
-    private int cod;
-    private Date dataDev; 
-    private float multa;
-    private float valor;
+    private int devCodigo;
+    private Date devData;
+    private float devMulta;
+    private float devValor;
     private LocacaoBEAN locacao;
-    private VendedorBEAN vendedor;
     private CaixaBEAN caixa;
 
     @Id
     @GeneratedValue
-    public int getCod() {
-        return cod;
+    public int getDevCodigo() {
+        return devCodigo;
     }
 
-    public void setCod(int cod) {
-        this.cod = cod;
+    public void setDevCodigo(int devCodigo) {
+        this.devCodigo = devCodigo;
     }
 
-    public Date getDataDev() {
-        return dataDev;
+    public Date getDevData() {
+        return devData;
     }
 
-    public void setDataDev(Date dataDev) {
-        this.dataDev = dataDev;
+    public void setDevData(Date devData) {
+        this.devData = devData;
     }
 
-    public float getMulta() {
-        return multa;
+    public float getDevMulta() {
+        return devMulta;
     }
 
-    public void setMulta(float multa) {
-        this.multa = multa;
+    public void setDevMulta(float devMulta) {
+        this.devMulta = devMulta;
     }
 
-    public float getValor() {
-        return valor;
+    public float getDevValor() {
+        return devValor;
     }
 
-    public void setValor(float valor) {
-        this.valor = valor;
+    public void setDevValor(float devValor) {
+        this.devValor = devValor;
     }
 
     @ManyToOne
-    @JoinColumn(name="dev_loCodigo")
+    @JoinColumn(name = "dev_loCodigo")
     public LocacaoBEAN getLocacao() {
         return locacao;
     }
@@ -74,17 +73,7 @@ public class DevolucaoBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name="dev_venCodigo")
-    public VendedorBEAN getVendedor() {
-        return vendedor;
-    }
-
-    public void setVendedor(VendedorBEAN vendedor) {
-        this.vendedor = vendedor;
-    }
-
-    @ManyToOne
-    @JoinColumn(name="dev_caixaCodigo")
+    @JoinColumn(name = "dev_caixaCodigo")
     public CaixaBEAN getCaixa() {
         return caixa;
     }
@@ -93,6 +82,4 @@ public class DevolucaoBEAN {
         this.caixa = caixa;
     }
 
-    
-    
 }

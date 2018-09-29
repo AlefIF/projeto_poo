@@ -7,18 +7,26 @@ select * from cliente;
 select * from console;
 select * from notadecompra;
 select * from compraPrazo;
-
-select * from caixa;
-select * from contas;
-select * from contasaprazo;
-select * from devolucao;
-select * from jogo_locacao;
-select * from jogo_venda;
-select * from listadesejo;
-select * from locacao;
-select * from locacao_devolucao;
+select * from vendedor;
 select * from lucro;
+select * from caixa;
 
 select * from venda;
 select * from vendaaprazo;
-select * from vendedor;
+select * from jogo_venda;
+
+select * from locacao;
+select * from jogo_locacao;
+
+select * from locacao_devolucao;
+select * from devolucao;
+
+select * from contas;
+select * from contasaprazo;
+
+select * from listadesejo;
+
+
+
+
+

@@ -25,7 +25,7 @@ public class VendaBEAN {
     private Date vendaData;
     private float vendaEntrada;
     private int vendaNparcelas;
-    private float vendaValorTOtal;
+    private float vendaValorTotal;
     private VendedorBEAN vendedor;
     private ClienteBEAN cliente;
     private CaixaBEAN caixa;
@@ -57,13 +57,15 @@ public class VendaBEAN {
         this.vendaNparcelas = vendaNparcelas;
     }
 
-    public float getVendaValorTOtal() {
-        return vendaValorTOtal;
+    public float getVendaValorTotal() {
+        return vendaValorTotal;
     }
 
-    public void setVendaValorTOtal(float vendaValorTOtal) {
-        this.vendaValorTOtal = vendaValorTOtal;
+    public void setVendaValorTotal(float vendaValorTotal) {
+        this.vendaValorTotal = vendaValorTotal;
     }
+
+    
 
     public float getVendaEntrada() {
         return vendaEntrada;
@@ -74,7 +76,7 @@ public class VendaBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name="venda_venCodigo")
+    @JoinColumn(name="venda_vendedorCodigo")
     public VendedorBEAN getVendedor() {
         return vendedor;
     }
@@ -84,7 +86,7 @@ public class VendaBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name="venda_cliCodigo")
+    @JoinColumn(name="venda_clienteCodigo")
     public ClienteBEAN getCliente() {
         return cliente;
     }

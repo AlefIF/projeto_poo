@@ -4,7 +4,6 @@ import Controle.ClienteControle;
 import Controle.GeraRelatorio;
 import Modelo.ClienteBEAN;
 import Modelo.EnderecoBEAN;
-import static java.awt.Color.BLACK;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -686,8 +685,6 @@ public class FRMCliente extends javax.swing.JFrame {
 
     private void tfLocalizarNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfLocalizarNomeFocusGained
         tfLocalizarNome.setText("");
-        tfLocalizarNome.setForeground(BLACK);
-        // TODO add your handling code here:
     }//GEN-LAST:event_tfLocalizarNomeFocusGained
 
     private void tfIdadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdadeKeyTyped
@@ -792,6 +789,7 @@ public class FRMCliente extends javax.swing.JFrame {
         cTable.addColumn("Telefone");
         cTable.addColumn("CPF");
         cTable.addColumn("email");
+        
 
         for (ClienteBEAN dado : cCliente.listarALL()) {
             cTable.addRow(new Object[]{dado.getCod(), dado.getNome(), dado.getIdade(),

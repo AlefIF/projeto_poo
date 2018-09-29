@@ -14,7 +14,6 @@ import Controle.NotaDeCompraControle;
 import Modelo.CategoriaBEAN;
 import Modelo.ConsoleBEAN;
 import Modelo.JogoBEAN;
-import Modelo.LucroBEAN;
 import Modelo.NotaDeCompraPrazoBEAN;
 import Modelo.NotaDecompraBEAN;
 import java.text.DateFormat;
@@ -52,6 +51,7 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
     private ArrayList<NotaDeCompraPrazoBEAN> insert = new ArrayList<NotaDeCompraPrazoBEAN>();
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private String strData;
+    private int cod = 0;
 
     /**
      * Creates new form FRMNotaDeCompra
@@ -60,7 +60,7 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
         initComponents();
         preencheTabelaj();
         preencheTabela1();
-        preencheTabela3();
+        preencheTabela3(cod);
         JogoBEAN jogo = FRMJogo.jogoNota;
         if ((jogo.getJoCodigo() == 0) && (jogo.getJoQtd() == 0)) {
 
@@ -850,7 +850,7 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
         insert.clear();
         preencheTabela2();
         preencheTabela1();
-        preencheTabela3();
+
         limparCampos();
         JOptionPane.showMessageDialog(null, "Notas CADASTRADAS com sucesso");
     }
@@ -1086,9 +1086,8 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
 
         for (NotaDecompraBEAN n : notac.listarALL()) {
             dTable1.addRow(new Object[]{n.getNdcCodigo(), n.getNdcData(), n.getNdcPrecoTotal(),
-                n.getNdcParcelas(), n.getNdcEntrada(), n.getJogo(), n.getNdcCustoUnitario(), n.getNdcQtdComprada()});
+                n.getNdcParcelas(), n.getNdcEntrada(), n.getJogo().getJoCodigo(), n.getNdcCustoUnitario(), n.getNdcQtdComprada()});
         }
-
         tableNotas.setModel(dTable1);
     }
 
@@ -1123,8 +1122,8 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
     return dTable;
     }
 
-    private void preencheTabela3() {
-        dTable3 = criaTabela1();
+    private void preencheTabela3(int cod) {
+        dTable3 = criaTabela3();
         //seta o nome das colunas da tabela
         dTable3.addColumn("Código");
         dTable3.addColumn("Data");
@@ -1135,8 +1134,10 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
         //pega os dados do ArrayList
         napDados = napC.listarALL();
         for (NotaDeCompraPrazoBEAN n : napDados) {
-            dTable3.addRow(new Object[]{n.getNapCodigo(), n.getNapData(), n.getNapValor(),
-                n.getNapNumParcela(), n.getNota().getNdcCodigo(), n.getNapSituacao()});
+            if (n.getNota().getNdcCodigo() == cod) {
+                dTable3.addRow(new Object[]{n.getNapCodigo(), n.getNapData(), n.getNapValor(),
+                    n.getNapNumParcela(), n.getNota().getNdcCodigo(), n.getNapSituacao()});
+            }
         }
 
         tablePrazo.setModel(dTable3);
@@ -1214,7 +1215,6 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Jogo MODIFICADO com sucesso");
                 this.preencheTabela1();
                 this.preencheTabela2();
-                this.preencheTabela3();
                 this.limparCampos();
             } else {
                 JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
@@ -1264,6 +1264,12 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btSelecNotaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        int cod = 0;
+        if (tableNotas.getSelectedRow() != -1) {
+            NotaDecompraBEAN n = notac.localizar(Integer.parseInt(tableNotas.getValueAt(tableNotas.getSelectedRow(), 0).toString()));
+            cod = n.getNdcCodigo();
+        }
+        preencheTabela3(cod);
         tpGuia.setSelectedIndex(2);
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -1285,7 +1291,7 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Nota MODIFICADA com sucesso");
             this.preencheTabela1();
             this.preencheTabela2();
-            this.preencheTabela3();
+            this.preencheTabela3(cod);
             this.limparCampos();
         } else {
             JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
@@ -1300,7 +1306,7 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Nota MODIFICADA com sucesso");
             this.preencheTabela1();
             this.preencheTabela2();
-            this.preencheTabela3();
+            this.preencheTabela3(cod);
             this.limparCampos();
         } else {
             JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");

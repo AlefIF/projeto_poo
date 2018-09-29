@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -31,7 +32,7 @@ public class JogoBEAN {
     private ConsoleBEAN console;
     private LucroBEAN lucro;
     private FornecedorBEAN fornecedor;
-    
+    private int joStatus;
 
     @Id
     @GeneratedValue
@@ -92,7 +93,7 @@ public class JogoBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name="jo_catCodigo")
+    @JoinColumn(name = "jo_catCodigo")
     public CategoriaBEAN getCat() {
         return cat;
     }
@@ -102,7 +103,7 @@ public class JogoBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name="jo_conCodigo")
+    @JoinColumn(name = "jo_conCodigo")
     public ConsoleBEAN getConsole() {
         return console;
     }
@@ -112,7 +113,7 @@ public class JogoBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name="jo_lucCodigo")
+    @JoinColumn(name = "jo_lucCodigo")
     public LucroBEAN getLucro() {
         return lucro;
     }
@@ -122,7 +123,7 @@ public class JogoBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name="jo_forCodigo")
+    @JoinColumn(name = "jo_forCodigo")
     public FornecedorBEAN getFornecedor() {
         return fornecedor;
     }
@@ -130,7 +131,16 @@ public class JogoBEAN {
     public void setFornecedor(FornecedorBEAN fornecedor) {
         this.fornecedor = fornecedor;
     }
-        
+
+    @Column(name = "joStatus", nullable = false, columnDefinition = "int default 1")
+    public int getJoStatus() {
+        return joStatus;
+    }
+
+    public void setJoStatus(int joStatus) {
+        this.joStatus = joStatus;
+    }
+
     @Override
     public String toString() {
         return getJoNome();

@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import java.sql.Date;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -19,7 +21,14 @@ public class JogoLocacaoBEAN {
 
     @EmbeddedId
     private JogoLocacaoPK chaveComposta;
-
+    @Column(name = "jlPreco")
+    private float jlPreco;
+    @Column(name = "jlData")
+    private Date jlData;
+    @Column(name = "jlQtd")
+    private int jlQtd;
+    
+    
     public JogoLocacaoPK getChaveComposta() {
         return chaveComposta;
     }
@@ -27,5 +36,31 @@ public class JogoLocacaoBEAN {
     public void setChaveComposta(JogoLocacaoPK chaveComposta) {
         this.chaveComposta = chaveComposta;
     }
+
+    public float getJlPreco() {
+        return jlPreco;
+    }
+
+    public void setJlPreco(float jlPreco) {
+        this.jlPreco = jlPreco;
+    }
+
+    public Date getJlData() {
+        return jlData;
+    }
+
+    public void setJlData(Date jlData) {
+        this.jlData = jlData;
+    }
+
+    public int getJlQtd() {
+        return jlQtd;
+    }
+
+    public void setJlQtd(int jlQtd) {
+        this.jlQtd = jlQtd;
+    }
+    
+    
 
 }

@@ -11,6 +11,7 @@ import Controle.FornecedorControle;
 import Modelo.CategoriaBEAN;
 import Modelo.ConsoleBEAN;
 import Controle.JogoControle;
+import Controle.LucroControle;
 import Controle.NotaDeCompraControle;
 import Modelo.FornecedorBEAN;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class FRMJogo extends javax.swing.JFrame {
     private CategoriaControle catControle = new CategoriaControle();
     private NotaDeCompraControle notac = new NotaDeCompraControle();
     private FornecedorControle fc = new FornecedorControle();
+    private LucroControle lucC = new LucroControle();
     private ArrayList<JogoBEAN> jDados;
     private ArrayList<CategoriaBEAN> catDados;
     private ArrayList<ConsoleBEAN> cDados;
@@ -607,6 +609,7 @@ public class FRMJogo extends javax.swing.JFrame {
         jogo.setJoTipo(String.valueOf(cbTipo.getSelectedItem()));
         jogo.setJoQtd(Integer.parseInt(tfQtde.getText()));
         jogo.setJoPrecoPadrao(Float.parseFloat(tfPrecoPadrao.getText()));
+        jogo.setLucro(lucC.localizar(1));
 
         jControle.cadastrar(jogo);
 

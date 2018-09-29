@@ -20,10 +20,9 @@ public class JogoVendaBEAN {
 
     @EmbeddedId
     private JogoVendaPK chaveComposta;
-
-    @Column(name = "qdt")
+    @Column(name = "jvQdt")
     private int quantidade;
-    @Column(name = "preco")
+    @Column(name = "jvPreco")
     private float precoUnitarioReal;
 
     public JogoVendaPK getChaveComposta() {

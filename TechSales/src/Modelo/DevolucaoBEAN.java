@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -62,7 +63,7 @@ public class DevolucaoBEAN {
         this.devValor = devValor;
     }
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "dev_loCodigo")
     public LocacaoBEAN getLocacao() {
         return locacao;

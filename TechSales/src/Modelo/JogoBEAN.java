@@ -32,7 +32,7 @@ public class JogoBEAN {
     private ConsoleBEAN console;
     private LucroBEAN lucro;
     private FornecedorBEAN fornecedor;
-    private int joStatus;
+
 
     @Id
     @GeneratedValue
@@ -130,15 +130,6 @@ public class JogoBEAN {
 
     public void setFornecedor(FornecedorBEAN fornecedor) {
         this.fornecedor = fornecedor;
-    }
-
-    @Column(name = "joStatus", nullable = false, columnDefinition = "int")
-    public int getJoStatus() {
-        return joStatus;
-    }
-
-    public void setJoStatus(int joStatus) {
-        this.joStatus = joStatus;
     }
 
     @Override

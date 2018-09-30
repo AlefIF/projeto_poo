@@ -27,6 +27,7 @@ public class LocacaoBEAN {
     private Date locDataAluguel;
     private Date locDataDevolucao;
     private int locStatus;
+    private float locPrecoUnit;
     private ClienteBEAN cliente;
     private VendedorBEAN vendedor;
 
@@ -72,6 +73,15 @@ public class LocacaoBEAN {
     public void setLocStatus(int locStatus) {
         this.locStatus = locStatus;
     }
+
+    public float getLocPrecoUnit() {
+        return locPrecoUnit;
+    }
+
+    public void setLocPrecoUnit(float locPrecoUnit) {
+        this.locPrecoUnit = locPrecoUnit;
+    }
+    
 
     @ManyToOne
     @JoinColumn(name = "loc_clienteCodigo")

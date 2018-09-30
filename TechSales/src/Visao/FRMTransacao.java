@@ -10,14 +10,10 @@ import Controle.CategoriaControle;
 import Controle.ClienteControle;
 import Controle.ConsoleControle;
 import Controle.DevolucaoControle;
-import Controle.FuncionarioControle;
 import Controle.JogoControle;
 import Controle.JogoLocacaoControle;
-import Controle.JogoVendaControle;
 import Controle.LocacaoControle;
 import Controle.LucroControle;
-import Controle.VendaAPrazoControle;
-import Controle.VendaControle;
 import Controle.VendedorControle;
 import Modelo.CaixaBEAN;
 import Modelo.CategoriaBEAN;
@@ -33,10 +29,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-//import org.apache.commons.lang.RandomStringUtils;
 
 /**
  *
@@ -57,6 +51,8 @@ public class FRMTransacao extends javax.swing.JFrame {
     private DefaultTableModel dTableJogo;
     private DefaultTableModel dTableCliente;
     private DefaultTableModel modelLoc;
+    private DefaultTableModel modelAllLoc;
+    private DefaultTableModel modelAllDev;
     private DefaultTableModel modelCarro;
     private DefaultTableModel modelCarro1;
     private ArrayList<JogoBEAN> insertJogo = new ArrayList<JogoBEAN>();
@@ -64,9 +60,9 @@ public class FRMTransacao extends javax.swing.JFrame {
 
     public FRMTransacao() {
         initComponents();
-        preencheTabelaCliente();
-        preencheTabelaJogo();
+        preencheall();
         setResizable(false);
+        lbVendedorCod.setText(String.valueOf(FRMLogin.user.getVenCodigo()));
     }
 
     /**
@@ -111,7 +107,6 @@ public class FRMTransacao extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         lbPrecoFinal = new javax.swing.JLabel();
-        btPagar = new javax.swing.JButton();
         tfMulta = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -144,7 +139,17 @@ public class FRMTransacao extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbCliente = new javax.swing.JTable();
         jPanel13 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaAllLoc = new javax.swing.JTable();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        tfChave2 = new javax.swing.JTextField();
         jPanel14 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tabelaAllDev = new javax.swing.JTable();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        tfChave3 = new javax.swing.JTextField();
         btVoltar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -313,15 +318,6 @@ public class FRMTransacao extends javax.swing.JFrame {
                         .addComponent(lbTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btCalculaTotal))
-                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel10Layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbLocacaoCod))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel10Layout.createSequentialGroup()
-                            .addComponent(jLabel7)
-                            .addGap(18, 18, 18)
-                            .addComponent(lbVendedorCod)))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -335,7 +331,15 @@ public class FRMTransacao extends javax.swing.JFrame {
                                     .addComponent(tfDataAluguel)))
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(tfPreco)))))
+                                .addComponent(tfPreco))))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbLocacaoCod)
+                            .addComponent(lbVendedorCod))))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
@@ -374,15 +378,16 @@ public class FRMTransacao extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(316, 316, 316)
+                        .addComponent(btAlugar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(107, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btAlugar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(256, 256, 256))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -391,9 +396,9 @@ public class FRMTransacao extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btAlugar)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         tpGuia.addTab("Aluguel", jPanel3);
@@ -448,14 +453,6 @@ public class FRMTransacao extends javax.swing.JFrame {
 
         lbPrecoFinal.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lbPrecoFinal.setText("...");
-
-        btPagar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btPagar.setText("Pagar");
-        btPagar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btPagarActionPerformed(evt);
-            }
-        });
 
         tfMulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -512,30 +509,27 @@ public class FRMTransacao extends javax.swing.JFrame {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel12Layout.createSequentialGroup()
-                            .addComponent(jLabel24)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(lbPrecoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanel12Layout.createSequentialGroup()
-                            .addComponent(jLabel21)
-                            .addGap(18, 18, 18)
-                            .addComponent(lbCliDev, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btPesquisarCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel12Layout.createSequentialGroup()
-                            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addGroup(jPanel12Layout.createSequentialGroup()
-                                    .addComponent(jLabel23)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(tfMulta, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btCalc)
-                                .addComponent(tfDataDevoluçãoReal, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(jLabel24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbPrecoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbCliDev, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btPesquisarCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tfMulta, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btCalc)
+                            .addComponent(tfDataDevoluçãoReal, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
@@ -565,8 +559,7 @@ public class FRMTransacao extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbPrecoFinal)
-                    .addComponent(jLabel24)
-                    .addComponent(btPagar))
+                    .addComponent(jLabel24))
                 .addContainerGap())
         );
 
@@ -578,12 +571,13 @@ public class FRMTransacao extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(btDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(234, 234, 234))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -592,7 +586,7 @@ public class FRMTransacao extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(btDevolver)
                 .addContainerGap())
         );
@@ -754,7 +748,7 @@ public class FRMTransacao extends javax.swing.JFrame {
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jbfinal)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         tpGuia.addTab("Pesquisa - Jogo", jPanel5);
@@ -878,28 +872,140 @@ public class FRMTransacao extends javax.swing.JFrame {
 
         tpGuia.addTab("Pesquisa - Cliente", jPanel1);
 
+        tabelaAllLoc.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tabelaAllLoc);
+
+        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Refinar pesquisa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+
+        jLabel15.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel15.setText("Palavra Chave :");
+
+        tfChave2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfChave2KeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfChave2KeyTyped(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfChave2, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(tfChave2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 10, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 797, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 296, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                .addGap(0, 27, Short.MAX_VALUE)
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         tpGuia.addTab("Lista de Alugueis", jPanel13);
+
+        tabelaAllDev.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane7.setViewportView(tabelaAllDev);
+
+        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Refinar pesquisa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel16.setText("Palavra Chave :");
+
+        tfChave3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfChave3KeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfChave3KeyTyped(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tfChave3, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(tfChave3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 10, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 797, Short.MAX_VALUE)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 296, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         tpGuia.addTab("Lista de Devolução", jPanel14);
@@ -938,11 +1044,10 @@ public class FRMTransacao extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addComponent(btVoltar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tpGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tpGuia, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(818, 421));
+        setSize(new java.awt.Dimension(818, 431));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -955,7 +1060,14 @@ public class FRMTransacao extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btVoltarActionPerformed
 
-    void preencheTabelaCliente() {
+    private void preencheall(){
+        preencheTabelaCliente();
+        preencheTabelaJogo();
+        preencheTabelaAllDev();
+        preencheTabelaAllLoc();
+    }
+    
+    private void preencheTabelaCliente() {
         dTableCliente = criaTabelaCliente();
 
         dTableCliente.addColumn("Código");
@@ -1017,9 +1129,11 @@ public class FRMTransacao extends javax.swing.JFrame {
                 if (dado.getCat().getCatCodigo() == dado2.getCatCodigo()) {
                     for (ConsoleBEAN c : cControle.listarALL()) {
                         if (dado.getConsole().getConCodigo() == c.getConCodigo()) {
-                            dTableJogo.addRow(new Object[]{dado.getJoCodigo(), dado.getJoNome(), dado.getFornecedor(),
-                                dado.getJoFaixaEtaria(), dado.getJoPrecoPadrao(), dado.getJoTipo(),
-                                dado2.getCatNome(), c.getConNome(), dado.getJoLote(), dado.getJoQtd()});
+                            if (dado.getJoTipo().equals("Aluguel")) {
+                                dTableJogo.addRow(new Object[]{dado.getJoCodigo(), dado.getJoNome(), dado.getFornecedor(),
+                                    dado.getJoFaixaEtaria(), dado.getJoPrecoPadrao(), dado.getJoTipo(),
+                                    dado2.getCatNome(), c.getConNome(), dado.getJoLote(), dado.getJoQtd()});
+                            }
                         }
                     }
                 }
@@ -1075,10 +1189,8 @@ public class FRMTransacao extends javax.swing.JFrame {
                         if (loc.getLocCodigo() == jl.getChaveComposta().getLocacao().getLocCodigo()) {
                             for (JogoBEAN jogo : contJog.listarALL()) {
                                 if (jogo.getJoCodigo() == jl.getChaveComposta().getJogo().getJoCodigo()) {
-                                    for (DevolucaoBEAN dev : contDev.listarALL()) {
-                                        if (dev.getLocacao().getLocCodigo() == loc.getLocCodigo()) {
-                                            modelLoc.addRow(new Object[]{loc.getLocCodigo(), jogo.getJoCodigo(), jogo.getJoNome(), jl.getJlQtd(), loc.getLocDataAluguel(), dev.getDevData()});
-                                        }
+                                    if (loc.getLocStatus() == 0) {
+                                        modelLoc.addRow(new Object[]{loc.getLocCodigo(), jogo.getJoCodigo(), jogo.getJoNome(), jl.getJlQtd(), loc.getLocDataAluguel(), loc.getLocDataDevolucao()});
                                     }
                                 }
                             }
@@ -1157,6 +1269,7 @@ public class FRMTransacao extends javax.swing.JFrame {
         ClienteBEAN c = contCli.localizarCodigo(Integer.valueOf(lbCliCod.getText()));
         l.setCliente(c);
 
+        l.setLocPrecoUnit(Float.parseFloat(tfPreco.getText()));
         contLoc.cadastrar(l);
 
         for (JogoBEAN j : insertJogo) {
@@ -1166,6 +1279,8 @@ public class FRMTransacao extends javax.swing.JFrame {
             JogoLocacaoBEAN a = new JogoLocacaoBEAN();
             a.setChaveComposta(jlPK);
             a.setJlQtd(j.getJoQtd());
+            JogoBEAN jogo = contJog.localizarCodigo(j.getJoCodigo());
+            jogo.setJoQtd(jogo.getJoQtd() - j.getJoQtd());
             cJl.cadastrar(a);
         }
     }
@@ -1174,6 +1289,9 @@ public class FRMTransacao extends javax.swing.JFrame {
     private void btAlugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlugarActionPerformed
         if (verificaCampos()) {
             cadastroLoc();
+            preencheall();
+            JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso.");
+            preencheTabelaLoc(Integer.parseInt(lbCliCod.getText()));
         } else {
             JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
         }
@@ -1188,6 +1306,7 @@ public class FRMTransacao extends javax.swing.JFrame {
         if (tbCliente.getSelectedRow() != -1) {
             ClienteBEAN c = contCli.localizarCodigo(Integer.parseInt(tbCliente.getValueAt(tbCliente.getSelectedRow(), 0).toString()));
             lbCliCod.setText(String.valueOf(c.getCod()));
+            lbCliDev.setText(String.valueOf(c.getCod()));
             tpGuia.setSelectedIndex(0);
             clienteCodigo = c.getCod();
             preencheTabelaLoc(clienteCodigo);
@@ -1233,24 +1352,71 @@ public class FRMTransacao extends javax.swing.JFrame {
         tpGuia.setSelectedIndex(3);
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void btPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPagarActionPerformed
-        CaixaBEAN caixa=cCaixa.localizar(1);
-        caixa.setCaixaDinheiro(caixa.getCaixaDinheiro()+Float.parseFloat(lbPrecoFinal.getText()));
-        cCaixa.editar(caixa);
-        
-    }//GEN-LAST:event_btPagarActionPerformed
-
+    private boolean verificaPrecoF() {
+        if (lbPrecoFinal.getText().equals("")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     private void tfMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMultaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfMultaActionPerformed
 
     private void tbLocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbLocMouseClicked
+        limpaDev();
         lbcodloc.setText(tbLoc.getValueAt(tbLoc.getSelectedRow(), 0).toString());
         btCalc.setEnabled(true);
     }//GEN-LAST:event_tbLocMouseClicked
 
+    private void limpaDev() {
+        tfDataDevoluçãoReal.setText("");
+        tfMulta.setText("");
+        lbPrecoFinal.setText("");
+    }
     private void btDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDevolverActionPerformed
+        if (verificaDev()) {
+            if (verificaPrecoF()) {
+                CaixaBEAN caixa = cCaixa.localizar(1);
+                LocacaoBEAN l = contLoc.localizarLoc(Integer.parseInt(lbcodloc.getText()));
 
+                DevolucaoBEAN dev = new DevolucaoBEAN();
+                dev.setCaixa(caixa);
+
+                try {
+                    String dataString = tfDataDevoluçãoReal.getText();
+                    DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+                    java.sql.Date data = new java.sql.Date(fmt.parse(dataString).getTime());
+                    dev.setDevData(data);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                dev.setLocacao(l);
+                dev.setDevMulta(Float.parseFloat(tfMulta.getText()));
+                dev.setDevValor(Float.parseFloat(lbPrecoFinal.getText()));
+                contDev.cadastrar(dev);
+
+                caixa.setCaixaDinheiro(caixa.getCaixaDinheiro() + dev.getDevValor());
+                cCaixa.editar(caixa);
+
+                JogoBEAN j = contJog.localizarCodigo(Integer.parseInt(tbLoc.getValueAt(tbLoc.getSelectedRow(), 1).toString()));
+                j.setJoQtd(j.getJoQtd() + Integer.parseInt(tbLoc.getValueAt(tbLoc.getSelectedRow(), 3).toString()));
+                contJog.editar(j);
+                
+                l.setLocStatus(1);
+                contLoc.editar(l);
+
+                preencheTabelaLoc(Integer.parseInt(lbCliDev.getText()));
+                preencheall();
+
+                JOptionPane.showMessageDialog(null, "Devolução feita com sucesso");
+            } else {
+                JOptionPane.showMessageDialog(null, "Calcule o preço Final");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um Aluguel e preencha e data de devolução");
+        }
     }//GEN-LAST:event_btDevolverActionPerformed
 
     private void btPesquisarCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCliente2ActionPerformed
@@ -1360,7 +1526,7 @@ public class FRMTransacao extends javax.swing.JFrame {
     }//GEN-LAST:event_jbfinalActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        tpGuia.setSelectedIndex(4);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btCalculaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalculaTotalActionPerformed
@@ -1372,15 +1538,147 @@ public class FRMTransacao extends javax.swing.JFrame {
         lbTotal.setText(String.valueOf(preco));
     }//GEN-LAST:event_btCalculaTotalActionPerformed
 
+    private boolean verificaDev() {
+        if (lbcodloc.getText().equals("...")
+                || tfDataDevoluçãoReal.getText().equals("")) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
     private void btCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcActionPerformed
-        LocacaoBEAN l = contLoc.localizarLoc(Integer.parseInt(lbcodloc.getText()));
-
-        int qtd = Integer.parseInt(tbLoc.getValueAt(tbLoc.getSelectedRow(), 3).toString());
-        float precoJogo = qtd * 15;
-
-        float precoF = precoJogo + Float.parseFloat(tfMulta.getText());
-        lbPrecoFinal.setText(String.valueOf(precoF));
+        if (verificaDev()) {
+            LocacaoBEAN l = contLoc.localizarLoc(Integer.parseInt(lbcodloc.getText()));
+            int qtd = Integer.parseInt(tbLoc.getValueAt(tbLoc.getSelectedRow(), 3).toString());
+            float precoJogo = qtd * l.getLocPrecoUnit();
+            float precoF = precoJogo + Float.parseFloat(tfMulta.getText());
+            lbPrecoFinal.setText(String.valueOf(precoF));
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um Aluguel e preencha e data de devolução");
+        }
     }//GEN-LAST:event_btCalcActionPerformed
+
+    private void preencheTabelaAllLoc() {
+        modelAllLoc = criaTabelaAllLoc();
+        modelAllLoc.addColumn("Código-Locação");
+        modelAllLoc.addColumn("Código-Jogo");
+        modelAllLoc.addColumn("Código-Cliente");
+        modelAllLoc.addColumn("Código-Vendedor");
+        modelAllLoc.addColumn("Jogo");
+        modelAllLoc.addColumn("Quantidade");
+        modelAllLoc.addColumn("Preço Unitário");
+        modelAllLoc.addColumn("Preço");
+        modelAllLoc.addColumn("Situação");
+        modelAllLoc.addColumn("Data-Aluguel");
+        modelAllLoc.addColumn("Data-Devolução");
+
+        for (LocacaoBEAN loc : contLoc.listarALL()) {
+            for (JogoLocacaoBEAN jl : cJl.listarALL()) {
+                if (loc.getLocCodigo() == jl.getChaveComposta().getLocacao().getLocCodigo()) {
+                    for (JogoBEAN jogo : contJog.listarALL()) {
+                        if (jogo.getJoCodigo() == jl.getChaveComposta().getJogo().getJoCodigo()) {
+                            modelAllLoc.addRow(new Object[]{loc.getLocCodigo(), jogo.getJoCodigo(),
+                                loc.getCliente().getCod(), loc.getVendedor().getVenCodigo(), jogo.getJoNome(),
+                                jl.getJlQtd(), loc.getLocPrecoUnit(), loc.getLocPreçoTotal(),
+                                loc.getLocStatus(), loc.getLocDataAluguel(), loc.getLocDataDevolucao()});
+                        }
+                    }
+                }
+            }
+        }
+
+        tabelaAllLoc.setModel(modelAllLoc);
+    }
+
+    private DefaultTableModel criaTabelaAllLoc() {
+        //sempre que usar JTable é necessário ter um DefaulttableModel
+        DefaultTableModel dTable = new DefaultTableModel() {
+            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
+            Class[] types = new Class[]{
+                java.lang.Integer.class,
+                java.lang.Integer.class,
+                java.lang.Integer.class,
+                java.lang.Integer.class,
+                java.lang.String.class,
+                java.lang.Integer.class,
+                java.lang.Float.class,
+                java.lang.Float.class,
+                java.lang.Integer.class,
+                java.lang.String.class,
+                java.lang.String.class
+            };
+            //define se os campos podem ser editados na propria tabela
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false, false, false, false, false};
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        ;
+
+        };
+        //retorna o DefaultTableModel
+    return dTable;
+    }
+
+    private void preencheTabelaAllDev() {
+        modelAllDev = criaTabelaAllDev();
+        modelAllDev.addColumn("Código-Devolução");
+        modelAllDev.addColumn("Código-Locação");
+        modelAllDev.addColumn("PreçoTotal");
+        modelAllDev.addColumn("Multa");
+        modelAllDev.addColumn("Data-DevoluçãoReal");
+
+        for (DevolucaoBEAN d : contDev.listarALL()) {
+            modelAllDev.addRow(new Object[]{d.getDevCodigo(), d.getLocacao().getLocCodigo(),
+                d.getDevValor(), d.getDevMulta(), d.getDevData()});
+        }
+
+        tabelaAllDev.setModel(modelAllDev);
+    }
+
+    private DefaultTableModel criaTabelaAllDev() {
+        //sempre que usar JTable é necessário ter um DefaulttableModel
+        DefaultTableModel dTable = new DefaultTableModel() {
+            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
+            Class[] types = new Class[]{
+                java.lang.Integer.class,
+                java.lang.Integer.class,
+                java.lang.Float.class,
+                java.lang.Float.class,
+                java.lang.String.class,};
+            //define se os campos podem ser editados na propria tabela
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false};
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        ;
+
+        };
+        //retorna o DefaultTableModel
+    return dTable;
+    }
+
+    private void tfChave2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfChave2KeyPressed
+
+    private void tfChave2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave2KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfChave2KeyTyped
+
+    private void tfChave3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfChave3KeyPressed
+
+    private void tfChave3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave3KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfChave3KeyTyped
 
     /**
      * @param args the command line arguments
@@ -1426,7 +1724,6 @@ public class FRMTransacao extends javax.swing.JFrame {
     private javax.swing.JButton btDevolver;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btExlcui;
-    private javax.swing.JButton btPagar;
     private javax.swing.JToggleButton btPesquisarCliente2;
     private javax.swing.JButton btSelectCli;
     private javax.swing.JButton btVoltar;
@@ -1436,6 +1733,8 @@ public class FRMTransacao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
@@ -1453,6 +1752,8 @@ public class FRMTransacao extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1461,11 +1762,13 @@ public class FRMTransacao extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JButton jbfinal;
     private javax.swing.JLabel lbCliCod;
     private javax.swing.JLabel lbCliDev;
@@ -1474,6 +1777,8 @@ public class FRMTransacao extends javax.swing.JFrame {
     private javax.swing.JLabel lbTotal;
     private javax.swing.JLabel lbVendedorCod;
     private javax.swing.JLabel lbcodloc;
+    private javax.swing.JTable tabelaAllDev;
+    private javax.swing.JTable tabelaAllLoc;
     private javax.swing.JTable tableJogo;
     private javax.swing.JTable tableJogoCarrinho;
     private javax.swing.JTable tableJogoCarrinho2;
@@ -1481,6 +1786,8 @@ public class FRMTransacao extends javax.swing.JFrame {
     private javax.swing.JTable tbLoc;
     private javax.swing.JTextField tfChave;
     private javax.swing.JTextField tfChave1;
+    private javax.swing.JTextField tfChave2;
+    private javax.swing.JTextField tfChave3;
     private javax.swing.JFormattedTextField tfDataAluguel;
     private javax.swing.JFormattedTextField tfDataDevolução;
     private javax.swing.JFormattedTextField tfDataDevoluçãoReal;

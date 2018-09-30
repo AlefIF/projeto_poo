@@ -5,12 +5,14 @@
  */
 package Visao;
 
+import Controle.CaixaControle;
 import Controle.CategoriaControle;
 import Controle.ConsoleControle;
 import Controle.JogoControle;
 import Controle.LucroControle;
 import Controle.NotaDeCompraAPrazoControle;
 import Controle.NotaDeCompraControle;
+import Modelo.CaixaBEAN;
 import Modelo.CategoriaBEAN;
 import Modelo.ConsoleBEAN;
 import Modelo.JogoBEAN;
@@ -35,6 +37,7 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
 
     private ConsoleControle cControle = new ConsoleControle();
     private CategoriaControle catControle = new CategoriaControle();
+    private CaixaControle cCaixa = new CaixaControle();
     private ArrayList<CategoriaBEAN> catDados;
     private ArrayList<ConsoleBEAN> cDados;
     private JogoControle jControle = new JogoControle();
@@ -877,6 +880,10 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
         ndc.setJogo(jogo);
         notac.cadastrar(ndc);
 
+        CaixaBEAN caixa = cCaixa.localizar(1);
+        caixa.setCaixaDinheiro(caixa.getCaixaDinheiro() - ndc.getNdcEntrada());
+        cCaixa.editar(caixa);
+
         for (NotaDeCompraPrazoBEAN ndca : insert) {
             NotaDeCompraPrazoBEAN nota = new NotaDeCompraPrazoBEAN();
             nota.setNapData(ndca.getNapData());
@@ -976,6 +983,11 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
         JogoBEAN jogo = jControle.localizarCodigo(Integer.parseInt(lbCodigoJogo.getText()));
         ndc.setJogo(jogo);
         notac.cadastrar(ndc);
+
+        CaixaBEAN caixa = cCaixa.localizar(1);
+        caixa.setCaixaDinheiro(caixa.getCaixaDinheiro() - ndc.getNdcEntrada());
+        cCaixa.editar(caixa);
+
         limparCampos();
         preencheTabela1();
     }
@@ -1301,6 +1313,9 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
     private void jbPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagarActionPerformed
         NotaDeCompraPrazoBEAN j = napC.localizar(Integer.parseInt(lbCodPar.getText()));
         j.setNapSituacao("Paga");
+        CaixaBEAN caixa = cCaixa.localizar(1);
+        caixa.setCaixaDinheiro(caixa.getCaixaDinheiro() - j.getNapValor());
+        cCaixa.editar(caixa);
         boolean retorno = napC.editar(j);
         if (retorno == true) {
             JOptionPane.showMessageDialog(null, "Nota MODIFICADA com sucesso");

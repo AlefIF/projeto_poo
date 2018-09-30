@@ -5,7 +5,7 @@
  */
 package Controle;
 
-import Modelo.JogoVendaBEAN;
+import Modelo.JogoLocacaoBEAN;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -16,7 +16,8 @@ import jpa.JpaUtil;
  *
  * @author Alef
  */
-public class JogoVendaControle {
+public class JogoLocacaoControle {
+
     private static EntityManager manager = JpaUtil.getEntityManager();
     private static EntityTransaction tx = manager.getTransaction();
 
@@ -29,21 +30,21 @@ public class JogoVendaControle {
         JpaUtil.close();
     }
 
-    public void cadastrar(JogoVendaBEAN c) {
+    public void cadastrar(JogoLocacaoBEAN c) {
         começar();
         manager.persist(c);
         tx.commit();
     }
 
-    public ArrayList<JogoVendaBEAN> listarALL() {
+    public ArrayList<JogoLocacaoBEAN> listarALL() {
         começar();
-        Query q = manager.createQuery("from JogoVendaBEAN");
-        ArrayList<JogoVendaBEAN> jogList = (ArrayList<JogoVendaBEAN>) q.getResultList();
+        Query q = manager.createQuery("from JogoLocacaoBEAN");
+        ArrayList<JogoLocacaoBEAN> jogList = (ArrayList<JogoLocacaoBEAN>) q.getResultList();
         tx.commit();
         return jogList;
     }
 
-    public boolean editar(JogoVendaBEAN c) {
+    public boolean editar(JogoLocacaoBEAN c) {
         try {
             começar();
             tx.commit();
@@ -56,7 +57,7 @@ public class JogoVendaControle {
     public boolean remover(int c) {
         try {
             começar();
-            JogoVendaBEAN a = localizarCodigo(c);
+            JogoLocacaoBEAN a = localizarCodigo(c);
             manager.remove(a);
             tx.commit();
             return true;
@@ -65,8 +66,8 @@ public class JogoVendaControle {
         }
     }
 
-    public JogoVendaBEAN localizarCodigo(int c) {
-        JogoVendaBEAN a = manager.find(JogoVendaBEAN.class, c);
+    public JogoLocacaoBEAN localizarCodigo(int c) {
+        JogoLocacaoBEAN a = manager.find(JogoLocacaoBEAN.class, c);
         return a;
     }
 

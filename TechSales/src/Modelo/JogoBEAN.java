@@ -132,7 +132,7 @@ public class JogoBEAN {
         this.fornecedor = fornecedor;
     }
 
-    @Column(name = "joStatus", nullable = false, columnDefinition = "int default 1")
+    @Column(name = "joStatus", nullable = false, columnDefinition = "int")
     public int getJoStatus() {
         return joStatus;
     }

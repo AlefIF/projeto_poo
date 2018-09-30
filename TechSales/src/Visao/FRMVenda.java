@@ -320,8 +320,7 @@ public class FRMVenda extends javax.swing.JFrame {
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit[columnIndex];
-            }
-        ;
+            };
 
         };
     return cTable;
@@ -1296,6 +1295,8 @@ public class FRMVenda extends javax.swing.JFrame {
         v.setVendaNparcelas(Integer.parseInt(tfNParcelas.getText()));
         v.setVendaEntrada(Float.parseFloat(tfValorEntrada.getText()));
         v.setVendaValorTotal(Float.parseFloat(tfPrecott.getText()));
+        caixa.setCaixaDinheiro(caixa.getCaixaDinheiro()+Float.parseFloat(tfValorEntrada.getText()));
+        cCaixa.editar(caixa);
         try {
             String dataString = tfDataCompra.getText();
             DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
@@ -1337,6 +1338,8 @@ public class FRMVenda extends javax.swing.JFrame {
         v.setCaixa(caixa);
         v.setVendaNparcelas(Integer.parseInt(tfNParcelas.getText()));
         v.setVendaEntrada(Float.parseFloat(tfValorEntrada.getText()));
+        caixa.setCaixaDinheiro(caixa.getCaixaDinheiro()+Float.parseFloat(tfValorEntrada.getText()));
+        cCaixa.editar(caixa);
         v.setVendaValorTotal(Float.parseFloat(tfPrecott.getText()));
         try {
             String dataString = tfDataCompra.getText();
@@ -1647,6 +1650,9 @@ public class FRMVenda extends javax.swing.JFrame {
     private void jbPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagarActionPerformed
         VendaAPrazoBEAN j = cVendaPrazo.localizarCodigo(Integer.parseInt(lbCodPar.getText()));
         j.setVapSituacao("Paga");
+        CaixaBEAN caixa= cCaixa.localizar(1);      
+        caixa.setCaixaDinheiro(caixa.getCaixaDinheiro()+j.getVapValorParcela());
+        cCaixa.editar(caixa);
         boolean retorno = cVendaPrazo.editar(j);
         if (retorno == true) {
             JOptionPane.showMessageDialog(null, "Nota MODIFICADA com sucesso");

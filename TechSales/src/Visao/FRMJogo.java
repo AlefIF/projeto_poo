@@ -843,6 +843,7 @@ public class FRMJogo extends javax.swing.JFrame {
         tfLote.setText("");
         tfPrecoPadrao.setText("");
         tfQtde.setText("");
+        cbFornecedor.setSelectedIndex(0);
         btCadNota.setEnabled(false);
 
     }

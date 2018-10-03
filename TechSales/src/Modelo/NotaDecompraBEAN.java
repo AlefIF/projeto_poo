@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -26,11 +27,11 @@ public class NotaDecompraBEAN {
     private Date ndcData;
     private float ndcPrecoTotal;
     private int ndcParcelas;
-    private float ndcPrecoParcela;
     private float ndcEntrada;
     private float ndcCustoUnitario;
     private int ndcQtdComprada;
     private JogoBEAN jogo;
+    private CaixaBEAN caixa;
 
     @Id
     @GeneratedValue
@@ -64,14 +65,6 @@ public class NotaDecompraBEAN {
 
     public void setNdcParcelas(int ndcParcelas) {
         this.ndcParcelas = ndcParcelas;
-    }
-
-    public float getNdcPrecoParcela() {
-        return ndcPrecoParcela;
-    }
-
-    public void setNdcPrecoParcela(float ndcPrecoParcela) {
-        this.ndcPrecoParcela = ndcPrecoParcela;
     }
 
     public float getNdcEntrada() {
@@ -108,6 +101,17 @@ public class NotaDecompraBEAN {
     public void setJogo(JogoBEAN jogo) {
         this.jogo = jogo;
     }
+
+    @ManyToOne
+    @JoinColumn(name="ndc_caixaCodigo")
+    public CaixaBEAN getCaixa() {
+        return caixa;
+    }
+
+    public void setCaixa(CaixaBEAN caixa) {
+        this.caixa = caixa;
+    }
+    
     
     
 

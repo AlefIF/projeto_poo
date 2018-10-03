@@ -5,7 +5,7 @@
  */
 package Controle;
 
-import Modelo.ContasAPrazoBEAN;
+import Modelo.ContaAPrazoBEAN;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -17,7 +17,7 @@ import org.hibernate.HibernateException;
  *
  * @author Alef
  */
-public class ContasAPrazoControle {
+public class ContaAPrazoControle {
 
     EntityManager manager = JpaUtil.getEntityManager();
     EntityTransaction tx = manager.getTransaction();
@@ -31,27 +31,27 @@ public class ContasAPrazoControle {
         JpaUtil.close();
     }
 
-    public void cadastrar(ContasAPrazoBEAN c) {
+    public void cadastrar(ContaAPrazoBEAN c) {
         começar();
         manager.persist(c);
         tx.commit();
     }
 
-    public ArrayList<ContasAPrazoBEAN> listarALL() {
+    public ArrayList<ContaAPrazoBEAN> listarALL() {
         começar();
-        Query q = manager.createQuery("from ContasAPrazoBEAN");
-        ArrayList<ContasAPrazoBEAN> capList = (ArrayList<ContasAPrazoBEAN>) q.getResultList();
+        Query q = manager.createQuery("from ContaAPrazoBEAN");
+        ArrayList<ContaAPrazoBEAN> capList = (ArrayList<ContaAPrazoBEAN>) q.getResultList();
         tx.commit();
         //fechar();
         return capList;
     }
 
-    public ContasAPrazoBEAN localizar(int a) {
-        ContasAPrazoBEAN c = manager.find(ContasAPrazoBEAN.class, a);
+    public ContaAPrazoBEAN localizar(int a) {
+        ContaAPrazoBEAN c = manager.find(ContaAPrazoBEAN.class, a);
         return c;
     }
 
-    public boolean editar(ContasAPrazoBEAN a) {
+    public boolean editar(ContaAPrazoBEAN a) {
         try {
             começar();
             tx.commit();
@@ -65,7 +65,7 @@ public class ContasAPrazoControle {
     public boolean remover(int c) {
         try {
             começar();
-            ContasAPrazoBEAN a = localizar(c);
+            ContaAPrazoBEAN a = localizar(c);
             manager.remove(a);
             tx.commit();
             //fechar();

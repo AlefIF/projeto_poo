@@ -34,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author LUCASP
+ * @author Alef
  */
 public class FRMTransacao extends javax.swing.JFrame {
 

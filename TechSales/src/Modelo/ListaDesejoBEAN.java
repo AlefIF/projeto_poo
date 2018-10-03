@@ -22,7 +22,6 @@ public class ListaDesejoBEAN {
     private int lisCodigo;
     private String lisNomeJogo;
     private String lisPlataforma;
-    private int lis_cliCodigo;
     private ClienteBEAN cliente;
 
     @Id
@@ -49,14 +48,6 @@ public class ListaDesejoBEAN {
 
     public void setLisPlataforma(String lisPlataforma) {
         this.lisPlataforma = lisPlataforma;
-    }
-
-    public int getLis_cliCodigo() {
-        return lis_cliCodigo;
-    }
-
-    public void setLis_cliCodigo(int lis_cliCodigo) {
-        this.lis_cliCodigo = lis_cliCodigo;
     }
 
     @ManyToOne

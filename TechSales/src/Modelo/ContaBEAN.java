@@ -18,15 +18,18 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "contas")
-public class ContasBEAN {
+public class ContaBEAN {
 
     private int conCodigo;
     private String conDescricao;
+    private float conCustoUnitario;
+    private int conQtdComprada;
     private float conValorTotal;
     private Date conData;
     private int conNparcelas;
-    private int con_forCodigo;
-    private FuncionarioBEAN funcionario;
+    private float conEntrada;
+    private FornecedorBEAN fornecedor;
+    private CaixaBEAN caixa;
 
     @Id
     @GeneratedValue
@@ -62,6 +65,14 @@ public class ContasBEAN {
         this.conData = conData;
     }
 
+    public int getConQtdComprada() {
+        return conQtdComprada;
+    }
+
+    public void setConQtdComprada(int conQtdComprada) {
+        this.conQtdComprada = conQtdComprada;
+    }
+    
     public int getConNparcelas() {
         return conNparcelas;
     }
@@ -70,21 +81,38 @@ public class ContasBEAN {
         this.conNparcelas = conNparcelas;
     }
 
-    public int getCon_forCodigo() {
-        return con_forCodigo;
+    @ManyToOne
+    public FornecedorBEAN getFornecedor() {
+        return fornecedor;
     }
 
-    public void setCon_forCodigo(int con_forCodigo) {
-        this.con_forCodigo = con_forCodigo;
+    public void setFornecedor(FornecedorBEAN fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
+    public float getConCustoUnitario() {
+        return conCustoUnitario;
+    }
+
+    public void setConCustoUnitario(float conCustoUnitario) {
+        this.conCustoUnitario = conCustoUnitario;
+    }
+
+    public float getConEntrada() {
+        return conEntrada;
+    }
+
+    public void setConEntrada(float conEntrada) {
+        this.conEntrada = conEntrada;
     }
 
     @ManyToOne
-    public FuncionarioBEAN getFuncionario() {
-        return funcionario;
+    public CaixaBEAN getCaixa() {
+        return caixa;
     }
 
-    public void setFuncionario(FuncionarioBEAN funcionario) {
-        this.funcionario = funcionario;
+    public void setCaixa(CaixaBEAN caixa) {
+        this.caixa = caixa;
     }
 
 }

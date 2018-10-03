@@ -6,9 +6,11 @@
 package Visao;
 
 import Controle.CaixaControle;
+import Controle.EmpregoControle;
 import Controle.LucroControle;
 import Controle.VendedorControle;
 import Modelo.CaixaBEAN;
+import Modelo.EmpregoBEAN;
 import Modelo.LucroBEAN;
 import Modelo.VendedorBEAN;
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class FRMLogin extends javax.swing.JFrame {
     ArrayList<VendedorBEAN> al = vc.listarALL();
     CaixaControle caixaC= new CaixaControle();
     LucroControle lucC = new LucroControle();
+    EmpregoControle cEmp= new EmpregoControle();
 
     /**
      * Creates new form FRMLogin
@@ -33,6 +36,7 @@ public class FRMLogin extends javax.swing.JFrame {
         setResizable(false);
         initComponents();
 
+         //Cadastro Caixa
         int qtc=0;
         for (CaixaBEAN c : caixaC.listarALL()) {
            qtc++; 
@@ -43,6 +47,7 @@ public class FRMLogin extends javax.swing.JFrame {
             caixaC.cadastrar(a);
         }
         
+        //Cadastro Lucro
         int qtl=0;      
         for (LucroBEAN l : lucC.listarALL()) {
             qtl++;
@@ -53,6 +58,21 @@ public class FRMLogin extends javax.swing.JFrame {
             b.setLucPorcentagem(10);
             lucC.cadastrar(b);
         }
+        
+        //Cadastro Emprego
+        int qte=0;      
+        for (EmpregoBEAN e : cEmp.listarALL()) {
+            qte++;
+        }
+        
+        if(qte==0){
+            EmpregoBEAN emp= new EmpregoBEAN();
+            emp.setEmpNome("Vendedor");
+            emp.setEmpSalarioPadrao(1000);
+            emp.setEmpDescricao("Tem acesso à parte de Funcionarios do sistema");
+            cEmp.cadastrar(emp);
+        }
+        
     }
 
     /**

@@ -24,8 +24,6 @@ public class LucroBEAN {
     private int luCod;
     private float lucPorcentagem;
 
-    
-
     @Id
     @GeneratedValue
     public int getLuCod() {

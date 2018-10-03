@@ -14,8 +14,7 @@ import javax.swing.table.TableRowSorter;
 public class FRMCliente extends javax.swing.JFrame {
 
     private ClienteControle cCliente = new ClienteControle();
-
-    private DefaultTableModel cTable; //usado para trabalhar com JTable
+    private DefaultTableModel cTable; 
 
     public FRMCliente() {
         initComponents();

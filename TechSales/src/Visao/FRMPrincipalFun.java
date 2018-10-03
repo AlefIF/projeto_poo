@@ -204,38 +204,32 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
         FRMLogin login = new FRMLogin();
         FRMLogin.user = null;
-        this.dispose();
-
         login.setVisible(true);
-
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btGClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGClienteActionPerformed
         FRMCliente cliente = new FRMCliente();
-        this.dispose();
         cliente.setVisible(true);
-
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btGClienteActionPerformed
 
     private void btGJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGJogoActionPerformed
         FRMJogo jogo = new FRMJogo();
-        this.dispose();
         jogo.setVisible(true);
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btGJogoActionPerformed
 
     private void btRTransacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRTransacaoActionPerformed
         FRMTransacao trans = new FRMTransacao();
+        trans.setVisible(true);
         this.dispose();
-        trans.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btRTransacaoActionPerformed
 
     private void btERelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btERelatoriosActionPerformed
         FRMEmitirRelatorios er = new FRMEmitirRelatorios();
+        er.setVisible(true);
         this.dispose();
-        er.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btERelatoriosActionPerformed
 
     private void jbGerenciarConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGerenciarConsoleActionPerformed
@@ -246,27 +240,26 @@ public class FRMPrincipalFun extends javax.swing.JFrame {
 
     private void jbGerenciarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGerenciarCategoriaActionPerformed
         FRMCategoria cat = new FRMCategoria();
-        this.dispose();
         cat.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jbGerenciarCategoriaActionPerformed
 
     private void btRVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRVendaActionPerformed
         FRMVenda frm = new FRMVenda();
         frm.setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_btRVendaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        FRMListaDesejo d = new FRMListaDesejo();
+        d.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String s="...";
-        FRMNotaDeCompra nf = new FRMNotaDeCompra(s);
+        FRMNotaDeCompra nf = new FRMNotaDeCompra();
         nf.setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

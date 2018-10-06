@@ -97,7 +97,7 @@ public class FRMMenuADM extends javax.swing.JFrame {
         });
 
         jButton5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton5.setText("Contas");
+        jButton5.setText("Contas a pagar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);

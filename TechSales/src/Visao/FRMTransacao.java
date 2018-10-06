@@ -1053,7 +1053,7 @@ public class FRMTransacao extends javax.swing.JFrame {
 
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
-        FRMPrincipalFun fun = new FRMPrincipalFun();
+        FRMMenuVendedor fun = new FRMMenuVendedor();
         this.dispose();
         fun.setVisible(true);
 

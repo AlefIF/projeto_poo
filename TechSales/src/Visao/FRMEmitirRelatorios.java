@@ -116,7 +116,7 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Finanças", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Relatório de Finanças", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         jButton9.setText("Venda por Vendedor");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -251,7 +251,7 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
-        FRMPrincipalFun fun = new FRMPrincipalFun();
+        FRMMenuVendedor fun = new FRMMenuVendedor();
         this.dispose();
         fun.setVisible(true);
 

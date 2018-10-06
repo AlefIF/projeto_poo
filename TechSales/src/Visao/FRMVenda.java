@@ -1269,7 +1269,7 @@ public class FRMVenda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btVoltar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltar3ActionPerformed
-        FRMPrincipalFun fun = new FRMPrincipalFun();
+        FRMMenuVendedor fun = new FRMMenuVendedor();
         this.dispose();
         fun.setVisible(true);
     }//GEN-LAST:event_btVoltar3ActionPerformed

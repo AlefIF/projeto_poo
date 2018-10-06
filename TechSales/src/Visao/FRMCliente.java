@@ -618,7 +618,7 @@ public class FRMCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
-        FRMPrincipalFun fun = new FRMPrincipalFun();
+        FRMMenuVendedor fun = new FRMMenuVendedor();
         this.dispose();
         fun.setVisible(true);
     }//GEN-LAST:event_btVoltarActionPerformed

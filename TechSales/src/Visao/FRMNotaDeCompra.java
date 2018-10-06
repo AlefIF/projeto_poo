@@ -1347,7 +1347,7 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_tfChaveKeyTyped
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        FRMPrincipalFun fun = new FRMPrincipalFun();
+        FRMMenuVendedor fun = new FRMMenuVendedor();
         this.dispose();
         fun.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed

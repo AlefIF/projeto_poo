@@ -104,6 +104,7 @@ public class FRMLogin extends javax.swing.JFrame {
         getContentPane().add(tfUser);
         tfUser.setBounds(200, 150, 120, 30);
 
+        rbSenha.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         rbSenha.setText("Visualizar Senha");
         rbSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,26 +114,28 @@ public class FRMLogin extends javax.swing.JFrame {
         getContentPane().add(rbSenha);
         rbSenha.setBounds(130, 230, 190, 23);
 
+        btSairPrograma.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btSairPrograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonFechar.png"))); // NOI18N
-        btSairPrograma.setText("Sair");
+        btSairPrograma.setText("Fechar");
         btSairPrograma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSairProgramaActionPerformed(evt);
             }
         });
         getContentPane().add(btSairPrograma);
-        btSairPrograma.setBounds(383, 10, 90, 30);
+        btSairPrograma.setBounds(373, 10, 100, 30);
 
-        jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel8.setText("Usuário:");
         getContentPane().add(jLabel8);
         jLabel8.setBounds(130, 160, 60, 20);
 
-        jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel9.setText("Senha:");
         getContentPane().add(jLabel9);
         jLabel9.setBounds(130, 200, 60, 15);
 
+        jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
         jButton3.setText("Entrar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -169,7 +172,7 @@ public class FRMLogin extends javax.swing.JFrame {
         for (VendedorBEAN vendedor : al) {
             if (vendedor.getVenNomeUsuario().equals(nome) && vendedor.getVenSenha().equals(senha)) {          
                 user = vendedor;
-                FRMPrincipalFun fun = new FRMPrincipalFun();
+                FRMMenuVendedor fun = new FRMMenuVendedor();
                 this.dispose();
                 fun.setVisible(true);
                 i++;

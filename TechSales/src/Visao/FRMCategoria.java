@@ -354,7 +354,7 @@ public class FRMCategoria extends javax.swing.JFrame {
         tfNome.setText("");
     }
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
-        FRMPrincipalFun fun = new FRMPrincipalFun();
+        FRMMenuVendedor fun = new FRMMenuVendedor();
         this.dispose();
         fun.setVisible(true);
     }//GEN-LAST:event_btVoltarActionPerformed

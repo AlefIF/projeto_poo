@@ -1427,7 +1427,6 @@ public class FRMVenda extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int z = verificarInserir();
-        System.out.println(z);
         if (z == 0) {
             if (verificaCampos()) {
                 this.cadastroNormal();
@@ -1446,6 +1445,10 @@ public class FRMVenda extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
         }
+        
+        insertJogo.clear();
+        preencheTabelaCarro1();
+        preencheTabelaCarro2();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1501,6 +1504,7 @@ public class FRMVenda extends javax.swing.JFrame {
                             wtf.setJoQtd(qtd);
                             insertJogo.add(wtf);
                             preencheTabelaCarro1();
+                            preencheTabelaCarro2();
                         } else {
                             JOptionPane.showMessageDialog(null, "Selecione o jogo");
                         }
@@ -1542,7 +1546,6 @@ public class FRMVenda extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         VendaAPrazoBEAN nota = new VendaAPrazoBEAN();
         nota.setVapValorParcela(Float.parseFloat((tfPrecoParcela.getText())));
-
         try {
             String dataString = tfDataparcela.getText();
             DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
@@ -1621,9 +1624,12 @@ public class FRMVenda extends javax.swing.JFrame {
         tfDataCompra.setText("");
         tfNParcelas.setText("");
         tfPrecoParcela.setText("");
+        tfDataparcela.setText("");
         tfDataParcela2.setText("");
         tfPrecoParcela2.setText("");
         insertJogo.clear();
+        preencheTabelaCarro1();
+        preencheTabelaCarro2();
     }
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         VendaAPrazoBEAN j = cVendaPrazo.localizarCodigo(Integer.parseInt(lbCodPar.getText()));

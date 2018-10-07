@@ -1,10 +1,8 @@
 package Visao;
 
 import Controle.ClienteControle;
-import Controle.GeraRelatorio;
 import Modelo.ClienteBEAN;
 import Modelo.EnderecoBEAN;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;

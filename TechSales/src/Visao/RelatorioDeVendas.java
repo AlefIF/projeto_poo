@@ -114,12 +114,7 @@ public class RelatorioDeVendas extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         java.sql.Timestamp dataInicio = java.sql.Timestamp.valueOf(String.valueOf(tfDataInicio.getText()));
         java.sql.Timestamp dataFinal = java.sql.Timestamp.valueOf(String.valueOf(tfDataFinal.getText()));
-        /*
-        try {
-            //chama o método para dar início a geração do relatório passando o código do cliente como parâmetro
-            GeraRelatorio2.geraRelatorioJogos(dataInicio, dataFinal);
-        } catch (Exception x) {
-        }  */
+        
         String query = "Select joNome , sum(ivQtd)as \n"
                 + " 'Quantidade vendida' from jogo join item_venda \n"
                 + " join venda  where venDataEHora \n"

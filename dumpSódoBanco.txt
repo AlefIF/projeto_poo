@@ -1,0 +1,396 @@
+﻿-- MySQL dump 10.16  Distrib 10.1.36-MariaDB, for Win32 (AMD64)
+--
+-- Host: localhost    Database: hiber
+-- ------------------------------------------------------
+-- Server version	10.1.36-MariaDB
+
+--
+-- Table structure for table `caixa`
+--
+
+DROP TABLE IF EXISTS `caixa`;;
+CREATE TABLE `caixa` (
+  `caixaCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `caixaDinheiro` float NOT NULL,
+  PRIMARY KEY (`caixaCodigo`)
+) 
+
+--
+-- Table structure for table `categoria`
+--
+
+DROP TABLE IF EXISTS `categoria`;
+CREATE TABLE `categoria` (
+  `catCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `catNome` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`catCodigo`)
+) 
+
+--
+-- Table structure for table `cliente`
+--
+
+DROP TABLE IF EXISTS `cliente`;
+CREATE TABLE `cliente` (
+  `cod` int(11) NOT NULL AUTO_INCREMENT,
+  `cpf` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `endBairro` varchar(255) DEFAULT NULL,
+  `endCidade` varchar(255) DEFAULT NULL,
+  `endCodigo` int(11) NOT NULL,
+  `endEstado` varchar(255) DEFAULT NULL,
+  `endNumero` varchar(255) DEFAULT NULL,
+  `endPais` varchar(255) DEFAULT NULL,
+  `endRua` varchar(255) DEFAULT NULL,
+  `idade` int(11) NOT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  `telefone` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`cod`)
+) 
+
+--
+-- Table structure for table `compraprazo`
+--
+
+DROP TABLE IF EXISTS `compraprazo`;
+CREATE TABLE `compraprazo` (
+  `napCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `napData` date DEFAULT NULL,
+  `napNumParcela` int(11) NOT NULL,
+  `napSituacao` varchar(255) DEFAULT NULL,
+  `napValor` float NOT NULL,
+  `nap_ndcCodigo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`napCodigo`),
+  KEY (`nap_ndcCodigo`),
+  CONSTRAINT FOREIGN KEY (`nap_ndcCodigo`) REFERENCES `notadecompra` (`ndcCodigo`)
+) 
+
+--
+-- Table structure for table `console`
+--
+
+DROP TABLE IF EXISTS `console`;
+CREATE TABLE `console` (
+  `conCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `conMarca` varchar(255) DEFAULT NULL,
+  `conNome` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`conCodigo`)
+) 
+
+--
+-- Table structure for table `contas`
+--
+
+DROP TABLE IF EXISTS `contas`;
+CREATE TABLE `contas` (
+  `conCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `conCustoUnitario` float NOT NULL,
+  `conData` date DEFAULT NULL,
+  `conDescricao` varchar(255) DEFAULT NULL,
+  `conEntrada` float NOT NULL,
+  `conNparcelas` int(11) NOT NULL,
+  `conQtdComprada` int(11) NOT NULL,
+  `conValorTotal` float NOT NULL,
+  `caixa_caixaCodigo` int(11) DEFAULT NULL,
+  `fornecedor_forCodigo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`conCodigo`),
+  KEY `FK_mvfx4ounpogsrqsf4i5fix22h` (`caixa_caixaCodigo`),
+  KEY `FK_tfu1kpns14i7iliscdly2o09x` (`fornecedor_forCodigo`),
+  CONSTRAINT FOREIGN KEY (`caixa_caixaCodigo`) REFERENCES `caixa` (`caixaCodigo`),
+  CONSTRAINT FOREIGN KEY (`fornecedor_forCodigo`) REFERENCES `fornecedor` (`forCodigo`)
+) 
+
+
+--
+-- Table structure for table `contasprazo`
+--
+
+DROP TABLE IF EXISTS `contasprazo`;
+CREATE TABLE `contasprazo` (
+  `capCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `capData` date DEFAULT NULL,
+  `capNumParcela` int(11) NOT NULL,
+  `capSituacao` varchar(255) DEFAULT NULL,
+  `capValorParcela` float NOT NULL,
+  `conta_conCodigo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`capCodigo`),
+  KEY (`conta_conCodigo`),
+  CONSTRAINT FOREIGN KEY (`conta_conCodigo`) REFERENCES `contas` (`conCodigo`)
+) 
+
+--
+-- Table structure for table `devolucao`
+--
+
+DROP TABLE IF EXISTS `devolucao`;
+CREATE TABLE `devolucao` (
+  `devCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `devData` date DEFAULT NULL,
+  `devMulta` float NOT NULL,
+  `devValor` float NOT NULL,
+  `dev_caixaCodigo` int(11) DEFAULT NULL,
+  `dev_loCodigo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`devCodigo`),
+  KEY (`dev_caixaCodigo`),
+  KEY (`dev_loCodigo`),
+  CONSTRAINT FOREIGN KEY (`dev_loCodigo`) REFERENCES `locacao` (`locCodigo`),
+  CONSTRAINT FOREIGN KEY (`dev_caixaCodigo`) REFERENCES `caixa` (`caixaCodigo`)
+) 
+
+
+--
+-- Table structure for table `emprego`
+--
+
+DROP TABLE IF EXISTS `emprego`;
+CREATE TABLE `emprego` (
+  `empCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `empDescricao` varchar(255) DEFAULT NULL,
+  `empNome` varchar(255) DEFAULT NULL,
+  `empSalarioPadrao` float NOT NULL,
+  PRIMARY KEY (`empCodigo`)
+)
+
+--
+-- Table structure for table `fornecedor`
+--
+
+DROP TABLE IF EXISTS `fornecedor`;
+CREATE TABLE `fornecedor` (
+  `forCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `endBairro` varchar(255) DEFAULT NULL,
+  `endCidade` varchar(255) DEFAULT NULL,
+  `endCodigo` int(11) NOT NULL,
+  `endEstado` varchar(255) DEFAULT NULL,
+  `endNumero` varchar(255) DEFAULT NULL,
+  `endPais` varchar(255) DEFAULT NULL,
+  `endRua` varchar(255) DEFAULT NULL,
+  `forAnotacoes` varchar(255) DEFAULT NULL,
+  `forCNPJ` varchar(255) DEFAULT NULL,
+  `forEmail` varchar(255) DEFAULT NULL,
+  `forNomeEmpresa` varchar(255) DEFAULT NULL,
+  `forPais` varchar(255) DEFAULT NULL,
+  `forTelefoneContato` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`forCodigo`)
+) 
+
+--
+-- Table structure for table `funcionario`
+--
+
+DROP TABLE IF EXISTS `funcionario`;
+CREATE TABLE `funcionario` (
+  `funCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `endBairro` varchar(255) DEFAULT NULL,
+  `endCidade` varchar(255) DEFAULT NULL,
+  `endCodigo` int(11) NOT NULL,
+  `endEstado` varchar(255) DEFAULT NULL,
+  `endNumero` varchar(255) DEFAULT NULL,
+  `endPais` varchar(255) DEFAULT NULL,
+  `endRua` varchar(255) DEFAULT NULL,
+  `funCpf` varchar(255) DEFAULT NULL,
+  `funEmail` varchar(255) DEFAULT NULL,
+  `funIdade` int(11) NOT NULL,
+  `funNisPis` varchar(255) DEFAULT NULL,
+  `funNome` varchar(255) DEFAULT NULL,
+  `funSalario` float NOT NULL,
+  `funTelefone` varchar(255) DEFAULT NULL,
+  `funTrabalho` varchar(255) DEFAULT NULL,
+  `fun_caixaCodigo` int(11) DEFAULT NULL,
+  `fun_empCodigo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`funCodigo`),
+  KEY (`fun_caixaCodigo`),
+  KEY (`fun_empCodigo`),
+  CONSTRAINT FOREIGN KEY (`fun_empCodigo`) REFERENCES `emprego` (`empCodigo`),
+  CONSTRAINT FOREIGN KEY (`fun_caixaCodigo`) REFERENCES `caixa` (`caixaCodigo`)
+) 
+
+
+--
+-- Table structure for table `jogo`
+--
+
+DROP TABLE IF EXISTS `jogo`;
+CREATE TABLE `jogo` (
+  `joCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `joFaixaEtaria` varchar(255) DEFAULT NULL,
+  `joLote` varchar(255) DEFAULT NULL,
+  `joNome` varchar(255) DEFAULT NULL,
+  `joPrecoPadrao` float NOT NULL,
+  `joQtd` int(11) NOT NULL,
+  `joTipo` varchar(255) DEFAULT NULL,
+  `jo_catCodigo` int(11) DEFAULT NULL,
+  `jo_conCodigo` int(11) DEFAULT NULL,
+  `jo_forCodigo` int(11) DEFAULT NULL,
+  `jo_lucCodigo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`joCodigo`),
+  KEY (`jo_catCodigo`),
+  KEY (`jo_conCodigo`),
+  KEY (`jo_forCodigo`),
+  KEY (`jo_lucCodigo`),
+  CONSTRAINT FOREIGN KEY (`jo_lucCodigo`) REFERENCES `lucro` (`luCod`),
+  CONSTRAINT FOREIGN KEY (`jo_forCodigo`) REFERENCES `fornecedor` (`forCodigo`),
+  CONSTRAINT FOREIGN KEY (`jo_conCodigo`) REFERENCES `console` (`conCodigo`),
+  CONSTRAINT FOREIGN KEY (`jo_catCodigo`) REFERENCES `categoria` (`catCodigo`)
+) 
+
+
+--
+-- Table structure for table `jogo_locacao`
+--
+
+DROP TABLE IF EXISTS `jogo_locacao`;
+CREATE TABLE `jogo_locacao` (
+  `jlQtd` int(11) DEFAULT NULL,
+  `joCod` int(11) NOT NULL,
+  `venCod` int(11) NOT NULL,
+  PRIMARY KEY (`joCod`,`venCod`),
+  KEY `FK_lpfb0e6danoep2hy99ny8smgy` (`venCod`),
+  CONSTRAINT FOREIGN KEY (`venCod`) REFERENCES `locacao` (`locCodigo`),
+  CONSTRAINT FOREIGN KEY (`joCod`) REFERENCES `jogo` (`joCodigo`)
+) 
+
+--
+-- Table structure for table `jogo_venda`
+--
+
+DROP TABLE IF EXISTS `jogo_venda`;
+CREATE TABLE `jogo_venda` (
+  `jvPreco` float DEFAULT NULL,
+  `jvQdt` int(11) DEFAULT NULL,
+  `joCod` int(11) NOT NULL,
+  `venCod` int(11) NOT NULL,
+  PRIMARY KEY (`joCod`,`venCod`),
+  KEY (`venCod`),
+  CONSTRAINT FOREIGN KEY (`joCod`) REFERENCES `jogo` (`joCodigo`),
+  CONSTRAINT FOREIGN KEY (`venCod`) REFERENCES `venda` (`vendaCodigo`)
+) 
+
+
+--
+-- Table structure for table `listadesejo`
+--
+
+DROP TABLE IF EXISTS `listadesejo`;
+CREATE TABLE `listadesejo` (
+  `lisCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `lisNomeJogo` varchar(255) DEFAULT NULL,
+  `lisPlataforma` varchar(255) DEFAULT NULL,
+  `cliente_cod` int(11) DEFAULT NULL,
+  PRIMARY KEY (`lisCodigo`),
+  KEY (`cliente_cod`),
+  CONSTRAINT FOREIGN KEY (`cliente_cod`) REFERENCES `cliente` (`cod`)
+) 
+
+
+--
+-- Table structure for table `locacao`
+--
+
+DROP TABLE IF EXISTS `locacao`;
+CREATE TABLE `locacao` (
+  `locCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `locDataAluguel` date DEFAULT NULL,
+  `locDataDevolucao` date DEFAULT NULL,
+  `locPrecoUnit` float NOT NULL,
+  `locPreçoTotal` float NOT NULL,
+  `joStatus` int(11) NOT NULL,
+  `loc_clienteCodigo` int(11) DEFAULT NULL,
+  `loc_vendedorCodigo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`locCodigo`),
+  KEY (`loc_clienteCodigo`),
+  KEY (`loc_vendedorCodigo`),
+  CONSTRAINT FOREIGN KEY (`loc_clienteCodigo`) REFERENCES `cliente` (`cod`),
+  CONSTRAINT FOREIGN KEY (`loc_vendedorCodigo`) REFERENCES `vendedor` (`venCodigo`)
+) 
+
+--
+-- Table structure for table `lucro`
+--
+
+DROP TABLE IF EXISTS `lucro`;
+CREATE TABLE `lucro` (
+  `luCod` int(11) NOT NULL AUTO_INCREMENT,
+  `lucPorcentagem` float NOT NULL,
+  PRIMARY KEY (`luCod`)
+) 
+
+--
+-- Table structure for table `notadecompra`
+--
+
+DROP TABLE IF EXISTS `notadecompra`;
+CREATE TABLE `notadecompra` (
+  `ndcCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `ndcCustoUnitario` float NOT NULL,
+  `ndcData` date DEFAULT NULL,
+  `ndcEntrada` float NOT NULL,
+  `ndcParcelas` int(11) NOT NULL,
+  `ndcPrecoTotal` float NOT NULL,
+  `ndcQtdComprada` int(11) NOT NULL,
+  `ndc_caixaCodigo` int(11) DEFAULT NULL,
+  `ndc_joCodigo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ndcCodigo`),
+  KEY (`ndc_caixaCodigo`),
+  KEY (`ndc_joCodigo`),
+  CONSTRAINT FOREIGN KEY (`ndc_joCodigo`) REFERENCES `jogo` (`joCodigo`),
+  CONSTRAINT FOREIGN KEY (`ndc_caixaCodigo`) REFERENCES `caixa` (`caixaCodigo`)
+) 
+
+--
+-- Table structure for table `venda`
+--
+
+DROP TABLE IF EXISTS `venda`;
+CREATE TABLE `venda` (
+  `vendaCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `vendaData` date DEFAULT NULL,
+  `vendaEntrada` float NOT NULL,
+  `vendaNparcelas` int(11) NOT NULL,
+  `vendaValorTotal` float NOT NULL,
+  `venda_caixaCodigo` int(11) DEFAULT NULL,
+  `venda_clienteCodigo` int(11) DEFAULT NULL,
+  `venda_vendedorCodigo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`vendaCodigo`),
+  KEY (`venda_caixaCodigo`),
+  KEY (`venda_clienteCodigo`),
+  KEY (`venda_vendedorCodigo`),
+  CONSTRAINT FOREIGN KEY (`venda_clienteCodigo`) REFERENCES `cliente` (`cod`),
+  CONSTRAINT FOREIGN KEY (`venda_caixaCodigo`) REFERENCES `caixa` (`caixaCodigo`),
+  CONSTRAINT FOREIGN KEY (`venda_vendedorCodigo`) REFERENCES `vendedor` (`venCodigo`)
+)
+
+
+--
+-- Table structure for table `vendaaprazo`
+--
+
+DROP TABLE IF EXISTS `vendaaprazo`;
+CREATE TABLE `vendaaprazo` (
+  `vapCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `vapData` date DEFAULT NULL,
+  `vapNumParcela` int(11) NOT NULL,
+  `vapSituacao` varchar(255) DEFAULT NULL,
+  `vapValorParcela` float NOT NULL,
+  `vap_vendaCodigo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`vapCodigo`),
+  KEY (`vap_vendaCodigo`),
+  CONSTRAINT FOREIGN KEY (`vap_vendaCodigo`) REFERENCES `venda` (`vendaCodigo`)
+) 
+
+--
+-- Table structure for table `vendedor`
+--
+
+DROP TABLE IF EXISTS `vendedor`;
+CREATE TABLE `vendedor` (
+  `venCodigo` int(11) NOT NULL AUTO_INCREMENT,
+  `venNomeUsuario` varchar(255) DEFAULT NULL,
+  `venSenha` varchar(255) DEFAULT NULL,
+  `ven_funCodigo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`venCodigo`),
+  KEY (`ven_funCodigo`),
+  CONSTRAINT FOREIGN KEY (`ven_funCodigo`) REFERENCES `funcionario` (`funCodigo`)
+)
+
+-- Dump completed on 2018-10-06 17:32:29

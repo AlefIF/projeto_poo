@@ -718,9 +718,9 @@ public class FRMJogo extends javax.swing.JFrame {
         tpGuia.setSelectedIndex(0);
         if (tableJogo.getSelectedRow() != -1) {
             JogoBEAN j = jControle.localizarCodigo(Integer.parseInt(tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString()));
-            lbCodigoJogo.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString());
-            tfNome.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 1).toString());
-            tfFaixa.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 2).toString());
+            lbCodigoJogo.setText(String.valueOf(j.getJoCodigo()));
+            tfNome.setText(String.valueOf(j.getJoNome()));
+            tfFaixa.setText(String.valueOf(j.getJoFaixaEtaria()));
             if (j.getJoTipo().equals("Aluguel")) {
                 cbTipo.setSelectedIndex(2);
             } else {
@@ -749,8 +749,8 @@ public class FRMJogo extends javax.swing.JFrame {
                 }
             }
 
-            tfLote.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 7).toString());
-            tfQtde.setText(tableJogo.getValueAt(tableJogo.getSelectedRow(), 8).toString());
+            tfLote.setText(String.valueOf(j.getJoLote()));
+            tfQtde.setText(String.valueOf(j.getJoQtd()));
 
             tfPrecoPadrao.setText(String.valueOf(j.getJoPrecoPadrao()));
             for (NotaDecompraBEAN n : notac.listarALL()) {
@@ -763,9 +763,7 @@ public class FRMJogo extends javax.swing.JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(null, "Erro, jogo não disponível no estoque");
-        }
-
-
+        }       
     }//GEN-LAST:event_tableJogoMouseClicked
 
     private void tfChaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyPressed

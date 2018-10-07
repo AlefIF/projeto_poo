@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * @author Alef
  */
 @Entity
-@Table(name = "contasPRazo")
+@Table(name = "contaAPrazo")
 public class ContaAPrazoBEAN {
 
     private int capCodigo;

@@ -29,33 +29,28 @@ public class FRMConsole extends javax.swing.JFrame {
      */
     public FRMConsole() {
         initComponents();
+        btExcluir.setEnabled(false);
+        btEditar.setEnabled(false);
     }
 
     private void preencheTabela() {
         dTable = criaTabela();
-        //seta o nome das colunas da tabela
         dTable.addColumn("Codigo");
         dTable.addColumn("Nome");
         dTable.addColumn("Marca");
 
-        //pega os dados do ArrayList
         cDados = cCon.listarALL();
 
-        //cada célula do arrayList vira uma linha(row) na tabela
         for (ConsoleBEAN dado : cDados) {
             dTable.addRow(new Object[]{dado.getConCodigo(), dado.getConNome(), dado.getConMarca()});
         }
-        //set o modelo da tabela
         tableConsole.setModel(dTable);
     }
 
     private DefaultTableModel criaTabela() {
-        //sempre que usar JTable é necessário ter um DefaulttableModel
         DefaultTableModel dTable = new DefaultTableModel() {
-            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
             Class[] types = new Class[]{
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class};
-            //define se os campos podem ser editados na propria tabela
             boolean[] canEdit = new boolean[]{
                 false, false, false
             };
@@ -67,7 +62,6 @@ public class FRMConsole extends javax.swing.JFrame {
         ;
 
         };
-        //retorna o DefaultTableModel
     return dTable;
     }
 
@@ -177,7 +171,7 @@ public class FRMConsole extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         btCadastrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonAddJogo.png"))); // NOI18N
+        btCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonCadastrar.png"))); // NOI18N
         btCadastrar.setText("Cadastrar");
         btCadastrar.setMaximumSize(new java.awt.Dimension(73, 23));
         btCadastrar.setMinimumSize(new java.awt.Dimension(73, 23));
@@ -343,11 +337,12 @@ public class FRMConsole extends javax.swing.JFrame {
     }//GEN-LAST:event_tableConsoleKeyTyped
 
     private void tableConsoleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableConsoleMouseClicked
-//        this.pegaSelecionado();
         if (tableConsole.getSelectedRow() != -1) {
             lbCodCon.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 0).toString());
             tfNome.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 1).toString());
             tfMarca.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 2).toString());
+            btExcluir.setEnabled(true);
+            btEditar.setEnabled(true);
         }
     }//GEN-LAST:event_tableConsoleMouseClicked
 
@@ -418,6 +413,8 @@ public class FRMConsole extends javax.swing.JFrame {
         lbCodCon.setText("");
         tfNome.setText("");
         tfMarca.setText("");
+        btExcluir.setEnabled(false);
+        btEditar.setEnabled(false);
     }
 
     /**

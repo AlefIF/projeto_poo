@@ -29,7 +29,8 @@ public class FRMCategoria extends javax.swing.JFrame {
      */
     public FRMCategoria() {
         initComponents();
-        // catCon.iniciar();
+        btExcluir.setEnabled(false);
+        btEditar.setEnabled(false);
     }
 
     /**
@@ -39,28 +40,21 @@ public class FRMCategoria extends javax.swing.JFrame {
      */
     private void preencheTabela() {
         dTable = criaTabela();
-        //seta o nome das colunas da tabela
         dTable.addColumn("Codigo");
         dTable.addColumn("Nome");
-
-        //pega os dados do ArrayList
+        
         caDados = catCon.listarALL();
 
-        //cada célula do arrayList vira uma linha(row) na tabela
         for (CategoriaBEAN dado : caDados) {
             dTable.addRow(new Object[]{dado.getCatCodigo(), dado.getCatNome()});
         }
-        //set o modelo da tabela
         tableCategoria.setModel(dTable);
     }
 
     private DefaultTableModel criaTabela() {
-        //sempre que usar JTable é necessário ter um DefaulttableModel
         DefaultTableModel dTable = new DefaultTableModel() {
-            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
             Class[] types = new Class[]{
                 java.lang.Integer.class, java.lang.String.class};
-            //define se os campos podem ser editados na propria tabela
             boolean[] canEdit = new boolean[]{
                 false, false
             };
@@ -72,7 +66,6 @@ public class FRMCategoria extends javax.swing.JFrame {
         ;
 
         };
-        //retorna o DefaultTableModel
     return dTable;
     }
 
@@ -113,7 +106,7 @@ public class FRMCategoria extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         btCadastrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonAddJogo.png"))); // NOI18N
+        btCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonCadastrar.png"))); // NOI18N
         btCadastrar.setText("Cadastrar");
         btCadastrar.setMaximumSize(new java.awt.Dimension(73, 23));
         btCadastrar.setMinimumSize(new java.awt.Dimension(73, 23));
@@ -253,7 +246,7 @@ public class FRMCategoria extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btVoltar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -290,14 +283,14 @@ public class FRMCategoria extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(btVoltar)))
                 .addGap(5, 5, 5)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         setSize(new java.awt.Dimension(447, 450));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private int retornaLinha() {
-        //retorna a linha que o usuário selecionou na tabela
         int linha = tableCategoria.getSelectedRow();
         return linha;
     }
@@ -325,12 +318,9 @@ public class FRMCategoria extends javax.swing.JFrame {
 
         if (retorno == true) {
             JOptionPane.showMessageDialog(null, "Categoria MODIFICADA com sucesso");
-            //solicita a atualização da tabela ou seja preenche ela toda novamente
             this.preencheTabela();
-            //chama o método para limpar campos
             this.limparCampos();
         } else {
-            //mensagem de erro
             JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
         }
     }//GEN-LAST:event_btEditarActionPerformed
@@ -352,6 +342,8 @@ public class FRMCategoria extends javax.swing.JFrame {
     private void limparCampos() {
         lbCodCat.setText("...");
         tfNome.setText("");
+        btExcluir.setEnabled(false);
+        btEditar.setEnabled(false);
     }
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
         FRMMenuVendedor fun = new FRMMenuVendedor();
@@ -360,12 +352,12 @@ public class FRMCategoria extends javax.swing.JFrame {
     }//GEN-LAST:event_btVoltarActionPerformed
 
     private void tableCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCategoriaMouseClicked
-//        this.pegaSelecionado();
-
         if (tableCategoria.getSelectedRow() != -1) {
             lbCodCat.setText(tableCategoria.getValueAt(tableCategoria.getSelectedRow(), 0).toString());
             tfNome.setText(tableCategoria.getValueAt(tableCategoria.getSelectedRow(), 1).toString());
         }
+        btExcluir.setEnabled(true);
+        btEditar.setEnabled(true);
     }//GEN-LAST:event_tableCategoriaMouseClicked
 
     private void tfChaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyPressed

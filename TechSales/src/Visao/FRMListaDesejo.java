@@ -594,16 +594,14 @@ public class FRMListaDesejo extends javax.swing.JFrame {
     }//GEN-LAST:event_tfChaveKeyTyped
 
     private void tableDesejoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDesejoMouseClicked
-
         if (tableDesejo.getSelectedRow() != -1) {
             lbCodCon.setText(tableDesejo.getValueAt(tableDesejo.getSelectedRow(), 0).toString());
             lbCliCod.setText(tableDesejo.getValueAt(tableDesejo.getSelectedRow(), 1).toString());
             tfNome.setText(tableDesejo.getValueAt(tableDesejo.getSelectedRow(), 2).toString());
             tfMarca.setText(tableDesejo.getValueAt(tableDesejo.getSelectedRow(), 3).toString());
+            btEditar.setEnabled(true);
+            btExcluir.setEnabled(true);
         }
-
-        btEditar.setEnabled(false);
-        btExcluir.setEnabled(false);
     }//GEN-LAST:event_tableDesejoMouseClicked
 
     private void tableDesejoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableDesejoKeyTyped
@@ -651,7 +649,7 @@ public class FRMListaDesejo extends javax.swing.JFrame {
     }//GEN-LAST:event_tfLocalizarNomeKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    tpGuia.setSelectedIndex(1);
+        tpGuia.setSelectedIndex(1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

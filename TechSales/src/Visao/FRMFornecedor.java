@@ -601,6 +601,8 @@ public class FRMFornecedor extends javax.swing.JFrame {
 
         btExcluir.setEnabled(false);
         btEditar.setEnabled(false);
+        
+        tfCNPJ.setEnabled(false);
 
     }
 

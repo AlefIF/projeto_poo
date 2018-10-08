@@ -25,9 +25,9 @@ public class FRMLogin extends javax.swing.JFrame {
     static VendedorBEAN user = new VendedorBEAN();
     VendedorControle vc = new VendedorControle();
     ArrayList<VendedorBEAN> al = vc.listarALL();
-    CaixaControle caixaC= new CaixaControle();
+    CaixaControle caixaC = new CaixaControle();
     LucroControle lucC = new LucroControle();
-    EmpregoControle cEmp= new EmpregoControle();
+    EmpregoControle cEmp = new EmpregoControle();
 
     /**
      * Creates new form FRMLogin
@@ -36,49 +36,49 @@ public class FRMLogin extends javax.swing.JFrame {
         setResizable(false);
         initComponents();
 
-         //Cadastro Caixa
-        int qtc=0;
+        //Cadastro Caixa
+        int qtc = 0;
         for (CaixaBEAN c : caixaC.listarALL()) {
-           qtc++; 
+            qtc++;
         }
-        if(qtc==0){
-            CaixaBEAN a= new CaixaBEAN();
+        if (qtc == 0) {
+            CaixaBEAN a = new CaixaBEAN();
             a.setCaixaDinheiro(0);
             caixaC.cadastrar(a);
         }
-        
+
         //Cadastro Lucro
-        int qtl=0;      
+        int qtl = 0;
         for (LucroBEAN l : lucC.listarALL()) {
             qtl++;
         }
-        
-        if(qtl==0){
-            LucroBEAN b= new LucroBEAN();
+
+        if (qtl == 0) {
+            LucroBEAN b = new LucroBEAN();
             b.setLucPorcentagem(10);
             lucC.cadastrar(b);
         }
-        
+
         //Cadastro Emprego
-        int qte=0;      
+        int qte = 0;
         for (EmpregoBEAN e : cEmp.listarALL()) {
             qte++;
         }
-        
-        if(qte==0){
-            EmpregoBEAN emp= new EmpregoBEAN();
+
+        if (qte == 0) {
+            EmpregoBEAN emp = new EmpregoBEAN();
             emp.setEmpNome("Vendedor");
             emp.setEmpSalarioPadrao(1000);
             emp.setEmpDescricao("Tem acesso à parte de Funcionarios do sistema");
             cEmp.cadastrar(emp);
-            
-            EmpregoBEAN emp2= new EmpregoBEAN();
+
+            EmpregoBEAN emp2 = new EmpregoBEAN();
             emp.setEmpNome("Administrador");
             emp.setEmpSalarioPadrao(3000);
             emp.setEmpDescricao("Tem acesso à parte de Administrador do sistema");
             cEmp.cadastrar(emp2);
         }
-        
+
     }
 
     /**
@@ -142,7 +142,6 @@ public class FRMLogin extends javax.swing.JFrame {
         jLabel9.setBounds(130, 200, 60, 15);
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
         jButton3.setText("Entrar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,15 +159,14 @@ public class FRMLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
+
     private void rbSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSenhaActionPerformed
         if (rbSenha.isSelected()) {
-            tfSenha.setEchoChar((char) 0); 
+            tfSenha.setEchoChar((char) 0);
         } else {
 
             tfSenha.setEchoChar('*');
-        }                   
+        }
     }//GEN-LAST:event_rbSenhaActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -176,12 +174,20 @@ public class FRMLogin extends javax.swing.JFrame {
         String senha = tfSenha.getText();
         int i = 0;
         for (VendedorBEAN vendedor : al) {
-            if (vendedor.getVenNomeUsuario().equals(nome) && vendedor.getVenSenha().equals(senha)) {          
-                user = vendedor;
-                FRMMenuVendedor fun = new FRMMenuVendedor();
-                this.dispose();
-                fun.setVisible(true);
-                i++;
+            if (vendedor.getVenNomeUsuario().equals(nome) && vendedor.getVenSenha().equals(senha)) {
+                if (vendedor.getFuncionario().getFunTrabalho().equals("Administrador")) {
+                    user = vendedor;
+                    FRMMenuADM fun = new FRMMenuADM();
+                    this.dispose();
+                    fun.setVisible(true);
+                    i++;
+                } else {
+                    user = vendedor;
+                    FRMMenuVendedor fun = new FRMMenuVendedor();
+                    this.dispose();
+                    fun.setVisible(true);
+                    i++;
+                }
             }
         }
         if (i == 0) {

@@ -61,6 +61,8 @@ public class FRMJogo extends javax.swing.JFrame {
         btCadNota.setEnabled(false);
         preencheTabela();
 
+        btExcluir.setEnabled(false);
+        btEditar.setEnabled(false);
     }
 
     private void preencheTabela() {
@@ -222,6 +224,7 @@ public class FRMJogo extends javax.swing.JFrame {
         });
 
         btCadNota.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btCadNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonCadastrar.png"))); // NOI18N
         btCadNota.setText("Cadastrar Nota de Compra");
         btCadNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,7 +247,7 @@ public class FRMJogo extends javax.swing.JFrame {
                 .addComponent(btExcluir)
                 .addGap(18, 18, 18)
                 .addComponent(btCadNota)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,7 +263,7 @@ public class FRMJogo extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(20, 180, 710, 70);
+        jPanel3.setBounds(20, 180, 710, 71);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados do Jogo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
@@ -717,6 +720,8 @@ public class FRMJogo extends javax.swing.JFrame {
         limparCampos();
         tpGuia.setSelectedIndex(0);
         if (tableJogo.getSelectedRow() != -1) {
+            btExcluir.setEnabled(true);
+            btEditar.setEnabled(true);
             JogoBEAN j = jControle.localizarCodigo(Integer.parseInt(tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString()));
             lbCodigoJogo.setText(String.valueOf(j.getJoCodigo()));
             tfNome.setText(String.valueOf(j.getJoNome()));
@@ -763,7 +768,7 @@ public class FRMJogo extends javax.swing.JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(null, "Erro, jogo não disponível no estoque");
-        }       
+        }
     }//GEN-LAST:event_tableJogoMouseClicked
 
     private void tfChaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyPressed
@@ -843,6 +848,9 @@ public class FRMJogo extends javax.swing.JFrame {
         tfQtde.setText("");
         cbFornecedor.setSelectedIndex(0);
         btCadNota.setEnabled(false);
+
+        btExcluir.setEnabled(false);
+        btEditar.setEnabled(false);
 
     }
 

@@ -30,6 +30,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
         initComponents();
         preencheTabela();
         btExcluir.setEnabled(false);
+        btEditar.setEnabled(false);
     }
 
     /**
@@ -88,7 +89,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         btCadastrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonAddJogo.png"))); // NOI18N
+        btCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonCadastrar.png"))); // NOI18N
         btCadastrar.setText("Cadastrar");
         btCadastrar.setMaximumSize(new java.awt.Dimension(73, 23));
         btCadastrar.setMinimumSize(new java.awt.Dimension(73, 23));
@@ -318,6 +319,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
         tfDescricao.setText("");
         tfSalario.setText("");
         btExcluir.setEnabled(false);
+        btEditar.setEnabled(false);
     }
 
     public boolean verificaCampos() {
@@ -395,13 +397,13 @@ public class FRMEmpregro extends javax.swing.JFrame {
     }//GEN-LAST:event_tfChaveKeyTyped
 
     private void tabelaEmpregoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEmpregoMouseClicked
-        //        this.pegaSelecionado();
         if (tabelaEmprego.getSelectedRow() != -1) {
             lbCod.setText(tabelaEmprego.getValueAt(tabelaEmprego.getSelectedRow(), 0).toString());
             tfFuncao.setText(tabelaEmprego.getValueAt(tabelaEmprego.getSelectedRow(), 1).toString());
             tfSalario.setText(tabelaEmprego.getValueAt(tabelaEmprego.getSelectedRow(), 2).toString());
             tfDescricao.setText(tabelaEmprego.getValueAt(tabelaEmprego.getSelectedRow(), 3).toString());
-            btExcluir.setEnabled(true);
+            btExcluir.setEnabled(false);
+            btEditar.setEnabled(false);
         }
     }//GEN-LAST:event_tabelaEmpregoMouseClicked
 

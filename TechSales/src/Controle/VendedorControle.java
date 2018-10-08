@@ -42,7 +42,6 @@ public class VendedorControle {
         Query q = manager.createQuery("from VendedorBEAN");
         ArrayList<VendedorBEAN> catList = (ArrayList<VendedorBEAN>) q.getResultList();
         tx.commit();
-        //fechar();
         return catList;
     }
 
@@ -55,7 +54,6 @@ public class VendedorControle {
         try {
             começar();
             tx.commit();
-            // fechar();
             return true;
         } catch (HibernateException e) {
             return false;
@@ -68,42 +66,10 @@ public class VendedorControle {
             VendedorBEAN a = localizar(c);
             manager.remove(a);
             tx.commit();
-            //fechar();
             return true;
         } catch (Exception e) {
             return false;
         }
     }
-    //Perguntar ao Manoel
-
-    public boolean verificaLogin(String senha) {
-        boolean verifica = false;
-        ArrayList<VendedorBEAN> al = listarALL();
-        for (VendedorBEAN f : al) {
-            if ((f.getVenNomeUsuario().equals("ADM")) && (f.getVenSenha().equals(senha))) {
-                verifica = true;
-            }
-        }
-        return verifica;
-    }
-
-    public boolean verificaLogin2(String login, String senha) {
-        boolean verifica = false;
-        ArrayList<VendedorBEAN> al = listarALL();
-        for (VendedorBEAN f : al) {
-            if ((f.getVenNomeUsuario().equals(login)) && (f.getVenSenha().equals(senha))) {
-                verifica = true;
-            }
-        }
-        return verifica;
-    }
-
-    public ArrayList<VendedorBEAN> readForNome(String a) {
-        começar();
-        Query q = manager.createQuery("from VendedorBEAN WHERE venNomeUsuario LIKE" + a);
-        ArrayList<VendedorBEAN> funList = (ArrayList<VendedorBEAN>) q.getResultList();
-        tx.commit();
-        return funList;
-    }
-
+   
 }

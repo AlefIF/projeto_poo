@@ -73,9 +73,9 @@ public class FRMLogin extends javax.swing.JFrame {
             cEmp.cadastrar(emp);
 
             EmpregoBEAN emp2 = new EmpregoBEAN();
-            emp.setEmpNome("Administrador");
-            emp.setEmpSalarioPadrao(3000);
-            emp.setEmpDescricao("Tem acesso à parte de Administrador do sistema");
+            emp2.setEmpNome("Administrador");
+            emp2.setEmpSalarioPadrao(3000);
+            emp2.setEmpDescricao("Tem acesso à parte de Administrador do sistema");
             cEmp.cadastrar(emp2);
         }
 
@@ -164,7 +164,6 @@ public class FRMLogin extends javax.swing.JFrame {
         if (rbSenha.isSelected()) {
             tfSenha.setEchoChar((char) 0);
         } else {
-
             tfSenha.setEchoChar('*');
         }
     }//GEN-LAST:event_rbSenhaActionPerformed
@@ -173,8 +172,18 @@ public class FRMLogin extends javax.swing.JFrame {
         String nome = tfUser.getText();
         String senha = tfSenha.getText();
         int i = 0;
+        if (nome.equals("ADM") && (senha.equals("ADM"))) {
+            if(al.size()==0){
+                FRMMenuADM adm = new FRMMenuADM();
+                this.dispose();
+                adm.setVisible(true);               
+            }else{
+                System.out.println("Essa configuração de Senha só pode ser usada se não existir Administrador caadstrado");
+            }
+            i++;
+        }               
         for (VendedorBEAN vendedor : al) {
-            if (vendedor.getVenNomeUsuario().equals(nome) && vendedor.getVenSenha().equals(senha)) {
+            if (vendedor.getVendedorNomeUsuario().equals(nome) && vendedor.getVendedorSenha().equals(senha)) {
                 if (vendedor.getFuncionario().getFunTrabalho().equals("Administrador")) {
                     user = vendedor;
                     FRMMenuADM fun = new FRMMenuADM();
@@ -191,15 +200,8 @@ public class FRMLogin extends javax.swing.JFrame {
             }
         }
         if (i == 0) {
-            if (nome.equals("ADM") && (senha.equals("ADM"))) {
-                FRMMenuADM adm = new FRMMenuADM();
-                this.dispose();
-                adm.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuário  não encontrado!");
-            }
+            JOptionPane.showMessageDialog(null, "Usuário  não encontrado!");
         }
-
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btSairProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairProgramaActionPerformed

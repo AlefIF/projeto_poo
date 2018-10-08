@@ -78,7 +78,7 @@ public class FRMVenda extends javax.swing.JFrame {
         preencheTabelaCarro2();
         preencheTabelaVenda();
         preencheTabelaPrazo(cod);
-        lbVendedorCod.setText(String.valueOf(FRMLogin.user.getVenCodigo()));
+        lbVendedorCod.setText(String.valueOf(FRMLogin.user.getVendedorCodigo()));
     }
 
     private void preencheTabelaVenda() {

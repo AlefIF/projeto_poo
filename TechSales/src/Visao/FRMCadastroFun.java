@@ -653,8 +653,8 @@ public class FRMCadastroFun extends javax.swing.JFrame {
 
             for (VendedorBEAN v : vc.listarALL()) {
                 if (v.getFuncionario().getFunCodigo() == f.getFunCodigo()) {
-                    tfNomeUser.setText(v.getVenNomeUsuario());
-                    tfSenhaUser.setText(v.getVenSenha());
+                    tfNomeUser.setText(v.getVendedorNomeUsuario());
+                    tfSenhaUser.setText(v.getVendedorSenha());
                 }
             }
 
@@ -728,8 +728,8 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         FuncionarioBEAN c = ct.localizarCodigo(Integer.parseInt(lbCodigo.getText()));
         for (VendedorBEAN a : vc.listarALL()) {
             if (a.getFuncionario().getFunCodigo() == c.getFunCodigo()) {
-                VendedorBEAN v = vc.localizar(a.getVenCodigo());
-                vc.remover(v.getVenCodigo());
+                VendedorBEAN v = vc.localizar(a.getVendedorCodigo());
+                vc.remover(v.getVendedorCodigo());
             }
         }
 
@@ -863,8 +863,8 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         if (e.getEmpNome().equals("Vendedor")) {
             VendedorBEAN v = new VendedorBEAN();
             v.setFuncionario(c);
-            v.setVenNomeUsuario(tfNomeUser.getText());
-            v.setVenSenha(tfSenhaUser.getText());
+            v.setVendedorNomeUsuario(tfNomeUser.getText());
+            v.setVendedorSenha(tfSenhaUser.getText());
             vc.cadastrar(v);
         }
 
@@ -894,9 +894,9 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         if (e.getEmpNome().equals("Vendedor")) {
             for (VendedorBEAN a : vc.listarALL()) {
                 if (a.getFuncionario().getFunCodigo() == c.getFunCodigo()) {
-                    VendedorBEAN v = vc.localizar(a.getVenCodigo());
-                    v.setVenNomeUsuario(tfNomeUser.getText());
-                    v.setVenSenha(tfSenhaUser.getText());
+                    VendedorBEAN v = vc.localizar(a.getVendedorCodigo());
+                    v.setVendedorNomeUsuario(tfNomeUser.getText());
+                    v.setVendedorSenha(tfSenhaUser.getText());
                     vc.editar(v);
                 }
             }

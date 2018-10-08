@@ -64,7 +64,7 @@ public class DevolucaoBEAN {
     }
 
     @OneToOne
-    @JoinColumn(name = "dev_loCodigo")
+    @JoinColumn(name = "dev_locCodigo")
     public LocacaoBEAN getLocacao() {
         return locacao;
     }

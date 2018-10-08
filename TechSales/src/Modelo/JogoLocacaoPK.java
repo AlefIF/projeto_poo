@@ -23,7 +23,7 @@ public class JogoLocacaoPK implements Serializable {
     private JogoBEAN jogo;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "venCod")
+    @JoinColumn(name = "locCod")
     private LocacaoBEAN locacao;
 
     public JogoBEAN getJogo() {

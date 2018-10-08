@@ -21,48 +21,45 @@ import javax.persistence.Table;
 @Table(name = "vendedor")
 public class VendedorBEAN {
 
-    private int venCodigo;
-    private String venNomeUsuario;
-    private String venSenha;
+    private int vendedorCodigo;
+    private String vendedorNomeUsuario;
+    private String vendedorSenha;
     private FuncionarioBEAN funcionario;
-  
 
     @Id
     @GeneratedValue
-    public int getVenCodigo() {
-        return venCodigo;
+    public int getVendedorCodigo() {
+        return vendedorCodigo;
     }
 
-    public void setVenCodigo(int venCodigo) {
-        this.venCodigo = venCodigo;
+    public void setVendedorCodigo(int vendedorCodigo) {
+        this.vendedorCodigo = vendedorCodigo;
     }
 
-    public String getVenNomeUsuario() {
-        return venNomeUsuario;
+    public String getVendedorNomeUsuario() {
+        return vendedorNomeUsuario;
     }
 
-    public void setVenNomeUsuario(String venNomeUsuario) {
-        this.venNomeUsuario = venNomeUsuario;
+    public void setVendedorNomeUsuario(String vendedorNomeUsuario) {
+        this.vendedorNomeUsuario = vendedorNomeUsuario;
     }
 
-    public String getVenSenha() {
-        return venSenha;
+    public String getVendedorSenha() {
+        return vendedorSenha;
     }
 
-    public void setVenSenha(String venSenha) {
-        this.venSenha = venSenha;
-    }
-
-    @ManyToOne
-    @JoinColumn(name="ven_funCodigo")
-    public FuncionarioBEAN getFuncionario() {
-        return funcionario;
+    public void setVendedorSenha(String vendedorSenha) {
+        this.vendedorSenha = vendedorSenha;
     }
 
     public void setFuncionario(FuncionarioBEAN funcionario) {
         this.funcionario = funcionario;
     }
 
-    
+    @ManyToOne
+    @JoinColumn(name = "vendedor_funCodigo")
+    public FuncionarioBEAN getFuncionario() {
+        return funcionario;
+    }
 
 }

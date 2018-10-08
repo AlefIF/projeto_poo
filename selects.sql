@@ -69,12 +69,12 @@ GROUP BY joCodigo
 ORDER BY NAlocações asc
 LIMIT 10;
 /*Nota de Conmpra*/
-SELECT *from notadecompra where ndcCodigo=0;
+SELECT *from notadecompra;
 /*Nota de conta*/
-SELECT *from contas where conCodigo=0;
+SELECT *from contas;
 /*Venda por vendedor*/
 SELECT 
-	funCodigo,funNome,count(vendaCodigo) as 'NVendasRealizadas'
+	funCodigo,funNome,count(vendaCodigo)as 'NumeroDeVendas',sum(vendaValorTotal) as 'Valor total de Vendas' 
 FROM 
 	funcionario 
 			JOIN
@@ -88,13 +88,42 @@ WHERE
 GROUP BY 
 	funCodigo
 ORDER BY
-	NVendasRealizadas 
+	NumeroDeVendas 
 		desc;  
-/*Venda por periodo*/
-Select  sum(vendaCodigo) as 'Quantidade de vendas' from venda where vendaData 
-BETWEEN 'dataInicio' and 'dataFinal';
-/*Aluguel por periodo*/
-Select  sum(locCodigo) as 'Quantidade de alugueis' from locacao where locDataAluguel 
-BETWEEN 'dataInicio' and 'dataFinal';
-/*Lucro por ano*/
+/*Lucro  de um jogo de aluguel por período*/
+SELECT joCodigo, joNome, count(locCodigo) as 'Quantidade de alugueis',sum(devValor) 'ValorRendido'
+FROM  jogo JOIN jogo_locacao JOIN locacao JOIN devolucao
+WHERE joCodigo=joCod AND locCod=locCodigo AND locCodigo=dev_loCodigo
+BETWEEN 'dataInicio' AND 'dataFinal'
+GROUP BY  joCodigo
+ORDER BY ValorRendido;
+/*Lucro  de um jogo de venda por período*/
+SELECT joCodigo, joNome, count(vendaCodigo) as 'Quantidade de vendas',sum(vendaValorTotal) 'ValorRendido'
+FROM  jogo JOIN jogo_venda JOIN venda 
+WHERE joCodigo=joCod AND venCod=vendaCodigo 
+BETWEEN 'dataInicio' AND 'dataFinal'
+GROUP BY  joCodigo
+ORDER BY ValorRendido;
+/*Venda por vendedor*/
+SELECT 
+	funCodigo,funNome,count(vendaCodigo)as 'NumeroDeVendas',
+    sum(vendaValorTotal) as 'Valor total de Vendas' ,
+    count(locCodigo) 'Quantidade de alugueis',sum(devValor)as 'Valor total de Alugueis'
+    ,('Valor total de Vendas'+'Valor total de Alugueis') as 'MontanteTotal'
+FROM 
+	funcionario JOIN vendedor JOIN venda JOIN locacao JOIN devolucao
+WHERE 
+	funCodigo=vendedor_funCodigo AND vendedorCodigo=venda_vendedorCodigo
+    AND  loc_vendedorCodigo=venCodigo and locCodigo=dev_locCodigo
+GROUP BY 
+	funCodigo
+ORDER BY
+	MontanteTotal desc; 
+
+
+
+
+
+
+
 

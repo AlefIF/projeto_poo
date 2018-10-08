@@ -62,7 +62,7 @@ public class FRMTransacao extends javax.swing.JFrame {
         initComponents();
         preencheall();
         setResizable(false);
-        lbVendedorCod.setText(String.valueOf(FRMLogin.user.getVenCodigo()));
+        lbVendedorCod.setText(String.valueOf(FRMLogin.user.getVendedorCodigo()));
     }
 
     /**
@@ -1587,7 +1587,7 @@ public class FRMTransacao extends javax.swing.JFrame {
                     for (JogoBEAN jogo : contJog.listarALL()) {
                         if (jogo.getJoCodigo() == jl.getChaveComposta().getJogo().getJoCodigo()) {
                             modelAllLoc.addRow(new Object[]{loc.getLocCodigo(), jogo.getJoCodigo(),
-                                loc.getCliente().getCod(), loc.getVendedor().getVenCodigo(), jogo.getJoNome(),
+                                loc.getCliente().getCod(), loc.getVendedor().getVendedorCodigo(), jogo.getJoNome(),
                                 jl.getJlQtd(), loc.getLocPrecoUnit(), loc.getLocPreçoTotal(),
                                 loc.getLocStatus(), loc.getLocDataAluguel(), loc.getLocDataDevolucao()});
                         }

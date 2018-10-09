@@ -22,49 +22,73 @@ select * from listadesejo;
 
 /* Jogos menos vendidos*/
 SELECT 
-    joCodigo, joNome, SUM(jvQdt) AS 'NVendas'
+    joCodigo, joNome, SUM(jvQdt) AS 'NVendas',sum(vendaValorTotal)'Valor total de Venda'
 FROM
     jogo
         JOIN
     jogo_venda
+		JOIN
+    venda    
 WHERE
     joCodigo = joCod
+			AND
+	venCod = vendaCodigo
 GROUP BY joCodigo
 ORDER BY NVendas asc
 LIMIT 10;
 /*jogos mais vendidos*/
 SELECT 
-    joCodigo, joNome, SUM(jvQdt) AS 'NVendas'
+    joCodigo, joNome, SUM(jvQdt) AS 'NVendas',sum(vendaValorTotal)'Valor total de Venda'
 FROM
     jogo
         JOIN
     jogo_venda
+    	JOIN
+    venda  
 WHERE
     joCodigo = joCod
+			AND
+	venCod = vendaCodigo
 GROUP BY joCodigo
 ORDER BY NVendas desc
 LIMIT 10;
 /*jogos mais alugados*/
 SELECT 
-    joCodigo, joNome, SUM(jlQtd) AS 'NAlocações'
+    joCodigo, joNome, SUM(jlQtd) AS 'NAlocações',sum(devValor) AS 'Valor Total'
 FROM
     jogo
         JOIN
     jogo_locacao
+		JOIN 
+	locacao
+		JOIN
+	devolucao
 WHERE
     joCodigo = joCod
+			AND
+	locCod=locCodigo
+			AND
+	locCodigo=dev_locCodigo
 GROUP BY joCodigo
 ORDER BY NAlocações desc
 LIMIT 10;
 /*jogos menos alugados*/
 SELECT 
-    joCodigo, joNome, SUM(jlQtd) AS 'NAlocações'
+    joCodigo, joNome, SUM(jlQtd) AS 'NAlocações',sum(devValor) AS 'Valor Total'
 FROM
     jogo
         JOIN
     jogo_locacao
+		JOIN 
+	locacao
+		JOIN
+	devolucao
 WHERE
     joCodigo = joCod
+			AND
+	locCod=locCodigo
+			AND
+	locCodigo=dev_locCodigo
 GROUP BY joCodigo
 ORDER BY NAlocações asc
 LIMIT 10;
@@ -82,7 +106,7 @@ FROM
 			JOIN
 	venda
 WHERE 
-	funCodigo=ven_funCodigo 
+	funCodigo=vendedor_funCodigo 
 			AND
     venCodigo=venda_vendedorCodigo
 GROUP BY 
@@ -104,7 +128,7 @@ WHERE joCodigo=joCod AND venCod=vendaCodigo
 BETWEEN 'dataInicio' AND 'dataFinal'
 GROUP BY  joCodigo
 ORDER BY ValorRendido;
-/*Venda por vendedor*/
+/*Montante total por vendedor*/
 SELECT 
 	funCodigo,funNome,count(vendaCodigo)as 'NumeroDeVendas',
     sum(vendaValorTotal) as 'Valor total de Vendas' ,
@@ -114,7 +138,7 @@ FROM
 	funcionario JOIN vendedor JOIN venda JOIN locacao JOIN devolucao
 WHERE 
 	funCodigo=vendedor_funCodigo AND vendedorCodigo=venda_vendedorCodigo
-    AND  loc_vendedorCodigo=venCodigo and locCodigo=dev_locCodigo
+    AND  loc_vendedorCodigo=vendedorCodigo and locCodigo=dev_locCodigo
 GROUP BY 
 	funCodigo
 ORDER BY

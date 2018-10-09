@@ -171,6 +171,8 @@ public class FRMLogin extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String nome = tfUser.getText();
         String senha = tfSenha.getText();
+        String admL= "Administrador";
+        
         int i = 0;
         if (nome.equals("ADM") && (senha.equals("ADM"))) {
             if(al.size()==0){
@@ -184,7 +186,7 @@ public class FRMLogin extends javax.swing.JFrame {
         }               
         for (VendedorBEAN vendedor : al) {
             if (vendedor.getVendedorNomeUsuario().equals(nome) && vendedor.getVendedorSenha().equals(senha)) {
-                if (vendedor.getFuncionario().getFunTrabalho().equals("Administrador")) {
+                if (vendedor.getFuncionario().getEmprego().getEmpNome().equals(admL)) {
                     user = vendedor;
                     FRMMenuADM fun = new FRMMenuADM();
                     this.dispose();

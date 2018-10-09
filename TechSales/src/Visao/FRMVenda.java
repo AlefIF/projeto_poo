@@ -1632,6 +1632,8 @@ public class FRMVenda extends javax.swing.JFrame {
         insertJogo.clear();
         preencheTabelaCarro1();
         preencheTabelaCarro2();
+        preencheTabelaJogo();
+        preencheTabelaVenda();      
     }
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         VendaAPrazoBEAN j = cVendaPrazo.localizarCodigo(Integer.parseInt(lbCodPar.getText()));

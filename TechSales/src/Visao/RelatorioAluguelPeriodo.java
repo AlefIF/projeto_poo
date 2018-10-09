@@ -7,17 +7,14 @@ package Visao;
 
 /**
  *
- * @author Maycon Jonathan
+ * @author polo
  */
-public class RELvendaPeriodo extends javax.swing.JFrame {
+public class RelatorioAluguelPeriodo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FRMVendaPeriodo
-     */
-    public RELvendaPeriodo() {
+    public RelatorioAluguelPeriodo() {
         initComponents();
-        setSize(380, 250);
-        setResizable(false);
+        setSize(400, 280);
+
     }
 
     /**
@@ -29,18 +26,31 @@ public class RELvendaPeriodo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jLabel4 = new javax.swing.JLabel();
+        btRelatorioCliente = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         tfDataI = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
         tfDataF = new javax.swing.JFormattedTextField();
-        jLabel1 = new javax.swing.JLabel();
-        btRelatorioCliente = new javax.swing.JButton();
 
-        jInternalFrame1.setVisible(true);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/back2.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Exemplo Relatório");
+
+        btRelatorioCliente.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btRelatorioCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonImprimir.png"))); // NOI18N
+        btRelatorioCliente.setText("Gerar Relatório");
+        btRelatorioCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRelatorioClienteActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setText("Relatório de Alugueis por Período");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Insira as Datas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
@@ -96,45 +106,34 @@ public class RELvendaPeriodo extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel1.setText("Relatório de Vendas por Período");
-
-        btRelatorioCliente.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btRelatorioCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonImprimir.png"))); // NOI18N
-        btRelatorioCliente.setText("Gerar Relatório");
-        btRelatorioCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRelatorioClienteActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(26, 26, 26))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
+                        .addGap(91, 91, 91)
                         .addComponent(btRelatorioCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(107, 107, 107))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(btRelatorioCliente)
-                .addGap(19, 19, 19))
+                .addContainerGap())
         );
 
         pack();
@@ -144,11 +143,11 @@ public class RELvendaPeriodo extends javax.swing.JFrame {
         java.sql.Date dataInicio = java.sql.Date.valueOf(String.valueOf(tfDataI.getText()));
         java.sql.Date dataFinal = java.sql.Date.valueOf(String.valueOf(tfDataF.getText()));
         String query = "SELECT \n"
-                + "    venCodigo, venNNF, venData\n"
-                + "FROM\n"
-                + "    venda\n"
-                + "WHERE\n"
-                + "venData BETWEEN " + "'" + dataInicio + "'" + " AND " + "'" + dataFinal + "'" + "group by venCodigo;";
+        + "    venCodigo, venNNF, venData\n"
+        + "FROM\n"
+        + "    venda\n"
+        + "WHERE\n"
+        + "venData BETWEEN " + "'" + dataInicio + "'" + " AND " + "'" + dataFinal + "'" + "group by venCodigo;";
 
         try {
 
@@ -178,37 +177,30 @@ public class RELvendaPeriodo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RELvendaPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioAluguelPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RELvendaPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioAluguelPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RELvendaPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioAluguelPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RELvendaPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioAluguelPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RELvendaPeriodo().setVisible(true);
+                new RelatorioAluguelPeriodo().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btRelatorioCliente;
-    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JFormattedTextField tfDataF;
     private javax.swing.JFormattedTextField tfDataI;

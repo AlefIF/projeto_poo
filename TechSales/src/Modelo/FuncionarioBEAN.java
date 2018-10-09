@@ -28,7 +28,6 @@ public class FuncionarioBEAN {
     private String funTelefone;
     private String funNisPis;
     private float funSalario;
-    private String funTrabalho;
     private String funEmail;
     private EnderecoBEAN endereco;
     private CaixaBEAN caixa;
@@ -90,14 +89,6 @@ public class FuncionarioBEAN {
 
     public void setFunSalario(float funSalario) {
         this.funSalario = funSalario;
-    }
-
-    public String getFunTrabalho() {
-        return funTrabalho;
-    }
-
-    public void setFunTrabalho(String funTrabalho) {
-        this.funTrabalho = funTrabalho;
     }
 
     public String getFunEmail() {

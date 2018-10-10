@@ -7,6 +7,7 @@ package Controle;
 
 import Modelo.CaixaBEAN;
 import Modelo.JogoBEAN;
+import Modelo.MontanteBEAN;
 import Modelo.NotaDecompraBEAN;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -180,14 +181,14 @@ public class ControleRelatorios {
         }
         return jogoAL;
     }
-  
+
     /*---------------------------------------*/
-    public ArrayList<JogoBEAN> montanteVendedor() {
+    public ArrayList<MontanteBEAN> montanteVendedor() {
         String sql = "SELECT \n"
                 + "	funCodigo,funNome,count(vendaCodigo)as 'NumeroDeVendas',\n"
                 + "    sum(vendaValorTotal) as 'Valor total de Vendas' ,\n"
-                + "    count(locCodigo) 'Quantidade de alugueis',sum(devValor)as 'Valor total de Alugueis'\n"
-                + "    ,('Valor total de Vendas'+'Valor total de Alugueis') as 'MontanteTotal'\n"
+                + "    count(locCodigo) 'Quantidade de alugueis',sum(devValor) as 'Valor total de Alugueis'\n"
+                + "    ,(sum(vendaValorTotal)+sum(devValor)) as 'MontanteTotal'\n"
                 + "FROM \n"
                 + "	funcionario JOIN vendedor JOIN venda JOIN locacao JOIN devolucao\n"
                 + "WHERE \n"
@@ -197,6 +198,31 @@ public class ControleRelatorios {
                 + "	funCodigo\n"
                 + "ORDER BY\n"
                 + "	MontanteTotal desc;";
+        ArrayList<MontanteBEAN> jogoAL = new ArrayList<MontanteBEAN>();
+        try {
+            stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                MontanteBEAN c = new MontanteBEAN();
+                c.setFunCodigo(rs.getInt("funCodigo"));
+                c.setFunNome(rs.getString(2));
+                c.setnVendas(rs.getInt(3));
+                c.setValorVendas(rs.getFloat(4));
+                c.setnAluguel(rs.getInt(5));
+                c.setValorAluguel(rs.getFloat(6));
+                c.setValorTotal(rs.getFloat(7));
+                jogoAL.add(c);
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return jogoAL;
+    }
+
+    /*-----------------------*/
+    public ArrayList<JogoBEAN> vendaPorPeriodo(String s) {
+        String sql = s;
         ArrayList<JogoBEAN> jogoAL = new ArrayList<JogoBEAN>();
         try {
             stmt = connection.prepareStatement(sql);
@@ -207,6 +233,66 @@ public class ControleRelatorios {
                 c.setJoNome(rs.getString(2));
                 c.setJoQtd(rs.getInt(3));
                 c.setJoPrecoPadrao(rs.getFloat(4));
+                jogoAL.add(c);
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return jogoAL;
+    }
+
+    /*-----------------------------------------*/
+    public ArrayList<JogoBEAN> aluguelPorPeriodo(String s) {
+        String sql = s;
+        ArrayList<JogoBEAN> jogoAL = new ArrayList<JogoBEAN>();
+        try {
+            stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                JogoBEAN c = new JogoBEAN();
+                c.setJoCodigo(rs.getInt("joCodigo"));
+                c.setJoNome(rs.getString(2));
+                c.setJoQtd(rs.getInt(3));
+                c.setJoPrecoPadrao(rs.getFloat(4));
+                jogoAL.add(c);
+            }
+            stmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return jogoAL;
+    }
+
+    /*----------------------------------*/
+    public ArrayList<MontanteBEAN> montanteCliente() {
+        String sql = "    SELECT \n"
+                + "	cliCodigo,cliNome,count(vendaCodigo)as 'Numero de vendas',\n"
+                + "    sum(vendaValorTotal) as 'Valor total de vendas' ,\n"
+                + "    count(locCodigo) 'Quantidade de alugueis',sum(devValor) as 'Valor total de alugueis'\n"
+                + "    ,(sum(vendaValorTotal)+sum(devValor)) as 'MontanteTotal'\n"
+                + "FROM \n"
+                + "	cliente JOIN venda JOIN locacao JOIN devolucao\n"
+                + "WHERE \n"
+                + "	cliCodigo=venda_clienteCodigo and cod=loc_clienteCodigo\n"
+                + "    and locCodigo=dev_locCodigo\n"
+                + "GROUP BY \n"
+                + "	cliCodigo\n"
+                + "ORDER BY\n"
+                + "	MontanteTotal desc; ";
+        ArrayList<MontanteBEAN> jogoAL = new ArrayList<MontanteBEAN>();
+        try {
+            stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                MontanteBEAN c = new MontanteBEAN();
+                c.setFunCodigo(rs.getInt("cliCodigo"));
+                c.setFunNome(rs.getString(2));
+                c.setnVendas(rs.getInt(3));
+                c.setValorVendas(rs.getFloat(4));
+                c.setnAluguel(rs.getInt(5));
+                c.setValorAluguel(rs.getFloat(6));
+                c.setValorTotal(rs.getFloat(7));
                 jogoAL.add(c);
             }
             stmt.close();

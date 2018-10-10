@@ -1086,8 +1086,8 @@ public class FRMTransacao extends javax.swing.JFrame {
         dTableCliente.addColumn("email");
 
         for (ClienteBEAN dado : contCli.listarALL()) {
-            dTableCliente.addRow(new Object[]{dado.getCod(), dado.getNome(), dado.getIdade(),
-                dado.getTelefone(), dado.getCpf(), dado.getEmail()});
+            dTableCliente.addRow(new Object[]{dado.getCliCodigo(), dado.getCliNome(), dado.getCliIdade(),
+                dado.getCliTelefone(), dado.getCliCpf(), dado.getCliEmail()});
 
         }
         //set o modelo da tabela
@@ -1192,7 +1192,7 @@ public class FRMTransacao extends javax.swing.JFrame {
 
         for (ClienteBEAN cli : contCli.listarALL()) {
             for (LocacaoBEAN loc : contLoc.listarALL()) {
-                if (cli.getCod() == loc.getCliente().getCod()) {
+                if (cli.getCliCodigo()== loc.getCliente().getCliCodigo()) {
                     for (JogoLocacaoBEAN jl : cJl.listarALL()) {
                         if (loc.getLocCodigo() == jl.getChaveComposta().getLocacao().getLocCodigo()) {
                             for (JogoBEAN jogo : contJog.listarALL()) {
@@ -1313,10 +1313,10 @@ public class FRMTransacao extends javax.swing.JFrame {
     private void btSelectCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelectCliActionPerformed
         if (tbCliente.getSelectedRow() != -1) {
             ClienteBEAN c = contCli.localizarCodigo(Integer.parseInt(tbCliente.getValueAt(tbCliente.getSelectedRow(), 0).toString()));
-            lbCliCod.setText(String.valueOf(c.getCod()));
-            lbCliDev.setText(String.valueOf(c.getCod()));
+            lbCliCod.setText(String.valueOf(c.getCliCodigo()));
+            lbCliDev.setText(String.valueOf(c.getCliCodigo()));
             tpGuia.setSelectedIndex(0);
-            clienteCodigo = c.getCod();
+            clienteCodigo = c.getCliCodigo();
             preencheTabelaLoc(clienteCodigo);
         }
     }//GEN-LAST:event_btSelectCliActionPerformed
@@ -1587,7 +1587,7 @@ public class FRMTransacao extends javax.swing.JFrame {
                     for (JogoBEAN jogo : contJog.listarALL()) {
                         if (jogo.getJoCodigo() == jl.getChaveComposta().getJogo().getJoCodigo()) {
                             modelAllLoc.addRow(new Object[]{loc.getLocCodigo(), jogo.getJoCodigo(),
-                                loc.getCliente().getCod(), loc.getVendedor().getVendedorCodigo(), jogo.getJoNome(),
+                                loc.getCliente().getCliCodigo(), loc.getVendedor().getVendedorCodigo(), jogo.getJoNome(),
                                 jl.getJlQtd(), loc.getLocPrecoUnit(), loc.getLocPreçoTotal(),
                                 loc.getLocStatus(), loc.getLocDataAluguel(), loc.getLocDataDevolucao()});
                         }

@@ -15,62 +15,62 @@ import javax.persistence.Table;
 @Table(name = "cliente")
 public class ClienteBEAN {
 
-    private int cod;
-    private String nome;
-    private int idade;
-    private String cpf;
-    private String telefone;
-    private String email;
+    private int cliCodigo;
+    private String cliNome;
+    private int cliIdade;
+    private String cliCpf;
+    private String cliTelefone;
+    private String cliEmail;
     private EnderecoBEAN endereco;
 
     @Id
     @GeneratedValue
-    public int getCod() {
-        return cod;
+    public int getCliCodigo() {
+        return cliCodigo;
     }
 
-    public void setCod(int cod) {
-        this.cod = cod;
+    public void setCliCodigo(int cliCodigo) {
+        this.cliCodigo = cliCodigo;
     }
 
-    public String getNome() {
-        return nome;
+    public String getCliNome() {
+        return cliNome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setCliNome(String cliNome) {
+        this.cliNome = cliNome;
     }
 
-    public int getIdade() {
-        return idade;
+    public int getCliIdade() {
+        return cliIdade;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public void setCliIdade(int cliIdade) {
+        this.cliIdade = cliIdade;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getCliCpf() {
+        return cliCpf;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setCliCpf(String cliCpf) {
+        this.cliCpf = cliCpf;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getCliTelefone() {
+        return cliTelefone;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setCliTelefone(String cliTelefone) {
+        this.cliTelefone = cliTelefone;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCliEmail() {
+        return cliEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCliEmail(String cliEmail) {
+        this.cliEmail = cliEmail;
     }
 
     @Embedded

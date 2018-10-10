@@ -221,14 +221,12 @@ public class FRMMenuVendedor extends javax.swing.JFrame {
 
     private void jbGerenciarConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGerenciarConsoleActionPerformed
         FRMConsole console = new FRMConsole();
-        this.dispose();
         console.setVisible(true);
     }//GEN-LAST:event_jbGerenciarConsoleActionPerformed
 
     private void jbGerenciarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGerenciarCategoriaActionPerformed
         FRMCategoria cat = new FRMCategoria();
         cat.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jbGerenciarCategoriaActionPerformed
 
     private void btRVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRVendaActionPerformed

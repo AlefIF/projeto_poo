@@ -5,6 +5,15 @@
  */
 package Visao;
 
+import static Modelo.RelatoriosBEAN.relatorioAluguelJogoPeriodo;
+import com.itextpdf.text.DocumentException;
+import java.io.FileNotFoundException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author polo
@@ -140,18 +149,39 @@ public class RelatorioAluguelPeriodo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btRelatorioClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRelatorioClienteActionPerformed
-        java.sql.Date dataInicio = java.sql.Date.valueOf(String.valueOf(tfDataI.getText()));
-        java.sql.Date dataFinal = java.sql.Date.valueOf(String.valueOf(tfDataF.getText()));
-        String query = "SELECT \n"
-        + "    venCodigo, venNNF, venData\n"
-        + "FROM\n"
-        + "    venda\n"
-        + "WHERE\n"
-        + "venData BETWEEN " + "'" + dataInicio + "'" + " AND " + "'" + dataFinal + "'" + "group by venCodigo;";
+        java.sql.Date dataInicio = null;
+        java.sql.Date dataFinal = null;
 
         try {
+            String dataString = tfDataI.getText();
+            DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+            dataInicio = new java.sql.Date(fmt.parse(dataString).getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-        } catch (Exception x) {
+        try {
+            String dataString = tfDataF.getText();
+            DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+            dataFinal = new java.sql.Date(fmt.parse(dataString).getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        String query = "SELECT joCodigo, joNome, count(locCodigo) as 'Quantidade de alugueis',sum(devValor) 'ValorRendido'\n"
+                + "FROM  jogo JOIN jogo_locacao JOIN locacao JOIN devolucao\n"
+                + "WHERE joCodigo=joCod AND locCod=locCodigo AND locCodigo=dev_loCodigo\n"
+                + "AND devData\n"
+                + "BETWEEN '" + dataInicio + "' AND '" + dataFinal + "'\n"
+                + "GROUP BY  joCodigo\n"
+                + "ORDER BY ValorRendido;";
+
+        try {
+            relatorioAluguelJogoPeriodo(query, tfDataI.getText(), tfDataF.getText());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(RELvendaPeriodo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(RELvendaPeriodo.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_btRelatorioClienteActionPerformed
@@ -205,4 +235,5 @@ public class RelatorioAluguelPeriodo extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField tfDataF;
     private javax.swing.JFormattedTextField tfDataI;
     // End of variables declaration//GEN-END:variables
+
 }

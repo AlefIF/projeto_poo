@@ -260,8 +260,8 @@ public class FRMVenda extends javax.swing.JFrame {
         dTableCliente.addColumn("email");
 
         for (ClienteBEAN dado : cCliente.listarALL()) {
-            dTableCliente.addRow(new Object[]{dado.getCod(), dado.getNome(), dado.getIdade(),
-                dado.getTelefone(), dado.getCpf(), dado.getEmail()});
+            dTableCliente.addRow(new Object[]{dado.getCliCodigo(), dado.getCliNome(), dado.getCliIdade(),
+                dado.getCliTelefone(), dado.getCliCpf(), dado.getCliEmail()});
 
         }
         //set o modelo da tabela
@@ -1283,7 +1283,7 @@ public class FRMVenda extends javax.swing.JFrame {
     private void tableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableClienteMouseClicked
         if (tableCliente.getSelectedRow() != -1) {
             ClienteBEAN c = cCliente.localizarCodigo(Integer.parseInt(tableCliente.getValueAt(tableCliente.getSelectedRow(), 0).toString()));
-            lbCliCod.setText(String.valueOf(c.getCod()));
+            lbCliCod.setText(String.valueOf(c.getCliCodigo()));
             tpGuia.setSelectedIndex(0);
         }
     }//GEN-LAST:event_tableClienteMouseClicked

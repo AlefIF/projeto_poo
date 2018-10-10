@@ -31,6 +31,7 @@ public class FRMConsole extends javax.swing.JFrame {
         initComponents();
         btExcluir.setEnabled(false);
         btEditar.setEnabled(false);
+        preencheTabela();
     }
 
     private void preencheTabela() {
@@ -268,8 +269,8 @@ public class FRMConsole extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setText("Cadastro console");
 
-        btVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
-        btVoltar.setText("Voltar");
+        btVoltar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btVoltar.setText("Fechar");
         btVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btVoltarActionPerformed(evt);
@@ -361,53 +362,57 @@ public class FRMConsole extends javax.swing.JFrame {
     }//GEN-LAST:event_tfChaveKeyTyped
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
-        FRMMenuVendedor fun = new FRMMenuVendedor();
         this.dispose();
-        fun.setVisible(true);
     }//GEN-LAST:event_btVoltarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         boolean retorno = cCon.remover(Integer.parseInt(lbCodCon.getText()));
-        //se a variavel retorno for igual a true o usuario foi exluido
         if (retorno == true) {
             JOptionPane.showMessageDialog(null, "Console EXCLUÍDO com sucesso");
-            //solicita a atualização da tabela ou seja preenche ela toda novamente
             this.preencheTabela();
-            //chama o método para limpar campos
             this.limparCampos();
         } else {
-            //mensagem de erro
             JOptionPane.showMessageDialog(null, "ERRO na exclusão");
         }
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        ConsoleBEAN c = cCon.localizar(Integer.parseInt(lbCodCon.getText()));
-        c.setConNome(tfNome.getText());
-        c.setConMarca(tfMarca.getText());
-        //chama o método de controle para editar
-        boolean retorno = cCon.editar(c);
-        //se a variavel retorno for igual a true o usuario foi editado
-        if (retorno == true) {
-            JOptionPane.showMessageDialog(null, "Console MODIFICADO com sucesso");
-            //solicita a atualização da tabela ou seja preenche ela toda novamente
-            this.preencheTabela();
-            //chama o método para limpar campos
-            this.limparCampos();
+        if (verificaCampos()) {
+            ConsoleBEAN c = cCon.localizar(Integer.parseInt(lbCodCon.getText()));
+            c.setConNome(tfNome.getText());
+            c.setConMarca(tfMarca.getText());
+            boolean retorno = cCon.editar(c);
+            if (retorno == true) {
+                JOptionPane.showMessageDialog(null, "Console MODIFICADO com sucesso");
+                this.preencheTabela();
+                this.limparCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
+            }
         } else {
-            //mensagem de erro
-            JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         }
     }//GEN-LAST:event_btEditarActionPerformed
 
+    private boolean verificaCampos() {
+        if (tfNome.getText().equals("") || tfMarca.getText().equals("")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        ConsoleBEAN console = new ConsoleBEAN();
-        console.setConNome(tfNome.getText());
-        console.setConMarca(tfMarca.getText());
-        cCon.cadastrar(console);
-        this.preencheTabela();
-        limparCampos();
-        JOptionPane.showMessageDialog(null, "Console CADASTRADO com sucesso");
+        if (verificaCampos()) {
+            ConsoleBEAN console = new ConsoleBEAN();
+            console.setConNome(tfNome.getText());
+            console.setConMarca(tfMarca.getText());
+            cCon.cadastrar(console);
+            this.preencheTabela();
+            limparCampos();
+            JOptionPane.showMessageDialog(null, "Console CADASTRADO com sucesso");
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        }
     }//GEN-LAST:event_btCadastrarActionPerformed
     private void limparCampos() {
         lbCodCon.setText("");

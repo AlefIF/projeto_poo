@@ -16,8 +16,8 @@ select * from jogo_venda;
 select * from jogo_locacao;
 select * from locacao;
 select * from devolucao;
-select * from contas;
-select * from contasaprazo;
+select * from conta;
+select * from contaaprazo;
 select * from listadesejo;
 
 /* Jogos menos vendidos*/
@@ -95,45 +95,29 @@ LIMIT 10;
 /*Nota de Conmpra*/
 SELECT *from notadecompra;
 /*Nota de conta*/
-SELECT *from contas;
-/*Venda por vendedor*/
-SELECT 
-	funCodigo,funNome,count(vendaCodigo)as 'NumeroDeVendas',sum(vendaValorTotal) as 'Valor total de Vendas' 
-FROM 
-	funcionario 
-			JOIN
-	vendedor
-			JOIN
-	venda
-WHERE 
-	funCodigo=vendedor_funCodigo 
-			AND
-    venCodigo=venda_vendedorCodigo
-GROUP BY 
-	funCodigo
-ORDER BY
-	NumeroDeVendas 
-		desc;  
+SELECT *from conta;
 /*Lucro  de um jogo de aluguel por período*/
-SELECT joCodigo, joNome, count(locCodigo) as 'Quantidade de alugueis',sum(devValor) 'ValorRendido'
+SELECT joCodigo, joNome, count(locCodigo) as 'Quantidade de alugueis',sum(devValor) as'ValorRendido'
 FROM  jogo JOIN jogo_locacao JOIN locacao JOIN devolucao
 WHERE joCodigo=joCod AND locCod=locCodigo AND locCodigo=dev_loCodigo
-BETWEEN 'dataInicio' AND 'dataFinal'
+AND devData
+BETWEEN '1000-01-01' AND '3000-01-01'
 GROUP BY  joCodigo
 ORDER BY ValorRendido;
 /*Lucro  de um jogo de venda por período*/
-SELECT joCodigo, joNome, count(vendaCodigo) as 'Quantidade de vendas',sum(vendaValorTotal) 'ValorRendido'
+SELECT joCodigo, joNome, count(vendaCodigo) as 'Quantidade de vendas',sum(vendaValorTotal) as'ValorRendido'
 FROM  jogo JOIN jogo_venda JOIN venda 
 WHERE joCodigo=joCod AND venCod=vendaCodigo 
-BETWEEN 'dataInicio' AND 'dataFinal'
+AND vendaData
+BETWEEN '1000-01-01' AND '3000-01-01'
 GROUP BY  joCodigo
-ORDER BY ValorRendido;
+ORDER BY ValorRendido desc;
 /*Montante total por vendedor*/
 SELECT 
-	funCodigo,funNome,count(vendaCodigo)as 'NumeroDeVendas',
-    sum(vendaValorTotal) as 'Valor total de Vendas' ,
-    count(locCodigo) 'Quantidade de alugueis',sum(devValor)as 'Valor total de Alugueis'
-    ,('Valor total de Vendas'+'Valor total de Alugueis') as 'MontanteTotal'
+	funCodigo,funNome,count(vendaCodigo)as 'Numero de vendas',
+    sum(vendaValorTotal) as 'Valor total de vendas' ,
+    count(locCodigo) 'Quantidade de alugueis',sum(devValor) as 'Valor total de alugueis'
+    ,(sum(vendaValorTotal)+sum(devValor)) as 'MontanteTotal'
 FROM 
 	funcionario JOIN vendedor JOIN venda JOIN locacao JOIN devolucao
 WHERE 
@@ -143,7 +127,21 @@ GROUP BY
 	funCodigo
 ORDER BY
 	MontanteTotal desc; 
-
+/* Montante por Cliente*/
+SELECT 
+	cliCodigo,cliNome,count(vendaCodigo)as 'Numero de vendas',
+    sum(vendaValorTotal) as 'Valor total de vendas' ,
+    count(locCodigo) 'Quantidade de alugueis',sum(devValor) as 'Valor total de alugueis'
+    ,(sum(vendaValorTotal)+sum(devValor)) as 'MontanteTotal'
+FROM 
+	cliente JOIN venda JOIN locacao JOIN devolucao
+WHERE 
+	cliCodigo=venda_clienteCodigo and cod=loc_clienteCodigo
+    and locCodigo=dev_locCodigo
+GROUP BY 
+	cliCodigo
+ORDER BY
+	MontanteTotal desc; 
 
 
 

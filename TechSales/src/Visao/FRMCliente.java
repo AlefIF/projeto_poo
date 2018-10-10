@@ -492,8 +492,8 @@ public class FRMCliente extends javax.swing.JFrame {
     private int verificaCPF() {
         int i = 0;
         for (ClienteBEAN c : cCliente.listarALL() ) {
-            if (c.getCpf().equals(tfCpfCli.getText())) {             
-                    i = c.getCod();             
+            if (c.getCliCpf().equals(tfCpfCli.getText())) {             
+                    i = c.getCliCodigo();             
             }
         }
         return i;
@@ -502,8 +502,8 @@ public class FRMCliente extends javax.swing.JFrame {
     private int verificaEmail() {
         int i = 0;
         for (ClienteBEAN c : cCliente.listarALL()) {
-            if (c.getEmail().equals(tfEmail.getText())) {            
-                    i = c.getCod();               
+            if (c.getCliEmail().equals(tfEmail.getText())) {            
+                    i = c.getCliCodigo();               
             }
         }
         return i;
@@ -511,11 +511,11 @@ public class FRMCliente extends javax.swing.JFrame {
 
     private void cadastrar() {
         ClienteBEAN cliente = new ClienteBEAN();
-        cliente.setNome(tfNomeCli.getText());
-        cliente.setIdade(Integer.parseInt(tfIdade.getText()));
-        cliente.setTelefone(tfTelefone.getText());
-        cliente.setCpf(tfCpfCli.getText());
-        cliente.setEmail(tfEmail.getText());
+        cliente.setCliNome(tfNomeCli.getText());
+        cliente.setCliIdade(Integer.parseInt(tfIdade.getText()));
+        cliente.setCliTelefone(tfTelefone.getText());
+        cliente.setCliCpf(tfCpfCli.getText());
+        cliente.setCliEmail(tfEmail.getText());
 
         EnderecoBEAN end = new EnderecoBEAN();
         end.setEndRua(tfRua.getText());
@@ -555,11 +555,11 @@ public class FRMCliente extends javax.swing.JFrame {
 
     private void editar() {
         ClienteBEAN cliente = cCliente.localizarCodigo(Integer.parseInt(lbCodigo.getText()));
-        cliente.setNome(tfNomeCli.getText());
-        cliente.setIdade(Integer.parseInt(tfIdade.getText()));
-        cliente.setTelefone(tfTelefone.getText());
-        cliente.setCpf(tfCpfCli.getText());
-        cliente.setEmail(tfEmail.getText());
+        cliente.setCliNome(tfNomeCli.getText());
+        cliente.setCliIdade(Integer.parseInt(tfIdade.getText()));
+        cliente.setCliTelefone(tfTelefone.getText());
+        cliente.setCliCpf(tfCpfCli.getText());
+        cliente.setCliEmail(tfEmail.getText());
 
         cliente.getEndereco().setEndRua(tfRua.getText());
         cliente.getEndereco().setEndNumero(tfNumero.getText());
@@ -629,13 +629,13 @@ public class FRMCliente extends javax.swing.JFrame {
 
         if (tableCliente.getSelectedRow() != -1) {
             ClienteBEAN c = cCliente.localizarCodigo(Integer.parseInt(tableCliente.getValueAt(tableCliente.getSelectedRow(), 0).toString()));
-            lbCodigo.setText(String.valueOf(c.getCod()));
-            tfNomeCli.setText(c.getNome());
+            lbCodigo.setText(String.valueOf(c.getCliCodigo()));
+            tfNomeCli.setText(c.getCliNome());
 
-            tfIdade.setText(String.valueOf(c.getIdade()));
-            tfTelefone.setText(c.getTelefone());
-            tfEmail.setText(c.getEmail());
-            tfCpfCli.setText(c.getCpf());
+            tfIdade.setText(String.valueOf(c.getCliIdade()));
+            tfTelefone.setText(c.getCliTelefone());
+            tfEmail.setText(c.getCliEmail());
+            tfCpfCli.setText(c.getCliCpf());
 
             tfRua.setText(c.getEndereco().getEndRua());
             tfNumero.setText(String.valueOf(c.getEndereco().getEndNumero()));
@@ -787,13 +787,11 @@ public class FRMCliente extends javax.swing.JFrame {
         cTable.addColumn("CPF");
         cTable.addColumn("email");
         
-
         for (ClienteBEAN dado : cCliente.listarALL()) {
-            cTable.addRow(new Object[]{dado.getCod(), dado.getNome(), dado.getIdade(),
-                dado.getTelefone(), dado.getCpf(), dado.getEmail()});
+            cTable.addRow(new Object[]{dado.getCliCodigo(), dado.getCliNome(), dado.getCliIdade(),
+                dado.getCliTelefone(), dado.getCliCpf(), dado.getCliEmail()});
 
         }
-        //set o modelo da tabela
         tableCliente.setModel(cTable);
     }
 

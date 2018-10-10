@@ -447,8 +447,8 @@ public class FRMListaDesejo extends javax.swing.JFrame {
         cTable.addColumn("email");
 
         for (ClienteBEAN dado : cCliente.listarALL()) {
-            cTable.addRow(new Object[]{dado.getCod(), dado.getNome(),
-                dado.getTelefone(), dado.getEmail()});
+            cTable.addRow(new Object[]{dado.getCliCodigo(), dado.getCliNome(),
+                dado.getCliTelefone(), dado.getCliEmail()});
 
         }
         //set o modelo da tabela
@@ -617,7 +617,7 @@ public class FRMListaDesejo extends javax.swing.JFrame {
     private void tableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableClienteMouseClicked
         if (tableCliente.getSelectedRow() != -1) {
             ClienteBEAN c = cCliente.localizarCodigo(Integer.parseInt(tableCliente.getValueAt(tableCliente.getSelectedRow(), 0).toString()));
-            lbCliCod.setText(String.valueOf(c.getCod()));
+            lbCliCod.setText(String.valueOf(c.getCliCodigo()));
             tpGuia.setSelectedIndex(0);
         }
     }//GEN-LAST:event_tableClienteMouseClicked

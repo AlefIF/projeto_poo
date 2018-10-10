@@ -31,6 +31,7 @@ public class FRMCategoria extends javax.swing.JFrame {
         initComponents();
         btExcluir.setEnabled(false);
         btEditar.setEnabled(false);
+        preencheTabela();
     }
 
     /**
@@ -42,7 +43,7 @@ public class FRMCategoria extends javax.swing.JFrame {
         dTable = criaTabela();
         dTable.addColumn("Codigo");
         dTable.addColumn("Nome");
-        
+
         caDados = catCon.listarALL();
 
         for (CategoriaBEAN dado : caDados) {
@@ -250,8 +251,7 @@ public class FRMCategoria extends javax.swing.JFrame {
         );
 
         btVoltar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
-        btVoltar.setText("Voltar");
+        btVoltar.setText("Fechar");
         btVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btVoltarActionPerformed(evt);
@@ -266,13 +266,16 @@ public class FRMCategoria extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(11, 11, 11))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,41 +304,51 @@ public class FRMCategoria extends javax.swing.JFrame {
         lbCodCat.setText(String.valueOf(caDados.get(linha).getCatCodigo()));
         tfNome.setText(caDados.get(linha).getCatNome());
     }
+
+    private boolean verificaCampos() {
+        if (tfNome.getText().equals("")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        CategoriaBEAN categoria = new CategoriaBEAN();
-        categoria.setCatNome(tfNome.getText());
-        catCon.cadastrar(categoria);
-        this.preencheTabela();
-        limparCampos();
-        JOptionPane.showMessageDialog(null, "Categoria CADASTRADA com sucesso");
+        if (verificaCampos()) {
+            CategoriaBEAN categoria = new CategoriaBEAN();
+            categoria.setCatNome(tfNome.getText());
+            catCon.cadastrar(categoria);
+            this.preencheTabela();
+            limparCampos();
+            JOptionPane.showMessageDialog(null, "Categoria CADASTRADA com sucesso");
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        }
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        CategoriaBEAN c = catCon.localizar(Integer.parseInt(lbCodCat.getText()));
-        c.setCatNome(tfNome.getText());
-
-        boolean retorno = catCon.editar(c);
-
-        if (retorno == true) {
-            JOptionPane.showMessageDialog(null, "Categoria MODIFICADA com sucesso");
-            this.preencheTabela();
-            this.limparCampos();
+        if (verificaCampos()) {
+            CategoriaBEAN c = catCon.localizar(Integer.parseInt(lbCodCat.getText()));
+            c.setCatNome(tfNome.getText());
+            boolean retorno = catCon.editar(c);
+            if (retorno == true) {
+                JOptionPane.showMessageDialog(null, "Categoria MODIFICADA com sucesso");
+                this.preencheTabela();
+                this.limparCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         }
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         boolean retorno = catCon.remover(Integer.parseInt(lbCodCat.getText()));
-        //se a variavel retorno for igual a true o usuario foi exluido
         if (retorno == true) {
             JOptionPane.showMessageDialog(null, "Categoria EXCLUÍDA com sucesso");
-            //solicita a atualização da tabela ou seja preenche ela toda novamente
             this.preencheTabela();
-            //chama o método para limpar campos
             this.limparCampos();
         } else {
-            //mensagem de erro
             JOptionPane.showMessageDialog(null, "ERRO na exclusão");
         }
     }//GEN-LAST:event_btExcluirActionPerformed
@@ -346,9 +359,7 @@ public class FRMCategoria extends javax.swing.JFrame {
         btEditar.setEnabled(false);
     }
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
-        FRMMenuVendedor fun = new FRMMenuVendedor();
         this.dispose();
-        fun.setVisible(true);
     }//GEN-LAST:event_btVoltarActionPerformed
 
     private void tableCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCategoriaMouseClicked

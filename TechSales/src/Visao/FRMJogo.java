@@ -30,10 +30,10 @@ import javax.swing.table.TableRowSorter;
 public class FRMJogo extends javax.swing.JFrame {
 
     private JogoControle jControle = new JogoControle();
-    private ConsoleControle cControle = new ConsoleControle();
-    private CategoriaControle catControle = new CategoriaControle();
+    public static  ConsoleControle cControle = new ConsoleControle();
+    public static CategoriaControle catControle = new CategoriaControle();
     private NotaDeCompraControle notac = new NotaDeCompraControle();
-    private FornecedorControle fc = new FornecedorControle();
+    public static FornecedorControle fc = new FornecedorControle();
     private LucroControle lucC = new LucroControle();
     private ArrayList<JogoBEAN> jDados;
     private ArrayList<CategoriaBEAN> catDados;
@@ -43,7 +43,7 @@ public class FRMJogo extends javax.swing.JFrame {
 
     static JogoBEAN jogoNota = new JogoBEAN();
 
-    private void povoaCombos() {
+    public static void povoaCombos() {
         for (ConsoleBEAN e : cControle.listarALL()) {
             cbCon.addItem(e);
         }
@@ -888,13 +888,7 @@ public class FRMJogo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void cbCatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbCatMouseClicked
-        int i = cbCat.getSelectedIndex();
-        cbCat.removeAllItems();
-        cbCat.addItem("Selecione");
-        for (CategoriaBEAN d : catControle.listarALL()) {
-            cbCat.addItem(d);
-        }
-        cbCat.setSelectedIndex(i);
+
     }//GEN-LAST:event_cbCatMouseClicked
 
     private void limparCampos() {
@@ -970,9 +964,9 @@ public class FRMJogo extends javax.swing.JFrame {
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btLocalizar;
     private javax.swing.JButton btVoltar;
-    private javax.swing.JComboBox<Object> cbCat;
-    private javax.swing.JComboBox<Object> cbCon;
-    private javax.swing.JComboBox<Object> cbFornecedor;
+    public static javax.swing.JComboBox<Object> cbCat;
+    public static javax.swing.JComboBox<Object> cbCon;
+    public static javax.swing.JComboBox<Object> cbFornecedor;
     private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

@@ -374,6 +374,7 @@ public class FRMConsole extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "ERRO na exclusão");
         }
+        FRMJogo.povoaCombos();
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
@@ -392,6 +393,7 @@ public class FRMConsole extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         }
+        FRMJogo.povoaCombos();  
     }//GEN-LAST:event_btEditarActionPerformed
 
     private boolean verificaCampos() {
@@ -413,6 +415,8 @@ public class FRMConsole extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         }
+        FRMJogo.povoaCombos();
+        FRMJogo.cbCon.setSelectedIndex(FRMJogo.cbCon.getItemCount()-1);    
     }//GEN-LAST:event_btCadastrarActionPerformed
     private void limparCampos() {
         lbCodCon.setText("");

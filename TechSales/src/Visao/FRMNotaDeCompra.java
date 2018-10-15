@@ -903,24 +903,47 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
         resultado();
     }
 
+    /*
+      private int verificaMes(int mes,int contador){
+          int nMes=mes
+        
+    }*/
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        NotaDeCompraPrazoBEAN nota = new NotaDeCompraPrazoBEAN();
-        nota.setNapValor(Float.parseFloat((tfPrecoParcela.getText())));
-
+        //NotaDeCompraPrazoBEAN nota = new NotaDeCompraPrazoBEAN();
+        //nota.setNapValor(Float.parseFloat((tfPrecoParcela.getText())));
+        java.sql.Date data = null;
+       
         try {
-            String dataString = tfDataparcela.getText();
+            //String dataString = tfDataparcela.getText();
+            String dataString = tfDataCompra.getText();
             DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
-            java.sql.Date data = new java.sql.Date(fmt.parse(dataString).getTime());
-            nota.setNapData(data);
+            data = new java.sql.Date(fmt.parse(dataString).getTime());           
+            //nota.setNapData(data);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        /*
         nota.setNapNumParcela(insert.size() + 1);
         insert.add(nota);
         preencheTabelaPrazos();
+        limparCampos2();*/
+
+ /*--------*/
+        int t = Integer.parseInt(tfNParcelas.getText());
+        float precoTT = Float.parseFloat((tfPrecoTT.getText()));
+        System.out.println(data.getMonth());
+        for (int c = 0; c < t; c++) {
+            NotaDeCompraPrazoBEAN nota = new NotaDeCompraPrazoBEAN();
+            java.sql.Date data2 = data;
+            data2.setMonth(data.getMonth()+c);
+            System.out.println(data2.getMonth());
+            nota.setNapData(data2);
+            nota.setNapValor(precoTT / t);
+            nota.setNapNumParcela(c+1);
+            insert.add(nota);
+        }
+        preencheTabelaPrazos();
         limparCampos2();
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tableMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMMouseClicked

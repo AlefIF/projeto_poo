@@ -38,11 +38,11 @@ public class CategoriaControle {
     }
 
     public ArrayList<CategoriaBEAN> listarALL() {
+
         começar();
         Query q = manager.createQuery("from CategoriaBEAN");
         ArrayList<CategoriaBEAN> catList = (ArrayList<CategoriaBEAN>) q.getResultList();
         tx.commit();
-        //fechar();
         return catList;
     }
 
@@ -55,7 +55,6 @@ public class CategoriaControle {
         try {
             começar();
             tx.commit();
-            // fechar();
             return true;
         } catch (HibernateException e) {
             return false;
@@ -63,16 +62,17 @@ public class CategoriaControle {
     }
 
     public boolean remover(int c) {
+        int i = 0;
         try {
             começar();
             CategoriaBEAN a = localizar(c);
             manager.remove(a);
             tx.commit();
-            //fechar();
             return true;
         } catch (Exception e) {
             return false;
         }
+
     }
 
 }

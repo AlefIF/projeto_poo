@@ -30,7 +30,7 @@ import javax.swing.table.TableRowSorter;
 public class FRMJogo extends javax.swing.JFrame {
 
     private JogoControle jControle = new JogoControle();
-    public static  ConsoleControle cControle = new ConsoleControle();
+    public static ConsoleControle cControle = new ConsoleControle();
     public static CategoriaControle catControle = new CategoriaControle();
     private NotaDeCompraControle notac = new NotaDeCompraControle();
     public static FornecedorControle fc = new FornecedorControle();
@@ -147,10 +147,9 @@ public class FRMJogo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btCadastrar = new javax.swing.JButton();
-        btEditar = new javax.swing.JButton();
-        btExcluir = new javax.swing.JButton();
         btLocalizar = new javax.swing.JButton();
-        btCadNota = new javax.swing.JButton();
+        btNovoDado = new javax.swing.JButton();
+        btVoltar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         cbCat = new javax.swing.JComboBox<>();
         tfFaixa = new javax.swing.JFormattedTextField();
@@ -177,10 +176,13 @@ public class FRMJogo extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableJogo = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
         tfChave = new javax.swing.JTextField();
-        btVoltar = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        btEditar1 = new javax.swing.JButton();
+        btInvalidarAll = new javax.swing.JButton();
+        btClonar = new javax.swing.JButton();
+        btInvalidar = new javax.swing.JButton();
+        btCadNota1 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -191,8 +193,8 @@ public class FRMJogo extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         btCadastrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonAddJogo.png"))); // NOI18N
-        btCadastrar.setText("Cadastrar");
+        btCadastrar.setText("Gravar");
+        btCadastrar.setEnabled(false);
         btCadastrar.setMaximumSize(new java.awt.Dimension(73, 23));
         btCadastrar.setMinimumSize(new java.awt.Dimension(73, 23));
         btCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -201,26 +203,7 @@ public class FRMJogo extends javax.swing.JFrame {
             }
         });
 
-        btEditar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonEdit.png"))); // NOI18N
-        btEditar.setText("Editar");
-        btEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEditarActionPerformed(evt);
-            }
-        });
-
-        btExcluir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonDeletarFun.png"))); // NOI18N
-        btExcluir.setText("Invalidar");
-        btExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btExcluirActionPerformed(evt);
-            }
-        });
-
         btLocalizar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btLocalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonConsultarCliente.png"))); // NOI18N
         btLocalizar.setText("Localizar");
         btLocalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,12 +211,14 @@ public class FRMJogo extends javax.swing.JFrame {
             }
         });
 
-        btCadNota.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btCadNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonCadastrar.png"))); // NOI18N
-        btCadNota.setText("Cadastrar Nota de Compra");
-        btCadNota.addActionListener(new java.awt.event.ActionListener() {
+        btNovoDado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btNovoDado.setText("Novo Dado");
+
+        btVoltar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btVoltar.setText("Voltar");
+        btVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCadNotaActionPerformed(evt);
+                btVoltarActionPerformed(evt);
             }
         });
 
@@ -242,29 +227,26 @@ public class FRMJogo extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(28, 28, 28)
+                .addComponent(btNovoDado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btEditar)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btLocalizar)
-                .addGap(18, 18, 18)
-                .addComponent(btExcluir)
-                .addGap(18, 18, 18)
-                .addComponent(btCadNota)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btEditar)
-                    .addComponent(btExcluir)
-                    .addComponent(btLocalizar)
-                    .addComponent(btCadNota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(btLocalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btNovoDado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados do Jogo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
@@ -482,14 +464,11 @@ public class FRMJogo extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,7 +476,7 @@ public class FRMJogo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -523,11 +502,7 @@ public class FRMJogo extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableJogo);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Refinar pesquisa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
-
-        jLabel12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel12.setText("Palavra Chave :");
-
+        tfChave.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Refinar Pesquisa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
         tfChave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfChaveActionPerformed(evt);
@@ -542,25 +517,82 @@ public class FRMJogo extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de Seleção", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+
+        btEditar1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btEditar1.setText("Editar");
+        btEditar1.setToolTipText("");
+        btEditar1.setEnabled(false);
+        btEditar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditar1ActionPerformed(evt);
+            }
+        });
+
+        btInvalidarAll.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btInvalidarAll.setText("Invalidar todos");
+        btInvalidarAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btInvalidarAllActionPerformed(evt);
+            }
+        });
+
+        btClonar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btClonar.setText("Clonar Dados");
+        btClonar.setToolTipText("");
+        btClonar.setEnabled(false);
+        btClonar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btClonarActionPerformed(evt);
+            }
+        });
+
+        btInvalidar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btInvalidar.setText("Invalidar");
+        btInvalidar.setEnabled(false);
+        btInvalidar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btInvalidarActionPerformed(evt);
+            }
+        });
+
+        btCadNota1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btCadNota1.setText("Cadastrar Nota de Compra");
+        btCadNota1.setEnabled(false);
+        btCadNota1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCadNota1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfChave)
-                .addContainerGap())
+                .addComponent(btEditar1)
+                .addGap(18, 18, 18)
+                .addComponent(btClonar)
+                .addGap(18, 18, 18)
+                .addComponent(btCadNota1)
+                .addGap(18, 18, 18)
+                .addComponent(btInvalidar)
+                .addGap(18, 18, 18)
+                .addComponent(btInvalidarAll)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(tfChave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 10, Short.MAX_VALUE))
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btEditar1)
+                    .addComponent(btInvalidarAll)
+                    .addComponent(btClonar)
+                    .addComponent(btInvalidar)
+                    .addComponent(btCadNota1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -570,29 +602,26 @@ public class FRMJogo extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tfChave, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 747, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(tfChave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tpGuia.addTab("Consultar jogo", jPanel2);
-
-        btVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonLogin.png"))); // NOI18N
-        btVoltar.setText("Voltar");
-        btVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btVoltarActionPerformed(evt);
-            }
-        });
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel11.setText("Cadastro de jogos");
@@ -602,30 +631,21 @@ public class FRMJogo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(280, 280, 280)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(680, 680, 680)
-                        .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(280, 280, 280)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(tpGuia)
+            .addComponent(tpGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tpGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(tpGuia, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(792, 378));
+        setSize(new java.awt.Dimension(792, 469));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -680,21 +700,28 @@ public class FRMJogo extends javax.swing.JFrame {
         }
     }
 
+    private void cadastrar() {
+        int v = verificaLote();
+        if (v == 0) {
+            this.cadastroNormal();
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro! Lote já existente,Código do produto:" + v);
+        }
+    }
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
         if (verificaCampos()) {
-            int v = verificaLote();
-            if (v == 0) {
-                this.cadastroNormal();
+            if (lbCodigoJogo.getText().equals("...")) {
+                cadastrar();
             } else {
-                JOptionPane.showMessageDialog(null, "Erro! Lote já existente,Código do produto:" + v);
+                editar();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
         }
     }//GEN-LAST:event_btCadastrarActionPerformed
 
-    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
+    private void editar() {
         int cod = verificaLote();
         if (cod != Integer.valueOf(lbCodigoJogo.getText())) {
             cod = 0;
@@ -713,44 +740,18 @@ public class FRMJogo extends javax.swing.JFrame {
             jogo.setConsole(w);
 
             boolean retorno = jControle.editar(jogo);
-            //se a variavel retorno for igual a true o usuario foi editado
             if (retorno == true) {
                 JOptionPane.showMessageDialog(null, "Jogo MODIFICADO com sucesso");
-                //solicita a atualização da tabela ou seja preenche ela toda novamente
                 this.preencheTabela();
-                //chama o método para limpar campos
                 this.limparCampos();
             } else {
-                //mensagem de erro
                 JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
             }
 
         } else {
             JOptionPane.showMessageDialog(null, "Erro! Insira todos os valores");
         }
-    }//GEN-LAST:event_btEditarActionPerformed
-
-    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        if (verificaCampos() == true) {
-            JogoBEAN jogo = jControle.localizarCodigo(Integer.parseInt(lbCodigoJogo.getText()));
-            jogo.setJoQtd(0);
-            boolean retorno = jControle.editar(jogo);
-            //se a variavel retorno for igual a true o usuario foi editado
-            if (retorno == true) {
-                JOptionPane.showMessageDialog(null, "Jogo MODIFICADO com sucesso");
-                //solicita a atualização da tabela ou seja preenche ela toda novamente
-                this.preencheTabela();
-                //chama o método para limpar campos
-                this.limparCampos();
-            } else {
-                //mensagem de erro
-                JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro! Insira todos os valores");
-        }
-    }//GEN-LAST:event_btExcluirActionPerformed
-
+    }
     private void btLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLocalizarActionPerformed
         tpGuia.setSelectedIndex(1);
         preencheTabela();
@@ -763,59 +764,7 @@ public class FRMJogo extends javax.swing.JFrame {
     }//GEN-LAST:event_btVoltarActionPerformed
 
     private void tableJogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableJogoMouseClicked
-        int c = 0;
-        limparCampos();
-        tpGuia.setSelectedIndex(0);
-        if (tableJogo.getSelectedRow() != -1) {
-            btExcluir.setEnabled(true);
-            btEditar.setEnabled(true);
-            JogoBEAN j = jControle.localizarCodigo(Integer.parseInt(tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString()));
-            lbCodigoJogo.setText(String.valueOf(j.getJoCodigo()));
-            tfNome.setText(String.valueOf(j.getJoNome()));
-            tfFaixa.setText(String.valueOf(j.getJoFaixaEtaria()));
-            if (j.getJoTipo().equals("Aluguel")) {
-                cbTipo.setSelectedIndex(2);
-            } else {
-                cbTipo.setSelectedIndex(1);
-            }
 
-            int i = 0;
-            for (CategoriaBEAN cat : catControle.listarALL()) {
-                i++;
-                if (j.getCat().getCatCodigo() == cat.getCatCodigo()) {
-                    cbCat.setSelectedIndex(i);
-                }
-            }
-            int z = 0;
-            for (ConsoleBEAN console : cControle.listarALL()) {
-                z++;
-                if (j.getConsole().getConCodigo() == console.getConCodigo()) {
-                    cbCon.setSelectedIndex(z);
-                }
-            }
-            int x = 0;
-            for (FornecedorBEAN f : fc.listarALL()) {
-                x++;
-                if (j.getFornecedor().getForCodigo() == f.getForCodigo()) {
-                    cbFornecedor.setSelectedIndex(x);
-                }
-            }
-
-            tfLote.setText(String.valueOf(j.getJoLote()));
-            tfQtde.setText(String.valueOf(j.getJoQtd()));
-
-            tfPrecoPadrao.setText(String.valueOf(j.getJoPrecoPadrao()));
-            for (NotaDecompraBEAN n : notac.listarALL()) {
-                if (n.getJogo().getJoCodigo() == j.getJoCodigo()) {
-                    c++;
-                }
-            }
-            if (c == 0) {
-                btCadNota.setEnabled(true);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro, jogo não disponível no estoque");
-        }
     }//GEN-LAST:event_tableJogoMouseClicked
 
     private void tfChaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyPressed
@@ -839,13 +788,6 @@ public class FRMJogo extends javax.swing.JFrame {
     private void tfChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfChaveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfChaveActionPerformed
-
-    private void btCadNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadNotaActionPerformed
-        jogoNota = jControle.localizarCodigo(Integer.valueOf(lbCodigoJogo.getText()));
-        FRMNotaDeCompra ndc = new FRMNotaDeCompra();
-        ndc.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btCadNotaActionPerformed
 
     private void tfQtdeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfQtdeKeyTyped
         String caracteres = "0123456789";
@@ -891,6 +833,120 @@ public class FRMJogo extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cbCatMouseClicked
 
+    private void btEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditar1ActionPerformed
+        limparCampos();
+        tpGuia.setSelectedIndex(0);
+        if (tableJogo.getSelectedRow() != -1) {
+            JogoBEAN j = jControle.localizarCodigo(Integer.parseInt(tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString()));
+            lbCodigoJogo.setText(String.valueOf(j.getJoCodigo()));
+            tfNome.setText(String.valueOf(j.getJoNome()));
+            tfFaixa.setText(String.valueOf(j.getJoFaixaEtaria()));
+            if (j.getJoTipo().equals("Aluguel")) {
+                cbTipo.setSelectedIndex(2);
+            } else {
+                cbTipo.setSelectedIndex(1);
+            }
+
+            int i = 0;
+            for (CategoriaBEAN cat : catControle.listarALL()) {
+                i++;
+                if (j.getCat().getCatCodigo() == cat.getCatCodigo()) {
+                    cbCat.setSelectedIndex(i);
+                }
+            }
+            int z = 0;
+            for (ConsoleBEAN console : cControle.listarALL()) {
+                z++;
+                if (j.getConsole().getConCodigo() == console.getConCodigo()) {
+                    cbCon.setSelectedIndex(z);
+                }
+            }
+            int x = 0;
+            for (FornecedorBEAN f : fc.listarALL()) {
+                x++;
+                if (j.getFornecedor().getForCodigo() == f.getForCodigo()) {
+                    cbFornecedor.setSelectedIndex(x);
+                }
+            }
+
+            tfLote.setText(String.valueOf(j.getJoLote()));
+            tfQtde.setText(String.valueOf(j.getJoQtd()));
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro, jogo não disponível no estoque");
+        }
+    }//GEN-LAST:event_btEditar1ActionPerformed
+
+    private void btInvalidarAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInvalidarAllActionPerformed
+        for (JogoBEAN j : jControle.listarALL()) {
+            j.setJoQtd(0);
+            jControle.editar(j);
+        }
+    }//GEN-LAST:event_btInvalidarAllActionPerformed
+
+    private void btClonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClonarActionPerformed
+        limparCampos();
+        tpGuia.setSelectedIndex(0);
+        if (tableJogo.getSelectedRow() != -1) {
+            JogoBEAN j = jControle.localizarCodigo(Integer.parseInt(tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString()));
+            tfNome.setText(String.valueOf(j.getJoNome()));
+            tfFaixa.setText(String.valueOf(j.getJoFaixaEtaria()));
+            if (j.getJoTipo().equals("Aluguel")) {
+                cbTipo.setSelectedIndex(2);
+            } else {
+                cbTipo.setSelectedIndex(1);
+            }
+
+            int i = 0;
+            for (CategoriaBEAN cat : catControle.listarALL()) {
+                i++;
+                if (j.getCat().getCatCodigo() == cat.getCatCodigo()) {
+                    cbCat.setSelectedIndex(i);
+                }
+            }
+            int z = 0;
+            for (ConsoleBEAN console : cControle.listarALL()) {
+                z++;
+                if (j.getConsole().getConCodigo() == console.getConCodigo()) {
+                    cbCon.setSelectedIndex(z);
+                }
+            }
+            int x = 0;
+            for (FornecedorBEAN f : fc.listarALL()) {
+                x++;
+                if (j.getFornecedor().getForCodigo() == f.getForCodigo()) {
+                    cbFornecedor.setSelectedIndex(x);
+                }
+            }
+
+            tfPrecoPadrao.setText(String.valueOf(j.getJoPrecoPadrao()));
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro, jogo não disponível no estoque");
+        }
+    }//GEN-LAST:event_btClonarActionPerformed
+
+    private void btInvalidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInvalidarActionPerformed
+        if (tableJogo.getSelectedRow() != -1) {
+            JogoBEAN jogo = jControle.localizarCodigo(Integer.parseInt(tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString()));
+            jogo.setJoQtd(0);
+            boolean retorno = jControle.editar(jogo);
+            if (retorno == true) {
+                JOptionPane.showMessageDialog(null, "Jogo INVALIDADO");
+                this.preencheTabela();
+                this.limparCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
+            }
+        }
+    }//GEN-LAST:event_btInvalidarActionPerformed
+
+    private void btCadNota1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadNota1ActionPerformed
+        jogoNota = jControle.localizarCodigo(Integer.valueOf(lbCodigoJogo.getText()));
+        FRMNotaDeCompra ndc = new FRMNotaDeCompra();
+        ndc.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btCadNota1ActionPerformed
+
     private void limparCampos() {
         lbCodigoJogo.setText("");
         tfNome.setText("");
@@ -904,11 +960,6 @@ public class FRMJogo extends javax.swing.JFrame {
         tfPrecoPadrao.setText("");
         tfQtde.setText("");
         cbFornecedor.setSelectedIndex(0);
-        btCadNota.setEnabled(false);
-
-        btExcluir.setEnabled(false);
-        btEditar.setEnabled(false);
-
     }
 
     /**
@@ -958,11 +1009,14 @@ public class FRMJogo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btCadNota;
+    private javax.swing.JButton btCadNota1;
     private javax.swing.JButton btCadastrar;
-    private javax.swing.JButton btEditar;
-    private javax.swing.JButton btExcluir;
+    private javax.swing.JButton btClonar;
+    private javax.swing.JButton btEditar1;
+    private javax.swing.JButton btInvalidar;
+    private javax.swing.JButton btInvalidarAll;
     private javax.swing.JButton btLocalizar;
+    private javax.swing.JButton btNovoDado;
     private javax.swing.JButton btVoltar;
     public static javax.swing.JComboBox<Object> cbCat;
     public static javax.swing.JComboBox<Object> cbCon;
@@ -972,7 +1026,6 @@ public class FRMJogo extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -985,8 +1038,8 @@ public class FRMJogo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbCodigoJogo;
     private javax.swing.JTable tableJogo;

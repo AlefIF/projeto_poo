@@ -66,17 +66,19 @@ public class FRMLogin extends javax.swing.JFrame {
         }
 
         if (qte == 0) {
+                  
+            EmpregoBEAN emp2 = new EmpregoBEAN();
+            emp2.setEmpNome("Administrador");
+            emp2.setEmpSalarioPadrao(3000);
+            emp2.setEmpDescricao("Tem acesso à parte de Administrador do sistema");
+            cEmp.cadastrar(emp2);
+            
             EmpregoBEAN emp = new EmpregoBEAN();
             emp.setEmpNome("Vendedor");
             emp.setEmpSalarioPadrao(1000);
             emp.setEmpDescricao("Tem acesso à parte de Funcionarios do sistema");
             cEmp.cadastrar(emp);
 
-            EmpregoBEAN emp2 = new EmpregoBEAN();
-            emp2.setEmpNome("Administrador");
-            emp2.setEmpSalarioPadrao(3000);
-            emp2.setEmpDescricao("Tem acesso à parte de Administrador do sistema");
-            cEmp.cadastrar(emp2);
         }
 
     }

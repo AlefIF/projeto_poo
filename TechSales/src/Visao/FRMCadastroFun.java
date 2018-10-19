@@ -5,9 +5,11 @@
  */
 package Visao;
 
+import Controle.CaixaControle;
 import Controle.EmpregoControle;
 import Controle.FuncionarioControle;
 import Controle.VendedorControle;
+import Modelo.CaixaBEAN;
 import Modelo.EmpregoBEAN;
 import Modelo.EnderecoBEAN;
 import Modelo.FuncionarioBEAN;
@@ -30,6 +32,8 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     private FuncionarioControle ct = new FuncionarioControle();
     private VendedorControle vc = new VendedorControle();
     private EmpregoControle ec = new EmpregoControle();
+    private CaixaControle cCaixa = new CaixaControle();
+    private ArrayList<VendedorBEAN> al = vc.listarALL();
 
     /**
      * Creates new form FRMAdm
@@ -60,21 +64,22 @@ public class FRMCadastroFun extends javax.swing.JFrame {
 
         userD = ct.listarALL();
 
-        for (FuncionarioBEAN d : userD) {
-            tbUsers.addRow(new Object[]{
-                d.getFunCodigo(),
-                d.getFunNome(),
-                d.getFunCpf(),
-                d.getFunIdade(),
-                d.getFunTelefone(),
-                d.getFunEmail(),
-                d.getFunNisPis(),
-                d.getEmprego().getEmpNome(),
-                d.getFunSalario()
+        if (userD.size() > 0) {
+            for (FuncionarioBEAN d : userD) {
+                tbUsers.addRow(new Object[]{
+                    d.getFunCodigo(),
+                    d.getFunNome(),
+                    d.getFunCpf(),
+                    d.getFunIdade(),
+                    d.getFunTelefone(),
+                    d.getFunEmail(),
+                    d.getFunNisPis(),
+                    d.getEmprego().getEmpNome(),
+                    d.getFunSalario()
 
-            });
+                });
+            }
         }
-        //set o modelo da tabela
         tbFuncionario.setModel(tbUsers);
     }
 
@@ -698,20 +703,48 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     private void jbCadastrarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarFunActionPerformed
         int c = verificaCPF();
         int e = verificapis();
+        int i = 0;
+        for (EmpregoBEAN emp : ec.listarALL()) {
+            if (emp.getEmpNome().equals("Administrador")) {
+                i = emp.getEmpCodigo();
+            }
+        }
+        EmpregoBEAN emp2 = (EmpregoBEAN) cbEmprego.getSelectedItem();
 
-        if (verificaCampos() == false) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-        } else if (c == 0) {
-            if (e == 0) {
-                cadastrar();
-                this.preencheTabela();
-                limpaCampos();
-                JOptionPane.showMessageDialog(null, "Funcionário CADASTRADO com sucesso");
+        if (al.size() != 0) {
+            if (emp2.getEmpCodigo() == i) {
+                if (verificaCampos() == false) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+                } else if (c == 0) {
+                    if (e == 0) {
+                        cadastrar();
+                        this.preencheTabela();
+                        limpaCampos();
+                        JOptionPane.showMessageDialog(null, "Funcionário CADASTRADO com sucesso");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Pis já cadastrado no sistema. Código: " + e);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Cpf  já cadastrado no sistema. Código: " + c);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Pis já cadastrado no sistema. Código: " + e);
+                JOptionPane.showMessageDialog(null, "Erro! O primeiro funcionário deve ser um Administrador");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Cpf  já cadastrado no sistema. Código: " + c);
+            if (verificaCampos() == false) {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+            } else if (c == 0) {
+                if (e == 0) {
+                    cadastrar();
+                    this.preencheTabela();
+                    limpaCampos();
+                    JOptionPane.showMessageDialog(null, "Funcionário CADASTRADO com sucesso");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Pis já cadastrado no sistema. Código: " + e);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Cpf  já cadastrado no sistema. Código: " + c);
+            }
         }
     }//GEN-LAST:event_jbCadastrarFunActionPerformed
 
@@ -723,16 +756,13 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     }//GEN-LAST:event_tfIdadeFunKeyTyped
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        ct.excluir(Integer.parseInt(lbCodigo.getText()));
-
         FuncionarioBEAN c = ct.localizarCodigo(Integer.parseInt(lbCodigo.getText()));
-        for (VendedorBEAN a : vc.listarALL()) {
-            if (a.getFuncionario().getFunCodigo() == c.getFunCodigo()) {
-                VendedorBEAN v = vc.localizar(a.getVendedorCodigo());
+        for (VendedorBEAN v : vc.listarALL()) {
+            if(v.getFuncionario().getFunCodigo()==c.getFunCodigo()){
                 vc.remover(v.getVendedorCodigo());
             }
         }
-
+        ct.excluir(Integer.parseInt(lbCodigo.getText()));
         limpaCampos();
         this.preencheTabela();
     }//GEN-LAST:event_btExcluirActionPerformed
@@ -858,9 +888,12 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         end.setEndPais(tfPais.getText());
 
         c.setEndereco(end);
+
+        CaixaBEAN ca = cCaixa.localizar(1);
+        c.setCaixa(ca);
         ct.cadastrar(c);
 
-        if (e.getEmpNome().equals("Vendedor")) {
+        if (e.getEmpNome().equals("Vendedor")||e.getEmpNome().equals("Administrador")) {
             VendedorBEAN v = new VendedorBEAN();
             v.setFuncionario(c);
             v.setVendedorNomeUsuario(tfNomeUser.getText());

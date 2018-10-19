@@ -29,8 +29,6 @@ public class FRMEmpregro extends javax.swing.JFrame {
     public FRMEmpregro() {
         initComponents();
         preencheTabela();
-        btExcluir.setEnabled(false);
-        btEditar.setEnabled(false);
     }
 
     /**
@@ -318,8 +316,6 @@ public class FRMEmpregro extends javax.swing.JFrame {
         tfFuncao.setText("");
         tfDescricao.setText("");
         tfSalario.setText("");
-        btExcluir.setEnabled(false);
-        btEditar.setEnabled(false);
     }
 
     public boolean verificaCampos() {
@@ -402,8 +398,6 @@ public class FRMEmpregro extends javax.swing.JFrame {
             tfFuncao.setText(tabelaEmprego.getValueAt(tabelaEmprego.getSelectedRow(), 1).toString());
             tfSalario.setText(tabelaEmprego.getValueAt(tabelaEmprego.getSelectedRow(), 2).toString());
             tfDescricao.setText(tabelaEmprego.getValueAt(tabelaEmprego.getSelectedRow(), 3).toString());
-            btExcluir.setEnabled(false);
-            btEditar.setEnabled(false);
         }
     }//GEN-LAST:event_tabelaEmpregoMouseClicked
 

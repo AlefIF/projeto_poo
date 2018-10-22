@@ -7,9 +7,8 @@ package Modelo;
 
 import Controle.ContaControle;
 import Controle.ControleRelatorios;
-import Controle.JogoControle;
-import Controle.JogoVendaControle;
 import Controle.NotaDeCompraControle;
+import Visao.FRMEmitirRelatorios;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
@@ -33,7 +32,7 @@ public class RelatoriosBEAN {
     static ContaControle cContas = new ContaControle();
 
     public static void relatorioTopJogos() throws FileNotFoundException, DocumentException {
-        String path = System.getProperty("user.home") + "/Desktop/Relatório Top Jogos" + ".pdf";
+        String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
         Document document = new Document(PageSize.LETTER);
         PdfWriter.getInstance(document, new FileOutputStream(path));
         document.open();
@@ -50,8 +49,9 @@ public class RelatoriosBEAN {
             frase = "<html>"
                     + "<head> <meta charset=\"utf-8\"> </head>"
                     + "<body>"
+                    + "<br/>"
                     + "<h1 align=center>Relatório de Jogos mais vendidos </h1>"
-                    + "</br></br></br>"
+                    + "<br/><br/>"
                     + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
                     + "<tr> "
                     + "<th align=center><strong>Código</strong></th> "
@@ -80,7 +80,7 @@ public class RelatoriosBEAN {
     }
 
     public static void relatorioWorstJogos() throws FileNotFoundException, DocumentException {
-        String path = System.getProperty("user.home") + "/Desktop/Relatório Worst Jogos" + ".pdf";
+        String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
         Document document = new Document(PageSize.LETTER);
         PdfWriter.getInstance(document, new FileOutputStream(path));
         document.open();
@@ -97,8 +97,9 @@ public class RelatoriosBEAN {
             frase = "<html>"
                     + "<head> <meta charset=\"utf-8\"> </head>"
                     + "<body>"
+                    + "<br/>"
                     + "<h1 align=center>Relatório de Jogos menos vendidos </h1>"
-                    + "</br></br></br>"
+                    + "<br/><br/>"
                     + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
                     + "<tr> "
                     + "<th align=center><strong>Código</strong></th> "
@@ -127,7 +128,7 @@ public class RelatoriosBEAN {
     }
 
     public static void relatorioTopAlugueis() throws FileNotFoundException, DocumentException {
-        String path = System.getProperty("user.home") + "/Desktop/Relatório Top Alugueis" + ".pdf";
+        String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
         Document document = new Document(PageSize.LETTER);
         PdfWriter.getInstance(document, new FileOutputStream(path));
         document.open();
@@ -144,8 +145,9 @@ public class RelatoriosBEAN {
             frase = "<html>"
                     + "<head> <meta charset=\"utf-8\"> </head>"
                     + "<body>"
+                    + "<br/>"
                     + "<h1 align=center>Relatório de Jogos mais Alugados </h1>"
-                    + "</br></br></br>"
+                    + "<br/><br/>"
                     + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
                     + "<tr> "
                     + "<th align=center><strong>Código</strong></th> "
@@ -174,7 +176,7 @@ public class RelatoriosBEAN {
     }
 
     public static void relatorioWorstAlugueis() throws FileNotFoundException, DocumentException {
-        String path = System.getProperty("user.home") + "/Desktop/Relatório Worst Alugueis" + ".pdf";
+        String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
         Document document = new Document(PageSize.LETTER);
         PdfWriter.getInstance(document, new FileOutputStream(path));
         document.open();
@@ -191,8 +193,9 @@ public class RelatoriosBEAN {
             frase = "<html>"
                     + "<head> <meta charset=\"utf-8\"> </head>"
                     + "<body>"
+                    + "<br/>"
                     + "<h1 align=center>Relatório de Jogos menos Alugados </h1>"
-                    + "</br></br></br>"
+                    + "<br/><br/>"
                     + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
                     + "<tr> "
                     + "<th align=center><strong>Código</strong></th> "
@@ -222,8 +225,8 @@ public class RelatoriosBEAN {
 
     /*-----------------------------------*/
     public static void relatorioCompras() throws FileNotFoundException, DocumentException {
-        String path = System.getProperty("user.home") + "/Desktop/Relatório Compras" + ".pdf";
-        Document document = new Document(PageSize.LETTER);
+        String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
+        Document document = new Document(PageSize.A4.rotate());
         PdfWriter.getInstance(document, new FileOutputStream(path));
         document.open();
         document.addAuthor("TechSales");
@@ -239,8 +242,9 @@ public class RelatoriosBEAN {
             frase = "<html>"
                     + "<head> <meta charset=\"utf-8\"> </head>"
                     + "<body>"
+                    + "<br/>"
                     + "<h1 align=center>Relatório de Jogos Comprados </h1>"
-                    + "</br></br></br>"
+                    + "<br/><br/>"
                     + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
                     + "<tr> "
                     + "<th align=center><strong>Código</strong></th> "
@@ -277,8 +281,8 @@ public class RelatoriosBEAN {
 
     /*-----------------------------------------*/
     public static void relatorioContas() throws FileNotFoundException, DocumentException {
-        String path = System.getProperty("user.home") + "/Desktop/Relatório Compras" + ".pdf";
-        Document document = new Document(PageSize.LETTER);
+        String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
+        Document document = new Document(PageSize.A4.rotate());
         PdfWriter.getInstance(document, new FileOutputStream(path));
         document.open();
         document.addAuthor("TechSales");
@@ -294,8 +298,9 @@ public class RelatoriosBEAN {
             frase = "<html>"
                     + "<head> <meta charset=\"utf-8\"> </head>"
                     + "<body>"
+                    + "<br/>"
                     + "<h1 align=center>Relatório de Jogos Comprados </h1>"
-                    + "</br></br></br>"
+                    + "<br/><br/>"
                     + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
                     + "<tr> "
                     + "<th align=center><strong>Código</strong></th> "
@@ -334,8 +339,8 @@ public class RelatoriosBEAN {
 
     /*----------------------------------*/
     public static void relatorioMontanteVendedor() throws FileNotFoundException, DocumentException {
-        String path = System.getProperty("user.home") + "/Desktop/Relatório Montante por Vendedor" + ".pdf";
-        Document document = new Document(PageSize.LETTER);
+        String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
+        Document document = new Document(PageSize.A4.rotate());
         PdfWriter.getInstance(document, new FileOutputStream(path));
         document.open();
         document.addAuthor("TechSales");
@@ -351,8 +356,9 @@ public class RelatoriosBEAN {
             frase = "<html>"
                     + "<head> <meta charset=\"utf-8\"> </head>"
                     + "<body>"
+                    + "<br/>"
                     + "<h1 align=center>Relatório de Jogos menos Alugados </h1>"
-                    + "</br></br></br>"
+                    + "<br/><br/>"
                     + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
                     + "<tr> "
                     + "<th align=center><strong>Código do funcionario</strong></th> "
@@ -388,7 +394,7 @@ public class RelatoriosBEAN {
     /*----------------------------------------*/
     
     public static void relatorioVendaJogoPeriodo(String s,String dI,String dF) throws FileNotFoundException, DocumentException {
-        String path = System.getProperty("user.home") + "/Desktop/Relatório de Venda de jogos por período" + ".pdf";
+        String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
         Document document = new Document(PageSize.LETTER);
         PdfWriter.getInstance(document, new FileOutputStream(path));
         document.open();
@@ -406,8 +412,9 @@ public class RelatoriosBEAN {
                     + "<head> <meta charset=\"utf-8\"> </head>"
                     + "<body>"
                     + "<h1 align=center>Relatório de Jogos vendidos</h1>"
+                    + "<br/>"
                     + "<h3 align=center>Período de "+dI+" a "+dF+"</h3>"
-                    + "</br></br></br>"
+                    + "<br/><br/>"
                     + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
                     + "<tr> "
                     + "<th align=center><strong>Código do jogo</strong></th> "
@@ -440,7 +447,7 @@ public class RelatoriosBEAN {
     /*---------------------------------*/
     
      public static void relatorioAluguelJogoPeriodo(String s,String dI,String dF) throws FileNotFoundException, DocumentException {
-        String path = System.getProperty("user.home") + "/Desktop/Relatório de alugueis de jogos po período" + ".pdf";
+        String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
         Document document = new Document(PageSize.LETTER);
         PdfWriter.getInstance(document, new FileOutputStream(path));
         document.open();
@@ -457,9 +464,10 @@ public class RelatoriosBEAN {
             frase = "<html>"
                     + "<head> <meta charset=\"utf-8\"> </head>"
                     + "<body>"
+                    + "<br/>"
                     + "<h1 align=center>Relatório de Jogos vendidos</h1>"
                     + "<h3 align=center>Período de "+dI+" a "+dF+"</h3>"
-                    + "</br></br></br>"
+                    + "<br/><br/>"
                     + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
                     + "<tr> "
                     + "<th align=center><strong>Código do jogo</strong></th> "
@@ -492,8 +500,8 @@ public class RelatoriosBEAN {
     /*------------------------------------------------------*/
      
       public static void relatorioMontanteCliente() throws FileNotFoundException, DocumentException {
-        String path = System.getProperty("user.home") + "/Desktop/Relatório Montante por Cliente" + ".pdf";
-        Document document = new Document(PageSize.LETTER);
+        String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
+        Document document = new Document(PageSize.A4.rotate());
         PdfWriter.getInstance(document, new FileOutputStream(path));
         document.open();
         document.addAuthor("TechSales");
@@ -509,8 +517,9 @@ public class RelatoriosBEAN {
             frase = "<html>"
                     + "<head> <meta charset=\"utf-8\"> </head>"
                     + "<body>"
+                    + "<br/>"
                     + "<h1 align=center>Relatório de Jogos menos Alugados </h1>"
-                    + "</br></br></br>"
+                    + "<br/><br/>"
                     + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
                     + "<tr> "
                     + "<th align=center><strong>Código do cliente</strong></th> "

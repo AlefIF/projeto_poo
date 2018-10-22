@@ -274,7 +274,7 @@ public class ControleRelatorios {
                 + "FROM \n"
                 + "	cliente JOIN venda JOIN locacao JOIN devolucao\n"
                 + "WHERE \n"
-                + "	cliCodigo=venda_clienteCodigo and cod=loc_clienteCodigo\n"
+                + "	cliCodigo=venda_clienteCodigo and cliCodigo=loc_clienteCodigo\n"
                 + "    and locCodigo=dev_locCodigo\n"
                 + "GROUP BY \n"
                 + "	cliCodigo\n"

@@ -114,7 +114,7 @@ SELECT
 FROM 
 	cliente JOIN venda JOIN locacao JOIN devolucao
 WHERE 
-	cliCodigo=venda_clienteCodigo and cod=loc_clienteCodigo
+	cliCodigo=venda_clienteCodigo and cliCodigo=loc_clienteCodigo
     and locCodigo=dev_locCodigo
 GROUP BY 
 	cliCodigo

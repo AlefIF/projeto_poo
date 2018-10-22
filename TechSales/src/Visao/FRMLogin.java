@@ -8,9 +8,11 @@ package Visao;
 import Controle.CaixaControle;
 import Controle.EmpregoControle;
 import Controle.LucroControle;
+import Controle.RelLocalControle;
 import Controle.VendedorControle;
 import Modelo.CaixaBEAN;
 import Modelo.EmpregoBEAN;
+import Modelo.LocalRelatoriosBEAN;
 import Modelo.LucroBEAN;
 import Modelo.VendedorBEAN;
 import java.util.ArrayList;
@@ -23,11 +25,12 @@ import javax.swing.JOptionPane;
 public class FRMLogin extends javax.swing.JFrame {
 
     static VendedorBEAN user = new VendedorBEAN();
-    VendedorControle vc = new VendedorControle();
-    ArrayList<VendedorBEAN> al = vc.listarALL();
-    CaixaControle caixaC = new CaixaControle();
-    LucroControle lucC = new LucroControle();
-    EmpregoControle cEmp = new EmpregoControle();
+    private VendedorControle vc = new VendedorControle();
+    private ArrayList<VendedorBEAN> al = vc.listarALL();
+    private CaixaControle caixaC = new CaixaControle();
+    private LucroControle lucC = new LucroControle();
+    private EmpregoControle cEmp = new EmpregoControle();
+    private  RelLocalControle relC = new RelLocalControle();
 
     /**
      * Creates new form FRMLogin
@@ -36,6 +39,18 @@ public class FRMLogin extends javax.swing.JFrame {
         setResizable(false);
         initComponents();
 
+        //Cadastro localRelatorios
+        int qtLR = 0;
+        for (LocalRelatoriosBEAN rl : relC.listarALL()) {
+            qtLR++;
+        }
+        if (qtLR == 0) {
+            LocalRelatoriosBEAN rl1 = new LocalRelatoriosBEAN();
+            rl1.setRelLocal("/Desktop");
+            relC.cadastrar(rl1);
+        }
+
+        
         //Cadastro Caixa
         int qtc = 0;
         for (CaixaBEAN c : caixaC.listarALL()) {

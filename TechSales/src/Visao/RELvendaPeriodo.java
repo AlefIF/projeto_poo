@@ -5,7 +5,6 @@
  */
 package Visao;
 
-import Controle.ControleRelatorios;
 import static Modelo.RelatoriosBEAN.relatorioVendaJogoPeriodo;
 import com.itextpdf.text.DocumentException;
 import java.io.FileNotFoundException;
@@ -50,7 +49,7 @@ public class RELvendaPeriodo extends javax.swing.JFrame {
 
         jInternalFrame1.setVisible(true);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Insira as Datas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 

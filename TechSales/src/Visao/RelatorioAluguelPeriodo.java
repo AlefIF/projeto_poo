@@ -46,7 +46,7 @@ public class RelatorioAluguelPeriodo extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/back2.png"))); // NOI18N
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Exemplo Relatório");
 
         btRelatorioCliente.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -170,7 +170,7 @@ public class RelatorioAluguelPeriodo extends javax.swing.JFrame {
 
         String query = "SELECT joCodigo, joNome, count(locCodigo) as 'Quantidade de alugueis',sum(devValor) 'ValorRendido'\n"
                 + "FROM  jogo JOIN jogo_locacao JOIN locacao JOIN devolucao\n"
-                + "WHERE joCodigo=joCod AND locCod=locCodigo AND locCodigo=dev_loCodigo\n"
+                + "WHERE joCodigo=joCod AND locCod=locCodigo AND locCodigo=dev_locCodigo\n"
                 + "AND devData\n"
                 + "BETWEEN '" + dataInicio + "' AND '" + dataFinal + "'\n"
                 + "GROUP BY  joCodigo\n"

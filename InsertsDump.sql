@@ -23,3 +23,20 @@ INSERT INTO `hiber`.`console` (`conCodigo`, `conMarca`, `conNome`) VALUES ('4', 
 INSERT INTO `hiber`.`listadesejo` (`lisCodigo`, `lisNomeJogo`, `lisPlataforma`, `cliente_cliCodigo`) VALUES ('1', 'ds 2', 'PC', '1');
 /*Cliente*/
 INSERT INTO `hiber`.`cliente` (`cliCodigo`, `cliCpf`, `cliEmail`, `cliIdade`, `cliNome`, `cliTelefone`, `endBairro`, `endCidade`, `endEstado`, `endNumero`, `endPais`, `endRua`) VALUES ('1', '2', '2', '2', 'b', 's', 's', 's', 's', '2', 's', '2');
+
+
+/*Funcionario*/
+INSERT INTO `hiber`.`funcionario` (`funCodigo`, `endBairro`, `endCidade`, `endEstado`, `endNumero`, `endPais`, `endRua`, `funCpf`, `funEmail`, `funIdade`, `funNisPis`, `funNome`, `funSalario`, `funTelefone`, `fun_caixaCodigo`, `fun_empCodigo`) VALUES ('1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1');
+/*Vendedor*/
+INSERT INTO `hiber`.`vendedor` (`vendedorCodigo`, `vendedorNomeUsuario`, `vendedorSenha`, `vendedor_funCodigo`) VALUES ('1', '1', '1', '1');
+/*cliente*/
+INSERT INTO `hiber`.`cliente` (`cliCodigo`, `cliCpf`, `cliEmail`, `cliIdade`, `cliNome`, `cliTelefone`, `endBairro`, `endCidade`, `endEstado`, `endNumero`, `endPais`, `endRua`) VALUES ('1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1');
+/*Venmda*/
+INSERT INTO `hiber`.`venda` (`vendaCodigo`, `vendaData`, `vendaEntrada`, `vendaNparcelas`, `vendaValorTotal`, `venda_caixaCodigo`, `venda_clienteCodigo`, `venda_vendedorCodigo`) VALUES ('1', '1000-10-10', '20', '3', '100', '1', '1', '1');
+/*itemVenda*/
+INSERT INTO `hiber`.`jogo_venda` (`jvPreco`, `jvQdt`, `joCod`, `venCod`) VALUES ('10', '5', '1', '1');
+/*vendaAParazo*/
+INSERT INTO `hiber`.`vendaaprazo` (`vapCodigo`, `vapData`, `vapNumParcela`, `vapSituacao`, `vapValorParcela`, `vap_vendaCodigo`) VALUES ('1', '1000-10-10', '1', 'Paga', '50', '1');
+INSERT INTO `hiber`.`vendaaprazo` (`vapCodigo`, `vapData`, `vapNumParcela`, `vapSituacao`, `vapValorParcela`, `vap_vendaCodigo`) VALUES ('2', '1000-10-10', '2', 'Pendente', '50', '1');
+INSERT INTO `hiber`.`vendaaprazo` (`vapCodigo`, `vapData`, `vapNumParcela`, `vapSituacao`, `vapValorParcela`, `vap_vendaCodigo`) VALUES ('3', '1000-10-10', '3', 'Pendente', '50', '1');
+

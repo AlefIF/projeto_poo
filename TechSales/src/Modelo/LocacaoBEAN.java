@@ -28,6 +28,7 @@ public class LocacaoBEAN {
     private Date locDataDevolucao;
     private int locStatus;
     private float locPrecoUnit;
+    private float locEntrada;
     private ClienteBEAN cliente;
     private VendedorBEAN vendedor;
 
@@ -80,6 +81,14 @@ public class LocacaoBEAN {
 
     public void setLocPrecoUnit(float locPrecoUnit) {
         this.locPrecoUnit = locPrecoUnit;
+    }
+
+    public float getLocEntrada() {
+        return locEntrada;
+    }
+
+    public void setLocEntrada(float locEntrada) {
+        this.locEntrada = locEntrada;
     }
     
 

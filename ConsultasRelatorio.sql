@@ -32,7 +32,7 @@ ORDER BY NVendas desc
 LIMIT 10;
 /*jogos mais alugados*/
 SELECT 
-    joCodigo, joNome, SUM(jlQtd) AS 'NAlocações',sum(devValor) AS 'Valor Total'
+    joCodigo, joNome, SUM(jlQtd) AS 'NAlocações',sum(devValor+locEntrada) AS 'Valor Total'
 FROM
     jogo
         JOIN
@@ -52,7 +52,7 @@ ORDER BY NAlocações desc
 LIMIT 10;
 /*jogos menos alugados*/
 SELECT 
-    joCodigo, joNome, SUM(jlQtd) AS 'NAlocações',sum(devValor) AS 'Valor Total'
+    joCodigo, joNome, SUM(jlQtd) AS 'NAlocações',sum(devValor+locEntrada) AS 'Valor Total'
 FROM
     jogo
         JOIN
@@ -94,8 +94,8 @@ ORDER BY ValorRendido desc;
 SELECT 
 	funCodigo,funNome,count(vendaCodigo)as 'Numero de vendas',
     sum(vendaValorTotal) as 'Valor total de vendas' ,
-    count(locCodigo) 'Quantidade de alugueis',sum(devValor) as 'Valor total de alugueis'
-    ,(sum(vendaValorTotal)+sum(devValor)) as 'MontanteTotal'
+    count(locCodigo) 'Quantidade de alugueis',sum(devValor+locEntrada) as 'Valor total de alugueis'
+    ,(sum(vendaValorTotal)+sum(devValor+locEntrada)) as 'MontanteTotal'
 FROM 
 	funcionario JOIN vendedor JOIN venda JOIN locacao JOIN devolucao
 WHERE 
@@ -109,8 +109,8 @@ ORDER BY
 SELECT 
 	cliCodigo,cliNome,count(vendaCodigo)as 'Numero de vendas',
     sum(vendaValorTotal) as 'Valor total de vendas' ,
-    count(locCodigo) 'Quantidade de alugueis',sum(devValor) as 'Valor total de alugueis'
-    ,(sum(vendaValorTotal)+sum(devValor)) as 'MontanteTotal'
+    count(locCodigo) 'Quantidade de alugueis',sum(devValor+locEntrada) as 'Valor total de alugueis'
+    ,(sum(vendaValorTotal)+sum(devValor+locEntrada)) as 'MontanteTotal'
 FROM 
 	cliente JOIN venda JOIN locacao JOIN devolucao
 WHERE 

@@ -24,13 +24,18 @@ import Modelo.JogoBEAN;
 import Modelo.FuncionarioBEAN;
 import Modelo.JogoVendaBEAN;
 import Modelo.JogoVendaPK;
+import Modelo.RelatoriosBEAN;
 import Modelo.VendaAPrazoBEAN;
 import Modelo.VendaBEAN;
 import Modelo.VendedorBEAN;
+import com.itextpdf.text.DocumentException;
+import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -80,7 +85,7 @@ public class FRMVenda extends javax.swing.JFrame {
         preencheTabelaCliente();
         preencheTabelaCarro1();
         preencheTabelaCarro2();
-        // preencheTabelaVenda();
+        preencheTabelaVenda();
         preencheTabelaPrazo(cod);
         lbVendedorCod.setText(String.valueOf(FRMLogin.user.getVendedorCodigo()));
     }
@@ -958,6 +963,11 @@ public class FRMVenda extends javax.swing.JFrame {
 
         jButton12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton12.setText("Imprimir Nota");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1503,7 +1513,7 @@ public class FRMVenda extends javax.swing.JFrame {
             }
             VendaAPrazoBEAN nota = new VendaAPrazoBEAN();
             int m = data.getMonth();
-            data.setMonth(m+c);
+            data.setMonth(m + c);
             nota.setVapValorParcela(precoParcelaTT / t);
             nota.setVapNumParcela(c);
             nota.setVapData(data);
@@ -1714,6 +1724,17 @@ public class FRMVenda extends javax.swing.JFrame {
     private void tfChave3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave3KeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_tfChave3KeyTyped
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        VendaBEAN v = cVenda.localizar(Integer.parseInt(tableVendas.getValueAt(tableVendas.getSelectedRow(), 0).toString()));
+        try {
+            RelatoriosBEAN.notaDaVenda(v);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments

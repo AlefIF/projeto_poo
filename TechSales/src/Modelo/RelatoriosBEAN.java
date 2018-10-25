@@ -8,6 +8,7 @@ package Modelo;
 import Controle.ContaControle;
 import Controle.ControleRelatorios;
 import Controle.NotaDeCompraControle;
+import Controle.VendaAPrazoControle;
 import Visao.FRMEmitirRelatorios;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -30,6 +31,7 @@ public class RelatoriosBEAN {
     static ControleRelatorios jDAO = new ControleRelatorios();
     static NotaDeCompraControle cNdc = new NotaDeCompraControle();
     static ContaControle cContas = new ContaControle();
+    static VendaAPrazoControle cVap = new VendaAPrazoControle();
 
     public static void relatorioTopJogos() throws FileNotFoundException, DocumentException {
         String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
@@ -370,15 +372,15 @@ public class RelatoriosBEAN {
                     + "<th align=center><strong>Montante Total</strong></th> "
                     + "</tr> ";
             for (MontanteBEAN j : jDAO.montanteVendedor()) {
-                frase += "<tr align=center><td>" + j.getFunCodigo()+ "</td><td>"
-                        + j.getFunNome()+ "</td><td>" + j.getnVendas()+ "</td><td>" 
-                        + j.getValorVendas()+"</td><td>" + j.getnAluguel()+ 
-                        "</td><td>" +j.getValorAluguel()+ "</td><td>" +j.getValorTotal()+"</td></tr>";
+                frase += "<tr align=center><td>" + j.getFunCodigo() + "</td><td>"
+                        + j.getFunNome() + "</td><td>" + j.getnVendas() + "</td><td>"
+                        + j.getValorVendas() + "</td><td>" + j.getnAluguel()
+                        + "</td><td>" + j.getValorAluguel() + "</td><td>" + j.getValorTotal() + "</td></tr>";
             }
             frase += "</table>";
             frase += "</body></html>";
             htmlWorker.parse(new StringReader(frase));
-            document.close();           
+            document.close();
             if (Desktop.isDesktopSupported()) {
                 try {
                     Desktop.getDesktop().open(new File(path));
@@ -390,10 +392,9 @@ public class RelatoriosBEAN {
             e.printStackTrace();
         }
     }
-    
+
     /*----------------------------------------*/
-    
-    public static void relatorioVendaJogoPeriodo(String s,String dI,String dF) throws FileNotFoundException, DocumentException {
+    public static void relatorioVendaJogoPeriodo(String s, String dI, String dF) throws FileNotFoundException, DocumentException {
         String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
         Document document = new Document(PageSize.LETTER);
         PdfWriter.getInstance(document, new FileOutputStream(path));
@@ -413,7 +414,7 @@ public class RelatoriosBEAN {
                     + "<body>"
                     + "<h1 align=center>Relatório de Jogos vendidos</h1>"
                     + "<br/>"
-                    + "<h3 align=center>Período de "+dI+" a "+dF+"</h3>"
+                    + "<h3 align=center>Período de " + dI + " a " + dF + "</h3>"
                     + "<br/><br/>"
                     + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
                     + "<tr> "
@@ -423,14 +424,14 @@ public class RelatoriosBEAN {
                     + "<th align=center><strong>Valor total das vendas</strong></th> "
                     + "</tr> ";
             for (JogoBEAN j : jDAO.vendaPorPeriodo(s)) {
-                frase += "<tr align=center><td>" + j.getJoCodigo()+ "</td><td>"
-                        + j.getJoNome()+ "</td><td>" + j.getJoQtd()+ "</td><td>"
-                        +j.getJoPrecoPadrao()+"</td></tr>";
+                frase += "<tr align=center><td>" + j.getJoCodigo() + "</td><td>"
+                        + j.getJoNome() + "</td><td>" + j.getJoQtd() + "</td><td>"
+                        + j.getJoPrecoPadrao() + "</td></tr>";
             }
             frase += "</table>";
             frase += "</body></html>";
             htmlWorker.parse(new StringReader(frase));
-            document.close();           
+            document.close();
             if (Desktop.isDesktopSupported()) {
                 try {
                     Desktop.getDesktop().open(new File(path));
@@ -443,10 +444,8 @@ public class RelatoriosBEAN {
         }
     }
 
-    
     /*---------------------------------*/
-    
-     public static void relatorioAluguelJogoPeriodo(String s,String dI,String dF) throws FileNotFoundException, DocumentException {
+    public static void relatorioAluguelJogoPeriodo(String s, String dI, String dF) throws FileNotFoundException, DocumentException {
         String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
         Document document = new Document(PageSize.LETTER);
         PdfWriter.getInstance(document, new FileOutputStream(path));
@@ -466,7 +465,7 @@ public class RelatoriosBEAN {
                     + "<body>"
                     + "<br/>"
                     + "<h1 align=center>Relatório de Jogos vendidos</h1>"
-                    + "<h3 align=center>Período de "+dI+" a "+dF+"</h3>"
+                    + "<h3 align=center>Período de " + dI + " a " + dF + "</h3>"
                     + "<br/><br/>"
                     + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
                     + "<tr> "
@@ -476,14 +475,14 @@ public class RelatoriosBEAN {
                     + "<th align=center><strong>Valor total dos alugueis</strong></th> "
                     + "</tr> ";
             for (JogoBEAN j : jDAO.aluguelPorPeriodo(s)) {
-                frase += "<tr align=center><td>" + j.getJoCodigo()+ "</td><td>"
-                        + j.getJoNome()+ "</td><td>" + j.getJoQtd()+ "</td><td>"
-                        +j.getJoPrecoPadrao()+"</td></tr>";
+                frase += "<tr align=center><td>" + j.getJoCodigo() + "</td><td>"
+                        + j.getJoNome() + "</td><td>" + j.getJoQtd() + "</td><td>"
+                        + j.getJoPrecoPadrao() + "</td></tr>";
             }
             frase += "</table>";
             frase += "</body></html>";
             htmlWorker.parse(new StringReader(frase));
-            document.close();           
+            document.close();
             if (Desktop.isDesktopSupported()) {
                 try {
                     Desktop.getDesktop().open(new File(path));
@@ -495,11 +494,9 @@ public class RelatoriosBEAN {
             e.printStackTrace();
         }
     }
-     
-     
+
     /*------------------------------------------------------*/
-     
-      public static void relatorioMontanteCliente() throws FileNotFoundException, DocumentException {
+    public static void relatorioMontanteCliente() throws FileNotFoundException, DocumentException {
         String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
         Document document = new Document(PageSize.A4.rotate());
         PdfWriter.getInstance(document, new FileOutputStream(path));
@@ -531,15 +528,15 @@ public class RelatoriosBEAN {
                     + "<th align=center><strong>Montante Total</strong></th> "
                     + "</tr> ";
             for (MontanteBEAN j : jDAO.montanteCliente()) {
-                frase += "<tr align=center><td>" + j.getFunCodigo()+ "</td><td>"
-                        + j.getFunNome()+ "</td><td>" + j.getnVendas()+ "</td><td>" 
-                        + j.getValorVendas()+"</td><td>" + j.getnAluguel()+ 
-                        "</td><td>" +j.getValorAluguel()+ "</td><td>" +j.getValorTotal()+"</td></tr>";
+                frase += "<tr align=center><td>" + j.getFunCodigo() + "</td><td>"
+                        + j.getFunNome() + "</td><td>" + j.getnVendas() + "</td><td>"
+                        + j.getValorVendas() + "</td><td>" + j.getnAluguel()
+                        + "</td><td>" + j.getValorAluguel() + "</td><td>" + j.getValorTotal() + "</td></tr>";
             }
             frase += "</table>";
             frase += "</body></html>";
             htmlWorker.parse(new StringReader(frase));
-            document.close();           
+            document.close();
             if (Desktop.isDesktopSupported()) {
                 try {
                     Desktop.getDesktop().open(new File(path));
@@ -551,5 +548,152 @@ public class RelatoriosBEAN {
             e.printStackTrace();
         }
     }
-     
+
+    /*------------------*/
+    public static void notaDaVenda(VendaBEAN v) throws FileNotFoundException, DocumentException {
+        String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
+        Document document = new Document(PageSize.LETTER);
+        PdfWriter.getInstance(document, new FileOutputStream(path));
+        document.open();
+        document.addAuthor("TechSales");
+        document.addCreator("TechSales");
+        document.addSubject("TechSales - Sistema de gerenciamento de locadoras");
+        document.addCreationDate();
+        document.addTitle("TechSales");
+
+        HTMLWorker htmlWorker = new HTMLWorker(document);
+
+        String frase;
+        try {
+            frase = "<html>"
+                    + "<head> <meta charset=\"utf-8\"> </head>"
+                    + "<body>"
+                    + "<h1 align=center>Nota de Compra</h1>"
+                    + "<br/><br/>"
+                    + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
+                    + "<tr> "
+                    + "<th align=center><strong>Código</strong></th> "
+                    + "<th align=center><strong>Cliente</strong></th> "
+                    + "<th align=center><strong>Data</strong></th> "
+                    + "<th align=center><strong>Total</strong></th> "
+                    + "<th align=center><strong>Entrada</strong></th> "
+                    + "<th align=center><strong>Parcelas</strong></th> "
+                    + "<th align=center><strong>Vendedor</strong></th> "
+                    + "</tr> ";
+
+            frase += "<tr align=center><td>" + v.getVendaCodigo() + "</td><td>"
+                    + v.getCliente().getCliCodigo() + "</td><td>" + v.getVendaData() + "</td><td>"
+                    + "</td><td>" + v.getVendaValorTotal() + "</td><td>"
+                    + "</td><td>" + v.getVendaEntrada() + "</td><td>"
+                    + "</td><td>" + v.getVendaNparcelas() + "</td><td>"
+                    + "</td><td>" + v.getVendedor().getVendedorCodigo() + "</td></tr>"
+                    + "</table>";
+
+            frase += "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
+                    + "<br/><br/>"
+                    + "<tr> "
+                    + "<th align=center><strong>Parcela</strong></th> "
+                    + "<th align=center><strong>Data</strong></th> "
+                    + "<th align=center><strong>Valor</strong></th> "
+                    + "<th align=center><strong>Situação</strong></th> "
+                    + "</tr> ";
+
+            for (VendaAPrazoBEAN vap : cVap.listarALL()) {
+                if (vap.getVenda().getVendaCodigo() == v.getVendaCodigo()) {
+                    frase += "<tr align=center><td>" + vap.getVapNumParcela() + "</td><td>"
+                            + vap.getVapData() + "</td><td>"
+                            + vap.getVapValorParcela() + "</td><td>"
+                            + vap.getVapSituacao() + "</td></tr>";
+                }
+            }
+            frase += "</table>";
+            frase += "</body></html>";
+            htmlWorker.parse(new StringReader(frase));
+            document.close();
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().open(new File(path));
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /*--------------------------*/
+    
+     /*------------------*/
+    public static void notaDoAluguel(VendaBEAN v) throws FileNotFoundException, DocumentException {
+        String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
+        Document document = new Document(PageSize.LETTER);
+        PdfWriter.getInstance(document, new FileOutputStream(path));
+        document.open();
+        document.addAuthor("TechSales");
+        document.addCreator("TechSales");
+        document.addSubject("TechSales - Sistema de gerenciamento de locadoras");
+        document.addCreationDate();
+        document.addTitle("TechSales");
+
+        HTMLWorker htmlWorker = new HTMLWorker(document);
+
+        String frase;
+        try {
+            frase = "<html>"
+                    + "<head> <meta charset=\"utf-8\"> </head>"
+                    + "<body>"
+                    + "<h1 align=center>Nota de Compra</h1>"
+                    + "<br/><br/>"
+                    + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
+                    + "<tr> "
+                    + "<th align=center><strong>Código</strong></th> "
+                    + "<th align=center><strong>Cliente</strong></th> "
+                    + "<th align=center><strong>Data</strong></th> "
+                    + "<th align=center><strong>Total</strong></th> "
+                    + "<th align=center><strong>Entrada</strong></th> "
+                    + "<th align=center><strong>Parcelas</strong></th> "
+                    + "<th align=center><strong>Vendedor</strong></th> "
+                    + "</tr> ";
+
+            frase += "<tr align=center><td>" + v.getVendaCodigo() + "</td><td>"
+                    + v.getCliente().getCliCodigo() + "</td><td>" + v.getVendaData() + "</td><td>"
+                    + "</td><td>" + v.getVendaValorTotal() + "</td><td>"
+                    + "</td><td>" + v.getVendaEntrada() + "</td><td>"
+                    + "</td><td>" + v.getVendaNparcelas() + "</td><td>"
+                    + "</td><td>" + v.getVendedor().getVendedorCodigo() + "</td></tr>"
+                    + "</table>";
+
+            frase += "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
+                    + "<br/><br/>"
+                    + "<tr> "
+                    + "<th align=center><strong>Parcela</strong></th> "
+                    + "<th align=center><strong>Data</strong></th> "
+                    + "<th align=center><strong>Valor</strong></th> "
+                    + "<th align=center><strong>Situação</strong></th> "
+                    + "</tr> ";
+
+            for (VendaAPrazoBEAN vap : cVap.listarALL()) {
+                if (vap.getVenda().getVendaCodigo() == v.getVendaCodigo()) {
+                    frase += "<tr align=center><td>" + vap.getVapNumParcela() + "</td><td>"
+                            + vap.getVapData() + "</td><td>"
+                            + vap.getVapValorParcela() + "</td><td>"
+                            + vap.getVapSituacao() + "</td></tr>";
+                }
+            }
+            frase += "</table>";
+            frase += "</body></html>";
+            htmlWorker.parse(new StringReader(frase));
+            document.close();
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().open(new File(path));
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

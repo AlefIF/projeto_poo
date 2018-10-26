@@ -66,7 +66,7 @@ public class LocacaoBEAN {
         this.locDataDevolucao = locDataDevolucao;
     }
 
-    @Column(name = "joStatus", nullable = false, columnDefinition = "int")
+    @Column(name = "locStatus", nullable = false, columnDefinition = "int")
     public int getLocStatus() {
         return locStatus;
     }

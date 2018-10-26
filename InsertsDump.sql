@@ -57,17 +57,16 @@ INSERT INTO `hiber`.`emprego` (`empCodigo`, `empDescricao`, `empNome`, `empSalar
 INSERT INTO `hiber`.`emprego` (`empCodigo`, `empDescricao`, `empNome`, `empSalarioPadrao`) VALUES ('3', 'Realiza faxinas na empresa', 'Faxineiro', '1000');
 INSERT INTO `hiber`.`emprego` (`empCodigo`, `empDescricao`, `empNome`, `empSalarioPadrao`) VALUES ('4', 'Realiza entregas na empresa', 'Motoboy', '1200');
 INSERT INTO `hiber`.`emprego` (`empCodigo`, `empDescricao`, `empNome`, `empSalarioPadrao`) VALUES ('5', 'Realiza o marketing da empresa', 'Market Man or Woman or other genre', '1800');
-/*Funcionario*/
-INSERT INTO `hiber`.`funcionario` (`funCodigo`, `endBairro`, `endCidade`, `endEstado`, `endNumero`, `endPais`, `endRua`, `funCpf`, `funEmail`, `funIdade`, `funNisPis`, `funNome`, `funSalario`, `funTelefone`, `fun_caixaCodigo`, `fun_empCodigo`) VALUES ('1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1');
+/*Funcionario*/																																					
+INSERT INTO `hiber`.`funcionario` (`funCodigo`, `endBairro`, `endCidade`, `endEstado`, `endNumero`, `endPais`, `endRua`, `funCpf`, `funEmail`, `funIdade`, `funNisPis`, `funNome`, `funSalario`, `funTelefone`, `fun_caixaCodigo`, `fun_empCodigo`) VALUES ('1', 'Bairro da Empresa', 'Formiga', 'Minas Gerais', '1001', 'Brasil', 'Rua Empresarial', '110.999.333-11', 'fun1@gmail.com', '30', '333.55555.22-1', 'Armelindo Rico', '9999', '(37)97777-9999', '1', '1');
 INSERT INTO `hiber`.`funcionario` (`funCodigo`, `endBairro`, `endCidade`, `endEstado`, `endNumero`, `endPais`, `endRua`, `funCpf`, `funEmail`, `funIdade`, `funNisPis`, `funNome`, `funSalario`, `funTelefone`, `fun_caixaCodigo`, `fun_empCodigo`) VALUES ('2', 'Bairro da Empresa', 'Formiga', 'Minas Gerais', '1002', 'Brasil', 'Rua Empresarial', '110.999.333-22', 'fun2@gmail.com', '20', '333.55555.22-2', 'Rubens Roxo', '3500', '(37)97777-9991', '1', '2');
 INSERT INTO `hiber`.`funcionario` (`funCodigo`, `endBairro`, `endCidade`, `endEstado`, `endNumero`, `endPais`, `endRua`, `funCpf`, `funEmail`, `funIdade`, `funNisPis`, `funNome`, `funSalario`, `funTelefone`, `fun_caixaCodigo`, `fun_empCodigo`) VALUES ('3', 'Bairro da Empresa', 'Formiga', 'Minas Gerais', '1003', 'Brasil', 'Rua Empresarial', '110.999.333-33', 'fun3@gmail.com', '40', '333.55555.22-3', 'Mario Luis', '2000', '(37)97777-9992', '1', '3');
 INSERT INTO `hiber`.`funcionario` (`funCodigo`, `endBairro`, `endCidade`, `endEstado`, `endNumero`, `endPais`, `endRua`, `funCpf`, `funEmail`, `funIdade`, `funNisPis`, `funNome`, `funSalario`, `funTelefone`, `fun_caixaCodigo`, `fun_empCodigo`) VALUES ('4', 'Bairro da Empresa', 'Formiga', 'Minas Gerais', '1004', 'Brasil', 'Rua Empresarial', '110.999.333-44', 'fun4@gmail.com', '18', '333.55555.22-4', 'Akira', '1000', '(37)97777-9993', '1', '4');
 INSERT INTO `hiber`.`funcionario` (`funCodigo`, `endBairro`, `endCidade`, `endEstado`, `endNumero`, `endPais`, `endRua`, `funCpf`, `funEmail`, `funIdade`, `funNisPis`, `funNome`, `funSalario`, `funTelefone`, `fun_caixaCodigo`, `fun_empCodigo`) VALUES ('5', 'Bairro da Empresa', 'Formiga', 'Minas Gerais', '1005', 'Brasil', 'Rua Empresarial', '110.999.333-55', 'fun5@gmail.com', '35', '333.55555.22-5', 'Steve Joab', '2300', '(37)97777-9994', '1', '5');
-UPDATE `hiber`.`funcionario` SET `endBairro` = 'Bairro da Empresa', `endCidade` = 'Formiga', `endEstado` = 'Minas Gerais', `endNumero` = '1001', `endPais` = 'Brasil', `endRua` = 'Rua Empresarial', `funCpf` = '110.999.333-00', `funEmail` = 'fun1@gmail.com', `funIdade` = '30', `funNisPis` = '333.55555.22-1', `funNome` = 'Armelindo Rico', `funSalario` = '9999', `funTelefone` = '(37)97777-9999' WHERE (`funCodigo` = '1');
-
-
 /*Vendedor*/
-INSERT INTO `hiber`.`vendedor` (`vendedorCodigo`, `vendedorNomeUsuario`, `vendedorSenha`, `vendedor_funCodigo`) VALUES ('1', '1', '1', '1');
+select * from vendedor;
+INSERT INTO `hiber`.`vendedor` (`vendedorCodigo`, `vendedorNomeUsuario`, `vendedorSenha`, `vendedor_funCodigo`) VALUES ('1', '8AleF8', '123', '1');
+INSERT INTO `hiber`.`vendedor` (`vendedorCodigo`, `vendedorNomeUsuario`, `vendedorSenha`, `vendedor_funCodigo`) VALUES ('2', '9AleF9', '123', '2');
 /*Venda*/
 INSERT INTO `hiber`.`venda` (`vendaCodigo`, `vendaData`, `vendaEntrada`, `vendaNparcelas`, `vendaValorTotal`, `venda_caixaCodigo`, `venda_clienteCodigo`, `venda_vendedorCodigo`) VALUES ('1', '1000-10-10', '20', '3', '100', '1', '1', '1');
 /*itemVenda*/
@@ -76,4 +75,87 @@ INSERT INTO `hiber`.`jogo_venda` (`jvPreco`, `jvQdt`, `joCod`, `venCod`) VALUES 
 INSERT INTO `hiber`.`vendaaprazo` (`vapCodigo`, `vapData`, `vapNumParcela`, `vapSituacao`, `vapValorParcela`, `vap_vendaCodigo`) VALUES ('1', '1000-10-10', '1', 'Paga', '50', '1');
 INSERT INTO `hiber`.`vendaaprazo` (`vapCodigo`, `vapData`, `vapNumParcela`, `vapSituacao`, `vapValorParcela`, `vap_vendaCodigo`) VALUES ('2', '1000-10-10', '2', 'Pendente', '50', '1');
 INSERT INTO `hiber`.`vendaaprazo` (`vapCodigo`, `vapData`, `vapNumParcela`, `vapSituacao`, `vapValorParcela`, `vap_vendaCodigo`) VALUES ('3', '1000-10-10', '3', 'Pendente', '50', '1');
+/*Locação*/
+INSERT INTO `hiber`.`locacao` (`locCodigo`, `locDataAluguel`, `locDataDevolucao`, `locEntrada`, `locPrecoUnit`, `locPreçoTotal`, `joStatus`, `loc_clienteCodigo`, `loc_vendedorCodigo`) VALUES ('1', '2018-01-01', '2018-01-08', '15', '15', '15', '1', '1', '1');
+INSERT INTO `hiber`.`locacao` (`locCodigo`, `locDataAluguel`, `locDataDevolucao`, `locEntrada`, `locPrecoUnit`, `locPreçoTotal`, `joStatus`, `loc_clienteCodigo`, `loc_vendedorCodigo`) VALUES ('2', '2018-01-10', '2018-01-17', '15', '15', '15', '1', '2', '1');
+INSERT INTO `hiber`.`locacao` (`locCodigo`, `locDataAluguel`, `locDataDevolucao`, `locEntrada`, `locPrecoUnit`, `locPreçoTotal`, `joStatus`, `loc_clienteCodigo`, `loc_vendedorCodigo`) VALUES ('3', '2018-01-20', '2018-01-27', '15', '15', '15', '1', '3', '1');
+INSERT INTO `hiber`.`locacao` (`locCodigo`, `locDataAluguel`, `locDataDevolucao`, `locEntrada`, `locPrecoUnit`, `locPreçoTotal`, `joStatus`, `loc_clienteCodigo`, `loc_vendedorCodigo`) VALUES ('4', '2018-02-10', '2018-02-17', '15', '15', '15', '1', '4', '1');
+INSERT INTO `hiber`.`locacao` (`locCodigo`, `locDataAluguel`, `locDataDevolucao`, `locEntrada`, `locPrecoUnit`, `locPreçoTotal`, `joStatus`, `loc_clienteCodigo`, `loc_vendedorCodigo`) VALUES ('5', '2018-02-20', '2018-02-27', '15', '15', '15', '1', '5', '1');
+INSERT INTO `hiber`.`locacao` (`locCodigo`, `locDataAluguel`, `locDataDevolucao`, `locEntrada`, `locPrecoUnit`, `locPreçoTotal`, `joStatus`, `loc_clienteCodigo`, `loc_vendedorCodigo`) VALUES ('6', '2018-03-10', '2018-03-17', '0', '15', '30', '1', '1', '2');
+INSERT INTO `hiber`.`locacao` (`locCodigo`, `locDataAluguel`, `locDataDevolucao`, `locEntrada`, `locPrecoUnit`, `locPreçoTotal`, `joStatus`, `loc_clienteCodigo`, `loc_vendedorCodigo`) VALUES ('7', '2018-03-20', '2018-03-27', '0', '15', '30', '1', '2', '2');
+INSERT INTO `hiber`.`locacao` (`locCodigo`, `locDataAluguel`, `locDataDevolucao`, `locEntrada`, `locPrecoUnit`, `locPreçoTotal`, `joStatus`, `loc_clienteCodigo`, `loc_vendedorCodigo`) VALUES ('8', '2018-04-10', '2018-04-17', '0', '15', '30', '1', '3', '2');
+INSERT INTO `hiber`.`locacao` (`locCodigo`, `locDataAluguel`, `locDataDevolucao`, `locEntrada`, `locPrecoUnit`, `locPreçoTotal`, `joStatus`, `loc_clienteCodigo`, `loc_vendedorCodigo`) VALUES ('9', '2018-04-20', '2018-04-27', '0', '15', '30', '1', '4', '2');
+INSERT INTO `hiber`.`locacao` (`locCodigo`, `locDataAluguel`, `locDataDevolucao`, `locEntrada`, `locPrecoUnit`, `locPreçoTotal`, `joStatus`, `loc_clienteCodigo`, `loc_vendedorCodigo`) VALUES ('10', '2018-05-10', '2018-05-17', '0', '15', '30', '1', '5', '2');
+INSERT INTO `hiber`.`locacao` (`locCodigo`, `locDataAluguel`, `locDataDevolucao`, `locEntrada`, `locPrecoUnit`, `locPreçoTotal`, `joStatus`, `loc_clienteCodigo`, `loc_vendedorCodigo`) VALUES ('11', '2018-05-20', '2018-05-27', '0', '15', '45', '0', '1', '2');
+INSERT INTO `hiber`.`locacao` (`locCodigo`, `locDataAluguel`, `locDataDevolucao`, `locEntrada`, `locPrecoUnit`, `locPreçoTotal`, `joStatus`, `loc_clienteCodigo`, `loc_vendedorCodigo`) VALUES ('12', '2018-06-10', '2018-06-17', '0', '15', '45', '0', '2', '2');
+INSERT INTO `hiber`.`locacao` (`locCodigo`, `locDataAluguel`, `locDataDevolucao`, `locEntrada`, `locPrecoUnit`, `locPreçoTotal`, `joStatus`, `loc_clienteCodigo`, `loc_vendedorCodigo`) VALUES ('13', '2018-06-20', '2018-06-27', '0', '15', '45', '0', '3', '2');
+INSERT INTO `hiber`.`locacao` (`locCodigo`, `locDataAluguel`, `locDataDevolucao`, `locEntrada`, `locPrecoUnit`, `locPreçoTotal`, `joStatus`, `loc_clienteCodigo`, `loc_vendedorCodigo`) VALUES ('14', '2018-07-10', '2018-07-17', '0', '15', '45', '0', '4', '2');
+INSERT INTO `hiber`.`locacao` (`locCodigo`, `locDataAluguel`, `locDataDevolucao`, `locEntrada`, `locPrecoUnit`, `locPreçoTotal`, `joStatus`, `loc_clienteCodigo`, `loc_vendedorCodigo`) VALUES ('15', '2018-07-20', '2018-07-27', '0', '15', '45', '0', '5', '2');
+/*jogo_locacao*/
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('1', '1', '1');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('1', '1', '2');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('1', '2', '3');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('1', '2', '4');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('1', '5', '5');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('1', '9', '6');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('1', '11', '6');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('1', '13', '7');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('1', '5', '7');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('1', '7', '8');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('1', '9', '8');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('1', '11', '9');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('1', '15', '9');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('1', '7', '10');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('1', '11', '10');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('3', '1', '11');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('3', '2', '12');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('3', '1', '13');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('3', '2', '14');
+INSERT INTO `hiber`.`jogo_locacao` (`jlQtd`, `joCod`, `locCod`) VALUES ('3', '1', '15');
+/*Devolução*/
+INSERT INTO `hiber`.`devolucao` (`devCodigo`, `devData`, `devMulta`, `devValor`, `dev_caixaCodigo`, `dev_locCodigo`) VALUES ('1', '2018-01-08', '0', '0', '1', '1');
+INSERT INTO `hiber`.`devolucao` (`devCodigo`, `devData`, `devMulta`, `devValor`, `dev_caixaCodigo`, `dev_locCodigo`) VALUES ('2', '2018-01-17', '0', '0', '1', '2');
+INSERT INTO `hiber`.`devolucao` (`devCodigo`, `devData`, `devMulta`, `devValor`, `dev_caixaCodigo`, `dev_locCodigo`) VALUES ('3', '2018-01-27', '0', '0', '1', '3');
+INSERT INTO `hiber`.`devolucao` (`devCodigo`, `devData`, `devMulta`, `devValor`, `dev_caixaCodigo`, `dev_locCodigo`) VALUES ('4', '2018-02-17', '0', '0', '1', '4');
+INSERT INTO `hiber`.`devolucao` (`devCodigo`, `devData`, `devMulta`, `devValor`, `dev_caixaCodigo`, `dev_locCodigo`) VALUES ('5', '2018-02-27', '0', '0', '1', '5');
+INSERT INTO `hiber`.`devolucao` (`devCodigo`, `devData`, `devMulta`, `devValor`, `dev_caixaCodigo`, `dev_locCodigo`) VALUES ('6', '2018-03-17', '0', '30', '1', '6');
+INSERT INTO `hiber`.`devolucao` (`devCodigo`, `devData`, `devMulta`, `devValor`, `dev_caixaCodigo`, `dev_locCodigo`) VALUES ('7', '2018-03-27', '0', '30', '1', '7');
+INSERT INTO `hiber`.`devolucao` (`devCodigo`, `devData`, `devMulta`, `devValor`, `dev_caixaCodigo`, `dev_locCodigo`) VALUES ('8', '2018-04-17', '0', '30', '1', '8');
+INSERT INTO `hiber`.`devolucao` (`devCodigo`, `devData`, `devMulta`, `devValor`, `dev_caixaCodigo`, `dev_locCodigo`) VALUES ('9', '2018-04-27', '0', '30', '1', '9');
+INSERT INTO `hiber`.`devolucao` (`devCodigo`, `devData`, `devMulta`, `devValor`, `dev_caixaCodigo`, `dev_locCodigo`) VALUES ('10', '2018-05-17', '0', '30', '1', '10');
+INSERT INTO `hiber`.`devolucao` (`devCodigo`, `devData`, `devMulta`, `devValor`, `dev_caixaCodigo`, `dev_locCodigo`) VALUES ('11', '2018-05-28', '5', '50', '1', '11');
+INSERT INTO `hiber`.`devolucao` (`devCodigo`, `devData`, `devMulta`, `devValor`, `dev_caixaCodigo`, `dev_locCodigo`) VALUES ('12', '2018-06-19', '10', '55', '1', '12');
+INSERT INTO `hiber`.`devolucao` (`devCodigo`, `devData`, `devMulta`, `devValor`, `dev_caixaCodigo`, `dev_locCodigo`) VALUES ('13', '2018-06-30', '15', '60', '1', '13');
+INSERT INTO `hiber`.`devolucao` (`devCodigo`, `devData`, `devMulta`, `devValor`, `dev_caixaCodigo`, `dev_locCodigo`) VALUES ('14', '2018-07-21', '20', '65', '1', '14');
+INSERT INTO `hiber`.`devolucao` (`devCodigo`, `devData`, `devMulta`, `devValor`, `dev_caixaCodigo`, `dev_locCodigo`) VALUES ('15', '2018-07-28', '5', '70', '1', '15');
+/*Conta*/
+select * from conta;
+
+
+/*ContaPrazo*/
+select * from contaaprazo;
+
+
+/*notadeCompra*/
+select * from notadecompra;
+																																																
+INSERT INTO `hiber`.`notadecompra` (`ndcCodigo`, `ndcCustoUnitario`, `ndcData`, `ndcEntrada`, `ndcParcelas`, `ndcPrecoTotal`, `ndcQtdComprada`, `ndc_caixaCodigo`, `ndc_joCodigo`) VALUES ('1', '444', '2018-01-01','444', '0', '444', '4', '1', '1');
+INSERT INTO `hiber`.`notadecompra` (`ndcCodigo`, `ndcCustoUnitario`, `ndcData`, `ndcEntrada`, `ndcParcelas`, `ndcPrecoTotal`, `ndcQtdComprada`, `ndc_caixaCodigo`, `ndc_joCodigo`) VALUES ('2', '333', '2018-01-01','333', '0', '333', '3', '1', '2');
+INSERT INTO `hiber`.`notadecompra` (`ndcCodigo`, `ndcCustoUnitario`, `ndcData`, `ndcEntrada`, `ndcParcelas`, `ndcPrecoTotal`, `ndcQtdComprada`, `ndc_caixaCodigo`, `ndc_joCodigo`) VALUES ('3', '350', '2018-01-01','350', '0', '350', '20', '1', '3');
+INSERT INTO `hiber`.`notadecompra` (`ndcCodigo`, `ndcCustoUnitario`, `ndcData`, `ndcEntrada`, `ndcParcelas`, `ndcPrecoTotal`, `ndcQtdComprada`, `ndc_caixaCodigo`, `ndc_joCodigo`) VALUES ('4', '200', '2018-01-01','200', '0', '200', '30', '1', '4');
+INSERT INTO `hiber`.`notadecompra` (`ndcCodigo`, `ndcCustoUnitario`, `ndcData`, `ndcEntrada`, `ndcParcelas`, `ndcPrecoTotal`, `ndcQtdComprada`, `ndc_caixaCodigo`, `ndc_joCodigo`) VALUES ('5', '130', '2018-01-01','130', '0',	'130', '10', '1', '5');
+INSERT INTO `hiber`.`notadecompra` (`ndcCodigo`, `ndcCustoUnitario`, `ndcData`, `ndcEntrada`, `ndcParcelas`, `ndcPrecoTotal`, `ndcQtdComprada`, `ndc_caixaCodigo`, `ndc_joCodigo`) VALUES ('6', '170', '2018-01-01', '170', '0', '170',	'5', '1', '6');
+INSERT INTO `hiber`.`notadecompra` (`ndcCodigo`, `ndcCustoUnitario`, `ndcData`, `ndcEntrada`, `ndcParcelas`, `ndcPrecoTotal`, `ndcQtdComprada`, `ndc_caixaCodigo`, `ndc_joCodigo`) VALUES('7', '210', '2018-01-01', '210', '0', '210', '15', '1', '7');
+INSERT INTO `hiber`.`notadecompra` (`ndcCodigo`, `ndcCustoUnitario`, `ndcData`, `ndcEntrada`, `ndcParcelas`, `ndcPrecoTotal`, `ndcQtdComprada`, `ndc_caixaCodigo`, `ndc_joCodigo`) VALUES('8', '100', '2018-01-01', '100', '0', '100', '20', '1', '8');
+INSERT INTO `hiber`.`notadecompra` (`ndcCodigo`, `ndcCustoUnitario`, `ndcData`, `ndcEntrada`, `ndcParcelas`, `ndcPrecoTotal`, `ndcQtdComprada`, `ndc_caixaCodigo`, `ndc_joCodigo`) VALUES ('9', '160', '2018-01-01', '160', '0', '160',	'25', '1', '9');
+INSERT INTO `hiber`.`notadecompra` (`ndcCodigo`, `ndcCustoUnitario`, `ndcData`, `ndcEntrada`, `ndcParcelas`, `ndcPrecoTotal`, `ndcQtdComprada`, `ndc_caixaCodigo`, `ndc_joCodigo`) VALUES('10', '155', '2018-01-01', '155',  '0',	'155', '15', '1', '10');
+INSERT INTO `hiber`.`notadecompra` (`ndcCodigo`, `ndcCustoUnitario`, `ndcData`, `ndcEntrada`, `ndcParcelas`, `ndcPrecoTotal`, `ndcQtdComprada`, `ndc_caixaCodigo`, `ndc_joCodigo`) VALUES('11', '190', '2018-01-01', '190', '0', '190',	'35', '1', '11');
+INSERT INTO `hiber`.`notadecompra` (`ndcCodigo`, `ndcCustoUnitario`, `ndcData`, `ndcEntrada`, `ndcParcelas`, `ndcPrecoTotal`, `ndcQtdComprada`, `ndc_caixaCodigo`, `ndc_joCodigo`) VALUES ('12', '220', '2018-01-01', '0', '3', '240','30', '1', '12');
+INSERT INTO `hiber`.`notadecompra` (`ndcCodigo`, `ndcCustoUnitario`, `ndcData`, `ndcEntrada`, `ndcParcelas`, `ndcPrecoTotal`, `ndcQtdComprada`, `ndc_caixaCodigo`, `ndc_joCodigo`) VALUES ('13', '205', '2018-01-01', '0', '2', '210', '20', '1', '13');
+INSERT INTO `hiber`.`notadecompra` (`ndcCodigo`, `ndcCustoUnitario`, `ndcData`, `ndcEntrada`, `ndcParcelas`, `ndcPrecoTotal`, `ndcQtdComprada`, `ndc_caixaCodigo`, `ndc_joCodigo`) VALUES ('14', '175', '2018-01-01', '0', '1', '200', '25', '1', '14');
+INSERT INTO `hiber`.`notadecompra` (`ndcCodigo`, `ndcCustoUnitario`, `ndcData`, `ndcEntrada`, `ndcParcelas`, `ndcPrecoTotal`, `ndcQtdComprada`, `ndc_caixaCodigo`, `ndc_joCodigo`) VALUES('15', '125', '2018-01-01', '0', '5', 	'150', '20', '1', '15');
+INSERT INTO `hiber`.`notadecompra` (`ndcCodigo`, `ndcCustoUnitario`, `ndcData`, `ndcEntrada`, `ndcParcelas`, `ndcPrecoTotal`, `ndcQtdComprada`, `ndc_caixaCodigo`, `ndc_joCodigo`) VALUES ('16', '135', '2018-01-01', '0', '1', '135', '35', '1', '16');
+/*notadeCompraPrazo*/
+select * from compraPrazo;
+select * from jogo
 

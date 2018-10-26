@@ -5,8 +5,8 @@
  */
 package Controle;
 
-import java.util.ArrayList;
 import Modelo.JogoBEAN;
+import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
@@ -14,7 +14,7 @@ import jpa.JpaUtil;
 
 /**
  *
- * @author admin
+ * @author Alef
  */
 public class JogoControle {
 

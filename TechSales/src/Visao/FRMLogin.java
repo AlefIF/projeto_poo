@@ -38,8 +38,8 @@ public class FRMLogin extends javax.swing.JFrame {
     public FRMLogin() {
         setResizable(false);
         initComponents();
-
-        //Cadastro localRelatorios
+        /*
+        //Cadastro localRelatorios        
         int qtLR = 0;
         for (LocalRelatoriosBEAN rl : relC.listarALL()) {
             qtLR++;
@@ -94,7 +94,7 @@ public class FRMLogin extends javax.swing.JFrame {
             emp.setEmpDescricao("Tem acesso à parte de Funcionarios do sistema");
             cEmp.cadastrar(emp);
 
-        }
+        }*/
 
     }
 

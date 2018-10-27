@@ -19,6 +19,7 @@ select * from devolucao;
 select * from conta;
 select * from contaaprazo;
 select * from listadesejo;
+select * from localrelatorio;
 
 
 

@@ -1,3 +1,5 @@
+/*localrelatorio*/
+INSERT INTO `hiber`.`localrelatorio` (`relCodigo`, `relLocal`) VALUES ('1', '/desktop');
 /*Fornecedor*/
 INSERT INTO `hiber`.`fornecedor` (`forCodigo`, `endBairro`, `endCidade`, `endEstado`, `endNumero`, `endPais`, `endRua`, `forAnotacoes`, `forCNPJ`, `forEmail`, `forNomeEmpresa`, `forTelefoneContato`) VALUES ('1', 'Eldorado', 'Formiga', 'Minas Gerais', '104', 'Brasil', 'Isolina C. Souza', 'Forncene jogos de FPS', '111.222.333/4444-00', 'alf@gmail.com', 'FormigaGames', '(37)99999-9999');
 INSERT INTO `hiber`.`fornecedor` (`forCodigo`, `endBairro`, `endCidade`, `endEstado`, `endNumero`, `endPais`, `endRua`, `forAnotacoes`, `forCNPJ`, `forEmail`, `forNomeEmpresa`, `forTelefoneContato`) VALUES ('2', 'Centro', 'São Paulo', 'São Paulo', '235', 'Brasil', 'Av. Brasil', 'Forncene jogos de Hack and Slash', '111.222.333/4444-01', 'sp@gmail.com', 'SPGames', '(37)99999-9991');

@@ -22,8 +22,6 @@ public class ContaBEAN {
 
     private int conCodigo;
     private String conDescricao;
-    private float conCustoUnitario;
-    private int conQtdComprada;
     private float conValorTotal;
     private Date conData;
     private int conNparcelas;
@@ -65,14 +63,6 @@ public class ContaBEAN {
         this.conData = conData;
     }
 
-    public int getConQtdComprada() {
-        return conQtdComprada;
-    }
-
-    public void setConQtdComprada(int conQtdComprada) {
-        this.conQtdComprada = conQtdComprada;
-    }
-    
     public int getConNparcelas() {
         return conNparcelas;
     }
@@ -88,14 +78,6 @@ public class ContaBEAN {
 
     public void setFornecedor(FornecedorBEAN fornecedor) {
         this.fornecedor = fornecedor;
-    }
-
-    public float getConCustoUnitario() {
-        return conCustoUnitario;
-    }
-
-    public void setConCustoUnitario(float conCustoUnitario) {
-        this.conCustoUnitario = conCustoUnitario;
     }
 
     public float getConEntrada() {

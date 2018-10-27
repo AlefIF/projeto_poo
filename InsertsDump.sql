@@ -190,8 +190,8 @@ INSERT INTO `hiber`.`compraPrazo` (`napCodigo`, `napData`, `napNumParcela`, `nap
 INSERT INTO `hiber`.`compraPrazo` (`napCodigo`, `napData`, `napNumParcela`, `napSituacao`, `nap_ndcCodigo`) VALUES ('8', '2018-03-01', '2', 'Pendente', '15');
 INSERT INTO `hiber`.`compraPrazo` (`napCodigo`, `napData`, `napNumParcela`, `napSituacao`, `nap_ndcCodigo`) VALUES ('9', '2018-02-01', '1', 'Pago', '16');
 /*Conta*/
-INSERT INTO `hiber`.`conta` (`conCodigo`, `conCustoUnitario`, `conData`, `conDescricao`, `conEntrada`, `conNparcelas`, `conQtdComprada`, `conValorTotal`, `caixa_caixaCodigo`, `fornecedor_forCodigo`) VALUES ('1', '60', '2018-02-01', 'Conta de água', '60', '0', '1', '60', '1', '9');
-INSERT INTO `hiber`.`conta` (`conCodigo`, `conCustoUnitario`, `conData`, `conDescricao`, `conEntrada`, `conNparcelas`, `conQtdComprada`, `conValorTotal`, `caixa_caixaCodigo`, `fornecedor_forCodigo`) VALUES ('2', '200', '2018-02-01', 'Conta de luz', '100', '2', '1', '200', '1', '10');
+INSERT INTO `hiber`.`conta` (`conCodigo`,  `conData`, `conDescricao`, `conEntrada`, `conNparcelas`, `conValorTotal`, `caixa_caixaCodigo`, `fornecedor_forCodigo`) VALUES ('1',  '2018-02-01', 'Conta de água', '60', '0', '60', '1', '9');
+INSERT INTO `hiber`.`conta` (`conCodigo`,  `conData`, `conDescricao`, `conEntrada`, `conNparcelas`, `conValorTotal`, `caixa_caixaCodigo`, `fornecedor_forCodigo`) VALUES ('2', '2018-02-01', 'Conta de luz', '100', '2', '200', '1', '10');
 /*ContaPrazo*/
 INSERT INTO `hiber`.`contaaprazo` (`capCodigo`, `capData`, `capNumParcela`, `capSituacao`, `capValorParcela`, `conta_conCodigo`) VALUES ('1', '2018-03-01', '1', 'Pendente', '50', '2');
 INSERT INTO `hiber`.`contaaprazo` (`capCodigo`, `capData`, `capNumParcela`, `capSituacao`, `capValorParcela`, `conta_conCodigo`) VALUES ('2', '2018-04-01', '2', 'Pendente', '50', '2');

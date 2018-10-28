@@ -30,7 +30,7 @@ public class FRMLogin extends javax.swing.JFrame {
     private CaixaControle caixaC = new CaixaControle();
     private LucroControle lucC = new LucroControle();
     private EmpregoControle cEmp = new EmpregoControle();
-    private  RelLocalControle relC = new RelLocalControle();
+    private RelLocalControle relC = new RelLocalControle();
 
     /**
      * Creates new form FRMLogin
@@ -38,7 +38,7 @@ public class FRMLogin extends javax.swing.JFrame {
     public FRMLogin() {
         setResizable(false);
         initComponents();
-        
+
         //Cadastro localRelatorios        
         int qtLR = 0;
         for (LocalRelatoriosBEAN rl : relC.listarALL()) {
@@ -95,7 +95,6 @@ public class FRMLogin extends javax.swing.JFrame {
             cEmp.cadastrar(emp);
 
         }*/
-
     }
 
     /**
@@ -121,11 +120,6 @@ public class FRMLogin extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(600, 300));
         setSize(new java.awt.Dimension(600, 300));
-        getContentPane().setLayout(null);
-        getContentPane().add(tfSenha);
-        tfSenha.setBounds(200, 190, 120, 30);
-        getContentPane().add(tfUser);
-        tfUser.setBounds(200, 150, 120, 30);
 
         rbSenha.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         rbSenha.setText("Visualizar Senha");
@@ -134,45 +128,84 @@ public class FRMLogin extends javax.swing.JFrame {
                 rbSenhaActionPerformed(evt);
             }
         });
-        getContentPane().add(rbSenha);
-        rbSenha.setBounds(130, 230, 190, 23);
 
         btSairPrograma.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btSairPrograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Botões/JButtonFechar.png"))); // NOI18N
         btSairPrograma.setText("Fechar");
         btSairPrograma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSairProgramaActionPerformed(evt);
             }
         });
-        getContentPane().add(btSairPrograma);
-        btSairPrograma.setBounds(373, 10, 100, 30);
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel8.setText("Usuário:");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(130, 160, 60, 20);
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel9.setText("Senha:");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(130, 200, 60, 15);
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton3.setText("Entrar");
+        jButton3.setText("Login");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(200, 270, 90, 30);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/logo3.png"))); // NOI18N
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(170, 30, 160, 94);
 
-        setSize(new java.awt.Dimension(501, 362));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(37, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btSairPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(tfUser, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rbSenha)
+                                    .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(64, 64, 64))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfUser, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel9))
+                    .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(rbSenha)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btSairPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        setSize(new java.awt.Dimension(312, 322));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -188,19 +221,19 @@ public class FRMLogin extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String nome = tfUser.getText();
         String senha = tfSenha.getText();
-        String admL= "Administrador";
-        
+        String admL = "Administrador";
+
         int i = 0;
         if (nome.equals("ADM") && (senha.equals("ADM"))) {
-            if(al.size()==0){
+            if (al.size() == 0) {
                 FRMMenuADM adm = new FRMMenuADM();
                 this.dispose();
-                adm.setVisible(true);               
-            }else{
+                adm.setVisible(true);
+            } else {
                 System.out.println("Essa configuração de Senha só pode ser usada se não existir Administrador caadstrado");
             }
             i++;
-        }               
+        }
         for (VendedorBEAN vendedor : al) {
             if (vendedor.getVendedorNomeUsuario().equals(nome) && vendedor.getVendedorSenha().equals(senha)) {
                 if (vendedor.getFuncionario().getEmprego().getEmpNome().equals(admL)) {

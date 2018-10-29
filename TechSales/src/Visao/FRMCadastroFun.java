@@ -149,10 +149,11 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         setResizable(false);
 
         jLabel20.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel20.setText("Cadastro de funcionários");
+        jLabel20.setText("Gerenciar Funcionário");
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Dados Pessoais", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
+        tfSalario.setEnabled(false);
         tfSalario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfSalarioKeyTyped(evt);
@@ -168,6 +169,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         }
         catch (Exception e){
         }
+        tfNPFun.setEnabled(false);
         tfNPFun.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfNPFunKeyTyped(evt);
@@ -177,6 +179,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel10.setText("NIS/PIS:");
 
+        tfIdadeFun.setEnabled(false);
         tfIdadeFun.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfIdadeFunKeyTyped(evt);
@@ -185,6 +188,8 @@ public class FRMCadastroFun extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel7.setText("Idade:");
+
+        tfNomeFun.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel1.setText("Nome:");
@@ -195,6 +200,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         }
         catch (Exception e){
         }
+        tfCpfFun.setEnabled(false);
         tfCpfFun.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfCpfFunKeyTyped(evt);
@@ -213,8 +219,10 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         }
         catch (Exception e){
         }
+        tfTelefoneFun.setEnabled(false);
 
         cbEmprego.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
+        cbEmprego.setEnabled(false);
         cbEmprego.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbEmpregoItemStateChanged(evt);
@@ -231,15 +239,19 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel3.setText("Email:");
 
+        tfEmail.setEnabled(false);
+
         jLabel18.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel18.setText("Nome de usuário:");
 
         tfNomeUser.setText("Vendedor");
+        tfNomeUser.setEnabled(false);
 
         jLabel19.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel19.setText("Senha:");
 
         tfSenhaUser.setText("x");
+        tfSenhaUser.setEnabled(false);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -351,14 +363,25 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel16.setText("País :");
 
+        tfRua.setEnabled(false);
+
+        tfNumero.setEnabled(false);
         tfNumero.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfNumeroKeyTyped(evt);
             }
         });
 
+        tfPais.setEnabled(false);
+
+        tfEstado.setEnabled(false);
+
+        tfBairro.setEnabled(false);
+
         jLabel17.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel17.setText("Cidade :");
+
+        tfCidade.setEnabled(false);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -456,6 +479,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
 
         jbCadastrarFun.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbCadastrarFun.setText("Gravar");
+        jbCadastrarFun.setEnabled(false);
         jbCadastrarFun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbCadastrarFunActionPerformed(evt);
@@ -647,12 +671,12 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 882, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(324, 324, 324))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

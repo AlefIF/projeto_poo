@@ -46,6 +46,8 @@ public class FRMContas extends javax.swing.JFrame {
     public FRMContas() {
         initComponents();
         btEditar.setEnabled(false);
+        preencheTabelaContas();
+        preencheTabelaFor();
     }
 
     /**
@@ -90,24 +92,15 @@ public class FRMContas extends javax.swing.JFrame {
         tableNotas = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         btEditar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btLocParcela = new javax.swing.JButton();
         btClonar = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         tfRefinarNota = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         asdfascfvf = new javax.swing.JScrollPane();
         tablePrazo = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
         jbPagar = new javax.swing.JButton();
-        jPanel9 = new javax.swing.JPanel();
-        tfPrecoParcela2 = new javax.swing.JTextField();
-        tfDataParcelas2 = new javax.swing.JFormattedTextField();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        lbCodPar = new javax.swing.JLabel();
-        btGravar2 = new javax.swing.JButton();
-        btCancelar2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableFornecedor = new javax.swing.JTable();
@@ -122,6 +115,7 @@ public class FRMContas extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setText("calcular parcelas");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -154,6 +148,7 @@ public class FRMContas extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton2.setText("Excluir");
+        jButton2.setEnabled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -163,17 +158,24 @@ public class FRMContas extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel14.setText("Preço Total:");
 
+        tfPrecoTT.setEditable(false);
+        tfPrecoTT.setEnabled(false);
         tfPrecoTT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfPrecoTTActionPerformed(evt);
             }
         });
 
+        tfValorEntrada.setEditable(false);
+        tfValorEntrada.setEnabled(false);
+
         jLabel15.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel15.setText("Valor de entrada:");
 
         jLabel16.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel16.setText("Número de parcelas:");
+
+        tfNParcelas.setEnabled(false);
 
         jLabel19.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel19.setText("Data da Compra:");
@@ -184,6 +186,8 @@ public class FRMContas extends javax.swing.JFrame {
         }
         catch (Exception e){
         }
+        tfDataCompra.setEditable(false);
+        tfDataCompra.setEnabled(false);
 
         lbCodNota.setText("...");
         lbCodNota.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Código da conta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
@@ -191,12 +195,15 @@ public class FRMContas extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setText("Descrição:");
 
+        jTextArea2.setEditable(false);
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
+        jTextArea2.setEnabled(false);
         jScrollPane4.setViewportView(jTextArea2);
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton3.setText("Editar");
+        jButton3.setEnabled(false);
 
         jLabel4.setText("...");
         jLabel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Código do fornecedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
@@ -292,6 +299,7 @@ public class FRMContas extends javax.swing.JFrame {
 
         btCadastrar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btCadastrar.setText("Gravar");
+        btCadastrar.setEnabled(false);
         btCadastrar.setMaximumSize(new java.awt.Dimension(73, 23));
         btCadastrar.setMinimumSize(new java.awt.Dimension(73, 23));
         btCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -313,6 +321,7 @@ public class FRMContas extends javax.swing.JFrame {
 
         btCancelar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btCancelar.setText("Cancelar");
+        btCancelar.setEnabled(false);
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCancelarActionPerformed(evt);
@@ -334,11 +343,11 @@ public class FRMContas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btLocalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -348,12 +357,12 @@ public class FRMContas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btLocalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btNovoDado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btLocalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -379,6 +388,12 @@ public class FRMContas extends javax.swing.JFrame {
 
         tpGuia.addTab("Cadastrar Conta", jPanel1);
 
+        tableContas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableContasMouseClicked(evt);
+            }
+        });
+
         tableNotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -387,55 +402,70 @@ public class FRMContas extends javax.swing.JFrame {
 
             }
         ));
+        tableNotas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableNotasMouseClicked(evt);
+            }
+        });
         tableContas.setViewportView(tableNotas);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         btEditar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btEditar.setText("Editar");
+        btEditar.setEnabled(false);
         btEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEditarActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton4.setText("Localizar Parcelas");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btLocParcela.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btLocParcela.setText("Localizar Parcelas");
+        btLocParcela.setEnabled(false);
+        btLocParcela.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btLocParcelaActionPerformed(evt);
             }
         });
 
         btClonar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btClonar.setText("Clonar Dados");
+        btClonar.setEnabled(false);
         btClonar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btClonarActionPerformed(evt);
             }
         });
 
+        jButton4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton4.setText("Imprimir Conta");
+        jButton4.setEnabled(false);
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btEditar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btClonar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btLocParcela)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btEditar)
-                    .addComponent(jButton4)
-                    .addComponent(btClonar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btLocParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btClonar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -466,10 +496,10 @@ public class FRMContas extends javax.swing.JFrame {
                         .addGap(0, 365, Short.MAX_VALUE))
                     .addComponent(tableContas))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(124, 124, 124)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(172, 172, 172))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,16 +533,9 @@ public class FRMContas extends javax.swing.JFrame {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
-        jButton5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton5.setText("Editar Parcela");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
         jbPagar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbPagar.setText("Pagar Parcela");
+        jbPagar.setEnabled(false);
         jbPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbPagarActionPerformed(evt);
@@ -525,8 +548,6 @@ public class FRMContas extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbPagar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -534,96 +555,8 @@ public class FRMContas extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jbPagar))
+                .addComponent(jbPagar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel9.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        try{
-            javax.swing.text.MaskFormatter faixa= new javax.swing.text.MaskFormatter("##/##/####");
-            tfDataParcelas2 = new javax.swing.JFormattedTextField(faixa);
-        }
-        catch (Exception e){
-        }
-
-        jLabel22.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel22.setText("Data da parcela:");
-
-        jLabel23.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel23.setText("Preço da parcela:");
-
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel3.setText("Código:");
-
-        lbCodPar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbCodPar.setText("...");
-
-        btGravar2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btGravar2.setText("Gravar");
-
-        btCancelar2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btCancelar2.setText("Cancelar");
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lbCodPar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(btGravar2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                        .addComponent(btCancelar2)))
-                .addContainerGap())
-            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel9Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel9Layout.createSequentialGroup()
-                            .addComponent(jLabel22)
-                            .addGap(18, 18, 18)
-                            .addComponent(tfDataParcelas2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel9Layout.createSequentialGroup()
-                            .addComponent(jLabel23)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(tfPrecoParcela2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(lbCodPar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btGravar2)
-                    .addComponent(btCancelar2))
-                .addContainerGap())
-            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel9Layout.createSequentialGroup()
-                    .addGap(24, 24, 24)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel9Layout.createSequentialGroup()
-                            .addGap(2, 2, 2)
-                            .addComponent(jLabel22))
-                        .addComponent(tfDataParcelas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(11, 11, 11)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel9Layout.createSequentialGroup()
-                            .addGap(2, 2, 2)
-                            .addComponent(jLabel23))
-                        .addComponent(tfPrecoParcela2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(57, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -631,26 +564,19 @@ public class FRMContas extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(asdfascfvf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(asdfascfvf, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(286, 286, 286)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 70, Short.MAX_VALUE))
-                    .addComponent(asdfascfvf, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(asdfascfvf, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -697,6 +623,7 @@ public class FRMContas extends javax.swing.JFrame {
 
         jButton6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton6.setText("Selecionar Fornecedor");
+        jButton6.setEnabled(false);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -738,7 +665,7 @@ public class FRMContas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(tfChave2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -747,7 +674,7 @@ public class FRMContas extends javax.swing.JFrame {
         tpGuia.addTab("Lista de Fornecedores", jPanel5);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Contas a Pagar");
+        jLabel1.setText("Gerenciar Contas");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -769,7 +696,48 @@ public class FRMContas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+private DefaultTableModel criaTabela() {
+        DefaultTableModel dTable = new DefaultTableModel() {
+            Class[] types = new Class[]{
+                java.lang.Integer.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.Double.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.String.class,};
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false, false};
 
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        ;
+
+        };
+    return dTable;
+    }
+
+    private void preencheTabela() {
+        dTable = criaTabela();
+        dTable.addColumn("Código");
+        dTable.addColumn("Nome");
+        dTable.addColumn("Telefone");
+        dTable.addColumn("Email");
+        dTable.addColumn("CNPJ/CPF");
+        dTable.addColumn("Anotações");
+        fDados = forCon.listarALL();
+
+        for (FornecedorBEAN d : fDados) {
+            dTable.addRow(new Object[]{d.getForCodigo(), d.getForNomeEmpresa(),
+                d.getForTelefoneContato(), d.getForEmail(), d.getForCNPJ(),
+                d.getForAnotacoes()});
+        }
+
+        tableFornecedor.setModel(dTable);
+    }
     private void limparCampos() {
         lbCodNota.setText("...");
         lbForCod.setText("...");
@@ -781,6 +749,49 @@ public class FRMContas extends javax.swing.JFrame {
         tfNParcelas.setText("");
         tfDataParcelas2.setText("");
         btEditar.setEnabled(false);
+    }
+    
+    private DefaultTableModel criaTabela3() {
+        DefaultTableModel dTable = new DefaultTableModel() {
+            Class[] types = new Class[]{
+                java.lang.Integer.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.Double.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.String.class,};
+            boolean[] canEdit = new boolean[]{
+                false, false, false, false, false, false, false, false};
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        ;
+
+        };
+    return dTable;
+    }
+
+    private void preencheTabelaFor() {
+        dtFornecedores = criaTabela3();
+        dtFornecedores.addColumn("Código");
+        dtFornecedores.addColumn("Nome");
+        dtFornecedores.addColumn("Telefone");
+        dtFornecedores.addColumn("Email");
+        dtFornecedores.addColumn("CNPJ/CPF");
+        dtFornecedores.addColumn("Anotações");
+
+
+        for (FornecedorBEAN d : cFor.listarALL()) {
+            dtFornecedores.addRow(new Object[]{d.getForCodigo(), d.getForNomeEmpresa(),
+                d.getForTelefoneContato(), d.getForEmail(), d.getForCNPJ(),
+                d.getForAnotacoes()});
+        }
+
+        tableFornecedor.setModel(dtFornecedores);
     }
 
     private boolean verificaCampos2() {
@@ -924,49 +935,41 @@ public class FRMContas extends javax.swing.JFrame {
         dtContas = criaTabelaContas();
         dtContas.addColumn("Código");
         dtContas.addColumn("Descrição");
-        dtContas.addColumn("Preço Unitário");
-        dtContas.addColumn("Quantidade Comprada");
-        dtContas.addColumn("Código do Fornecedor");
+        dtContas.addColumn("Fornecedor");
         dtContas.addColumn("Data");
         dtContas.addColumn("Preço Total");
         dtContas.addColumn("Numero de Parcelas");
         dtContas.addColumn("Entrada");
 
         for (ContaBEAN n : cContas.listarALL()) {
-            dtContas.addRow(new Object[]{n.getConCodigo(), n.getConData(), n.getConValorTotal(),
-                n.getConNparcelas(), n.getConEntrada(), n.getFornecedor().getForCodigo(), n.getConCustoUnitario(), n.getConQtdComprada()});
+            dtContas.addRow(new Object[]{n.getConCodigo(), n.getConDescricao(),
+                n.getFornecedor().getForNomeEmpresa(), n.getConData(), n.getConValorTotal(),
+                n.getConNparcelas(), n.getConEntrada()});
         }
         tableNotas.setModel(dtContas);
     }
 
     private DefaultTableModel criaTabelaContas() {
-        //sempre que usar JTable é necessário ter um DefaulttableModel
         DefaultTableModel dTable = new DefaultTableModel() {
-            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
             Class[] types = new Class[]{
                 java.lang.Integer.class,
                 java.lang.String.class,
                 java.lang.String.class,
-                java.lang.Float.class,
                 java.lang.String.class,
                 java.lang.Float.class,
-                java.lang.String.class,
-                java.lang.String.class,
-                java.lang.Float.class,
-                java.lang.Integer.class
+                java.lang.Integer.class,
+                java.lang.Float.class
+
             };
-            //define se os campos podem ser editados na propria tabela
             boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false, false, false};
+                false, false, false, false, false, false};
 
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit[columnIndex];
             }
         ;
-
         };
-        //retorna o DefaultTableModel
     return dTable;
     }
 
@@ -985,13 +988,11 @@ public class FRMContas extends javax.swing.JFrame {
             }
         }
 
-        tableContaPrazos.setModel(dtContasPrazo);
+        tablePrazo.setModel(dtContasPrazo);
     }
 
     private DefaultTableModel criaTabelaContaPrazos() {
-        //sempre que usar JTable é necessário ter um DefaulttableModel
         DefaultTableModel dTable = new DefaultTableModel() {
-            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
             Class[] types = new Class[]{
                 java.lang.Integer.class,
                 java.lang.String.class,
@@ -1001,7 +1002,6 @@ public class FRMContas extends javax.swing.JFrame {
                 java.lang.String.class
 
             };
-            //define se os campos podem ser editados na propria tabela
             boolean[] canEdit = new boolean[]{
                 false, false, false, false, false, false};
 
@@ -1012,7 +1012,6 @@ public class FRMContas extends javax.swing.JFrame {
         ;
 
         };
-        //retorna o DefaultTableModel
     return dTable;
     }
 
@@ -1078,16 +1077,13 @@ public class FRMContas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btEditarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btLocParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLocParcelaActionPerformed
         tpGuia.setSelectedIndex(2);
-        if (tableNotas.getSelectedRow() != -1) {
-            cod = (Integer.parseInt(tableNotas.getValueAt(tableNotas.getSelectedRow(), 0).toString()));
-            preencheTabelaContaAPrazo(cod);
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro, nota não disponível no estoque");
-        }
+        cod = (Integer.parseInt(tableNotas.getValueAt(tableNotas.getSelectedRow(), 0).toString()));
+        preencheTabelaContaAPrazo(cod);
 
-    }//GEN-LAST:event_jButton4ActionPerformed
+
+    }//GEN-LAST:event_btLocParcelaActionPerformed
 
     private void asdfascfvfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_asdfascfvfMouseClicked
         if (tablePrazo.getSelectedRow() != -1) {
@@ -1099,29 +1095,6 @@ public class FRMContas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro, nota não disponível no estoque");
         }
     }//GEN-LAST:event_asdfascfvfMouseClicked
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        ContaAPrazoBEAN j = cCap.localizar(Integer.parseInt(lbCodPar.getText()));
-        j.setCapValorParcela(Float.parseFloat(tfPrecoParcela2.getText()));
-        try {
-            String dataString = tfDataParcelas2.getText();
-            DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
-            java.sql.Date data = new java.sql.Date(fmt.parse(dataString).getTime());
-            j.setCapData(data);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        boolean retorno = cCap.editar(j);
-        if (retorno == true) {
-            JOptionPane.showMessageDialog(null, "Nota MODIFICADA com sucesso");
-            preecheTabelaPrazos();
-            preencheTabelaContas();
-            this.limparCampos();
-        } else {
-            JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
-        }
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jbPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagarActionPerformed
         ContaAPrazoBEAN j = cCap.localizar(Integer.parseInt(lbCodPar.getText()));
@@ -1249,6 +1222,18 @@ public class FRMContas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfRefinarNotaKeyTyped
 
+    private void tableContasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContasMouseClicked
+
+    }//GEN-LAST:event_tableContasMouseClicked
+
+    private void tableNotasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableNotasMouseClicked
+        if (tableNotas.getSelectedRow() != -1) {
+            btLocParcela.setEnabled(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro, nota não disponível no estoque");
+        }
+    }//GEN-LAST:event_tableNotasMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1288,17 +1273,17 @@ public class FRMContas extends javax.swing.JFrame {
     private javax.swing.JScrollPane asdfascfvf;
     private javax.swing.JButton btCadastrar;
     private javax.swing.JButton btCancelar;
-    private javax.swing.JButton btCancelar2;
     private javax.swing.JButton btClonar;
     private javax.swing.JButton btEditar;
-    private javax.swing.JButton btGravar2;
+    private javax.swing.JButton btLocParcela;
     private javax.swing.JButton btLocalizar;
     private javax.swing.JButton btNovoDado;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton9;
@@ -1308,9 +1293,6 @@ public class FRMContas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -1320,7 +1302,6 @@ public class FRMContas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1328,7 +1309,6 @@ public class FRMContas extends javax.swing.JFrame {
     private javax.swing.JButton jbPagar;
     private javax.swing.JPanel jpCompra;
     private javax.swing.JLabel lbCodNota;
-    private javax.swing.JLabel lbCodPar;
     private javax.swing.JTable tableContaPrazos;
     private javax.swing.JScrollPane tableContas;
     private javax.swing.JTable tableFornecedor;
@@ -1336,9 +1316,7 @@ public class FRMContas extends javax.swing.JFrame {
     private javax.swing.JTable tablePrazo;
     private javax.swing.JTextField tfChave2;
     private javax.swing.JFormattedTextField tfDataCompra;
-    private javax.swing.JFormattedTextField tfDataParcelas2;
     private javax.swing.JTextField tfNParcelas;
-    private javax.swing.JTextField tfPrecoParcela2;
     private javax.swing.JTextField tfPrecoTT;
     private javax.swing.JTextField tfRefinarNota;
     private javax.swing.JTextField tfValorEntrada;

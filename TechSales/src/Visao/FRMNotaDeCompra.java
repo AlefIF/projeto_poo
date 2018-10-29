@@ -123,17 +123,7 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
         tables1 = new javax.swing.JScrollPane();
         tablePrazo = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
         jbPagar = new javax.swing.JButton();
-        jPanel9 = new javax.swing.JPanel();
-        tfPrecoParcela2 = new javax.swing.JTextField();
-        tfDataParcela2 = new javax.swing.JFormattedTextField();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        lbCodPar = new javax.swing.JLabel();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableJogo = new javax.swing.JTable();
@@ -562,15 +552,6 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
-        jButton5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton5.setText("Editar Parcela");
-        jButton5.setEnabled(false);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
         jbPagar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbPagar.setText("Pagar Parcela");
         jbPagar.setEnabled(false);
@@ -586,8 +567,6 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbPagar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -595,98 +574,8 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jbPagar))
+                .addComponent(jbPagar)
                 .addContainerGap(14, Short.MAX_VALUE))
-        );
-
-        jPanel9.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        try{
-            javax.swing.text.MaskFormatter faixa= new javax.swing.text.MaskFormatter("##/##/####");
-            tfDataParcela2 = new javax.swing.JFormattedTextField(faixa);
-        }
-        catch (Exception e){
-        }
-
-        jLabel22.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel22.setText("Data da parcela:");
-
-        jLabel23.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel23.setText("Preço da parcela:");
-
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel3.setText("Código:");
-
-        lbCodPar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbCodPar.setText("...");
-
-        jButton9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton9.setText("Gravar");
-        jButton9.setEnabled(false);
-
-        jButton10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton10.setText("Cancelar");
-        jButton10.setEnabled(false);
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lbCodPar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jButton9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(jButton10)))
-                .addContainerGap())
-            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel9Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel9Layout.createSequentialGroup()
-                            .addComponent(jLabel22)
-                            .addGap(18, 18, 18)
-                            .addComponent(tfDataParcela2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel9Layout.createSequentialGroup()
-                            .addComponent(jLabel23)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(tfPrecoParcela2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(lbCodPar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9)
-                    .addComponent(jButton10))
-                .addGap(26, 26, 26))
-            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel9Layout.createSequentialGroup()
-                    .addGap(24, 24, 24)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel9Layout.createSequentialGroup()
-                            .addGap(2, 2, 2)
-                            .addComponent(jLabel22))
-                        .addComponent(tfDataParcela2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(11, 11, 11)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel9Layout.createSequentialGroup()
-                            .addGap(2, 2, 2)
-                            .addComponent(jLabel23))
-                        .addComponent(tfPrecoParcela2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(80, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -694,27 +583,22 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tables1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(239, 239, 239)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(tables1, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(302, 302, 302))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tables1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(tables1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         tpGuia.addTab("Lista de Parcelas", jPanel4);
@@ -1268,24 +1152,6 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tableJogoMouseClicked
 
-    private void btSelecNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecNotaActionPerformed
-        limparCampos();
-        tpGuia.setSelectedIndex(0);
-        if (tableNotas.getSelectedRow() != -1) {
-            NotaDecompraBEAN n = notac.localizar(Integer.parseInt(tableNotas.getValueAt(tableNotas.getSelectedRow(), 0).toString()));
-            lbCodNota.setText(String.valueOf(n.getNdcCodigo()));
-            lbCodigoJogo.setText(String.valueOf(n.getJogo().getJoCodigo()));
-            tfPrecoUnit.setText(String.valueOf(n.getNdcCustoUnitario()));
-            tfQtde.setText(String.valueOf(n.getNdcQtdComprada()));
-            tfValorEntrada.setText(String.valueOf(n.getNdcEntrada()));
-            tfPrecoTT.setText(String.valueOf(n.getNdcPrecoTotal()));
-            tfDataCompra.setText(String.valueOf(n.getNdcData()));
-            tfNParcelas.setText(String.valueOf(n.getNdcParcelas()));
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro, nota não disponível no estoque");
-        }
-    }//GEN-LAST:event_btSelecNotaActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
         if (tableNotas.getSelectedRow() != -1) {
@@ -1295,31 +1161,6 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
         preencheTabelaNotaPrazo(cod);
         tpGuia.setSelectedIndex(2);
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        NotaDeCompraPrazoBEAN j = napC.localizar(Integer.parseInt(lbCodPar.getText()));
-        j.setNapValor(Float.parseFloat(tfPrecoParcela2.getText()));
-
-        try {
-            String dataString = tfDataParcela2.getText();
-            DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
-            java.sql.Date data = new java.sql.Date(fmt.parse(dataString).getTime());
-            j.setNapData(data);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        boolean retorno = napC.editar(j);
-        if (retorno == true) {
-            JOptionPane.showMessageDialog(null, "Nota MODIFICADA com sucesso");
-            this.preencheTabelaNota();
-            this.preencheTabelaPrazos();
-            this.preencheTabelaNotaPrazo(cod);
-            this.limparCampos();
-        } else {
-            JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
-        }
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jbPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagarActionPerformed
         NotaDeCompraPrazoBEAN j = napC.localizar(Integer.parseInt(lbCodPar.getText()));
@@ -1393,6 +1234,24 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfRefinarJogoKeyTyped
 
+    private void btSelecNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecNotaActionPerformed
+        limparCampos();
+        tpGuia.setSelectedIndex(0);
+        if (tableNotas.getSelectedRow() != -1) {
+            NotaDecompraBEAN n = notac.localizar(Integer.parseInt(tableNotas.getValueAt(tableNotas.getSelectedRow(), 0).toString()));
+            lbCodNota.setText(String.valueOf(n.getNdcCodigo()));
+            lbCodigoJogo.setText(String.valueOf(n.getJogo().getJoCodigo()));
+            tfPrecoUnit.setText(String.valueOf(n.getNdcCustoUnitario()));
+            tfQtde.setText(String.valueOf(n.getNdcQtdComprada()));
+            tfValorEntrada.setText(String.valueOf(n.getNdcEntrada()));
+            tfPrecoTT.setText(String.valueOf(n.getNdcPrecoTotal()));
+            tfDataCompra.setText(String.valueOf(n.getNdcData()));
+            tfNParcelas.setText(String.valueOf(n.getNdcParcelas()));
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro, nota não disponível no estoque");
+        }
+    }//GEN-LAST:event_btSelecNotaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1443,23 +1302,17 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
     private javax.swing.JButton btLocalizar;
     private javax.swing.JButton btSelecNota;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -1470,13 +1323,11 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton jbPagar;
     private javax.swing.JPanel jpCompra;
     private javax.swing.JLabel lbCodNota;
-    private javax.swing.JLabel lbCodPar;
     private javax.swing.JLabel lbCodigoJogo;
     private javax.swing.JTable tableJogo;
     private javax.swing.JTable tableM;
@@ -1485,9 +1336,7 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
     private javax.swing.JScrollPane tables;
     private javax.swing.JScrollPane tables1;
     private javax.swing.JFormattedTextField tfDataCompra;
-    private javax.swing.JFormattedTextField tfDataParcela2;
     private javax.swing.JTextField tfNParcelas;
-    private javax.swing.JTextField tfPrecoParcela2;
     private javax.swing.JTextField tfPrecoTT;
     private javax.swing.JTextField tfPrecoUnit;
     private javax.swing.JTextField tfQtde;

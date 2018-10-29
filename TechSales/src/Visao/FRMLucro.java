@@ -53,6 +53,7 @@ public class FRMLucro extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel1.setText("Lucro Geral:");
 
+        tfLucro.setEnabled(false);
         tfLucro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfLucroKeyTyped(evt);
@@ -69,6 +70,7 @@ public class FRMLucro extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setText("Gravar");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -77,6 +79,7 @@ public class FRMLucro extends javax.swing.JFrame {
 
         btVoltar1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btVoltar1.setText("Voltar");
+        btVoltar1.setEnabled(false);
         btVoltar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btVoltar1ActionPerformed(evt);
@@ -85,6 +88,7 @@ public class FRMLucro extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton2.setText("Cancelar");
+        jButton2.setEnabled(false);
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton3.setText("Gerir Lucro");

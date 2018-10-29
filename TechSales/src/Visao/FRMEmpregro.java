@@ -69,8 +69,8 @@ public class FRMEmpregro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel5.setText("Cadastro de Emprego");
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel5.setText("Gerenciar Emprego");
 
         lbCod.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lbCod.setText("...");
@@ -79,9 +79,12 @@ public class FRMEmpregro extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel3.setText("Função :");
 
+        tfFuncao.setEnabled(false);
+
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setText("Descrição:");
 
+        tfSalario.setEnabled(false);
         tfSalario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfSalarioKeyTyped(evt);
@@ -92,6 +95,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
 
         btCadastrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btCadastrar.setText("Gravar");
+        btCadastrar.setEnabled(false);
         btCadastrar.setMaximumSize(new java.awt.Dimension(73, 23));
         btCadastrar.setMinimumSize(new java.awt.Dimension(73, 23));
         btCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +117,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton4.setText("cancelar");
+        jButton4.setEnabled(false);
 
         jButton5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton5.setText("Localizar");
@@ -152,6 +157,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
 
         tfDescricao.setColumns(20);
         tfDescricao.setRows(5);
+        tfDescricao.setEnabled(false);
         jScrollPane1.setViewportView(tfDescricao);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -227,6 +233,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
 
         btEditar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btEditar.setText("Editar");
+        btEditar.setEnabled(false);
         btEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEditarActionPerformed(evt);
@@ -235,9 +242,11 @@ public class FRMEmpregro extends javax.swing.JFrame {
 
         btExcluir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btExcluir.setText("Excluir");
+        btExcluir.setEnabled(false);
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setText("Clonar dados");
+        jButton1.setEnabled(false);
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton2.setText("Excluir todos");
@@ -289,13 +298,10 @@ public class FRMEmpregro extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tfChave, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfChave, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -324,7 +330,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addGap(143, 143, 143))
+                .addGap(142, 142, 142))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

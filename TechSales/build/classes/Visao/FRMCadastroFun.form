@@ -27,14 +27,14 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="380" max="-2" attributes="0"/>
-              <Component id="jLabel20" min="-2" pref="230" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <Component id="jTabbedPane1" min="-2" pref="882" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel20" min="-2" pref="230" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="324" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -54,7 +54,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Cadastro de funcion&#xe1;rios"/>
+        <Property name="text" type="java.lang.String" value="Gerenciar Funcion&#xe1;rio"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
@@ -234,6 +234,9 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="tfSalario">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfSalarioKeyTyped"/>
                   </Events>
@@ -247,6 +250,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JFormattedTextField" name="tfNPFun">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfNPFunKeyTyped"/>
                   </Events>
@@ -263,6 +269,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfIdadeFun">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfIdadeFunKeyTyped"/>
                   </Events>
@@ -276,6 +285,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfNomeFun">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
@@ -286,6 +298,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JFormattedTextField" name="tfCpfFun">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCpfFunKeyTyped"/>
                   </Events>
@@ -310,6 +325,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JFormattedTextField" name="tfTelefoneFun">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{&#xd;&#xa;   javax.swing.text.MaskFormatter tel= new javax.swing.text.MaskFormatter(&quot;(##)# ####-####&quot;);&#xd;&#xa;   tfTelefoneFun = new javax.swing.JFormattedTextField(tel);&#xd;&#xa;}&#xd;&#xa;   catch (Exception e){&#xd;&#xa;}"/>
                   </AuxValues>
@@ -321,6 +339,7 @@
                         <StringItem index="0" value="Selecione"/>
                       </StringArray>
                     </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbEmpregoItemStateChanged"/>
@@ -364,6 +383,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfEmail">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel18">
                   <Properties>
@@ -376,6 +398,7 @@
                 <Component class="javax.swing.JTextField" name="tfNomeUser">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Vendedor"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel19">
@@ -389,6 +412,7 @@
                 <Component class="javax.swing.JPasswordField" name="tfSenhaUser">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="x"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -524,17 +548,32 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfRua">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfNumero">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                   <Events>
                     <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfNumeroKeyTyped"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfPais">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfEstado">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfBairro">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel17">
                   <Properties>
@@ -545,6 +584,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfCidade">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -646,6 +688,7 @@
                       <Font name="Arial" size="12" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Gravar"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbCadastrarFunActionPerformed"/>

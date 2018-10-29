@@ -12,7 +12,7 @@ import javax.swing.table.TableRowSorter;
 public class FRMCliente extends javax.swing.JFrame {
 
     private ClienteControle cCliente = new ClienteControle();
-    private DefaultTableModel cTable; 
+    private DefaultTableModel cTable;
 
     public FRMCliente() {
         initComponents();
@@ -71,9 +71,7 @@ public class FRMCliente extends javax.swing.JFrame {
         tfChave = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         btEditar1 = new javax.swing.JButton();
-        btExcluir1 = new javax.swing.JButton();
         btClonar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciar Clientes");
@@ -93,6 +91,7 @@ public class FRMCliente extends javax.swing.JFrame {
         lbCodigo.setText("...");
         lbCodigo.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Código", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
+        tfNomeCli.setEnabled(false);
         tfNomeCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNomeCliActionPerformed(evt);
@@ -102,6 +101,7 @@ public class FRMCliente extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel10.setText("Idade :");
 
+        tfTelefone.setEnabled(false);
         tfTelefone.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfTelefoneKeyTyped(evt);
@@ -117,6 +117,7 @@ public class FRMCliente extends javax.swing.JFrame {
         }
         catch (Exception e){
         }
+        tfCpfCli.setEnabled(false);
         tfCpfCli.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfCpfCliKeyTyped(evt);
@@ -126,6 +127,7 @@ public class FRMCliente extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel13.setText("Telefone :");
 
+        tfIdade.setEnabled(false);
         tfIdade.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfIdadeKeyTyped(evt);
@@ -134,6 +136,8 @@ public class FRMCliente extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel15.setText("Email :");
+
+        tfEmail.setEnabled(false);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -221,8 +225,20 @@ public class FRMCliente extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel11.setText("País :");
 
+        tfRua.setEnabled(false);
+
+        tfNumero.setEnabled(false);
+
+        tfPais.setEnabled(false);
+
+        tfBairro.setEnabled(false);
+
         jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel14.setText("Cidade :");
+
+        tfCidade.setEnabled(false);
+
+        tfEstado.setEnabled(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -293,7 +309,8 @@ public class FRMCliente extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         btCadastrar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btCadastrar.setText("Cadastrar");
+        btCadastrar.setText("Gravar");
+        btCadastrar.setEnabled(false);
         btCadastrar.setMaximumSize(new java.awt.Dimension(73, 23));
         btCadastrar.setMinimumSize(new java.awt.Dimension(73, 23));
         btCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -303,7 +320,7 @@ public class FRMCliente extends javax.swing.JFrame {
         });
 
         btEditar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btEditar.setText("Editar");
+        btEditar.setText("Localizar");
         btEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEditarActionPerformed(evt);
@@ -320,6 +337,7 @@ public class FRMCliente extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setText("Cancelar");
+        jButton1.setEnabled(false);
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton3.setText("Novo Dado");
@@ -334,9 +352,9 @@ public class FRMCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btEditar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -347,10 +365,10 @@ public class FRMCliente extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -424,29 +442,12 @@ public class FRMCliente extends javax.swing.JFrame {
             }
         });
 
-        btExcluir1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btExcluir1.setText("Excluir");
-        btExcluir1.setEnabled(false);
-        btExcluir1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btExcluir1ActionPerformed(evt);
-            }
-        });
-
         btClonar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btClonar.setText("Clonar Dados");
         btClonar.setEnabled(false);
         btClonar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btClonarActionPerformed(evt);
-            }
-        });
-
-        jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton2.setText("Excluir Todos");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
             }
         });
 
@@ -459,11 +460,7 @@ public class FRMCliente extends javax.swing.JFrame {
                 .addComponent(btEditar1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btClonar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btExcluir1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addGap(24, 24, 24))
+                .addGap(224, 224, 224))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -471,9 +468,7 @@ public class FRMCliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btEditar1)
-                    .addComponent(btExcluir1)
-                    .addComponent(btClonar)
-                    .addComponent(jButton2))
+                    .addComponent(btClonar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -487,12 +482,12 @@ public class FRMCliente extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(tfChave, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(185, 185, 185)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(204, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(294, 294, 294))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -554,9 +549,9 @@ public class FRMCliente extends javax.swing.JFrame {
 
     private int verificaCPF() {
         int i = 0;
-        for (ClienteBEAN c : cCliente.listarALL() ) {
-            if (c.getCliCpf().equals(tfCpfCli.getText())) {             
-                    i = c.getCliCodigo();             
+        for (ClienteBEAN c : cCliente.listarALL()) {
+            if (c.getCliCpf().equals(tfCpfCli.getText())) {
+                i = c.getCliCodigo();
             }
         }
         return i;
@@ -565,8 +560,8 @@ public class FRMCliente extends javax.swing.JFrame {
     private int verificaEmail() {
         int i = 0;
         for (ClienteBEAN c : cCliente.listarALL()) {
-            if (c.getCliEmail().equals(tfEmail.getText())) {            
-                    i = c.getCliCodigo();               
+            if (c.getCliEmail().equals(tfEmail.getText())) {
+                i = c.getCliCodigo();
             }
         }
         return i;
@@ -593,6 +588,8 @@ public class FRMCliente extends javax.swing.JFrame {
         cCliente.cadastrar(cliente);
 
     }
+
+
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
         int c = verificaCPF();
         int e = verificaEmail();
@@ -635,19 +632,18 @@ public class FRMCliente extends javax.swing.JFrame {
 
     }
 
-
-    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
+    private void edit() {
         int c = verificaCPF();
         int e = verificaEmail();
-        
-         if (c == (Integer.valueOf(lbCodigo.getText()))) {
-             c=0;
-         }
-         
-         if (e == (Integer.valueOf(lbCodigo.getText()))) {
-             e=0;
-         }
-        
+
+        if (c == (Integer.valueOf(lbCodigo.getText()))) {
+            c = 0;
+        }
+
+        if (e == (Integer.valueOf(lbCodigo.getText()))) {
+            e = 0;
+        }
+
         if (verificaCampos()) {
             if (c == 0) {
                 if (e == 0) {
@@ -665,6 +661,9 @@ public class FRMCliente extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         }
+    }
+    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
+
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
@@ -756,35 +755,6 @@ public class FRMCliente extends javax.swing.JFrame {
         btCadastrar.setEnabled(true);
     }//GEN-LAST:event_btEditar1ActionPerformed
 
-    private void btExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluir1ActionPerformed
-        int cod = 0;
-        int i = 0;
-        if (tableCategoria.getSelectedRow() != -1) {
-            cod = (Integer.parseInt(tableCategoria.getValueAt(tableCategoria.getSelectedRow(), 0).toString()));
-        }
-        for (JogoBEAN j : cjogo.listarALL()) {
-            if (j.getCat().getCatCodigo() == cod) {
-                i = 1;
-            }
-        }
-        if (i == 0) {
-            boolean retorno = false;
-            retorno = catCon.remover(cod);
-            if (retorno == true) {
-                JOptionPane.showMessageDialog(null, "Categoria EXCLUÍDA com sucesso");
-                try {
-                    FRMJogo.povoaCombos();
-                } catch (Exception E) {
-
-                }
-                preencheTabela();
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "ERRO na exclusão, essa categoria esta sendo usada em um Jogo cadastrado");
-        }
-        limpaBotoes();
-    }//GEN-LAST:event_btExcluir1ActionPerformed
-
     private void btClonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClonarActionPerformed
         if (tableCategoria.getSelectedRow() != -1) {
             tfNome.setText(tableCategoria.getValueAt(tableCategoria.getSelectedRow(), 1).toString());
@@ -794,38 +764,6 @@ public class FRMCliente extends javax.swing.JFrame {
         btCadastrar.setEnabled(true);
         btCancela.setEnabled(true);
     }//GEN-LAST:event_btClonarActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ArrayList<CategoriaBEAN> catlista = new ArrayList<CategoriaBEAN>();
-
-        for (CategoriaBEAN c : catCon.listarALL()) {
-            for (JogoBEAN j : cjogo.listarALL()) {
-                if (c.getCatCodigo() == j.getCat().getCatCodigo()) {
-                    catlista.add(c);
-                }
-            }
-        }
-        int i = 0;
-        for (CategoriaBEAN c : catCon.listarALL()) {
-            for (CategoriaBEAN cl : catlista) {
-                if (cl.getCatCodigo() == c.getCatCodigo()) {
-                    i++;
-                }
-            }
-            if (i == 0) {
-                catCon.remover(c.getCatCodigo());
-            }
-            i = 0;
-        }
-
-        preencheTabela();
-        try {
-            FRMJogo.povoaCombos();
-        } catch (Exception e) {
-
-        }
-        JOptionPane.showMessageDialog(null, "Todas as categorias não relacionadas a jogos foram excluidas com sucesso");
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -870,10 +808,8 @@ public class FRMCliente extends javax.swing.JFrame {
     private javax.swing.JButton btClonar;
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btEditar1;
-    private javax.swing.JButton btExcluir1;
     private javax.swing.JButton btVoltar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -921,7 +857,7 @@ public class FRMCliente extends javax.swing.JFrame {
         cTable.addColumn("Telefone");
         cTable.addColumn("CPF");
         cTable.addColumn("email");
-        
+
         for (ClienteBEAN dado : cCliente.listarALL()) {
             cTable.addRow(new Object[]{dado.getCliCodigo(), dado.getCliNome(), dado.getCliIdade(),
                 dado.getCliTelefone(), dado.getCliCpf(), dado.getCliEmail()});

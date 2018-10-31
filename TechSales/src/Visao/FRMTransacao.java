@@ -151,19 +151,6 @@ public class FRMTransacao extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbCliente = new javax.swing.JTable();
         tfChave6 = new javax.swing.JTextField();
-        jPanel13 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaAllLoc = new javax.swing.JTable();
-        tfChave4 = new javax.swing.JTextField();
-        jPanel15 = new javax.swing.JPanel();
-        jButton12 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jPanel14 = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        tabelaAllDev = new javax.swing.JTable();
-        tfChave5 = new javax.swing.JTextField();
-        jPanel16 = new javax.swing.JPanel();
-        jButton13 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -919,189 +906,18 @@ public class FRMTransacao extends javax.swing.JFrame {
 
         tpGuia.addTab("Pesquisa - Cliente", jPanel1);
 
-        tabelaAllLoc.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(tabelaAllLoc);
-
-        tfChave4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Refinar Pesquisa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
-        tfChave4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfChave4ActionPerformed(evt);
-            }
-        });
-        tfChave4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tfChave4KeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfChave4KeyTyped(evt);
-            }
-        });
-
-        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
-
-        jButton12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton12.setText("Imprimir Nota");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton3.setText("Pesquisar Devoluçao");
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton12)
-                    .addComponent(jButton3))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfChave4, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(209, 209, 209))
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(tfChave4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        tpGuia.addTab("Lista de Alugueis", jPanel13);
-
-        tabelaAllDev.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane7.setViewportView(tabelaAllDev);
-
-        tfChave5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Refinar Pesquisa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
-        tfChave5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfChave5ActionPerformed(evt);
-            }
-        });
-        tfChave5.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tfChave5KeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfChave5KeyTyped(evt);
-            }
-        });
-
-        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
-
-        jButton13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton13.setText("Imprimir Nota");
-
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton13)
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfChave5, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 758, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGap(298, 298, 298)
-                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(tfChave5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        tpGuia.addTab("Lista de Devolução", jPanel14);
-
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel2.setText("Transação");
+        jLabel2.setText("Realizar Aluguel e Devolução");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(340, 340, 340))
             .addComponent(tpGuia)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(323, 323, 323)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1114,6 +930,200 @@ public class FRMTransacao extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(818, 441));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tfChave6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave6KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfChave6KeyTyped
+
+    private void tfChave6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave6KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfChave6KeyPressed
+
+    private void tfChave6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfChave6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfChave6ActionPerformed
+
+    private void tbClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbClienteMouseClicked
+
+    }//GEN-LAST:event_tbClienteMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        tpGuia.setSelectedIndex(4);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btSelectCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelectCliActionPerformed
+        if (tbCliente.getSelectedRow() != -1) {
+            ClienteBEAN c = contCli.localizarCodigo(Integer.parseInt(tbCliente.getValueAt(tbCliente.getSelectedRow(), 0).toString()));
+            lbCliCod.setText(String.valueOf(c.getCliCodigo()));
+            lbCliDev.setText(String.valueOf(c.getCliCodigo()));
+            tpGuia.setSelectedIndex(0);
+            clienteCodigo = c.getCliCodigo();
+            preencheTabelaLoc(clienteCodigo);
+        }
+    }//GEN-LAST:event_btSelectCliActionPerformed
+
+    private void jbfinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbfinalActionPerformed
+        tpGuia.setSelectedIndex(0);
+        preencheTabelaCarro1();
+    }//GEN-LAST:event_jbfinalActionPerformed
+
+    private void tfChave7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave7KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfChave7KeyTyped
+
+    private void tfChave7KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave7KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfChave7KeyPressed
+
+    private void tfChave7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfChave7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfChave7ActionPerformed
+
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        if (tableJogoCarrinho2.getSelectedRow() != -1) {
+            int i = tableJogoCarrinho2.getSelectedRow();
+            insertJogo.remove(i);
+            preencheTabelaCarro1();
+            preencheTabelaCarro2();
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione o jogo");
+        }
+    }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
+        if (tableJogo.getSelectedRow() != -1) {
+            JogoBEAN j = contJog.localizarCodigo(Integer.parseInt(tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString()));
+            int qtd = Integer.parseInt(JOptionPane.showInputDialog("Digite a Quantidade de jogos"));
+            if (qtd <= j.getJoQtd()) {
+                JogoBEAN wtf = new JogoBEAN();
+                wtf.setJoCodigo(j.getJoCodigo());
+                wtf.setJoNome(j.getJoNome());
+                wtf.setJoQtd(qtd);
+                insertJogo.add(wtf);
+                preencheTabelaCarro1();
+                preencheTabelaCarro2();
+            } else {
+                JOptionPane.showMessageDialog(null, "Quantidade não disponível");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione o jogo");
+        }
+
+    }//GEN-LAST:event_btAddActionPerformed
+
+    private void tableJogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableJogoMouseClicked
+
+    }//GEN-LAST:event_tableJogoMouseClicked
+
+    private void btDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDevolverActionPerformed
+        if (verificaDev()) {
+            if (verificaPrecoF()) {
+                CaixaBEAN caixa = cCaixa.localizar(1);
+                LocacaoBEAN l = contLoc.localizarLoc(Integer.parseInt(lbcodloc.getText()));
+
+                DevolucaoBEAN dev = new DevolucaoBEAN();
+                dev.setCaixa(caixa);
+
+                try {
+                    String dataString = tfDataDevoluçãoReal.getText();
+                    DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+                    java.sql.Date data = new java.sql.Date(fmt.parse(dataString).getTime());
+                    dev.setDevData(data);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                dev.setLocacao(l);
+                dev.setDevMulta(Float.parseFloat(tfMulta.getText()));
+                dev.setDevValor(Float.parseFloat(lbPrecoFinal.getText()));
+                contDev.cadastrar(dev);
+
+                caixa.setCaixaDinheiro(caixa.getCaixaDinheiro() + dev.getDevValor());
+                cCaixa.editar(caixa);
+
+                JogoBEAN j = contJog.localizarCodigo(Integer.parseInt(tbLoc.getValueAt(tbLoc.getSelectedRow(), 1).toString()));
+                j.setJoQtd(j.getJoQtd() + Integer.parseInt(tbLoc.getValueAt(tbLoc.getSelectedRow(), 3).toString()));
+                contJog.editar(j);
+
+                l.setLocStatus(1);
+                contLoc.editar(l);
+
+                preencheTabelaLoc(Integer.parseInt(lbCliDev.getText()));
+                preencheall();
+
+                JOptionPane.showMessageDialog(null, "Devolução feita com sucesso");
+            } else {
+                JOptionPane.showMessageDialog(null, "Calcule o preço Final");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um Aluguel e preencha e data de devolução");
+        }
+    }//GEN-LAST:event_btDevolverActionPerformed
+
+    private void tbLocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbLocMouseClicked
+        limpaDev();
+        lbcodloc.setText(tbLoc.getValueAt(tbLoc.getSelectedRow(), 0).toString());
+        btCalc.setEnabled(true);
+    }//GEN-LAST:event_tbLocMouseClicked
+
+    private void btCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcActionPerformed
+        if (verificaDev()) {
+            LocacaoBEAN l = contLoc.localizarLoc(Integer.parseInt(lbcodloc.getText()));
+            int qtd = Integer.parseInt(tbLoc.getValueAt(tbLoc.getSelectedRow(), 3).toString());
+            float precoJogo = qtd * l.getLocPrecoUnit();
+            float precoF = precoJogo + Float.parseFloat(tfMulta.getText()) - l.getLocEntrada();
+            lbPrecoFinal.setText(String.valueOf(precoF));
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um Aluguel e preencha e data de devolução");
+        }
+    }//GEN-LAST:event_btCalcActionPerformed
+
+    private void btPesquisarCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCliente2ActionPerformed
+        tpGuia.setSelectedIndex(3);
+    }//GEN-LAST:event_btPesquisarCliente2ActionPerformed
+
+    private void tfMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfMultaActionPerformed
+
+    private void btAlugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlugarActionPerformed
+        if (verificaCampos()) {
+            cadastroLoc();
+            preencheall();
+            JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso.");
+            preencheTabelaLoc(Integer.parseInt(lbCliCod.getText()));
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
+        }
+    }//GEN-LAST:event_btAlugarActionPerformed
+
+    private void btCalculaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalculaTotalActionPerformed
+        int qtd = 0;
+        for (JogoBEAN j : insertJogo) {
+            qtd += j.getJoQtd();
+        }
+        float preco = Float.parseFloat(tfPreco.getText()) * qtd;
+        lbTotal.setText(String.valueOf(preco));
+    }//GEN-LAST:event_btCalculaTotalActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        tpGuia.setSelectedIndex(3);
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void btExlcuiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExlcuiActionPerformed
+        if (tableJogoCarrinho.getSelectedRow() != -1) {
+            int i = tableJogoCarrinho.getSelectedRow();
+            insertJogo.remove(i);
+            preencheTabelaCarro1();
+            preencheTabelaCarro2();
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione o jogo");
+        }
+    }//GEN-LAST:event_btExlcuiActionPerformed
+
+    private void btAdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdActionPerformed
+        tpGuia.setSelectedIndex(2);
+    }//GEN-LAST:event_btAdActionPerformed
 
 
     private void preencheall() {
@@ -1341,56 +1351,6 @@ public class FRMTransacao extends javax.swing.JFrame {
     }
 
 
-    private void btAlugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlugarActionPerformed
-        if (verificaCampos()) {
-            cadastroLoc();
-            preencheall();
-            JOptionPane.showMessageDialog(null, "Cadastrado com Sucesso.");
-            preencheTabelaLoc(Integer.parseInt(lbCliCod.getText()));
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
-        }
-    }//GEN-LAST:event_btAlugarActionPerformed
-
-    private void tbClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbClienteMouseClicked
-
-
-    }//GEN-LAST:event_tbClienteMouseClicked
-
-    private void btSelectCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelectCliActionPerformed
-        if (tbCliente.getSelectedRow() != -1) {
-            ClienteBEAN c = contCli.localizarCodigo(Integer.parseInt(tbCliente.getValueAt(tbCliente.getSelectedRow(), 0).toString()));
-            lbCliCod.setText(String.valueOf(c.getCliCodigo()));
-            lbCliDev.setText(String.valueOf(c.getCliCodigo()));
-            tpGuia.setSelectedIndex(0);
-            clienteCodigo = c.getCliCodigo();
-            preencheTabelaLoc(clienteCodigo);
-        }
-    }//GEN-LAST:event_btSelectCliActionPerformed
-
-    private void tableJogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableJogoMouseClicked
-
-    }//GEN-LAST:event_tableJogoMouseClicked
-
-    private void btAdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdActionPerformed
-        tpGuia.setSelectedIndex(2);
-    }//GEN-LAST:event_btAdActionPerformed
-
-    private void btExlcuiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExlcuiActionPerformed
-        if (tableJogoCarrinho.getSelectedRow() != -1) {
-            int i = tableJogoCarrinho.getSelectedRow();
-            insertJogo.remove(i);
-            preencheTabelaCarro1();
-            preencheTabelaCarro2();
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione o jogo");
-        }
-    }//GEN-LAST:event_btExlcuiActionPerformed
-
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        tpGuia.setSelectedIndex(3);
-    }//GEN-LAST:event_jButton11ActionPerformed
-
     private boolean verificaPrecoF() {
         if (lbPrecoFinal.getText().equals("")) {
             return false;
@@ -1398,70 +1358,11 @@ public class FRMTransacao extends javax.swing.JFrame {
             return true;
         }
     }
-    private void tfMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMultaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfMultaActionPerformed
-
-    private void tbLocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbLocMouseClicked
-        limpaDev();
-        lbcodloc.setText(tbLoc.getValueAt(tbLoc.getSelectedRow(), 0).toString());
-        btCalc.setEnabled(true);
-    }//GEN-LAST:event_tbLocMouseClicked
-
     private void limpaDev() {
         tfDataDevoluçãoReal.setText("");
         tfMulta.setText("");
         lbPrecoFinal.setText("");
     }
-    private void btDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDevolverActionPerformed
-        if (verificaDev()) {
-            if (verificaPrecoF()) {
-                CaixaBEAN caixa = cCaixa.localizar(1);
-                LocacaoBEAN l = contLoc.localizarLoc(Integer.parseInt(lbcodloc.getText()));
-
-                DevolucaoBEAN dev = new DevolucaoBEAN();
-                dev.setCaixa(caixa);
-
-                try {
-                    String dataString = tfDataDevoluçãoReal.getText();
-                    DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
-                    java.sql.Date data = new java.sql.Date(fmt.parse(dataString).getTime());
-                    dev.setDevData(data);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                dev.setLocacao(l);
-                dev.setDevMulta(Float.parseFloat(tfMulta.getText()));
-                dev.setDevValor(Float.parseFloat(lbPrecoFinal.getText()));
-                contDev.cadastrar(dev);
-
-                caixa.setCaixaDinheiro(caixa.getCaixaDinheiro() + dev.getDevValor());
-                cCaixa.editar(caixa);
-
-                JogoBEAN j = contJog.localizarCodigo(Integer.parseInt(tbLoc.getValueAt(tbLoc.getSelectedRow(), 1).toString()));
-                j.setJoQtd(j.getJoQtd() + Integer.parseInt(tbLoc.getValueAt(tbLoc.getSelectedRow(), 3).toString()));
-                contJog.editar(j);
-
-                l.setLocStatus(1);
-                contLoc.editar(l);
-
-                preencheTabelaLoc(Integer.parseInt(lbCliDev.getText()));
-                preencheall();
-
-                JOptionPane.showMessageDialog(null, "Devolução feita com sucesso");
-            } else {
-                JOptionPane.showMessageDialog(null, "Calcule o preço Final");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um Aluguel e preencha e data de devolução");
-        }
-    }//GEN-LAST:event_btDevolverActionPerformed
-
-    private void btPesquisarCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCliente2ActionPerformed
-        tpGuia.setSelectedIndex(3);
-    }//GEN-LAST:event_btPesquisarCliente2ActionPerformed
-
     private void preencheTabelaCarro1() {
         modelCarro1 = criaTabelaCarro1();
         modelCarro1.addColumn("Codigo");
@@ -1526,57 +1427,6 @@ public class FRMTransacao extends javax.swing.JFrame {
     return cTable;
     }
 
-    private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
-        if (tableJogo.getSelectedRow() != -1) {
-            JogoBEAN j = contJog.localizarCodigo(Integer.parseInt(tableJogo.getValueAt(tableJogo.getSelectedRow(), 0).toString()));
-            int qtd = Integer.parseInt(JOptionPane.showInputDialog("Digite a Quantidade de jogos"));
-            if (qtd <= j.getJoQtd()) {
-                JogoBEAN wtf = new JogoBEAN();
-                wtf.setJoCodigo(j.getJoCodigo());
-                wtf.setJoNome(j.getJoNome());
-                wtf.setJoQtd(qtd);
-                insertJogo.add(wtf);
-                preencheTabelaCarro1();
-                preencheTabelaCarro2();
-            } else {
-                JOptionPane.showMessageDialog(null, "Quantidade não disponível");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione o jogo");
-        }
-
-
-    }//GEN-LAST:event_btAddActionPerformed
-
-    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        if (tableJogoCarrinho2.getSelectedRow() != -1) {
-            int i = tableJogoCarrinho2.getSelectedRow();
-            insertJogo.remove(i);
-            preencheTabelaCarro1();
-            preencheTabelaCarro2();
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione o jogo");
-        }
-    }//GEN-LAST:event_btExcluirActionPerformed
-
-    private void jbfinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbfinalActionPerformed
-        tpGuia.setSelectedIndex(0);
-        preencheTabelaCarro1();
-    }//GEN-LAST:event_jbfinalActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        tpGuia.setSelectedIndex(4);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void btCalculaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalculaTotalActionPerformed
-        int qtd = 0;
-        for (JogoBEAN j : insertJogo) {
-            qtd += j.getJoQtd();
-        }
-        float preco = Float.parseFloat(tfPreco.getText()) * qtd;
-        lbTotal.setText(String.valueOf(preco));
-    }//GEN-LAST:event_btCalculaTotalActionPerformed
-
     private boolean verificaDev() {
         if (lbcodloc.getText().equals("...")
                 || tfDataDevoluçãoReal.getText().equals("")) {
@@ -1586,18 +1436,6 @@ public class FRMTransacao extends javax.swing.JFrame {
         }
 
     }
-    private void btCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcActionPerformed
-        if (verificaDev()) {
-            LocacaoBEAN l = contLoc.localizarLoc(Integer.parseInt(lbcodloc.getText()));
-            int qtd = Integer.parseInt(tbLoc.getValueAt(tbLoc.getSelectedRow(), 3).toString());
-            float precoJogo = qtd * l.getLocPrecoUnit();
-            float precoF = precoJogo + Float.parseFloat(tfMulta.getText()) - l.getLocEntrada();
-            lbPrecoFinal.setText(String.valueOf(precoF));
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um Aluguel e preencha e data de devolução");
-        }
-    }//GEN-LAST:event_btCalcActionPerformed
-
     private void preencheTabelaAllLoc() {
         modelAllLoc = criaTabelaAllLoc();
         modelAllLoc.addColumn("Código-Locação");
@@ -1703,75 +1541,6 @@ public class FRMTransacao extends javax.swing.JFrame {
     return dTable;
     }
 
-    private void tfChave4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfChave4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfChave4ActionPerformed
-
-    private void tfChave4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave4KeyPressed
-
-    }//GEN-LAST:event_tfChave4KeyPressed
-
-    private void tfChave4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave4KeyTyped
-        TableRowSorter sorter = null;
-        DefaultTableModel model = (DefaultTableModel) tableJogo.getModel();
-        sorter = new TableRowSorter<TableModel>(model);
-        tableJogo.setRowSorter(sorter);
-        String text = tfChave4.getText();
-        if (text.length() == 0) {
-            sorter.setRowFilter(null);
-        } else {
-            sorter.setRowFilter(RowFilter.regexFilter(text));
-        }
-    }//GEN-LAST:event_tfChave4KeyTyped
-
-    private void tfChave5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfChave5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfChave5ActionPerformed
-
-    private void tfChave5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave5KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfChave5KeyPressed
-
-    private void tfChave5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave5KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfChave5KeyTyped
-
-    private void tfChave6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfChave6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfChave6ActionPerformed
-
-    private void tfChave6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave6KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfChave6KeyPressed
-
-    private void tfChave6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave6KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfChave6KeyTyped
-
-    private void tfChave7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfChave7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfChave7ActionPerformed
-
-    private void tfChave7KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave7KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfChave7KeyPressed
-
-    private void tfChave7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave7KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfChave7KeyTyped
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-     VendaBEAN v = cVenda.localizar(Integer.parseInt(tableVendas.getValueAt(tableVendas.getSelectedRow(), 0).toString()));
-        try {
-            RelatoriosBEAN.notaDaVenda(v);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DocumentException ex) {
-            Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }//GEN-LAST:event_jButton12ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -1820,8 +1589,6 @@ public class FRMTransacao extends javax.swing.JFrame {
     private javax.swing.JButton btSelectCli;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
@@ -1831,7 +1598,6 @@ public class FRMTransacao extends javax.swing.JFrame {
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
@@ -1844,10 +1610,6 @@ public class FRMTransacao extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
@@ -1857,13 +1619,11 @@ public class FRMTransacao extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JButton jbfinal;
     private javax.swing.JLabel lbCliCod;
     private javax.swing.JLabel lbCliDev;
@@ -1872,15 +1632,11 @@ public class FRMTransacao extends javax.swing.JFrame {
     private javax.swing.JLabel lbTotal;
     private javax.swing.JLabel lbVendedorCod;
     private javax.swing.JLabel lbcodloc;
-    private javax.swing.JTable tabelaAllDev;
-    private javax.swing.JTable tabelaAllLoc;
     private javax.swing.JTable tableJogo;
     private javax.swing.JTable tableJogoCarrinho;
     private javax.swing.JTable tableJogoCarrinho2;
     private javax.swing.JTable tbCliente;
     private javax.swing.JTable tbLoc;
-    private javax.swing.JTextField tfChave4;
-    private javax.swing.JTextField tfChave5;
     private javax.swing.JTextField tfChave6;
     private javax.swing.JTextField tfChave7;
     private javax.swing.JFormattedTextField tfDataAluguel;

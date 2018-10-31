@@ -39,6 +39,7 @@ public class FRMJogo extends javax.swing.JFrame {
     private ArrayList<ConsoleBEAN> cDados;
     private DefaultTableModel dTable;
     private DefaultTableModel dTable2;
+    private final String numeros = "0123456789+";
 
     static JogoBEAN jogoNota = new JogoBEAN();
 
@@ -348,6 +349,11 @@ public class FRMJogo extends javax.swing.JFrame {
         jLabel4.setText("Preço:");
 
         tfPrecoPadrao.setEnabled(false);
+        tfPrecoPadrao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfPrecoPadraoKeyTyped(evt);
+            }
+        });
 
         btCadCat.setText("+");
         btCadCat.setEnabled(false);
@@ -819,8 +825,7 @@ public class FRMJogo extends javax.swing.JFrame {
     }//GEN-LAST:event_tfChaveActionPerformed
 
     private void tfQtdeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfQtdeKeyTyped
-        String caracteres = "0123456789";
-        if (!caracteres.contains(evt.getKeyChar() + "")) {
+        if (!numeros.contains(evt.getKeyChar() + "")) {
             evt.consume();
         }
     }//GEN-LAST:event_tfQtdeKeyTyped
@@ -838,8 +843,7 @@ public class FRMJogo extends javax.swing.JFrame {
     }//GEN-LAST:event_tfNomeActionPerformed
 
     private void tfFaixaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFaixaKeyTyped
-        String caracteres = "0123456789+";
-        if (!caracteres.contains(evt.getKeyChar() + "")) {
+        if (!numeros.contains(evt.getKeyChar() + "")) {
             evt.consume();
         }
     }//GEN-LAST:event_tfFaixaKeyTyped
@@ -1039,6 +1043,13 @@ public class FRMJogo extends javax.swing.JFrame {
         desabilitaCampos();
 
     }//GEN-LAST:event_btCancelaActionPerformed
+
+    private void tfPrecoPadraoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPrecoPadraoKeyTyped
+
+        if (!numeros.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfPrecoPadraoKeyTyped
 
     private void limparCampos() {
         lbCodigoJogo.setText("...");

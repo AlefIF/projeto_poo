@@ -818,3 +818,143 @@ Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\test
 Sub-pastas do projeto = 26 pastas
 Classes do projeto = 75 classes
 Linhas de codigo do projeto = 21303 linhas
+
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\build
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\build\classes
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\build\classes\bibliotecas
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\build\classes\Controle
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\build\classes\jpa
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\build\classes\META-INF
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\build\classes\Modelo
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\build\classes\Visao
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\build\classes\Visao\icons
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\build\classes\Visao\icons\Botões
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\build\classes\Visao\icons\Interface gráfica
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\build\empty
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\build\generated-sources
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\build\generated-sources\ap-source-output
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\nbproject
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\nbproject\private
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\bibliotecas
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\CaixaControle.java = 80 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\CategoriaControle.java = 78 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\ClienteControle.java = 78 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\ConnectionFactory.java = 72 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\ConsoleControle.java = 80 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\ContaAPrazoControle.java = 78 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\ContaControle.java = 78 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\ControleRelatorios.java = 304 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\DevolucaoControle.java = 74 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\EmpregoControle.java = 74 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\EnderecoControle.java = 78 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\FornecedorControle.java = 77 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\FuncionarioControle.java = 75 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\JogoControle.java = 74 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\JogoLocacaoControle.java = 74 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\JogoVendaControle.java = 73 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\ListaDesejoControle.java = 78 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\LocacaoControle.java = 85 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\LucroControle.java = 78 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\NotaDeCompraAPrazoControle.java = 78 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\NotaDeCompraControle.java = 76 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\RelLocalControle.java = 79 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\VendaAPrazoControle.java = 73 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\VendaControle.java = 75 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Controle\VendedorControle.java = 75 linhas
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\jpa
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\jpa\JpaUtil.java = 31 linhas
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\META-INF
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\CaixaBEAN.java = 42 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\CategoriaBEAN.java = 47 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\ClienteBEAN.java = 85 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\ConsoleBEAN.java = 58 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\ContaAPrazoBEAN.java = 83 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\ContaBEAN.java = 100 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\DevolucaoBEAN.java = 86 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\EmpregoBEAN.java = 63 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\EmpresaBEAN.java = 14 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\EnderecoBEAN.java = 74 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\FornecedorBEAN.java = 93 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\FuncionarioBEAN.java = 136 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\JogoBEAN.java = 140 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\JogoLocacaoBEAN.java = 46 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\JogoLocacaoPK.java = 45 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\JogoVendaBEAN.java = 52 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\JogoVendaPK.java = 45 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\ListaDesejoBEAN.java = 62 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\LocacaoBEAN.java = 115 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\LocalRelatoriosBEAN.java = 42 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\LucroBEAN.java = 46 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\MontanteBEAN.java = 78 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\NotaDecompraBEAN.java = 119 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\NotaDeCompraPrazoBEAN.java = 86 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\RelatoriosBEAN.java = 699 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\VendaAPrazoBEAN.java = 83 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\VendaBEAN.java = 110 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Modelo\VendedorBEAN.java = 65 linhas
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMAluguelNovo.java = 757 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMCadastroFun.java = 1169 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMCaixa.java = 164 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMCategoria.java = 602 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMCliente.java = 912 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMConsole.java = 638 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMContas.java = 1325 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMEmitirRelatorios.java = 539 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMEmpregro.java = 565 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMFornecedor.java = 911 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMJogo.java = 1158 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMListaDeAlugueis.java = 493 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMListaDesejo.java = 800 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMListaDeVendas.java = 504 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMLogin.java = 318 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMLucro.java = 237 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMMenuADM.java = 300 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMMenuVendedor.java = 335 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMNotaDeCompra.java = 1112 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMTransacao.java = 1650 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMVenda.java = 1518 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\FRMVendaNova.java = 773 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\RelatorioAluguelPeriodo.java = 232 linhas
+	 C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\RELvendaPeriodo.java = 244 linhas
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\icons
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\icons\Botões
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\src\Visao\icons\Interface gráfica
+
+Path = C:\Users\Alef\Desktop\projeto techsales poo\TechSales\test
+
+
+
+=============================================
+Sub-pastas do projeto = 27 pastas
+Classes do projeto = 78 classes
+Linhas de codigo do projeto = 22145 linhas

@@ -26,7 +26,7 @@ public class LocacaoBEAN {
     private float locPreçoTotal;
     private Date locDataAluguel;
     private Date locDataDevolucao;
-    private int locStatus;
+    private String locStatus;
     private float locPrecoUnit;
     private float locEntrada;
     private ClienteBEAN cliente;
@@ -66,12 +66,12 @@ public class LocacaoBEAN {
         this.locDataDevolucao = locDataDevolucao;
     }
 
-    @Column(name = "locStatus", nullable = false, columnDefinition = "int")
-    public int getLocStatus() {
+   
+    public String getLocStatus() {
         return locStatus;
     }
 
-    public void setLocStatus(int locStatus) {
+    public void setLocStatus(String locStatus) {
         this.locStatus = locStatus;
     }
 

@@ -306,11 +306,9 @@ public class RelatoriosBEAN {
                     + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
                     + "<tr> "
                     + "<th align=center><strong>Código</strong></th> "
-                    + "<th align=center><strong>Custo Unitário</strong></th> "
                     + "<th align=center><strong>Data</strong></th> "
                     + "<th align=center><strong>Valor da Entrada</strong></th> "
                     + "<th align=center><strong>Número de parcelas</strong></th> "
-                    + "<th align=center><strong>Quantidade Compradra</strong></th> "
                     + "<th align=center><strong>Preço Total</strong></th> "
                     + "<th align=center><strong>Descrição</strong></th> "
                     + "<th align=center><strong>Fornecedor</strong></th> "
@@ -318,8 +316,8 @@ public class RelatoriosBEAN {
                     + "</tr> ";
             for (ContaBEAN n : cContas.listarALL()) {
                 frase += "<tr align=center><td>" + n.getConCodigo() + "</td><td>"
-                        + n.getConCustoUnitario() + "</td><td>" + n.getConData() + "</td><td>" + n.getConEntrada() + "</td><td>"
-                        + n.getConNparcelas() + "</td><td>" + n.getConQtdComprada() + "</td><td>" + n.getConValorTotal()
+                        + n.getConData() + "</td><td>" + n.getConEntrada() + "</td><td>"
+                        + n.getConNparcelas()  + "</td><td>" + n.getConValorTotal()
                         + "</td><td>" + n.getConDescricao() + "</td><td>" + n.getFornecedor().getForNomeEmpresa()
                         + "</td><td>" + n.getCaixa().getCaixaCodigo() + "</td></tr>";
             }

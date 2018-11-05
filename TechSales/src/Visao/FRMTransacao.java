@@ -1465,7 +1465,7 @@ public class FRMTransacao extends javax.swing.JFrame {
             }
         }
 
-        tabelaAllLoc.setModel(modelAllLoc);
+//        tabelaAllLoc.setModel(modelAllLoc);
     }
 
     private DefaultTableModel criaTabelaAllLoc() {
@@ -1513,7 +1513,7 @@ public class FRMTransacao extends javax.swing.JFrame {
                 d.getDevValor(), d.getDevMulta(), d.getDevData()});
         }
 
-        tabelaAllDev.setModel(modelAllDev);
+//        tabelaAllDev.setModel(modelAllDev);
     }
 
     private DefaultTableModel criaTabelaAllDev() {

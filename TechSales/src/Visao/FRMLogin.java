@@ -38,7 +38,8 @@ public class FRMLogin extends javax.swing.JFrame {
     public FRMLogin() {
         setResizable(false);
         initComponents();
-
+        this.setLocationRelativeTo(null);
+        /*
         //Cadastro localRelatorios        
         int qtLR = 0;
         for (LocalRelatoriosBEAN rl : relC.listarALL()) {
@@ -49,7 +50,7 @@ public class FRMLogin extends javax.swing.JFrame {
             rl1.setRelLocal("/desktop");
             relC.cadastrar(rl1);
         }
-
+*/
         /*
         //Cadastro Caixa
         int qtc = 0;

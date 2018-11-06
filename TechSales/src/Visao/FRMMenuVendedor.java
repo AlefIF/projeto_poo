@@ -239,9 +239,8 @@ public class FRMMenuVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btGJogoActionPerformed
 
     private void btRTransacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRTransacaoActionPerformed
-        FRMTransacao trans = new FRMTransacao();
-        trans.setVisible(true);
-        this.dispose();
+        FRMAluguelNovo aD = new FRMAluguelNovo();
+        aD.setVisible(true);
     }//GEN-LAST:event_btRTransacaoActionPerformed
 
     private void jbGerenciarConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGerenciarConsoleActionPerformed

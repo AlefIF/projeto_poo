@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
  */
 public class FRMLogin extends javax.swing.JFrame {
 
-    static VendedorBEAN user = new VendedorBEAN();
+    public static VendedorBEAN user = new VendedorBEAN();
     private VendedorControle vc = new VendedorControle();
     private ArrayList<VendedorBEAN> al = vc.listarALL();
     private CaixaControle caixaC = new CaixaControle();

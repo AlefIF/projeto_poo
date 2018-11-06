@@ -19,15 +19,21 @@ import Modelo.DevolucaoBEAN;
 import Modelo.JogoBEAN;
 import Modelo.JogoLocacaoBEAN;
 import Modelo.LocacaoBEAN;
-import java.util.ArrayList;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import Modelo.RelatoriosBEAN;
+import com.itextpdf.text.DocumentException;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Alef
  */
 public class FRMListaDeAlugueis extends javax.swing.JFrame {
-    
 
     private ConsoleControle cControle = new ConsoleControle();
     private CategoriaControle catControle = new CategoriaControle();
@@ -39,25 +45,19 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
     private LocacaoControle contLoc = new LocacaoControle();
     private DevolucaoControle contDev = new DevolucaoControle();
     private JogoLocacaoControle cJl = new JogoLocacaoControle();
-    private DefaultTableModel dTableJogo;
-    private DefaultTableModel dTableCliente;
-    private DefaultTableModel modelLoc;
     private DefaultTableModel modelAllLoc;
     private DefaultTableModel modelAllDev;
-    private DefaultTableModel modelCarro;
-    private DefaultTableModel modelCarro1;
-
 
     /**
      * Creates new form FRMListaDeAlugueis
      */
     public FRMListaDeAlugueis() {
         initComponents();
-          preencheTabelaAllDev();
+        preencheTabelaAllDev();
         preencheTabelaAllLoc();
     }
-    
-     private void preencheTabelaAllDev() {
+
+    private void preencheTabelaAllDev() {
         modelAllDev = criaTabelaAllDev();
         modelAllDev.addColumn("Código-Devolução");
         modelAllDev.addColumn("Código-Locação");
@@ -74,30 +74,24 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
     }
 
     private DefaultTableModel criaTabelaAllDev() {
-        //sempre que usar JTable é necessário ter um DefaulttableModel
         DefaultTableModel dTable = new DefaultTableModel() {
-            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
             Class[] types = new Class[]{
                 java.lang.Integer.class,
                 java.lang.Integer.class,
                 java.lang.Float.class,
                 java.lang.Float.class,
                 java.lang.String.class,};
-            //define se os campos podem ser editados na propria tabela
             boolean[] canEdit = new boolean[]{
                 false, false, false, false, false};
-
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit[columnIndex];
             }
         ;
-
         };
-        //retorna o DefaultTableModel
     return dTable;
     }
-    
+
     private void preencheTabelaAllLoc() {
         modelAllLoc = criaTabelaAllLoc();
         modelAllLoc.addColumn("Código-Locação");
@@ -131,9 +125,7 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
     }
 
     private DefaultTableModel criaTabelaAllLoc() {
-        //sempre que usar JTable é necessário ter um DefaulttableModel
         DefaultTableModel dTable = new DefaultTableModel() {
-            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
             Class[] types = new Class[]{
                 java.lang.Integer.class,
                 java.lang.Integer.class,
@@ -147,7 +139,6 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
                 java.lang.String.class,
                 java.lang.String.class
             };
-            //define se os campos podem ser editados na propria tabela
             boolean[] canEdit = new boolean[]{
                 false, false, false, false, false, false, false, false, false, false, false};
 
@@ -156,9 +147,7 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
                 return canEdit[columnIndex];
             }
         ;
-
         };
-        //retorna o DefaultTableModel
     return dTable;
     }
 
@@ -179,7 +168,6 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
         jPanel15 = new javax.swing.JPanel();
         jButton12 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         tabelaAllDev = new javax.swing.JTable();
@@ -188,7 +176,7 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
         jButton13 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tabelaAllLoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -213,6 +201,9 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfChave4KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfChave4KeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfChave4KeyTyped(evt);
             }
@@ -230,9 +221,11 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton3.setText("Pesquisar Devoluçao");
-
-        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton1.setText("Fechar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -243,8 +236,6 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
                 .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
@@ -253,8 +244,7 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton12)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1))
+                    .addComponent(jButton3))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -263,16 +253,15 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfChave4, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(tfChave4, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(220, 220, 220))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,6 +300,9 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfChave5KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfChave5KeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfChave5KeyTyped(evt);
             }
@@ -320,6 +312,11 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
 
         jButton13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton13.setText("Imprimir Nota");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -401,28 +398,20 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
     }//GEN-LAST:event_tfChave4KeyPressed
 
     private void tfChave4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave4KeyTyped
-        TableRowSorter sorter = null;
-        DefaultTableModel model = (DefaultTableModel) tableJogo.getModel();
-        sorter = new TableRowSorter<TableModel>(model);
-        tableJogo.setRowSorter(sorter);
-        String text = tfChave4.getText();
-        if (text.length() == 0) {
-            sorter.setRowFilter(null);
-        } else {
-            sorter.setRowFilter(RowFilter.regexFilter(text));
-        }
+
     }//GEN-LAST:event_tfChave4KeyTyped
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        VendaBEAN v = cVenda.localizar(Integer.parseInt(tableVendas.getValueAt(tableVendas.getSelectedRow(), 0).toString()));
-        try {
-            RelatoriosBEAN.notaDaVenda(v);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DocumentException ex) {
-            Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
+        if (tabelaAllLoc.getSelectedRow() != -1) {
+            LocacaoBEAN l = contLoc.localizarLoc(Integer.parseInt(tabelaAllLoc.getValueAt(tabelaAllLoc.getSelectedRow(), 0).toString()));
+            try {
+                RelatoriosBEAN.notaDoAluguel(l);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (DocumentException ex) {
+                Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void tfChave5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfChave5ActionPerformed
@@ -436,6 +425,49 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
     private void tfChave5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave5KeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_tfChave5KeyTyped
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        tpGuia.setSelectedIndex(1);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void tfChave4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave4KeyReleased
+        TableRowSorter sorter = null;
+        DefaultTableModel model = (DefaultTableModel) tabelaAllLoc.getModel();
+        sorter = new TableRowSorter<TableModel>(model);
+        tabelaAllLoc.setRowSorter(sorter);
+        String text = tfChave4.getText();
+        if (text.length() == 0) {
+            sorter.setRowFilter(null);
+        } else {
+            sorter.setRowFilter(RowFilter.regexFilter(text));
+        }
+    }//GEN-LAST:event_tfChave4KeyReleased
+
+    private void tfChave5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave5KeyReleased
+        TableRowSorter sorter = null;
+        DefaultTableModel model = (DefaultTableModel) tabelaAllDev.getModel();
+        sorter = new TableRowSorter<TableModel>(model);
+        tabelaAllDev.setRowSorter(sorter);
+        String text = tfChave5.getText();
+        if (text.length() == 0) {
+            sorter.setRowFilter(null);
+        } else {
+            sorter.setRowFilter(RowFilter.regexFilter(text));
+        }
+    }//GEN-LAST:event_tfChave5KeyReleased
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        if (tabelaAllDev.getSelectedRow() != -1) {
+            DevolucaoBEAN d = contDev.localizar(Integer.parseInt(tabelaAllDev.getValueAt(tabelaAllDev.getSelectedRow(), 0).toString()));
+            try {
+                RelatoriosBEAN.notaDaDev(d);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (DocumentException ex) {
+                Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton13ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -473,7 +505,6 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton3;

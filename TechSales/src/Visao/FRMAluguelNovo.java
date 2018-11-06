@@ -22,11 +22,16 @@ import Modelo.JogoBEAN;
 import Modelo.JogoLocacaoBEAN;
 import Modelo.JogoLocacaoPK;
 import Modelo.LocacaoBEAN;
+import Modelo.RelatoriosBEAN;
 import Modelo.VendedorBEAN;
+import com.itextpdf.text.DocumentException;
+import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -123,9 +128,10 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
         tableJogoDev = new javax.swing.JTable();
         jPanel11 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Dados da Locação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
@@ -463,7 +469,7 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton2.setText("Localizar Devolução");
+        jButton2.setText("Localizar Locação");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -501,7 +507,7 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -667,6 +673,14 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton4.setText("Localizar Devolução");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -674,13 +688,17 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -694,7 +712,7 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jpCompra1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
+                        .addGap(46, 46, 46)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -737,9 +755,15 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
         modelJogo = criaTabelaJogo();
         modelJogo.addColumn("Jogo");
         modelJogo.addColumn("Quantidade");
+        int qtd = 0;
         for (JogoBEAN j : contJog.listarALL()) {
             if ((j.getJoCodigo() == c) && (j.getJoTipo().equals("Aluguel"))) {
-                modelJogo.addRow(new Object[]{j.getJoNome(), j.getJoQtd()});
+                for (JogoBEAN jm : insertJogo) {
+                    if (jm.getJoCodigo() == j.getJoCodigo()) {
+                        qtd += jm.getJoQtd();
+                    }
+                }
+                modelJogo.addRow(new Object[]{j.getJoNome(), (j.getJoQtd() - qtd)});
             }
         }
         tableJogo.setModel(modelJogo);
@@ -831,54 +855,53 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
         if (tfPrecoUnit.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Preencha o preço unitário");
         } else {
-            float preco = Float.parseFloat(tfPrecoUnit.getText());        
-                JogoBEAN j = contJog.localizarCodigo(Integer.parseInt(tfChaveJogo.getText()));
-                int qtd = Integer.parseInt(JOptionPane.showInputDialog("Digite a Quantidade de jogos"));
-                if ((qtd <= j.getJoQtd()) && (qtd > 0)) {
-                    JogoBEAN wtf = new JogoBEAN();
-                    wtf.setJoCodigo(j.getJoCodigo());
-                    wtf.setJoNome(j.getJoNome());
-                    wtf.setJoQtd(qtd);
-                    wtf.setJoPrecoPadrao(preco * qtd);
-                    insertJogo.add(wtf);
-                    j.setJoQtd(j.getJoQtd() - qtd);
-                    contJog.editar(j);
-                    preencheTabelaCarro();
-                    try {
-                        povoaTabelaJogo(Integer.parseInt(tfChaveJogo.getText()));
-                    } catch (Exception e) {
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Quantidade inválida");
-                }        
+            float preco = Float.parseFloat(tfPrecoUnit.getText());
+            JogoBEAN j = contJog.localizarCodigo(Integer.parseInt(tfChaveJogo.getText()));
+
+            int qtd = 0;
+            try {
+                qtd = Integer.parseInt(JOptionPane.showInputDialog("Digite a Quantidade de jogos"));
+            } catch (Exception e) {
+
+            }
+            if ((qtd <= j.getJoQtd()) && (qtd > 0)) {
+                JogoBEAN wtf = new JogoBEAN();
+                wtf.setJoCodigo(j.getJoCodigo());
+                wtf.setJoNome(j.getJoNome());
+                wtf.setJoQtd(qtd);
+                wtf.setJoPrecoPadrao(preco * qtd);
+                insertJogo.add(wtf);
+                preencheTabelaCarro();
+                try {
+                    povoaTabelaJogo(Integer.parseInt(tfChaveJogo.getText()));
+                } catch (Exception e) {
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Quantidade inválida");
+            }
         }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         if (tableCarrinho.getSelectedRow() != -1) {
             int i = tableCarrinho.getSelectedRow();
-
             JogoBEAN a = insertJogo.get(i);
             JogoBEAN j = contJog.localizarCodigo(a.getJoCodigo());
-            j.setJoQtd(j.getJoQtd() + a.getJoQtd());
             contJog.editar(j);
-
             insertJogo.remove(i);
             preencheTabelaCarro();
-
             try {
                 povoaTabelaJogo(Integer.parseInt(tfChaveJogo.getText()));
             } catch (Exception e) {
 
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Selecione o jogo");
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        if (tfPrecoUnit.getText().equals("") || tfDataAluguel.getText().equals("")
+        if (tfPrecoUnit.getText().equals("  /  /    ") || tfDataAluguel.getText().equals("")
                 || tableCarrinho.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Erro! Preencha todos os dados");
         } else {
@@ -954,7 +977,17 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
 
         contLoc.cadastrar(l);
 
+        CaixaBEAN caixa = cCaixa.localizar(1);
+        caixa.setCaixaDinheiro(caixa.getCaixaDinheiro() + l.getLocEntrada());
+        cCaixa.editar(caixa);
+
         for (JogoBEAN j : insertJogo) {
+            for (JogoBEAN jogo : contJog.listarALL()) {
+                if (jogo.getJoCodigo() == j.getJoCodigo()) {
+                    jogo.setJoQtd(jogo.getJoQtd() - j.getJoQtd());
+                    contJog.editar(jogo);
+                }
+            }
             JogoLocacaoPK jlPK = new JogoLocacaoPK();
             jlPK.setJogo(j);
             jlPK.setLocacao(l);
@@ -963,15 +996,23 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
             a.setJlQtd(j.getJoQtd());
             cJl.cadastrar(a);
         }
+
+        try {
+            RelatoriosBEAN.notaDoAluguel(l);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (verificaCampos()) {
             try {
                 cadastroLoc();
                 limpaCampos();
-                //insertJogo.clear();
-            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Locação Cadastrada com sucesso.");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro de Cadastrado verifique os dados.");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
@@ -979,8 +1020,14 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void limpaCampos() {
+        povoaTabelaDev(0);
+        povoaTabelaJogo(0);
+        insertJogo.clear();
+        preencheTabelaCarro();
+        tfPrecoUnit.setText("");
+        tfTroco.setText("");
+        tfPrecoPago.setText("");
         tfChaveJogo.setText("");
-        tfCodLoc.setText("");
         tfCliente.setText("");
         tfCliente2.setText("");
         lbCliNome.setText("");
@@ -994,7 +1041,6 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
         lbDataDev.setText("");
         lbPrecoTT.setText("");
         lbValorDev.setText("");
-        lbVendedorCod.setText("");
     }
 
     private boolean verificaDev() {
@@ -1010,7 +1056,6 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
         } else {
             return true;
         }
-
     }
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -1034,6 +1079,14 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
             dev.setDevValor(Float.parseFloat(tfTotalDev.getText()));
             contDev.cadastrar(dev);
 
+            try {
+                RelatoriosBEAN.notaDaDev(dev);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (DocumentException ex) {
+                Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             caixa.setCaixaDinheiro(caixa.getCaixaDinheiro() + dev.getDevValor());
             cCaixa.editar(caixa);
 
@@ -1045,7 +1098,7 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
                 }
             }
 
-            l.setLocStatus("Paga");
+            l.setLocStatus("Pago");
             contLoc.editar(l);
             JOptionPane.showMessageDialog(null, "Devolução feita com sucesso");
             limpaCampos();
@@ -1078,7 +1131,8 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPrecoPagoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        tpGuia.setSelectedIndex(2);
+        FRMListaDeAlugueis a = new FRMListaDeAlugueis();
+        a.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tfCliente2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCliente2KeyReleased
@@ -1179,6 +1233,11 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tfMultaKeyTyped
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        FRMListaDeAlugueis b = new FRMListaDeAlugueis();
+        b.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1220,6 +1279,7 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -42,6 +42,7 @@ import javax.swing.table.DefaultTableModel;
 public class FRMAluguelNovo extends javax.swing.JFrame {
 
     private final String numeros = "0123456789";
+    private final String pct = "0123456789.";
     private DefaultTableModel modelJogo;
     private DefaultTableModel modelCarro;
     private DefaultTableModel modelDev;
@@ -153,11 +154,22 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
         }
         catch (Exception e){
         }
+        tfDataAluguel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfDataAluguelKeyTyped(evt);
+            }
+        });
 
         lbVendedorCod.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Vendedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel10.setText("Preço unitário:");
+
+        tfPrecoUnit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfPrecoUnitKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -393,9 +405,20 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
                 tfPrecoPagoActionPerformed(evt);
             }
         });
+        tfPrecoPago.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfPrecoPagoKeyTyped(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel3.setText("Troco:");
+
+        tfTroco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfTrocoKeyTyped(evt);
+            }
+        });
 
         tfCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Código Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
         tfCliente.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -416,6 +439,11 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
         }
         catch (Exception e){
         }
+        tfDataDevolução.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfDataDevoluçãoKeyTyped(evt);
+            }
+        });
 
         lbCliNome.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
@@ -557,6 +585,11 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
         }
         catch (Exception e){
         }
+        tfDataDevoluçãoReal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfDataDevoluçãoRealKeyTyped(evt);
+            }
+        });
 
         tfCodLoc.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Código Locação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
         tfCodLoc.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -742,6 +775,17 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
         tfPrecoPago2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfPrecoPago2ActionPerformed(evt);
+            }
+        });
+        tfPrecoPago2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfPrecoPago2KeyTyped(evt);
+            }
+        });
+
+        tfTroco2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfTroco2KeyTyped(evt);
             }
         });
 
@@ -1372,10 +1416,58 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
     }//GEN-LAST:event_tfMultaKeyReleased
 
     private void tfMultaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfMultaKeyTyped
-        if (!numeros.contains(evt.getKeyChar() + "")) {
+        if (!pct.contains(evt.getKeyChar() + "")) {
             evt.consume();
         }
     }//GEN-LAST:event_tfMultaKeyTyped
+
+    private void tfDataAluguelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDataAluguelKeyTyped
+        if (!numeros.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfDataAluguelKeyTyped
+
+    private void tfPrecoUnitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPrecoUnitKeyTyped
+        if (!pct.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfPrecoUnitKeyTyped
+
+    private void tfDataDevoluçãoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDataDevoluçãoKeyTyped
+        if (!numeros.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfDataDevoluçãoKeyTyped
+
+    private void tfPrecoPagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPrecoPagoKeyTyped
+        if (!pct.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfPrecoPagoKeyTyped
+
+    private void tfTrocoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTrocoKeyTyped
+        if (!pct.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfTrocoKeyTyped
+
+    private void tfDataDevoluçãoRealKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDataDevoluçãoRealKeyTyped
+        if (!numeros.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfDataDevoluçãoRealKeyTyped
+
+    private void tfPrecoPago2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPrecoPago2KeyTyped
+        if (!pct.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfPrecoPago2KeyTyped
+
+    private void tfTroco2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTroco2KeyTyped
+        if (!pct.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfTroco2KeyTyped
 
     /**
      * @param args the command line arguments

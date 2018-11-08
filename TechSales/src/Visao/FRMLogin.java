@@ -6,11 +6,13 @@
 package Visao;
 
 import Controle.CaixaControle;
+import Controle.ClienteControle;
 import Controle.EmpregoControle;
 import Controle.LucroControle;
 import Controle.RelLocalControle;
 import Controle.VendedorControle;
 import Modelo.CaixaBEAN;
+import Modelo.ClienteBEAN;
 import Modelo.EmpregoBEAN;
 import Modelo.LocalRelatoriosBEAN;
 import Modelo.LucroBEAN;
@@ -31,6 +33,7 @@ public class FRMLogin extends javax.swing.JFrame {
     private LucroControle lucC = new LucroControle();
     private EmpregoControle cEmp = new EmpregoControle();
     private RelLocalControle relC = new RelLocalControle();
+    private ClienteControle conCli = new ClienteControle();
 
     /**
      * Creates new form FRMLogin
@@ -50,8 +53,8 @@ public class FRMLogin extends javax.swing.JFrame {
             rl1.setRelLocal("/desktop");
             relC.cadastrar(rl1);
         }
-*/
-        /*
+         */
+ /*
         //Cadastro Caixa
         int qtc = 0;
         for (CaixaBEAN c : caixaC.listarALL()) {
@@ -95,7 +98,21 @@ public class FRMLogin extends javax.swing.JFrame {
             emp.setEmpDescricao("Tem acesso à parte de Funcionarios do sistema");
             cEmp.cadastrar(emp);
 
-        }*/
+        }
+         */
+        //Cadastro cliente à vista
+        int qtdCli = 0;
+        for (ClienteBEAN c : conCli.listarALL()) {
+            qtdCli++;
+        }
+
+        if (qtdCli == 0) {
+            ClienteBEAN a = new ClienteBEAN();
+            a.setCliCodigo(1);
+            a.setCliNome("Cliente à vista");
+            conCli.cadastrar(a);
+        }
+
     }
 
     /**

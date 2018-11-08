@@ -19,10 +19,7 @@ import Modelo.ClienteBEAN;
 import Modelo.JogoBEAN;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -31,6 +28,7 @@ import javax.swing.table.TableRowSorter;
 public class FRMVendaNova extends javax.swing.JFrame {
 
     private final String numeros = "0123456789";
+    private final String pct = "0123456789.";
     private DefaultTableModel modelJogo;
     private DefaultTableModel modelCarro;
     private DefaultTableModel modelDev;
@@ -73,9 +71,9 @@ public class FRMVendaNova extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableJogo = new javax.swing.JTable();
         tfChaveJogo = new javax.swing.JTextField();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        btAddJogo = new javax.swing.JButton();
+        btRemoveJogo = new javax.swing.JButton();
+        btFechamento = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         tableCarrinho = new javax.swing.JTable();
@@ -89,23 +87,25 @@ public class FRMVendaNova extends javax.swing.JFrame {
         lbCliNome = new javax.swing.JLabel();
         lbPrecoTT = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btGravarVenda = new javax.swing.JButton();
+        btVendaPrazo = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jpCompra1 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
+        btGeraParcela = new javax.swing.JButton();
         jScrollPane8 = new javax.swing.JScrollPane();
-        tableM1 = new javax.swing.JTable();
-        jButton13 = new javax.swing.JButton();
+        tableParcelas = new javax.swing.JTable();
+        btLimpar = new javax.swing.JButton();
         tfValorEntrada1 = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         tfNParcelas1 = new javax.swing.JTextField();
-        jButton15 = new javax.swing.JButton();
-        lbPrecoTT1 = new javax.swing.JLabel();
+        btEditParcela = new javax.swing.JButton();
+        lbPrecoTT2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        tfJuros = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btGravarVendaPrazo = new javax.swing.JButton();
+        btCancelar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -121,6 +121,11 @@ public class FRMVendaNova extends javax.swing.JFrame {
         }
         catch (Exception e){
         }
+        tfDataCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfDataCompraKeyTyped(evt);
+            }
+        });
 
         lbVendedorCod1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Vendedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
@@ -216,27 +221,27 @@ public class FRMVendaNova extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton9.setText("Adicionar Jogo");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btAddJogo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btAddJogo.setText("Adicionar Jogo");
+        btAddJogo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btAddJogoActionPerformed(evt);
             }
         });
 
-        jButton10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton10.setText("Remover Jogo");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        btRemoveJogo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btRemoveJogo.setText("Remover Jogo");
+        btRemoveJogo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                btRemoveJogoActionPerformed(evt);
             }
         });
 
-        jButton12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton12.setText("Fechamento");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        btFechamento.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btFechamento.setText("Fechamento");
+        btFechamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                btFechamentoActionPerformed(evt);
             }
         });
 
@@ -281,12 +286,12 @@ public class FRMVendaNova extends javax.swing.JFrame {
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel12Layout.createSequentialGroup()
                                 .addGap(54, 54, 54)
-                                .addComponent(jButton9)
+                                .addComponent(btAddJogo)
                                 .addGap(74, 74, 74)
-                                .addComponent(jButton10))
+                                .addComponent(btRemoveJogo))
                             .addGroup(jPanel12Layout.createSequentialGroup()
                                 .addGap(149, 149, 149)
-                                .addComponent(jButton12)))
+                                .addComponent(btFechamento)))
                         .addGap(0, 36, Short.MAX_VALUE))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addContainerGap()
@@ -305,12 +310,12 @@ public class FRMVendaNova extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btAddJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btRemoveJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btFechamento, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -321,10 +326,22 @@ public class FRMVendaNova extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel1.setText("Preço Pago:");
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel2.setText("Troco");
+        tfPrecoPago.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfPrecoPagoKeyTyped(evt);
+            }
+        });
 
-        tfCliente.setText("0");
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel2.setText("Troco:");
+
+        tfTroco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfTrocoKeyTyped(evt);
+            }
+        });
+
+        tfCliente.setText("1");
         tfCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Código Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
         tfCliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -390,16 +407,21 @@ public class FRMVendaNova extends javax.swing.JFrame {
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton1.setText("Gravar Venda");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btGravarVenda.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btGravarVenda.setText("Gravar Venda");
+        btGravarVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btGravarVendaActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton2.setText("Venda a Prazo");
+        btVendaPrazo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btVendaPrazo.setText("Venda a Prazo");
+        btVendaPrazo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVendaPrazoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -407,9 +429,9 @@ public class FRMVendaNova extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btGravarVenda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(btVendaPrazo)
                 .addGap(331, 331, 331))
         );
         jPanel10Layout.setVerticalGroup(
@@ -417,8 +439,8 @@ public class FRMVendaNova extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(btGravarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btVendaPrazo))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -449,15 +471,15 @@ public class FRMVendaNova extends javax.swing.JFrame {
 
         jpCompra1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados da Venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
-        jButton5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton5.setText("Gerar Parcelas");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btGeraParcela.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btGeraParcela.setText("Gerar Parcelas");
+        btGeraParcela.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btGeraParcelaActionPerformed(evt);
             }
         });
 
-        tableM1.setModel(new javax.swing.table.DefaultTableModel(
+        tableParcelas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -473,25 +495,30 @@ public class FRMVendaNova extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        tableM1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tableM1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tableParcelas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tableParcelas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableM1MouseClicked(evt);
+                tableParcelasMouseClicked(evt);
             }
         });
-        jScrollPane8.setViewportView(tableM1);
+        jScrollPane8.setViewportView(tableParcelas);
 
-        jButton13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton13.setText("Limpar");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        btLimpar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btLimpar.setText("Limpar");
+        btLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                btLimparActionPerformed(evt);
             }
         });
 
         tfValorEntrada1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfValorEntrada1ActionPerformed(evt);
+            }
+        });
+        tfValorEntrada1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfValorEntrada1KeyTyped(evt);
             }
         });
 
@@ -501,12 +528,30 @@ public class FRMVendaNova extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel23.setText("Número de parcelas:");
 
-        jButton15.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton15.setText("Editar Parcela");
+        tfNParcelas1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNParcelas1KeyTyped(evt);
+            }
+        });
 
-        lbPrecoTT1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lbPrecoTT1.setText("0");
-        lbPrecoTT1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Preço Total", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        btEditParcela.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btEditParcela.setText("Editar Parcela");
+
+        lbPrecoTT2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lbPrecoTT2.setText("0");
+        lbPrecoTT2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Preço Total", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel4.setText("Juros:");
+
+        tfJuros.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfJurosKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfJurosKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpCompra1Layout = new javax.swing.GroupLayout(jpCompra1);
         jpCompra1.setLayout(jpCompra1Layout);
@@ -516,27 +561,31 @@ public class FRMVendaNova extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpCompra1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpCompra1Layout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfValorEntrada1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel23)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                        .addComponent(tfNParcelas1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btEditParcela)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btLimpar))
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jpCompra1Layout.createSequentialGroup()
-                        .addGroup(jpCompra1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbPrecoTT1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jpCompra1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpCompra1Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(jButton15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton13))
-                            .addGroup(jpCompra1Layout.createSequentialGroup()
+                                .addComponent(jLabel20)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))))
+                                .addComponent(tfValorEntrada1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpCompra1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfJuros, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(9, 9, 9)
+                        .addGroup(jpCompra1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel23)
+                            .addComponent(lbPrecoTT2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addComponent(tfNParcelas1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(jpCompra1Layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(btGeraParcela)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpCompra1Layout.setVerticalGroup(
             jpCompra1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -548,32 +597,33 @@ public class FRMVendaNova extends javax.swing.JFrame {
                     .addComponent(tfNParcelas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23))
                 .addGap(18, 18, 18)
-                .addGroup(jpCompra1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpCompra1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jpCompra1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jpCompra1Layout.createSequentialGroup()
-                        .addComponent(lbPrecoTT1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jpCompra1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(tfJuros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbPrecoTT2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btGeraParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpCompra1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEditParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
-        jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton3.setText("Gravar Venda");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btGravarVendaPrazo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btGravarVendaPrazo.setText("Gravar Venda");
+        btGravarVendaPrazo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btGravarVendaPrazoActionPerformed(evt);
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton6.setText("Cancelar");
+        btCancelar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -581,9 +631,9 @@ public class FRMVendaNova extends javax.swing.JFrame {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton3)
+                .addComponent(btGravarVendaPrazo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6)
+                .addComponent(btCancelar)
                 .addGap(349, 349, 349))
         );
         jPanel11Layout.setVerticalGroup(
@@ -591,8 +641,8 @@ public class FRMVendaNova extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btGravarVendaPrazo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -606,7 +656,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jpCompra1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
+                        .addGap(88, 88, 88)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -615,9 +665,9 @@ public class FRMVendaNova extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jpCompra1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                .addGap(27, 27, 27))
         );
 
         tpGuia.addTab("venda a Prazo", jPanel1);
@@ -647,36 +697,79 @@ public class FRMVendaNova extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int z = verificarInserir();
-        if (z == 0) {
-            if (verificaCampos()) {
-                this.cadastroNormal();
-                preencheTabelaVenda();
-                JOptionPane.showMessageDialog(null, "Nota Cadastrada com sucesso.");
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
-            }
-        } else if (verificaCampos2()) {
-            if (Integer.parseInt(tfNParcelas.getText()) != tableM.getRowCount()) {
-                JOptionPane.showMessageDialog(null, "Erro! A quantidade de parcelas registradas não é igual à fornecida");
-            } else {
-                this.cadastroInserir();
-                preencheTabelaVenda();
+    private void cadastroVenda(){
+        
+    }
+    private void limpaCampos(){
+        povoaTabelaDev(0);
+        povoaTabelaJogo(0);
+        insertJogo.clear();
+        preencheTabelaCarro();
+        tfPrecoUnit.setText("");
+        tfTroco.setText("");
+        tfPrecoPago.setText("");
+        tfChaveJogo.setText("");
+        tfCliente.setText("");
+        tfCliente2.setText("");
+        lbCliNome.setText("");
+        lbCliNome2.setText("");
+        tfCodLoc.setText("");
+        tfDataAluguel.setText("");
+        tfDataDevolução.setText("");
+        tfDataDevoluçãoReal.setText("");
+        tfMulta.setText("");
+        tfTotalDev.setText("");
+        lbDataDev.setText("");
+        lbPrecoTT.setText("");
+        lbValorDev.setText("");
+        tfPrecoPago2.setText("");
+        tfTroco2.setText("");
+    }
+    private void btGravarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarVendaActionPerformed
+        if (verificaCamposVenda() && verificaCamposVenda2()) {
+            try {
+                cadastroVenda();
+                limpaCampos();
+                JOptionPane.showMessageDialog(null, "Venda Cadastrada com sucesso.");
+                tpGuia.setSelectedIndex(0);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro de Cadastrado verifique os dados.");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
         }
+    }//GEN-LAST:event_btGravarVendaActionPerformed
+    private boolean verificaCamposVenda() {
+        if (tfDataCompra.getText().equals("  /  /    ")
+                || lbVendedorCod1.getText().equals("")
+                || tableCarrinho.getRowCount() == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
-        insertJogo.clear();
-        preencheTabelaCarro1();
-        preencheTabelaCarro2();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
+    private boolean verificaCamposVenda2() {
+        if (tfPrecoPago.getText().equals("")
+                || tfTroco.getText().equals("")
+                || lbPrecoTT.getText().equals("0")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    private void btFechamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFechamentoActionPerformed
+        if (verificaCamposVenda()) {
+            float preco = 0;
+            for (JogoBEAN j : insertJogo) {
+                preco += (Float.parseFloat(j.getJoLote()));
+            }
+            lbPrecoTT.setText(String.valueOf(preco));
+            tpGuia.setSelectedIndex(1);
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro! Preencha todos os dados");
+        }
+    }//GEN-LAST:event_btFechamentoActionPerformed
 
     private void tableCarrinhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCarrinhoMouseClicked
         // TODO add your handling code here:
@@ -688,7 +781,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
         modelCarro.addColumn("Quantidade");
         modelCarro.addColumn("Total");
         for (JogoBEAN j : insertJogo) {
-            modelCarro.addRow(new Object[]{j.getJoNome(), j.getJoPrecoPadrao(), j.getJoQtd(), (j.getJoPrecoPadrao())});
+            modelCarro.addRow(new Object[]{j.getJoNome(), j.getJoPrecoPadrao(), j.getJoQtd(), (j.getJoLote())});
         }
         tableCarrinho.setModel(modelCarro);
     }
@@ -696,7 +789,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
     private DefaultTableModel criaTabelaCarro() {
         DefaultTableModel cTable = new DefaultTableModel() {
             Class[] types = new Class[]{
-                java.lang.String.class, java.lang.Integer.class, java.lang.Float.class};
+                java.lang.String.class, java.lang.Float.class, java.lang.Integer.class, java.lang.Float.class};
             boolean[] canEdit = new boolean[]{
                 false, false, false, false
             };
@@ -709,7 +802,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
         };
     return cTable;
     }
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void btRemoveJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveJogoActionPerformed
         if (tableCarrinho.getSelectedRow() != -1) {
             int i = tableCarrinho.getSelectedRow();
             JogoBEAN a = insertJogo.get(i);
@@ -728,57 +821,79 @@ public class FRMVendaNova extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Selecione o jogo");
         }
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_btRemoveJogoActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-
-        JogoBEAN j = new JogoBEAN();
-
-        for (JogoBEAN jogo : jogoList) {
-            if (jogo.getJoCodigo() == Integer.parseInt(tfChaveJogo.getText())) {
-                j = jogo;
-            }
-
-        }
+    private void addQtd(JogoBEAN j, float preco) {
         int qtd = 0;
         try {
             qtd = Integer.parseInt(JOptionPane.showInputDialog("Digite a Quantidade de jogos"));
         } catch (Exception e) {
 
         }
-        if ((qtd <= j.getJoQtd()) && (qtd > 0)) {
-            float preco = 0;
-            try {
-                preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o Preço de jogo."));
-            } catch (Exception e) {
+        if (qtd <= j.getJoQtd()) {
 
-            }
-            if (preco > 0) {
-                JogoBEAN wtf = new JogoBEAN();
-                wtf.setJoCodigo(j.getJoCodigo());
-                wtf.setJoNome(j.getJoNome());
-                wtf.setJoQtd(qtd);
-                wtf.setJoPrecoPadrao(preco);
-                wtf.setJoLote(String.valueOf(preco * qtd));
-                insertJogo.add(wtf);
-                preencheTabelaCarro();
-                for (JogoBEAN jogo : jogoList) {
-                    if (jogo.getJoCodigo() == wtf.getJoCodigo()) {
-                        jogo.setJoQtd(jogo.getJoQtd() - wtf.getJoQtd());
-                    }
+            JogoBEAN wtf = new JogoBEAN();
+            wtf.setJoCodigo(j.getJoCodigo());
+            wtf.setJoNome(j.getJoNome());
+            wtf.setJoQtd(qtd);
+            wtf.setJoPrecoPadrao(preco);
+            wtf.setJoLote(String.valueOf(preco * qtd));
+            insertJogo.add(wtf);
+            preencheTabelaCarro();
+            for (JogoBEAN jogo : jogoList) {
+                if (jogo.getJoCodigo() == wtf.getJoCodigo()) {
+                    jogo.setJoQtd(jogo.getJoQtd() - wtf.getJoQtd());
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Preço inválido");
-            }
-            try {
-                povoaTabelaJogo(Integer.parseInt(tfChaveJogo.getText()));
-            } catch (Exception e) {
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Quantidade inválida");
+            JOptionPane.showMessageDialog(null, "Quantidade não inválida");
         }
 
-    }//GEN-LAST:event_jButton9ActionPerformed
+        try {
+            povoaTabelaJogo(Integer.parseInt(tfChaveJogo.getText()));
+        } catch (Exception e) {
+        }
+    }
+
+
+    private void btAddJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddJogoActionPerformed
+        JogoBEAN j = new JogoBEAN();
+
+        for (JogoBEAN jogo : jogoList) {
+            if (jogo.getJoCodigo() == Integer.parseInt(tfChaveJogo.getText())) {
+                j = jogo;
+            }
+        }
+
+        float lucro = ((j.getLucro().getLucPorcentagem() * j.getJoPrecoPadrao()) / 100);
+        float precoSug = lucro + j.getJoPrecoPadrao();
+        float preco = 0;
+
+        try {
+            preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preço praticado do Jogo"
+                    + "\n" + "Preço sugerido: " + precoSug));
+        } catch (Exception e) {
+
+        }
+
+        if (preco > 0) {
+            if (preco >= precoSug) {
+                addQtd(j, preco);
+            } else {
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog(this, "Your Message", "Title on Box", dialogButton);
+                if (dialogResult == 0) {
+                    addQtd(j, preco);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Cancelado");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Preço inválido");
+        }
+
+
+    }//GEN-LAST:event_btAddJogoActionPerformed
 
     private void tfChaveJogoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveJogoKeyTyped
         if (!numeros.contains(evt.getKeyChar() + "")) {
@@ -798,25 +913,25 @@ public class FRMVendaNova extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tableJogoMouseClicked
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btGeraParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGeraParcelaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btGeraParcelaActionPerformed
 
-    private void tableM1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableM1MouseClicked
+    private void tableParcelasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableParcelasMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_tableM1MouseClicked
+    }//GEN-LAST:event_tableParcelasMouseClicked
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
+    }//GEN-LAST:event_btLimparActionPerformed
 
     private void tfValorEntrada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfValorEntrada1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfValorEntrada1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btGravarVendaPrazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarVendaPrazoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btGravarVendaPrazoActionPerformed
 
     private void tfClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfClienteKeyTyped
         if (!numeros.contains(evt.getKeyChar() + "")) {
@@ -838,7 +953,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
         modelJogo.addColumn("Preço");
         modelJogo.addColumn("Quantidade");
         for (JogoBEAN j : jogoList) {
-            if ((j.getJoCodigo() == c) && (j.getJoTipo().equals("Aluguel"))) {
+            if ((j.getJoCodigo() == c) && (j.getJoTipo().equals("Venda"))) {
                 modelJogo.addRow(new Object[]{j.getJoNome(), j.getJoPrecoPadrao(), j.getJoQtd()});
             }
         }
@@ -870,6 +985,65 @@ public class FRMVendaNova extends javax.swing.JFrame {
         }
         povoaTabelaJogo(c);
     }//GEN-LAST:event_tfChaveJogoKeyReleased
+
+    private void tfJurosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfJurosKeyTyped
+        if (!pct.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfJurosKeyTyped
+
+    private void tfValorEntrada1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfValorEntrada1KeyTyped
+        if (!pct.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfValorEntrada1KeyTyped
+
+    private void tfNParcelas1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNParcelas1KeyTyped
+        if (!numeros.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfNParcelas1KeyTyped
+
+    private void tfPrecoPagoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPrecoPagoKeyTyped
+        if (!pct.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfPrecoPagoKeyTyped
+
+    private void tfTrocoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTrocoKeyTyped
+        if (!pct.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfTrocoKeyTyped
+
+    private void tfDataCompraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDataCompraKeyTyped
+        if (!numeros.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfDataCompraKeyTyped
+
+    private void btVendaPrazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVendaPrazoActionPerformed
+        if (verificaCamposVenda2()) {
+            if (lbCliNome.getText().equals("Cliente à vista")) {
+                JOptionPane.showMessageDialog(null, "Selecione um cliente");
+            } else {
+                tpGuia.setSelectedIndex(2);
+                lbPrecoTT2.setText(lbPrecoTT.getText());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha os campos");
+        }
+    }//GEN-LAST:event_btVendaPrazoActionPerformed
+
+    private void tfJurosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfJurosKeyReleased
+        try {
+            float juro = (Float.parseFloat(tfJuros.getText()) / 100) * (Float.parseFloat(lbPrecoTT.getText()));
+            float preco = Float.parseFloat(lbPrecoTT.getText()) + juro;
+            lbPrecoTT2.setText(String.valueOf(preco));
+        } catch (Exception e) {
+            lbPrecoTT2.setText(lbPrecoTT.getText());
+        }
+    }//GEN-LAST:event_tfJurosKeyReleased
 
     /**
      * @param args the command line arguments
@@ -907,22 +1081,23 @@ public class FRMVendaNova extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton btAddJogo;
+    private javax.swing.JButton btCancelar;
+    private javax.swing.JButton btEditParcela;
+    private javax.swing.JButton btFechamento;
+    private javax.swing.JButton btGeraParcela;
+    private javax.swing.JButton btGravarVenda;
+    private javax.swing.JButton btGravarVendaPrazo;
+    private javax.swing.JButton btLimpar;
+    private javax.swing.JButton btRemoveJogo;
+    private javax.swing.JButton btVendaPrazo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -938,14 +1113,15 @@ public class FRMVendaNova extends javax.swing.JFrame {
     private javax.swing.JPanel jpCompra1;
     private javax.swing.JLabel lbCliNome;
     private javax.swing.JLabel lbPrecoTT;
-    private javax.swing.JLabel lbPrecoTT1;
+    private javax.swing.JLabel lbPrecoTT2;
     private javax.swing.JLabel lbVendedorCod1;
     private javax.swing.JTable tableCarrinho;
     private javax.swing.JTable tableJogo;
-    private javax.swing.JTable tableM1;
+    private javax.swing.JTable tableParcelas;
     private javax.swing.JTextField tfChaveJogo;
     private javax.swing.JTextField tfCliente;
     private javax.swing.JFormattedTextField tfDataCompra;
+    private javax.swing.JTextField tfJuros;
     private javax.swing.JTextField tfNParcelas1;
     private javax.swing.JTextField tfPrecoPago;
     private javax.swing.JTextField tfTroco;

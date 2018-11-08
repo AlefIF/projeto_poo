@@ -596,6 +596,11 @@ public class FRMVenda extends javax.swing.JFrame {
 
         jButton14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton14.setText("Editar Parcela");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpCompraLayout = new javax.swing.GroupLayout(jpCompra);
         jpCompra.setLayout(jpCompraLayout);
@@ -1418,6 +1423,10 @@ public class FRMVenda extends javax.swing.JFrame {
     private void tfChave3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave3KeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_tfChave3KeyTyped
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14ActionPerformed
 
     /**
      * @param args the command line arguments

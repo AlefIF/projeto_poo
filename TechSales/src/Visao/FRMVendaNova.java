@@ -12,11 +12,23 @@ import Controle.ConsoleControle;
 import Controle.DevolucaoControle;
 import Controle.JogoControle;
 import Controle.JogoLocacaoControle;
+import Controle.JogoVendaControle;
 import Controle.LocacaoControle;
 import Controle.LucroControle;
+import Controle.VendaAPrazoControle;
+import Controle.VendaControle;
 import Controle.VendedorControle;
+import Modelo.CaixaBEAN;
 import Modelo.ClienteBEAN;
 import Modelo.JogoBEAN;
+import Modelo.JogoVendaBEAN;
+import Modelo.JogoVendaPK;
+import Modelo.VendaAPrazoBEAN;
+import Modelo.VendaBEAN;
+import Modelo.VendedorBEAN;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -32,6 +44,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
     private DefaultTableModel modelJogo;
     private DefaultTableModel modelCarro;
     private DefaultTableModel modelDev;
+    private DefaultTableModel modelPrazo;
     private JogoControle contJog = new JogoControle();
     private ClienteControle contCli = new ClienteControle();
     private ConsoleControle cControle = new ConsoleControle();
@@ -39,11 +52,13 @@ public class FRMVendaNova extends javax.swing.JFrame {
     private VendedorControle cVend = new VendedorControle();
     private CaixaControle cCaixa = new CaixaControle();
     private LucroControle cLucro = new LucroControle();
-    private LocacaoControle contLoc = new LocacaoControle();
+    private VendaControle contVenda = new VendaControle();
+    private VendaAPrazoControle contVendaPrazo = new VendaAPrazoControle();
     private DevolucaoControle contDev = new DevolucaoControle();
-    private JogoLocacaoControle cJl = new JogoLocacaoControle();
+    private JogoVendaControle cJV = new JogoVendaControle();
     private ArrayList<JogoBEAN> jogoList = contJog.listarALL();
     private ArrayList<JogoBEAN> insertJogo = new ArrayList<JogoBEAN>();
+    private ArrayList<VendaAPrazoBEAN> insertData = new ArrayList<VendaAPrazoBEAN>();
 
     /**
      * Creates new form FRMVendaNova
@@ -89,6 +104,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         btGravarVenda = new javax.swing.JButton();
         btVendaPrazo = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jpCompra1 = new javax.swing.JPanel();
         btGeraParcela = new javax.swing.JButton();
@@ -368,7 +384,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
                 .addGroup(jpCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCompraLayout.createSequentialGroup()
                         .addComponent(lbPrecoTT, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                         .addGroup(jpCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
@@ -423,6 +439,14 @@ public class FRMVendaNova extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -432,7 +456,9 @@ public class FRMVendaNova extends javax.swing.JFrame {
                 .addComponent(btGravarVenda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btVendaPrazo)
-                .addGap(331, 331, 331))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(252, 252, 252))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -440,7 +466,8 @@ public class FRMVendaNova extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btGravarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btVendaPrazo))
+                    .addComponent(btVendaPrazo)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -452,10 +479,10 @@ public class FRMVendaNova extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jpCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -536,6 +563,11 @@ public class FRMVendaNova extends javax.swing.JFrame {
 
         btEditParcela.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btEditParcela.setText("Editar Parcela");
+        btEditParcela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditParcelaActionPerformed(evt);
+            }
+        });
 
         lbPrecoTT2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lbPrecoTT2.setText("0");
@@ -624,6 +656,11 @@ public class FRMVendaNova extends javax.swing.JFrame {
 
         btCancelar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -697,39 +734,86 @@ public class FRMVendaNova extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void cadastroVenda(){
-        
+
+    private void cadastroVenda() {
+        VendaBEAN v = new VendaBEAN();
+        ClienteBEAN c = contCli.localizarCodigo(Integer.valueOf(tfCliente.getText()));
+        VendedorBEAN vend = cVend.localizar(Integer.valueOf(lbVendedorCod1.getText()));
+        CaixaBEAN caixa = cCaixa.localizar(1);
+        v.setCliente(c);
+        v.setVendedor(vend);
+        v.setCaixa(caixa);
+        v.setVendaNparcelas(0);
+        v.setVendaEntrada(Float.parseFloat(tfPrecoPago.getText()) - Float.parseFloat(tfTroco.getText()));
+        v.setVendaValorTotal(Float.parseFloat(lbPrecoTT.getText()));
+
+        try {
+            String dataString = tfDataCompra.getText();
+            DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+            java.sql.Date data = new java.sql.Date(fmt.parse(dataString).getTime());
+            v.setVendaData(data);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        contVenda.cadastrar(v);
+
+        caixa.setCaixaDinheiro(caixa.getCaixaDinheiro() + v.getVendaEntrada());
+        cCaixa.editar(caixa);
+
+        for (JogoBEAN j : insertJogo) {
+            for (JogoBEAN jogoEstoque : contJog.listarALL()) {
+                if (jogoEstoque.getJoCodigo() == j.getJoCodigo()) {
+                    JogoVendaBEAN jv = new JogoVendaBEAN();
+                    JogoVendaPK jvpk = new JogoVendaPK();
+                    jvpk.setJogo(j);
+                    jvpk.setVenda(v);
+                    jv.setChaveComposta(jvpk);
+                    jv.setPrecoUnitarioReal(j.getJoPrecoPadrao());
+                    jv.setQuantidade(j.getJoQtd());
+                    cJV.cadastrar(jv);
+                    int qtd = jogoEstoque.getJoQtd() - j.getJoQtd();
+                    jogoEstoque.setJoQtd(qtd);
+                    contJog.editar(jogoEstoque);
+                }
+            }
+        }
+
     }
-    private void limpaCampos(){
-        povoaTabelaDev(0);
+
+    private void limpaCampos1() {
+        tfDataCompra.setText("");
+        tfChaveJogo.setText("");
         povoaTabelaJogo(0);
         insertJogo.clear();
         preencheTabelaCarro();
-        tfPrecoUnit.setText("");
+        limpaCampos3();
+        limpaCampos2();
+    }
+
+    private void limpaCampos2() {
+        tfCliente.setText("1");
+        lbCliNome.setText("Cliente à vista");
+        lbPrecoTT.setText("0");
         tfTroco.setText("");
         tfPrecoPago.setText("");
-        tfChaveJogo.setText("");
-        tfCliente.setText("");
-        tfCliente2.setText("");
-        lbCliNome.setText("");
-        lbCliNome2.setText("");
-        tfCodLoc.setText("");
-        tfDataAluguel.setText("");
-        tfDataDevolução.setText("");
-        tfDataDevoluçãoReal.setText("");
-        tfMulta.setText("");
-        tfTotalDev.setText("");
-        lbDataDev.setText("");
-        lbPrecoTT.setText("");
-        lbValorDev.setText("");
-        tfPrecoPago2.setText("");
-        tfTroco2.setText("");
+        tpGuia.setSelectedIndex(0);
     }
+
+    private void limpaCampos3() {
+        tfValorEntrada1.setText("");
+        tfNParcelas1.setText("");
+        tfJuros.setText("");
+        lbPrecoTT2.setText("");
+
+        insertData.clear();
+        tpGuia.setSelectedIndex(1);
+    }
+
     private void btGravarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarVendaActionPerformed
         if (verificaCamposVenda() && verificaCamposVenda2()) {
             try {
                 cadastroVenda();
-                limpaCampos();
+                limpaCampos1();
                 JOptionPane.showMessageDialog(null, "Venda Cadastrada com sucesso.");
                 tpGuia.setSelectedIndex(0);
             } catch (Exception e) {
@@ -753,6 +837,14 @@ public class FRMVendaNova extends javax.swing.JFrame {
         if (tfPrecoPago.getText().equals("")
                 || tfTroco.getText().equals("")
                 || lbPrecoTT.getText().equals("0")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean verificaCamposVenda3() {
+        if (tfPrecoPago.getTex) {
             return false;
         } else {
             return true;
@@ -914,23 +1006,127 @@ public class FRMVendaNova extends javax.swing.JFrame {
     }//GEN-LAST:event_tableJogoMouseClicked
 
     private void btGeraParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGeraParcelaActionPerformed
-        // TODO add your handling code here:
+        int t = Integer.parseInt(tfNParcelas1.getText());
+        float precoTT = Float.parseFloat((lbPrecoTT2.getText()));
+        float precoParcelaTT = precoTT - Float.parseFloat((tfValorEntrada1.getText()));
+        for (int c = 1; c <= t; c++) {
+            java.sql.Date data = null;
+            try {
+                String dataString = tfDataCompra.getText();
+                DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+                data = new java.sql.Date(fmt.parse(dataString).getTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            VendaAPrazoBEAN nota = new VendaAPrazoBEAN();
+            int m = data.getMonth();
+            data.setMonth(m + c);
+            nota.setVapValorParcela(precoParcelaTT / t);
+            nota.setVapNumParcela(c);
+            nota.setVapData(data);
+            insertData.add(nota);
+        }
+        preecheTabelaPrazos();
     }//GEN-LAST:event_btGeraParcelaActionPerformed
 
     private void tableParcelasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableParcelasMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tableParcelasMouseClicked
+    private void preecheTabelaPrazos() {
+        modelPrazo = criaTabelaPrazos();
+        modelPrazo.addColumn("Num.Parcela");
+        modelPrazo.addColumn("Data");
+        modelPrazo.addColumn("Preço-Parcela");
+        for (VendaAPrazoBEAN n : insertData) {
+            modelPrazo.addRow(new Object[]{n.getVapNumParcela(), n.getVapData(), n.getVapValorParcela()});
+        }
+        tableParcelas.setModel(modelPrazo);
+    }
 
+    private DefaultTableModel criaTabelaPrazos() {
+        DefaultTableModel dTable2 = new DefaultTableModel() {
+            Class[] types = new Class[]{
+                java.lang.Integer.class,
+                java.lang.String.class,
+                java.lang.Float.class,};
+            boolean[] canEdit = new boolean[]{
+                false, false, false};
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        ;
+        };
+    return dTable2;
+    }
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
-        // TODO add your handling code here:
+        insertData.clear();
+        preecheTabelaPrazos();
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void tfValorEntrada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfValorEntrada1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfValorEntrada1ActionPerformed
+    private void cadVendaAPrazo() {
+        VendaBEAN v = new VendaBEAN();
+        ClienteBEAN c = contCli.localizarCodigo(Integer.valueOf(tfCliente.getText()));
+        VendedorBEAN vend = cVend.localizar(Integer.valueOf(lbVendedorCod1.getText()));
+        CaixaBEAN caixa = cCaixa.localizar(1);
+        v.setCliente(c);
+        v.setVendedor(vend);
+        v.setCaixa(caixa);
+        v.setVendaNparcelas(Integer.parseInt(tfNParcelas1.getText()));
+        v.setVendaEntrada(Float.parseFloat(tfValorEntrada1.getText()));
+        v.setVendaValorTotal(Float.parseFloat(lbPrecoTT2.getText()));
+        try {
+            String dataString = tfDataCompra.getText();
+            DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+            java.sql.Date data = new java.sql.Date(fmt.parse(dataString).getTime());
+            v.setVendaData(data);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        contVenda.cadastrar(v);
+
+        caixa.setCaixaDinheiro(caixa.getCaixaDinheiro() + v.getVendaEntrada());
+        cCaixa.editar(caixa);
+
+        for (VendaAPrazoBEAN ndca : insertData) {
+            VendaAPrazoBEAN nota = new VendaAPrazoBEAN();
+            nota.setVapData(ndca.getVapData());
+            nota.setVapValorParcela(ndca.getVapValorParcela());
+            nota.setVapNumParcela(ndca.getVapNumParcela());
+            nota.setVapSituacao("Pendente");
+            nota.setVenda(v);
+            contVendaPrazo.cadastrar(nota);
+        }
+
+        for (JogoBEAN j : insertJogo) {
+            for (JogoBEAN jogoEstoque : contJog.listarALL()) {
+                if (jogoEstoque.getJoCodigo() == j.getJoCodigo()) {
+                    JogoVendaBEAN jv = new JogoVendaBEAN();
+                    JogoVendaPK jvpk = new JogoVendaPK();
+                    jvpk.setJogo(j);
+                    jvpk.setVenda(v);
+                    jv.setChaveComposta(jvpk);
+                    jv.setPrecoUnitarioReal(j.getJoPrecoPadrao());
+                    jv.setQuantidade(j.getJoQtd());
+                    cJV.cadastrar(jv);
+                    jogoEstoque.setJoQtd(jogoEstoque.getJoQtd() - j.getJoQtd());
+                    contJog.editar(jogoEstoque);
+                }
+            }
+        }
+
+    }
 
     private void btGravarVendaPrazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarVendaPrazoActionPerformed
-        // TODO add your handling code here:
+        if (verificaCamposVenda() && verificaCamposVenda2() && verificaCamposVenda3()) {
+            cadVendaAPrazo();
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
+        }
     }//GEN-LAST:event_btGravarVendaPrazoActionPerformed
 
     private void tfClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfClienteKeyTyped
@@ -1045,6 +1241,23 @@ public class FRMVendaNova extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tfJurosKeyReleased
 
+    private void btEditParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditParcelaActionPerformed
+        if (tableParcelas.getSelectedRow() != -1) {
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione a parcela");
+        }
+        degadfg
+    }//GEN-LAST:event_btEditParcelaActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        limpaCampos3();
+    }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        limpaCampos2();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1091,6 +1304,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
     private javax.swing.JButton btLimpar;
     private javax.swing.JButton btRemoveJogo;
     private javax.swing.JButton btVendaPrazo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;

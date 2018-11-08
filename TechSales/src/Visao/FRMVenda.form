@@ -497,6 +497,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Editar Parcela"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton14ActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

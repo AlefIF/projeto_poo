@@ -101,7 +101,7 @@ public class FRMLogin extends javax.swing.JFrame {
         }
          */
         //Cadastro cliente à vista
-        int qtdCli = 0;
+        /*int qtdCli = 0;
         for (ClienteBEAN c : conCli.listarALL()) {
             qtdCli++;
         }
@@ -111,7 +111,7 @@ public class FRMLogin extends javax.swing.JFrame {
             a.setCliCodigo(1);
             a.setCliNome("Cliente à vista");
             conCli.cadastrar(a);
-        }
+        }*/
 
     }
 

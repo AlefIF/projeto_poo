@@ -28,7 +28,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jTabbedPane1" min="-2" pref="882" max="-2" attributes="0"/>
+              <Component id="tpGuia" min="-2" pref="882" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
@@ -43,7 +43,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" pref="328" max="32767" attributes="0"/>
+              <Component id="tpGuia" pref="328" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -57,7 +57,7 @@
         <Property name="text" type="java.lang.String" value="Gerenciar Funcion&#xe1;rio"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+    <Container class="javax.swing.JTabbedPane" name="tpGuia">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -134,27 +134,27 @@
                                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Component id="tfNomeFun" max="32767" attributes="0"/>
+                                  <Component id="tfNome" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel5" min="-2" pref="30" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="tfCpfFun" min="-2" pref="77" max="-2" attributes="0"/>
+                                  <Component id="tfCpf" min="-2" pref="77" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                                  <Component id="tfIdadeFun" min="-2" pref="55" max="-2" attributes="0"/>
+                                  <Component id="tfIdade" min="-2" pref="55" max="-2" attributes="0"/>
                                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfTelefoneFun" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="tfTelefone" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfNPFun" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="tfNPIS" min="-2" pref="100" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -190,22 +190,22 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lbCodigo" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="tfNomeFun" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfNome" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfCpfFun" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfCpf" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfIdadeFun" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfIdade" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfTelefoneFun" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfNPFun" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfNPIS" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="tfEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -249,15 +249,15 @@
                     <Property name="text" type="java.lang.String" value="Sal&#xe1;rio:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="tfNPFun">
+                <Component class="javax.swing.JFormattedTextField" name="tfNPIS">
                   <Properties>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfNPFunKeyTyped"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfNPISKeyTyped"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{&#xd;&#xa;   javax.swing.text.MaskFormatter nis= new javax.swing.text.MaskFormatter(&quot;###.#####.##-#&quot;);&#xd;&#xa;   tfNPFun = new javax.swing.JFormattedTextField(nis);&#xd;&#xa;}&#xd;&#xa;   catch (Exception e){&#xd;&#xa;}"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{&#xd;&#xa;   javax.swing.text.MaskFormatter nis= new javax.swing.text.MaskFormatter(&quot;###.#####.##-#&quot;);&#xd;&#xa;   tfNPIS = new javax.swing.JFormattedTextField(nis);&#xd;&#xa;}&#xd;&#xa;   catch (Exception e){&#xd;&#xa;}"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel10">
@@ -268,12 +268,12 @@
                     <Property name="text" type="java.lang.String" value="NIS/PIS:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tfIdadeFun">
+                <Component class="javax.swing.JTextField" name="tfIdade">
                   <Properties>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfIdadeFunKeyTyped"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfIdadeKeyTyped"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel7">
@@ -284,7 +284,7 @@
                     <Property name="text" type="java.lang.String" value="Idade:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tfNomeFun">
+                <Component class="javax.swing.JTextField" name="tfNome">
                   <Properties>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
@@ -297,15 +297,15 @@
                     <Property name="text" type="java.lang.String" value="Nome:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="tfCpfFun">
+                <Component class="javax.swing.JFormattedTextField" name="tfCpf">
                   <Properties>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCpfFunKeyTyped"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCpfKeyTyped"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{&#xd;&#xa;   javax.swing.text.MaskFormatter cpf= new javax.swing.text.MaskFormatter(&quot;###.###.###-##&quot;);&#xd;&#xa;   tfCpfFun = new javax.swing.JFormattedTextField(cpf);&#xd;&#xa;}&#xd;&#xa;   catch (Exception e){&#xd;&#xa;}"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{&#xd;&#xa;   javax.swing.text.MaskFormatter cpf= new javax.swing.text.MaskFormatter(&quot;###.###.###-##&quot;);&#xd;&#xa;   tfCpf = new javax.swing.JFormattedTextField(cpf);&#xd;&#xa;}&#xd;&#xa;   catch (Exception e){&#xd;&#xa;}"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">
@@ -324,12 +324,12 @@
                     <Property name="text" type="java.lang.String" value="Telefone:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="tfTelefoneFun">
+                <Component class="javax.swing.JFormattedTextField" name="tfTelefone">
                   <Properties>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{&#xd;&#xa;   javax.swing.text.MaskFormatter tel= new javax.swing.text.MaskFormatter(&quot;(##)# ####-####&quot;);&#xd;&#xa;   tfTelefoneFun = new javax.swing.JFormattedTextField(tel);&#xd;&#xa;}&#xd;&#xa;   catch (Exception e){&#xd;&#xa;}"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="try{&#xd;&#xa;   javax.swing.text.MaskFormatter tel= new javax.swing.text.MaskFormatter(&quot;(##)# ####-####&quot;);&#xd;&#xa;   tfTelefone = new javax.swing.JFormattedTextField(tel);&#xd;&#xa;}&#xd;&#xa;   catch (Exception e){&#xd;&#xa;}"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="cbEmprego">
@@ -610,7 +610,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="btNovoDado" min="-2" pref="95" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jbCadastrarFun" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="btGravar" min="-2" pref="95" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btCancela" min="-2" pref="95" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -628,7 +628,7 @@
                               <Component id="btVoltar" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="btNovoDado" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="btCancela" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="jbCadastrarFun" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="btGravar" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="btLocaliza" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="11" max="32767" attributes="0"/>
@@ -682,7 +682,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelaActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jbCadastrarFun">
+                <Component class="javax.swing.JButton" name="btGravar">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="12" style="1"/>
@@ -691,7 +691,7 @@
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbCadastrarFunActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btGravarActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -784,6 +784,7 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfChaveActionPerformed"/>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfChaveKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfChaveKeyReleased"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfChaveKeyTyped"/>
               </Events>
             </Component>

@@ -60,7 +60,7 @@ INSERT INTO `hiber`.`listadesejo` (`lisCodigo`, `lisNomeJogo`, `lisPlataforma`, 
 INSERT INTO `hiber`.`listadesejo` (`lisCodigo`, `lisNomeJogo`, `lisPlataforma`, `cliente_cliCodigo`) VALUES ('4', 'Halo 8', 'XboxTwo', '4');
 /*Emprego*/
 INSERT INTO `hiber`.`emprego` (`empCodigo`, `empDescricao`, `empNome`, `empSalarioPadrao`) VALUES ('1', 'Tem a função de administrador no sistema', 'Administrador', '5000');
-INSERT INTO `hiber`.`emprego` (`empCodigo`, `empDescricao`, `empNome`, `empSalarioPadrao`) VALUES ('2', 'Tem a função de vendedor no sistema','vendedor', '2000');
+INSERT INTO `hiber`.`emprego` (`empCodigo`, `empDescricao`, `empNome`, `empSalarioPadrao`) VALUES ('2', 'Tem a função de vendedor no sistema','Vendedor', '2000');
 INSERT INTO `hiber`.`emprego` (`empCodigo`, `empDescricao`, `empNome`, `empSalarioPadrao`) VALUES ('3', 'Realiza faxinas na empresa', 'Faxineiro', '1000');
 INSERT INTO `hiber`.`emprego` (`empCodigo`, `empDescricao`, `empNome`, `empSalarioPadrao`) VALUES ('4', 'Realiza entregas na empresa', 'Motoboy', '1200');
 INSERT INTO `hiber`.`emprego` (`empCodigo`, `empDescricao`, `empNome`, `empSalarioPadrao`) VALUES ('5', 'Realiza o marketing da empresa', 'Market Man or Woman or other genre', '1800');

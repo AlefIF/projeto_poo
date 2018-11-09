@@ -143,6 +143,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
             }
         });
 
+        lbVendedorCod1.setText("0");
         lbVendedorCod1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Vendedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
@@ -230,11 +231,9 @@ public class FRMVendaNova extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(tfChaveJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 16, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfChaveJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btAddJogo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -324,7 +323,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(14, 14, 14)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btAddJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btRemoveJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -562,7 +561,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
         });
 
         btEditParcela.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btEditParcela.setText("Editar Parcela");
+        btEditParcela.setText("Recalcular Parcelas");
         btEditParcela.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEditParcelaActionPerformed(evt);
@@ -803,9 +802,10 @@ public class FRMVendaNova extends javax.swing.JFrame {
         tfValorEntrada1.setText("");
         tfNParcelas1.setText("");
         tfJuros.setText("");
-        lbPrecoTT2.setText("");
+        lbPrecoTT2.setText("0");
 
         insertData.clear();
+        preecheTabelaPrazos();
         tpGuia.setSelectedIndex(1);
     }
 
@@ -844,7 +844,11 @@ public class FRMVendaNova extends javax.swing.JFrame {
     }
 
     private boolean verificaCamposVenda3() {
-        if (tfPrecoPago.getTex) {
+        if (lbPrecoTT2.getText().equals("0")
+                || tfNParcelas1.getText().equals("")
+                || tfValorEntrada1.getText().equals("")
+                || tfJuros.getText().equals("")
+                || tableParcelas.getRowCount() == 0) {
             return false;
         } else {
             return true;
@@ -922,7 +926,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }
-        if (qtd <= j.getJoQtd()) {
+        if (qtd <= j.getJoQtd() && qtd > 0) {
 
             JogoBEAN wtf = new JogoBEAN();
             wtf.setJoCodigo(j.getJoCodigo());
@@ -938,7 +942,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Quantidade não inválida");
+            JOptionPane.showMessageDialog(null, "Quantidade inválida");
         }
 
         try {
@@ -946,45 +950,45 @@ public class FRMVendaNova extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-
-
     private void btAddJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddJogoActionPerformed
-        JogoBEAN j = new JogoBEAN();
+        if (tableJogo.getSelectedRow() != -1) {
+            JogoBEAN j = new JogoBEAN();
 
-        for (JogoBEAN jogo : jogoList) {
-            if (jogo.getJoCodigo() == Integer.parseInt(tfChaveJogo.getText())) {
-                j = jogo;
-            }
-        }
-
-        float lucro = ((j.getLucro().getLucPorcentagem() * j.getJoPrecoPadrao()) / 100);
-        float precoSug = lucro + j.getJoPrecoPadrao();
-        float preco = 0;
-
-        try {
-            preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preço praticado do Jogo"
-                    + "\n" + "Preço sugerido: " + precoSug));
-        } catch (Exception e) {
-
-        }
-
-        if (preco > 0) {
-            if (preco >= precoSug) {
-                addQtd(j, preco);
-            } else {
-                int dialogButton = JOptionPane.YES_NO_OPTION;
-                int dialogResult = JOptionPane.showConfirmDialog(this, "Your Message", "Title on Box", dialogButton);
-                if (dialogResult == 0) {
-                    addQtd(j, preco);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Cancelado");
+            for (JogoBEAN jogo : jogoList) {
+                if (jogo.getJoCodigo() == Integer.parseInt(tfChaveJogo.getText())) {
+                    j = jogo;
                 }
             }
+
+            float lucro = ((j.getLucro().getLucPorcentagem() * j.getJoPrecoPadrao()) / 100);
+            float precoSug = lucro + j.getJoPrecoPadrao();
+            float preco = 0;
+
+            try {
+                preco = Float.parseFloat(JOptionPane.showInputDialog("Digite o preço praticado do Jogo"
+                        + "\n" + "Preço sugerido: " + precoSug));
+            } catch (Exception e) {
+
+            }
+
+            if (preco > 0) {
+                if (preco >= precoSug) {
+                    addQtd(j, preco);
+                } else {
+                    int dialogButton = JOptionPane.YES_NO_OPTION;
+                    int dialogResult = JOptionPane.showConfirmDialog(this, "Preço abaixo do padrão. Tem certeza que deseja prosseguir", "Alerta", dialogButton);
+                    if (dialogResult == 0) {
+                        addQtd(j, preco);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Cancelado");
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Preço inválido");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Preço inválido");
+            JOptionPane.showMessageDialog(null, "Selecione o jogo");
         }
-
-
     }//GEN-LAST:event_btAddJogoActionPerformed
 
     private void tfChaveJogoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveJogoKeyTyped
@@ -1006,27 +1010,33 @@ public class FRMVendaNova extends javax.swing.JFrame {
     }//GEN-LAST:event_tableJogoMouseClicked
 
     private void btGeraParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGeraParcelaActionPerformed
-        int t = Integer.parseInt(tfNParcelas1.getText());
-        float precoTT = Float.parseFloat((lbPrecoTT2.getText()));
-        float precoParcelaTT = precoTT - Float.parseFloat((tfValorEntrada1.getText()));
-        for (int c = 1; c <= t; c++) {
-            java.sql.Date data = null;
-            try {
-                String dataString = tfDataCompra.getText();
-                DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
-                data = new java.sql.Date(fmt.parse(dataString).getTime());
-            } catch (ParseException e) {
-                e.printStackTrace();
+        try {
+            insertData.clear();
+            int t = Integer.parseInt(tfNParcelas1.getText());
+            float precoTT = Float.parseFloat((lbPrecoTT2.getText()));
+            float precoParcelaTT = precoTT - Float.parseFloat((tfValorEntrada1.getText()));
+            for (int c = 1; c <= t; c++) {
+                java.sql.Date data = null;
+                try {
+                    String dataString = tfDataCompra.getText();
+                    DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+                    data = new java.sql.Date(fmt.parse(dataString).getTime());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                VendaAPrazoBEAN nota = new VendaAPrazoBEAN();
+                int m = data.getMonth();
+                data.setMonth(m + c);
+                float valor = precoParcelaTT / t;
+                nota.setVapValorParcela(valor);
+                nota.setVapNumParcela(c);
+                nota.setVapData(data);
+                insertData.add(nota);
             }
-            VendaAPrazoBEAN nota = new VendaAPrazoBEAN();
-            int m = data.getMonth();
-            data.setMonth(m + c);
-            nota.setVapValorParcela(precoParcelaTT / t);
-            nota.setVapNumParcela(c);
-            nota.setVapData(data);
-            insertData.add(nota);
+            preecheTabelaPrazos();
+        } catch (Exception e) {
+         JOptionPane.showMessageDialog(null, "Erro, verifique os campos");
         }
-        preecheTabelaPrazos();
     }//GEN-LAST:event_btGeraParcelaActionPerformed
 
     private void tableParcelasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableParcelasMouseClicked
@@ -1122,8 +1132,14 @@ public class FRMVendaNova extends javax.swing.JFrame {
     }
 
     private void btGravarVendaPrazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarVendaPrazoActionPerformed
-        if (verificaCamposVenda() && verificaCamposVenda2() && verificaCamposVenda3()) {
-            cadVendaAPrazo();
+        if (verificaCamposVenda() && verificaCamposVenda3()) {
+            if (lbCliNome.getText().equals("Cliente à vista")) {
+                JOptionPane.showMessageDialog(null, "Selecione um cliente");
+            } else {
+                cadVendaAPrazo();
+                limpaCampos1();
+                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
         }
@@ -1219,8 +1235,8 @@ public class FRMVendaNova extends javax.swing.JFrame {
     }//GEN-LAST:event_tfDataCompraKeyTyped
 
     private void btVendaPrazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVendaPrazoActionPerformed
-        if (verificaCamposVenda2()) {
-            if (lbCliNome.getText().equals("Cliente à vista")) {
+        if (verificaCamposVenda()) {
+            if (lbCliNome.getText().equals("Cliente à vista") || lbCliNome.getText().equals("Cliente não encontrado")) {
                 JOptionPane.showMessageDialog(null, "Selecione um cliente");
             } else {
                 tpGuia.setSelectedIndex(2);
@@ -1247,7 +1263,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Selecione a parcela");
         }
-        degadfg
+        Editar parcelas
     }//GEN-LAST:event_btEditParcelaActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed

@@ -92,21 +92,21 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel20 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tpGuia = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         tfSalario = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        tfNPFun = new javax.swing.JFormattedTextField();
+        tfNPIS = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
-        tfIdadeFun = new javax.swing.JTextField();
+        tfIdade = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        tfNomeFun = new javax.swing.JTextField();
+        tfNome = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        tfCpfFun = new javax.swing.JFormattedTextField();
+        tfCpf = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        tfTelefoneFun = new javax.swing.JFormattedTextField();
+        tfTelefone = new javax.swing.JFormattedTextField();
         cbEmprego = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         lbCodigo = new javax.swing.JLabel();
@@ -134,7 +134,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         btVoltar = new javax.swing.JButton();
         btLocaliza = new javax.swing.JButton();
         btCancela = new javax.swing.JButton();
-        jbCadastrarFun = new javax.swing.JButton();
+        btGravar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbFuncionario = new javax.swing.JTable();
@@ -165,45 +165,45 @@ public class FRMCadastroFun extends javax.swing.JFrame {
 
         try{
             javax.swing.text.MaskFormatter nis= new javax.swing.text.MaskFormatter("###.#####.##-#");
-            tfNPFun = new javax.swing.JFormattedTextField(nis);
+            tfNPIS = new javax.swing.JFormattedTextField(nis);
         }
         catch (Exception e){
         }
-        tfNPFun.setEnabled(false);
-        tfNPFun.addKeyListener(new java.awt.event.KeyAdapter() {
+        tfNPIS.setEnabled(false);
+        tfNPIS.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfNPFunKeyTyped(evt);
+                tfNPISKeyTyped(evt);
             }
         });
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel10.setText("NIS/PIS:");
 
-        tfIdadeFun.setEnabled(false);
-        tfIdadeFun.addKeyListener(new java.awt.event.KeyAdapter() {
+        tfIdade.setEnabled(false);
+        tfIdade.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfIdadeFunKeyTyped(evt);
+                tfIdadeKeyTyped(evt);
             }
         });
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel7.setText("Idade:");
 
-        tfNomeFun.setEnabled(false);
+        tfNome.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel1.setText("Nome:");
 
         try{
             javax.swing.text.MaskFormatter cpf= new javax.swing.text.MaskFormatter("###.###.###-##");
-            tfCpfFun = new javax.swing.JFormattedTextField(cpf);
+            tfCpf = new javax.swing.JFormattedTextField(cpf);
         }
         catch (Exception e){
         }
-        tfCpfFun.setEnabled(false);
-        tfCpfFun.addKeyListener(new java.awt.event.KeyAdapter() {
+        tfCpf.setEnabled(false);
+        tfCpf.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfCpfFunKeyTyped(evt);
+                tfCpfKeyTyped(evt);
             }
         });
 
@@ -215,11 +215,11 @@ public class FRMCadastroFun extends javax.swing.JFrame {
 
         try{
             javax.swing.text.MaskFormatter tel= new javax.swing.text.MaskFormatter("(##)# ####-####");
-            tfTelefoneFun = new javax.swing.JFormattedTextField(tel);
+            tfTelefone = new javax.swing.JFormattedTextField(tel);
         }
         catch (Exception e){
         }
-        tfTelefoneFun.setEnabled(false);
+        tfTelefone.setEnabled(false);
 
         cbEmprego.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
         cbEmprego.setEnabled(false);
@@ -265,25 +265,25 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                         .addGap(8, 8, 8)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(tfNomeFun))
+                        .addComponent(tfNome))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfCpfFun, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
                         .addComponent(jLabel7)
                         .addGap(4, 4, 4)
-                        .addComponent(tfIdadeFun, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfTelefoneFun, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfNPFun, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfNPIS, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
@@ -313,20 +313,20 @@ public class FRMCadastroFun extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfNomeFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(tfCpfFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(tfIdadeFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(tfTelefoneFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(tfNPFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfNPIS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -477,12 +477,12 @@ public class FRMCadastroFun extends javax.swing.JFrame {
             }
         });
 
-        jbCadastrarFun.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jbCadastrarFun.setText("Gravar");
-        jbCadastrarFun.setEnabled(false);
-        jbCadastrarFun.addActionListener(new java.awt.event.ActionListener() {
+        btGravar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btGravar.setText("Gravar");
+        btGravar.setEnabled(false);
+        btGravar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCadastrarFunActionPerformed(evt);
+                btGravarActionPerformed(evt);
             }
         });
 
@@ -493,7 +493,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(btNovoDado, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbCadastrarFun, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btCancela, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -509,7 +509,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                     .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btNovoDado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCancela, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbCadastrarFun, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btLocaliza, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -544,7 +544,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                 .addGap(104, 104, 104))
         );
 
-        jTabbedPane1.addTab("Cadastrar Funcionário", jPanel1);
+        tpGuia.addTab("Cadastrar Funcionário", jPanel1);
 
         tbFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -575,6 +575,9 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         tfChave.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfChaveKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfChaveKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfChaveKeyTyped(evt);
@@ -664,14 +667,14 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Consultar Funcionário", jPanel3);
+        tpGuia.addTab("Consultar Funcionário", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 882, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tpGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 882, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -683,7 +686,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel20)
                 .addGap(3, 3, 3)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, Short.MAX_VALUE))
+                .addComponent(tpGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 328, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(898, 391));
@@ -695,48 +698,16 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     }//GEN-LAST:event_tbFuncionarioKeyReleased
 
     private void tbFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbFuncionarioMouseClicked
-        limpaCampos();
         if (tbFuncionario.getSelectedRow() != -1) {
-            FuncionarioBEAN f = ct.localizarCodigo(Integer.parseInt(tbFuncionario.getValueAt(tbFuncionario.getSelectedRow(), 0).toString()));
-            lbCodigo.setText(String.valueOf(f.getFunCodigo()));
-            tfNomeFun.setText(f.getFunNome());
-            tfCpfFun.setText(f.getFunCpf());
-            tfIdadeFun.setText(String.valueOf(f.getFunIdade()));
-            tfTelefoneFun.setText(f.getFunTelefone());
-            tfNPFun.setText(f.getFunNisPis());
-
-            int i = 0;
-            for (EmpregoBEAN emprego : ec.listarALL()) {
-                i++;
-                if ((f.getEmprego().getEmpCodigo() == (emprego.getEmpCodigo()))) {
-                    cbEmprego.setSelectedIndex(i);
-                }
-            }
-
-            cbEmprego.setSelectedItem(f.getEmprego());
-
-            tfSalario.setText(String.valueOf(f.getFunSalario()));
-
-            for (VendedorBEAN v : vc.listarALL()) {
-                if (v.getFuncionario().getFunCodigo() == f.getFunCodigo()) {
-                    tfNomeUser.setText(v.getVendedorNomeUsuario());
-                    tfSenhaUser.setText(v.getVendedorSenha());
-                }
-            }
-
-            tfRua.setText(f.getEndereco().getEndRua());
-            tfNumero.setText(String.valueOf(f.getEndereco().getEndNumero()));
-            tfBairro.setText(f.getEndereco().getEndBairro());
-            tfCidade.setText(f.getEndereco().getEndCidade());
-            tfEstado.setText(f.getEndereco().getEndEstado());
-            tfPais.setText(f.getEndereco().getEndPais());
-
+            btEditar.setEnabled(true);
+            btClonar.setEnabled(true);
+            btDemitir.setEnabled(true);
         }
     }//GEN-LAST:event_tbFuncionarioMouseClicked
     private int verificaCPF() {
         int i = 0;
         for (FuncionarioBEAN c : ct.listarALL()) {
-            if (c.getFunCpf().equals(tfCpfFun.getText())) {
+            if (c.getFunCpf().equals(tfCpf.getText())) {
 
                 i = c.getFunCodigo();
 
@@ -748,7 +719,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     private int verificapis() {
         int i = 0;
         for (FuncionarioBEAN c : ct.listarALL()) {
-            if (c.getFunNisPis().equals(tfNPFun.getText())) {
+            if (c.getFunNisPis().equals(tfNPIS.getText())) {
                 if (c.getFunCodigo() != (Integer.valueOf(lbCodigo.getText()))) {
                     i = c.getFunCodigo();
                 }
@@ -757,64 +728,23 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         }
         return i;
     }
-
-    private void jbCadastrarFunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarFunActionPerformed
-        int c = verificaCPF();
-        int e = verificapis();
-        int i = 0;
-        for (EmpregoBEAN emp : ec.listarALL()) {
-            if (emp.getEmpNome().equals("Administrador")) {
-                i = emp.getEmpCodigo();
-            }
-        }
-        EmpregoBEAN emp2 = (EmpregoBEAN) cbEmprego.getSelectedItem();
-
-        if (al.size() != 0) {
-            if (emp2.getEmpCodigo() == i) {
-                if (verificaCampos() == false) {
-                    JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-                } else if (c == 0) {
-                    if (e == 0) {
-                        cadastrar();
-                        this.preencheTabela();
-                        limpaCampos();
-                        JOptionPane.showMessageDialog(null, "Funcionário CADASTRADO com sucesso");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Pis já cadastrado no sistema. Código: " + e);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Cpf  já cadastrado no sistema. Código: " + c);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro! O primeiro funcionário deve ser um Administrador");
-            }
+    private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
+        if (lbCodigo.getText().equals("...")) {
+            editar();
         } else {
-            if (verificaCampos() == false) {
-                JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-            } else if (c == 0) {
-                if (e == 0) {
-                    cadastrar();
-                    this.preencheTabela();
-                    limpaCampos();
-                    JOptionPane.showMessageDialog(null, "Funcionário CADASTRADO com sucesso");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Pis já cadastrado no sistema. Código: " + e);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Cpf  já cadastrado no sistema. Código: " + c);
-            }
+            cadastrar();
         }
-    }//GEN-LAST:event_jbCadastrarFunActionPerformed
+    }//GEN-LAST:event_btGravarActionPerformed
 
-    private void tfIdadeFunKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdadeFunKeyTyped
+    private void tfIdadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdadeKeyTyped
         String caracteres = "0123456789";
         if (!caracteres.contains(evt.getKeyChar() + "")) {
             evt.consume();
         }
-    }//GEN-LAST:event_tfIdadeFunKeyTyped
+    }//GEN-LAST:event_tfIdadeKeyTyped
 
-    private void editar(){
-         int c = verificaCPF();
+    private void editar() {
+        int c = verificaCPF();
         int e = verificapis();
 
         if (c == (Integer.valueOf(lbCodigo.getText()))) {
@@ -828,7 +758,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         } else if (c == 0) {
             if (e == 0) {
-                editar();
+                editar2();
                 this.preencheTabela();
                 limpaCampos();
                 JOptionPane.showMessageDialog(null, "Funcionário CADASTRADO com sucesso");
@@ -839,7 +769,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Cpf  já cadastrado no sistema. Código: " + c);
         }
     }
-    
+
     private void tfSalarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfSalarioKeyTyped
         String caracteres = "0123456789.";
         if (!caracteres.contains(evt.getKeyChar() + "")) {
@@ -847,19 +777,19 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tfSalarioKeyTyped
 
-    private void tfNPFunKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNPFunKeyTyped
+    private void tfNPISKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNPISKeyTyped
         String caracteres = "0123456789";
         if (!caracteres.contains(evt.getKeyChar() + "")) {
             evt.consume();
         }
-    }//GEN-LAST:event_tfNPFunKeyTyped
+    }//GEN-LAST:event_tfNPISKeyTyped
 
-    private void tfCpfFunKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCpfFunKeyTyped
+    private void tfCpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCpfKeyTyped
         String caracteres = "0123456789";
         if (!caracteres.contains(evt.getKeyChar() + "")) {
             evt.consume();
         }
-    }//GEN-LAST:event_tfCpfFunKeyTyped
+    }//GEN-LAST:event_tfCpfKeyTyped
 
     private void tfNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNumeroKeyTyped
 
@@ -887,33 +817,91 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     }//GEN-LAST:event_tfChaveKeyPressed
 
     private void tfChaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyTyped
-        TableRowSorter sorter = null;
-        DefaultTableModel model = (DefaultTableModel) tbFuncionario.getModel();
-        sorter = new TableRowSorter<TableModel>(model);
-        tbFuncionario.setRowSorter(sorter);
-        String text = tfChave.getText();
-        if (text.length() == 0) {
-            sorter.setRowFilter(null);
-        } else {
-            sorter.setRowFilter(RowFilter.regexFilter(text));
-        }
+
     }//GEN-LAST:event_tfChaveKeyTyped
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-      
+        FuncionarioBEAN f = ct.localizarCodigo(Integer.parseInt(tbFuncionario.getValueAt(tbFuncionario.getSelectedRow(), 0).toString()));
+        lbCodigo.setText(String.valueOf(f.getFunCodigo()));
+        tfNome.setText(f.getFunNome());
+        tfCpf.setText(f.getFunCpf());
+        tfIdade.setText(String.valueOf(f.getFunIdade()));
+        tfTelefone.setText(f.getFunTelefone());
+        tfNPIS.setText(f.getFunNisPis());
+
+        int i = 0;
+        for (EmpregoBEAN emprego : ec.listarALL()) {
+            i++;
+            if ((f.getEmprego().getEmpCodigo() == (emprego.getEmpCodigo()))) {
+                cbEmprego.setSelectedIndex(i);
+            }
+        }
+
+        cbEmprego.setSelectedItem(f.getEmprego());
+
+        tfSalario.setText(String.valueOf(f.getFunSalario()));
+
+        for (VendedorBEAN v : vc.listarALL()) {
+            if (v.getFuncionario().getFunCodigo() == f.getFunCodigo()) {
+                tfNomeUser.setText(v.getVendedorNomeUsuario());
+                tfSenhaUser.setText(v.getVendedorSenha());
+            }
+        }
+
+        tfRua.setText(f.getEndereco().getEndRua());
+        tfNumero.setText(String.valueOf(f.getEndereco().getEndNumero()));
+        tfBairro.setText(f.getEndereco().getEndBairro());
+        tfCidade.setText(f.getEndereco().getEndCidade());
+        tfEstado.setText(f.getEndereco().getEndEstado());
+        tfPais.setText(f.getEndereco().getEndPais());
+
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btClonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClonarActionPerformed
-      
+        FuncionarioBEAN f = ct.localizarCodigo(Integer.parseInt(tbFuncionario.getValueAt(tbFuncionario.getSelectedRow(), 0).toString()));
+        tfNome.setText(f.getFunNome());
+        tfCpf.setText(f.getFunCpf());
+        tfIdade.setText(String.valueOf(f.getFunIdade()));
+        tfTelefone.setText(f.getFunTelefone());
+        tfNPIS.setText(f.getFunNisPis());
+
+        int i = 0;
+        for (EmpregoBEAN emprego : ec.listarALL()) {
+            i++;
+            if ((f.getEmprego().getEmpCodigo() == (emprego.getEmpCodigo()))) {
+                cbEmprego.setSelectedIndex(i);
+            }
+        }
+
+        cbEmprego.setSelectedItem(f.getEmprego());
+
+        tfSalario.setText(String.valueOf(f.getFunSalario()));
+
+        for (VendedorBEAN v : vc.listarALL()) {
+            if (v.getFuncionario().getFunCodigo() == f.getFunCodigo()) {
+                tfNomeUser.setText(v.getVendedorNomeUsuario());
+                tfSenhaUser.setText(v.getVendedorSenha());
+            }
+        }
+
+        tfRua.setText(f.getEndereco().getEndRua());
+        tfNumero.setText(String.valueOf(f.getEndereco().getEndNumero()));
+        tfBairro.setText(f.getEndereco().getEndBairro());
+        tfCidade.setText(f.getEndereco().getEndCidade());
+        tfEstado.setText(f.getEndereco().getEndEstado());
+        tfPais.setText(f.getEndereco().getEndPais());
     }//GEN-LAST:event_btClonarActionPerformed
 
     private void btDemitirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDemitirActionPerformed
-        // TODO add your handling code here:
+        FuncionarioBEAN f = ct.localizarCodigo(Integer.parseInt(tbFuncionario.getValueAt(tbFuncionario.getSelectedRow(), 0).toString()));
+        f.setFunSalario(0);
+        ct.editar(f);
+        preencheTabela();
     }//GEN-LAST:event_btDemitirActionPerformed
 
     private void btNovoDadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoDadoActionPerformed
         limpaBotoes();
-        limparCampos();
+        limpaCampos();
         habilitaCampos();
     }//GEN-LAST:event_btNovoDadoActionPerformed
 
@@ -930,18 +918,81 @@ public class FRMCadastroFun extends javax.swing.JFrame {
 
     private void btCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelaActionPerformed
         limpaBotoes();
-        limparCampos();
+        limpaCampos();
         desabilitaCampos();
     }//GEN-LAST:event_btCancelaActionPerformed
 
-    public void cadastrar() {
+    private void tfChaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyReleased
+        TableRowSorter sorter = null;
+        DefaultTableModel model = (DefaultTableModel) tbFuncionario.getModel();
+        sorter = new TableRowSorter<TableModel>(model);
+        tbFuncionario.setRowSorter(sorter);
+        String text = tfChave.getText();
+        if (text.length() == 0) {
+            sorter.setRowFilter(null);
+        } else {
+            sorter.setRowFilter(RowFilter.regexFilter(text));
+        }
+    }//GEN-LAST:event_tfChaveKeyReleased
+    private void limpaBotoes() {
+        btGravar.setEnabled(false);
+        btCancela.setEnabled(false);
+        btEditar.setEnabled(false);
+        btClonar.setEnabled(false);
+        btDemitir.setEnabled(false);
+    }
 
+    private void habilitaCampos() {
+        tfNome.setEnabled(true);
+        tfCpf.setEnabled(true);
+        tfIdade.setEnabled(true);
+        tfTelefone.setEnabled(true);
+        tfNPIS.setEnabled(true);
+        tfEmail.setEnabled(true);
+        cbEmprego.setEnabled(true);
+        tfSalario.setEnabled(true);
+
+        tfRua.setEnabled(true);
+        tfCidade.setEnabled(true);
+        tfEstado.setEnabled(true);
+        tfNumero.setEnabled(true);
+        tfBairro.setEnabled(true);
+        tfPais.setEnabled(true);
+
+        btCancela.setEnabled(true);
+        btGravar.setEnabled(true);
+    }
+
+    private void desabilitaCampos() {
+        tfNome.setEnabled(false);
+        tfCpf.setEnabled(false);
+        tfIdade.setEnabled(false);
+        tfTelefone.setEnabled(false);
+        tfNPIS.setEnabled(false);
+        tfEmail.setEnabled(false);
+        cbEmprego.setEnabled(false);
+        tfSalario.setEnabled(false);
+        tfNomeUser.setEnabled(false);
+        tfSenhaUser.setEnabled(false);
+
+        tfRua.setEnabled(false);
+        tfCidade.setEnabled(false);
+        tfEstado.setEnabled(false);
+        tfNumero.setEnabled(false);
+        tfBairro.setEnabled(false);
+        tfPais.setEnabled(false);
+
+        btCancela.setEnabled(false);
+        btGravar.setEnabled(false);
+    }
+
+    public void cadastrar() {
         FuncionarioBEAN c = new FuncionarioBEAN();
-        c.setFunNome(tfNomeFun.getText());
-        c.setFunCpf(tfCpfFun.getText());
-        c.setFunIdade(Integer.parseInt(tfIdadeFun.getText()));
-        c.setFunTelefone(tfTelefoneFun.getText());
-        c.setFunNisPis(tfNPFun.getText());
+        c.setFunNome(tfNome.getText());
+        c.setFunCpf(tfCpf.getText());
+        c.setFunIdade(Integer.parseInt(tfIdade.getText()));
+        c.setFunTelefone(tfTelefone.getText());
+        c.setFunNisPis(tfNPIS.getText());
         EmpregoBEAN e = (EmpregoBEAN) cbEmprego.getSelectedItem();
         c.setEmprego(e);
         c.setFunSalario(Float.parseFloat(tfSalario.getText()));
@@ -961,7 +1012,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         c.setCaixa(ca);
         ct.cadastrar(c);
 
-        if (e.getEmpNome().equals("Vendedor")||e.getEmpNome().equals("Administrador")) {
+        if (e.getEmpNome().equals("Vendedor") || e.getEmpNome().equals("Administrador")) {
             VendedorBEAN v = new VendedorBEAN();
             v.setFuncionario(c);
             v.setVendedorNomeUsuario(tfNomeUser.getText());
@@ -973,11 +1024,11 @@ public class FRMCadastroFun extends javax.swing.JFrame {
 
     public void editar2() {
         FuncionarioBEAN c = ct.localizarCodigo(Integer.parseInt(lbCodigo.getText()));
-        c.setFunNome(tfNomeFun.getText());
-        c.setFunCpf(tfCpfFun.getText());
-        c.setFunIdade(Integer.parseInt(tfIdadeFun.getText()));
-        c.setFunTelefone(tfTelefoneFun.getText());
-        c.setFunNisPis(tfNPFun.getText());
+        c.setFunNome(tfNome.getText());
+        c.setFunCpf(tfCpf.getText());
+        c.setFunIdade(Integer.parseInt(tfIdade.getText()));
+        c.setFunTelefone(tfTelefone.getText());
+        c.setFunNisPis(tfNPIS.getText());
         EmpregoBEAN e = (EmpregoBEAN) cbEmprego.getSelectedItem();
         c.setEmprego(e);
         c.setFunSalario(Float.parseFloat(tfSalario.getText()));
@@ -1005,9 +1056,9 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     }
 
     public boolean verificaCampos() {
-        if (tfNomeFun.getText().equals("") || tfIdadeFun.getText().equals("")
-                || tfCpfFun.getText().equals("")
-                || tfNPFun.getText().equals("") || tfTelefoneFun.getText().equals("")
+        if (tfNome.getText().equals("") || tfIdade.getText().equals("")
+                || tfCpf.getText().equals("")
+                || tfNPIS.getText().equals("") || tfTelefone.getText().equals("")
                 || tfSenhaUser.getText().equals("") || tfNomeUser.getText().equals("")
                 || cbEmprego.getSelectedIndex() == 0
                 || tfEmail.getText().equals("")
@@ -1017,7 +1068,6 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                 || tfCidade.getText().equals("")
                 || tfEstado.getText().equals("")
                 || tfPais.getText().equals("")) {
-
             return false;
         } else {
             return true;
@@ -1026,11 +1076,11 @@ public class FRMCadastroFun extends javax.swing.JFrame {
 
     public void limpaCampos() {
         lbCodigo.setText("...");
-        tfNomeFun.setText("");
-        tfCpfFun.setText("");
-        tfIdadeFun.setText("");
-        tfTelefoneFun.setText("");
-        tfNPFun.setText("");
+        tfNome.setText("");
+        tfCpf.setText("");
+        tfIdade.setText("");
+        tfTelefone.setText("");
+        tfNPIS.setText("");
         cbEmprego.setSelectedIndex(0);
         tfSalario.setText("");
         tfEmail.setText("");
@@ -1116,6 +1166,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     private javax.swing.JButton btClonar;
     private javax.swing.JButton btDemitir;
     private javax.swing.JButton btEditar;
+    private javax.swing.JButton btGravar;
     private javax.swing.JButton btLocaliza;
     private javax.swing.JButton btNovoDado;
     private javax.swing.JButton btVoltar;
@@ -1144,26 +1195,25 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JButton jbCadastrarFun;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JTable tbFuncionario;
     private javax.swing.JTextField tfBairro;
     private javax.swing.JTextField tfChave;
     private javax.swing.JTextField tfCidade;
-    private javax.swing.JFormattedTextField tfCpfFun;
+    private javax.swing.JFormattedTextField tfCpf;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfEstado;
-    private javax.swing.JTextField tfIdadeFun;
-    private javax.swing.JFormattedTextField tfNPFun;
-    private javax.swing.JTextField tfNomeFun;
+    private javax.swing.JTextField tfIdade;
+    private javax.swing.JFormattedTextField tfNPIS;
+    private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfNomeUser;
     private javax.swing.JTextField tfNumero;
     private javax.swing.JTextField tfPais;
     private javax.swing.JTextField tfRua;
     private javax.swing.JTextField tfSalario;
     private javax.swing.JPasswordField tfSenhaUser;
-    private javax.swing.JFormattedTextField tfTelefoneFun;
+    private javax.swing.JFormattedTextField tfTelefone;
+    private javax.swing.JTabbedPane tpGuia;
     // End of variables declaration//GEN-END:variables
 
 }

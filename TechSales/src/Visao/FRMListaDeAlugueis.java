@@ -83,6 +83,7 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
                 java.lang.String.class,};
             boolean[] canEdit = new boolean[]{
                 false, false, false, false, false};
+
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit[columnIndex];
@@ -166,17 +167,23 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
         tabelaAllLoc = new javax.swing.JTable();
         tfChave4 = new javax.swing.JTextField();
         jPanel15 = new javax.swing.JPanel();
-        jButton12 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btImprimir = new javax.swing.JButton();
+        btPesquisar = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         tabelaAllDev = new javax.swing.JTable();
         tfChave5 = new javax.swing.JTextField();
         jPanel16 = new javax.swing.JPanel();
-        jButton13 = new javax.swing.JButton();
+        btImprimirDev = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane1MouseClicked(evt);
+            }
+        });
 
         tabelaAllLoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -189,6 +196,11 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
 
             }
         ));
+        tabelaAllLoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaAllLocMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaAllLoc);
 
         tfChave4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Refinar Pesquisa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
@@ -211,19 +223,21 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
 
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
-        jButton12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton12.setText("Imprimir Nota");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        btImprimir.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btImprimir.setText("Imprimir Nota");
+        btImprimir.setEnabled(false);
+        btImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                btImprimirActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton3.setText("Pesquisar Devoluçao");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btPesquisar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btPesquisar.setText("Pesquisar Devoluçao");
+        btPesquisar.setEnabled(false);
+        btPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btPesquisarActionPerformed(evt);
             }
         });
 
@@ -233,9 +247,9 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(btPesquisar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
@@ -243,8 +257,8 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton12)
-                    .addComponent(jButton3))
+                    .addComponent(btImprimir)
+                    .addComponent(btPesquisar))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -288,6 +302,11 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
 
             }
         ));
+        tabelaAllDev.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tabelaAllDevKeyTyped(evt);
+            }
+        });
         jScrollPane7.setViewportView(tabelaAllDev);
 
         tfChave5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Refinar Pesquisa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
@@ -310,11 +329,12 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
 
         jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
-        jButton13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton13.setText("Imprimir Nota");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        btImprimirDev.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btImprimirDev.setText("Imprimir Nota");
+        btImprimirDev.setEnabled(false);
+        btImprimirDev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                btImprimirDevActionPerformed(evt);
             }
         });
 
@@ -324,14 +344,14 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btImprimirDev, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton13)
+                .addComponent(btImprimirDev)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -400,8 +420,17 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
     private void tfChave4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave4KeyTyped
 
     }//GEN-LAST:event_tfChave4KeyTyped
+    private void desabilitaB() {
+        btPesquisar.setEnabled(false);
+        btImprimir.setEnabled(false);
+        btImprimirDev.setEnabled(false);
+    }
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void habilitaB() {
+        btImprimir.setEnabled(true);
+        btPesquisar.setEnabled(true);
+    }
+    private void btImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImprimirActionPerformed
         if (tabelaAllLoc.getSelectedRow() != -1) {
             LocacaoBEAN l = contLoc.localizarLoc(Integer.parseInt(tabelaAllLoc.getValueAt(tabelaAllLoc.getSelectedRow(), 0).toString()));
             try {
@@ -412,7 +441,8 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
                 Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_jButton12ActionPerformed
+        desabilitaB();
+    }//GEN-LAST:event_btImprimirActionPerformed
 
     private void tfChave5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfChave5ActionPerformed
         // TODO add your handling code here:
@@ -426,9 +456,10 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfChave5KeyTyped
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         tpGuia.setSelectedIndex(1);
-    }//GEN-LAST:event_jButton3ActionPerformed
+        desabilitaB();
+    }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void tfChave4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave4KeyReleased
         TableRowSorter sorter = null;
@@ -456,7 +487,7 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tfChave5KeyReleased
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    private void btImprimirDevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImprimirDevActionPerformed
         if (tabelaAllDev.getSelectedRow() != -1) {
             DevolucaoBEAN d = contDev.localizar(Integer.parseInt(tabelaAllDev.getValueAt(tabelaAllDev.getSelectedRow(), 0).toString()));
             try {
@@ -467,7 +498,24 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
                 Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_jButton13ActionPerformed
+        desabilitaB();
+    }//GEN-LAST:event_btImprimirDevActionPerformed
+
+    private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
+
+    }//GEN-LAST:event_jScrollPane1MouseClicked
+
+    private void tabelaAllLocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaAllLocMouseClicked
+        if (tabelaAllLoc.getSelectedRow() != -1) {
+            habilitaB();
+        }
+    }//GEN-LAST:event_tabelaAllLocMouseClicked
+
+    private void tabelaAllDevKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabelaAllDevKeyTyped
+        if (tabelaAllLoc.getSelectedRow() != -1) {
+            btImprimirDev.setEnabled(true);
+        }
+    }//GEN-LAST:event_tabelaAllDevKeyTyped
 
     /**
      * @param args the command line arguments
@@ -505,9 +553,9 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btImprimir;
+    private javax.swing.JButton btImprimirDev;
+    private javax.swing.JButton btPesquisar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;

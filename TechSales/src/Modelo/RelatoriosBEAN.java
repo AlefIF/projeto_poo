@@ -5,10 +5,12 @@
  */
 package Modelo;
 
+import Controle.ContaAPrazoControle;
 import Controle.ContaControle;
 import Controle.ControleRelatorios;
 import Controle.JogoLocacaoControle;
 import Controle.LocacaoControle;
+import Controle.NotaDeCompraAPrazoControle;
 import Controle.NotaDeCompraControle;
 import Controle.VendaAPrazoControle;
 import Visao.FRMEmitirRelatorios;
@@ -33,7 +35,9 @@ public class RelatoriosBEAN {
 
     static ControleRelatorios jDAO = new ControleRelatorios();
     static NotaDeCompraControle cNdc = new NotaDeCompraControle();
+    static NotaDeCompraAPrazoControle cNdcap = new NotaDeCompraAPrazoControle();
     static ContaControle cContas = new ContaControle();
+    static ContaAPrazoControle cCap = new ContaAPrazoControle();
     static VendaAPrazoControle cVap = new VendaAPrazoControle();
     static JogoLocacaoControle cJl = new JogoLocacaoControle();
     static LocacaoControle contL = new LocacaoControle();
@@ -763,4 +767,151 @@ public class RelatoriosBEAN {
             e.printStackTrace();
         }
     }
+
+    /*------------------*/
+    public static void notaDeConta(ContaBEAN v) throws FileNotFoundException, DocumentException {
+        String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
+        Document document = new Document(PageSize.LETTER);
+        PdfWriter.getInstance(document, new FileOutputStream(path));
+        document.open();
+        document.addAuthor("TechSales");
+        document.addCreator("TechSales");
+        document.addSubject("TechSales - Sistema de gerenciamento de locadoras");
+        document.addCreationDate();
+        document.addTitle("TechSales");
+
+        HTMLWorker htmlWorker = new HTMLWorker(document);
+
+        String frase;
+        try {
+            frase = "<html>"
+                    + "<head> <meta charset=\"utf-8\"> </head>"
+                    + "<body>"
+                    + "<h1 align=center>Nota de Conta</h1>"
+                    + "<br/><br/>"
+                    + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
+                    + "<tr> "
+                    + "<th align=center><strong>Código</strong></th> "
+                    + "<th align=center><strong>Fornecedor</strong></th> "
+                    + "<th align=center><strong>Data</strong></th> "
+                    + "<th align=center><strong>Total</strong></th> "
+                    + "<th align=center><strong>Entrada</strong></th> "
+                    + "<th align=center><strong>Parcelas</strong></th> "
+                    + "</tr> ";
+
+            frase += "<tr align=center><td>" + v.getConCodigo() + "</td><td>"
+                    + v.getFornecedor().getForNomeEmpresa() + "</td><td>" + v.getConData() + "</td><td>"
+                    + v.getConValorTotal() + "</td><td>"
+                    + v.getConEntrada() + "</td><td>"
+                    + v.getConNparcelas() + "</td></tr>"
+                    + "</table>";
+
+            frase += "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
+                    + "<br/><br/>"
+                    + "<tr> "
+                    + "<th align=center><strong>Parcela</strong></th> "
+                    + "<th align=center><strong>Data</strong></th> "
+                    + "<th align=center><strong>Valor</strong></th> "
+                    + "<th align=center><strong>Situação</strong></th> "
+                    + "</tr> ";
+
+            for (ContaAPrazoBEAN vap : cCap.listarALL()) {
+                if (vap.getConta().getConCodigo() == v.getConCodigo()) {
+                    frase += "<tr align=center><td>" + vap.getCapNumParcela() + "</td><td>"
+                            + vap.getCapData() + "</td><td>"
+                            + vap.getCapValorParcela() + "</td><td>"
+                            + vap.getCapSituacao() + "</td></tr>";
+                }
+            }
+            frase += "</table>";
+            frase += "</body></html>";
+            htmlWorker.parse(new StringReader(frase));
+            document.close();
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().open(new File(path));
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*--------------------------*/
+    public static void notaDeCompra(NotaDecompraBEAN n) throws FileNotFoundException, DocumentException {
+        String path = System.getProperty("user.home") + FRMEmitirRelatorios.local + ".pdf";
+        Document document = new Document(PageSize.A4.rotate());
+        PdfWriter.getInstance(document, new FileOutputStream(path));
+        document.open();
+        document.addAuthor("TechSales");
+        document.addCreator("TechSales");
+        document.addSubject("TechSales - Sistema de gerenciamento de locadoras");
+        document.addCreationDate();
+        document.addTitle("TechSales");
+
+        HTMLWorker htmlWorker = new HTMLWorker(document);
+
+        String frase;
+        try {
+            frase = "<html>"
+                    + "<head> <meta charset=\"utf-8\"> </head>"
+                    + "<body>"
+                    + "<br/>"
+                    + "<h1 align=center>Relatório de Jogos Comprados </h1>"
+                    + "<br/><br/>"
+                    + "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
+                    + "<tr> "
+                    + "<th align=center><strong>Código</strong></th> "
+                    + "<th align=center><strong>Custo Unitário</strong></th> "
+                    + "<th align=center><strong>Data</strong></th> "
+                    + "<th align=center><strong>Valor da Entrada</strong></th> "
+                    + "<th align=center><strong>Número de parcelas</strong></th> "
+                    + "<th align=center><strong>Preço Total</strong></th> "
+                    + "<th align=center><strong>Quantidade Compradra</strong></th> "
+                    + "<th align=center><strong>Caixa</strong></th> "
+                    + "<th align=center><strong>Jogo</strong></th> "
+                    + "</tr> ";
+
+            frase += "<tr align=center><td>" + n.getNdcCodigo() + "</td><td>"
+                    + n.getNdcCustoUnitario() + "</td><td>" + n.getNdcData() + "</td><td>" + n.getNdcEntrada() + "</td><td>"
+                    + n.getNdcParcelas() + "</td><td>" + n.getNdcPrecoTotal() + "</td><td>" + n.getNdcQtdComprada()
+                    + "</td><td>" + n.getCaixa().getCaixaCodigo() + "</td><td>" + n.getJogo().getJoNome() + "</td></tr>"
+                    + "</table>";;
+
+            frase += "<table BORDER RULES=rows border=0 style=\"  width:100%; \">\n"
+                    + "<br/><br/>"
+                    + "<tr> "
+                    + "<th align=center><strong>Parcela</strong></th> "
+                    + "<th align=center><strong>Data</strong></th> "
+                    + "<th align=center><strong>Valor</strong></th> "
+                    + "<th align=center><strong>Situação</strong></th> "
+                    + "</tr> ";
+
+            for (NotaDeCompraPrazoBEAN nap : cNdcap.listarALL()) {
+                if (nap.getNota().getNdcCodigo()== n.getNdcCodigo()) {
+                    frase += "<tr align=center><td>" + nap.getNapNumParcela()+ "</td><td>"
+                            + nap.getNapData()+ "</td><td>"
+                            + nap.getNapValor()+ "</td><td>"
+                            + nap.getNapSituacao()+ "</td></tr>";
+                }
+            }
+
+            frase += "</table>";
+            frase += "</body></html>";
+            htmlWorker.parse(new StringReader(frase));
+            document.close();
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().open(new File(path));
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -45,9 +45,6 @@ public class FRMContas extends javax.swing.JFrame {
      */
     public FRMContas() {
         initComponents();
-        btEditar.setEnabled(false);
-        preencheTabelaContas();
-        preencheTabelaFor();
     }
 
     /**
@@ -74,7 +71,6 @@ public class FRMContas extends javax.swing.JFrame {
         tfNParcelas = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         tfDataCompra = new javax.swing.JFormattedTextField();
-        lbCodNota = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
@@ -82,31 +78,9 @@ public class FRMContas extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btCadastrar = new javax.swing.JButton();
-        btLocalizar = new javax.swing.JButton();
         btNovoDado = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        tableContas = new javax.swing.JScrollPane();
-        tableNotas = new javax.swing.JTable();
-        jPanel6 = new javax.swing.JPanel();
-        btEditar = new javax.swing.JButton();
-        btLocParcela = new javax.swing.JButton();
-        btClonar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        tfRefinarNota = new javax.swing.JTextField();
-        jPanel4 = new javax.swing.JPanel();
-        asdfascfvf = new javax.swing.JScrollPane();
-        tablePrazo = new javax.swing.JTable();
-        jPanel7 = new javax.swing.JPanel();
-        jbPagar = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tableFornecedor = new javax.swing.JTable();
-        tfChave2 = new javax.swing.JTextField();
-        jPanel8 = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -189,9 +163,6 @@ public class FRMContas extends javax.swing.JFrame {
         tfDataCompra.setEditable(false);
         tfDataCompra.setEnabled(false);
 
-        lbCodNota.setText("...");
-        lbCodNota.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Código da conta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
-
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setText("Descrição:");
 
@@ -225,8 +196,7 @@ public class FRMContas extends javax.swing.JFrame {
                             .addGap(10, 10, 10)
                             .addComponent(tfValorEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jpCompraLayout.createSequentialGroup()
-                        .addComponent(lbCodNota, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(129, 129, 129)
                         .addComponent(jLabel2))
                     .addGroup(jpCompraLayout.createSequentialGroup()
                         .addComponent(jLabel19)
@@ -248,7 +218,7 @@ public class FRMContas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jpCompraLayout.setVerticalGroup(
             jpCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,10 +241,8 @@ public class FRMContas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpCompraLayout.createSequentialGroup()
-                        .addGroup(jpCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(lbCodNota))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addGap(32, 32, 32)
                         .addComponent(jLabel4)
                         .addGap(11, 11, 11)
                         .addGroup(jpCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,14 +276,6 @@ public class FRMContas extends javax.swing.JFrame {
             }
         });
 
-        btLocalizar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btLocalizar.setText("Localizar Nota");
-        btLocalizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLocalizarActionPerformed(evt);
-            }
-        });
-
         btNovoDado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btNovoDado.setText("Novo Dado");
 
@@ -331,9 +291,6 @@ public class FRMContas extends javax.swing.JFrame {
         jButton9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton9.setText("Fechar");
 
-        jButton7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton7.setText("Localizar Fornecedor");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -345,11 +302,8 @@ public class FRMContas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btLocalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,9 +313,7 @@ public class FRMContas extends javax.swing.JFrame {
                     .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btNovoDado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btLocalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7))
+                    .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -371,9 +323,9 @@ public class FRMContas extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jpCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -387,291 +339,6 @@ public class FRMContas extends javax.swing.JFrame {
         );
 
         tpGuia.addTab("Cadastrar Conta", jPanel1);
-
-        tableContas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableContasMouseClicked(evt);
-            }
-        });
-
-        tableNotas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        tableNotas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableNotasMouseClicked(evt);
-            }
-        });
-        tableContas.setViewportView(tableNotas);
-
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
-
-        btEditar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btEditar.setText("Editar");
-        btEditar.setEnabled(false);
-        btEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEditarActionPerformed(evt);
-            }
-        });
-
-        btLocParcela.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btLocParcela.setText("Localizar Parcelas");
-        btLocParcela.setEnabled(false);
-        btLocParcela.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLocParcelaActionPerformed(evt);
-            }
-        });
-
-        btClonar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btClonar.setText("Clonar Dados");
-        btClonar.setEnabled(false);
-        btClonar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btClonarActionPerformed(evt);
-            }
-        });
-
-        jButton4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton4.setText("Imprimir Conta");
-        jButton4.setEnabled(false);
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btClonar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btLocParcela)
-                .addContainerGap())
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btLocParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btClonar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
-
-        tfRefinarNota.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Refinar Pesquisa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
-        tfRefinarNota.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfRefinarNotaActionPerformed(evt);
-            }
-        });
-        tfRefinarNota.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tfRefinarNotaKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfRefinarNotaKeyTyped(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(tfRefinarNota, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 365, Short.MAX_VALUE))
-                    .addComponent(tableContas))
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tfRefinarNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(tableContas, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-
-        tpGuia.addTab("Lista de Contas", jPanel2);
-
-        asdfascfvf.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                asdfascfvfMouseClicked(evt);
-            }
-        });
-
-        tablePrazo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        asdfascfvf.setViewportView(tablePrazo);
-
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
-
-        jbPagar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jbPagar.setText("Pagar Parcela");
-        jbPagar.setEnabled(false);
-        jbPagar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbPagarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jbPagar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jbPagar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(asdfascfvf, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(286, 286, 286)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(asdfascfvf, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-        );
-
-        tpGuia.addTab("Lista de Parcelas", jPanel4);
-
-        tableFornecedor.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        tableFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableFornecedorMouseClicked(evt);
-            }
-        });
-        tableFornecedor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tableFornecedorKeyReleased(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tableFornecedor);
-
-        tfChave2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Refinar Pesquisa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
-        tfChave2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfChave2ActionPerformed(evt);
-            }
-        });
-        tfChave2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tfChave2KeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfChave2KeyTyped(evt);
-            }
-        });
-
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de Seleção", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
-
-        jButton6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton6.setText("Selecionar Fornecedor");
-        jButton6.setEnabled(false);
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(tfChave2, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(256, 256, 256))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tfChave2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        tpGuia.addTab("Lista de Fornecedores", jPanel5);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Gerenciar Contas");
@@ -696,48 +363,7 @@ public class FRMContas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private DefaultTableModel criaTabela() {
-        DefaultTableModel dTable = new DefaultTableModel() {
-            Class[] types = new Class[]{
-                java.lang.Integer.class,
-                java.lang.String.class,
-                java.lang.String.class,
-                java.lang.Double.class,
-                java.lang.String.class,
-                java.lang.String.class,
-                java.lang.String.class,
-                java.lang.String.class,};
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false, false, false};
 
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        ;
-
-        };
-    return dTable;
-    }
-
-    private void preencheTabela() {
-        dTable = criaTabela();
-        dTable.addColumn("Código");
-        dTable.addColumn("Nome");
-        dTable.addColumn("Telefone");
-        dTable.addColumn("Email");
-        dTable.addColumn("CNPJ/CPF");
-        dTable.addColumn("Anotações");
-        fDados = forCon.listarALL();
-
-        for (FornecedorBEAN d : fDados) {
-            dTable.addRow(new Object[]{d.getForCodigo(), d.getForNomeEmpresa(),
-                d.getForTelefoneContato(), d.getForEmail(), d.getForCNPJ(),
-                d.getForAnotacoes()});
-        }
-
-        tableFornecedor.setModel(dTable);
-    }
     private void limparCampos() {
         lbCodNota.setText("...");
         lbForCod.setText("...");
@@ -751,48 +377,6 @@ private DefaultTableModel criaTabela() {
         btEditar.setEnabled(false);
     }
     
-    private DefaultTableModel criaTabela3() {
-        DefaultTableModel dTable = new DefaultTableModel() {
-            Class[] types = new Class[]{
-                java.lang.Integer.class,
-                java.lang.String.class,
-                java.lang.String.class,
-                java.lang.Double.class,
-                java.lang.String.class,
-                java.lang.String.class,
-                java.lang.String.class,
-                java.lang.String.class,};
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false, false, false};
-
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        ;
-
-        };
-    return dTable;
-    }
-
-    private void preencheTabelaFor() {
-        dtFornecedores = criaTabela3();
-        dtFornecedores.addColumn("Código");
-        dtFornecedores.addColumn("Nome");
-        dtFornecedores.addColumn("Telefone");
-        dtFornecedores.addColumn("Email");
-        dtFornecedores.addColumn("CNPJ/CPF");
-        dtFornecedores.addColumn("Anotações");
-
-
-        for (FornecedorBEAN d : cFor.listarALL()) {
-            dtFornecedores.addRow(new Object[]{d.getForCodigo(), d.getForNomeEmpresa(),
-                d.getForTelefoneContato(), d.getForEmail(), d.getForCNPJ(),
-                d.getForAnotacoes()});
-        }
-
-        tableFornecedor.setModel(dtFornecedores);
-    }
 
     private boolean verificaCampos2() {
         if (tfPrecoUnit.getText().equals("") || tfQtde.getText().equals("")
@@ -869,39 +453,8 @@ private DefaultTableModel criaTabela() {
         resultado();
     }
 
-    private void preecheTabelaPrazos() {
-        dtPrazos = criaTabelaPrazos();
-        dtPrazos.addColumn("Num.Parcela");
-        dtPrazos.addColumn("Data");
-        dtPrazos.addColumn("Preço-Parcela");
+ 
 
-        for (ContaAPrazoBEAN n : insert) {
-            dtPrazos.addRow(new Object[]{n.getCapNumParcela(), n.getCapData(), n.getCapValorParcela()});
-        }
-        tableContaPrazos.setModel(dtPrazos);
-    }
-
-    private DefaultTableModel criaTabelaPrazos() {
-        //sempre que usar JTable é necessário ter um DefaulttableModel
-        DefaultTableModel dTable2 = new DefaultTableModel() {
-            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
-            Class[] types = new Class[]{
-                java.lang.Integer.class,
-                java.lang.String.class,
-                java.lang.Float.class,};
-            //define se os campos podem ser editados na propria tabela
-            boolean[] canEdit = new boolean[]{
-                false, false, false};
-
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        ;
-        };
-        //retorna o DefaultTableModel
-    return dTable2;
-    }
 
     private void cadastroNormal() {
         ContaBEAN ndc = new ContaBEAN();
@@ -928,93 +481,11 @@ private DefaultTableModel criaTabela() {
         cCaixa.editar(caixa);
 
         limparCampos();
-        preencheTabelaContas();
     }
 
-    private void preencheTabelaContas() {
-        dtContas = criaTabelaContas();
-        dtContas.addColumn("Código");
-        dtContas.addColumn("Descrição");
-        dtContas.addColumn("Fornecedor");
-        dtContas.addColumn("Data");
-        dtContas.addColumn("Preço Total");
-        dtContas.addColumn("Numero de Parcelas");
-        dtContas.addColumn("Entrada");
+   
 
-        for (ContaBEAN n : cContas.listarALL()) {
-            dtContas.addRow(new Object[]{n.getConCodigo(), n.getConDescricao(),
-                n.getFornecedor().getForNomeEmpresa(), n.getConData(), n.getConValorTotal(),
-                n.getConNparcelas(), n.getConEntrada()});
-        }
-        tableNotas.setModel(dtContas);
-    }
-
-    private DefaultTableModel criaTabelaContas() {
-        DefaultTableModel dTable = new DefaultTableModel() {
-            Class[] types = new Class[]{
-                java.lang.Integer.class,
-                java.lang.String.class,
-                java.lang.String.class,
-                java.lang.String.class,
-                java.lang.Float.class,
-                java.lang.Integer.class,
-                java.lang.Float.class
-
-            };
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false};
-
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        ;
-        };
-    return dTable;
-    }
-
-    private void preencheTabelaContaAPrazo(int cod) {
-        dtContasPrazo = criaTabelaContaPrazos();
-        dtContasPrazo.addColumn("Código");
-        dtContasPrazo.addColumn("Data");
-        dtContasPrazo.addColumn("Valor da Parcela");
-        dtContasPrazo.addColumn("Numero da Parcela");
-        dtContasPrazo.addColumn("Codigo da Nota De Compra");
-        dtContasPrazo.addColumn("Situação");
-        for (ContaAPrazoBEAN n : cCap.listarALL()) {
-            if (n.getConta().getConCodigo() == cod) {
-                dtContasPrazo.addRow(new Object[]{n.getCapCodigo(), n.getCapData(), n.getCapValorParcela(),
-                    n.getCapNumParcela(), n.getConta().getConCodigo(), n.getCapSituacao()});
-            }
-        }
-
-        tablePrazo.setModel(dtContasPrazo);
-    }
-
-    private DefaultTableModel criaTabelaContaPrazos() {
-        DefaultTableModel dTable = new DefaultTableModel() {
-            Class[] types = new Class[]{
-                java.lang.Integer.class,
-                java.lang.String.class,
-                java.lang.Float.class,
-                java.lang.Integer.class,
-                java.lang.Integer.class,
-                java.lang.String.class
-
-            };
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false};
-
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        ;
-
-        };
-    return dTable;
-    }
-
+    
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int t = Integer.parseInt(tfNParcelas.getText());
@@ -1057,59 +528,6 @@ private DefaultTableModel criaTabela() {
     private void tfPrecoTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPrecoTTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfPrecoTTActionPerformed
-
-    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        limparCampos();
-        tpGuia.setSelectedIndex(0);
-        if (tableNotas.getSelectedRow() != -1) {
-            ContaBEAN n = cContas.localizar(Integer.parseInt(tableNotas.getValueAt(tableNotas.getSelectedRow(), 0).toString()));
-            lbCodNota.setText(String.valueOf(n.getConCodigo()));
-            lbForCod.setText(String.valueOf(n.getFornecedor().getForCodigo()));
-            tfPrecoUnit.setText(String.valueOf(n.getConCustoUnitario()));
-            tfQtde.setText(String.valueOf(n.getConQtdComprada()));
-            tfValorEntrada.setText(String.valueOf(n.getConEntrada()));
-            tfPrecoTT.setText(String.valueOf(n.getConValorTotal()));
-            tfDataCompra.setText(String.valueOf(n.getConData()));
-            tfNParcelas.setText(String.valueOf(n.getConNparcelas()));
-            btEditar.setEnabled(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro, nota não disponível no estoque");
-        }
-    }//GEN-LAST:event_btEditarActionPerformed
-
-    private void btLocParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLocParcelaActionPerformed
-        tpGuia.setSelectedIndex(2);
-        cod = (Integer.parseInt(tableNotas.getValueAt(tableNotas.getSelectedRow(), 0).toString()));
-        preencheTabelaContaAPrazo(cod);
-
-
-    }//GEN-LAST:event_btLocParcelaActionPerformed
-
-    private void asdfascfvfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_asdfascfvfMouseClicked
-        if (tablePrazo.getSelectedRow() != -1) {
-            ContaAPrazoBEAN j = cCap.localizar(Integer.parseInt(tablePrazo.getValueAt(tablePrazo.getSelectedRow(), 0).toString()));
-            lbCodPar.setText(String.valueOf(j.getCapCodigo()));
-            tfDataParcelas2.setText(String.valueOf(j.getCapData()));
-            tfPrecoParcela2.setText(String.valueOf(j.getCapValorParcela()));
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro, nota não disponível no estoque");
-        }
-    }//GEN-LAST:event_asdfascfvfMouseClicked
-
-    private void jbPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPagarActionPerformed
-        ContaAPrazoBEAN j = cCap.localizar(Integer.parseInt(lbCodPar.getText()));
-        j.setCapSituacao("Paga");
-        boolean retorno = cCap.editar(j);
-        if (retorno == true) {
-            JOptionPane.showMessageDialog(null, "Nota MODIFICADA com sucesso");
-            preecheTabelaPrazos();
-            preencheTabelaContas();
-            this.limparCampos();
-        } else {
-            JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
-        }
-
-    }//GEN-LAST:event_jbPagarActionPerformed
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
         int z = verificarInserir();
@@ -1163,76 +581,9 @@ private DefaultTableModel criaTabela() {
             JOptionPane.showMessageDialog(null, "Erro! Insira todos os valores");
         }
     }
-    private void btLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLocalizarActionPerformed
-        preecheTabelaPrazos();
-        preencheTabelaContas();
-        tpGuia.setSelectedIndex(1);
-    }//GEN-LAST:event_btLocalizarActionPerformed
-
-    private void tableFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableFornecedorMouseClicked
-        limparCampos();
-        if (tableFornecedor.getSelectedRow() != -1) {
-            FornecedorBEAN f = cFor.localizar(Integer.parseInt(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 0).toString()));
-            lbForCod.setText(String.valueOf(f.getForCodigo()));
-        }
-    }//GEN-LAST:event_tableFornecedorMouseClicked
-
-    private void tableFornecedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableFornecedorKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tableFornecedorKeyReleased
-
-    private void tfChave2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfChave2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfChave2ActionPerformed
-
-    private void tfChave2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave2KeyPressed
-
-    }//GEN-LAST:event_tfChave2KeyPressed
-
-    private void tfChave2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChave2KeyTyped
-        TableRowSorter sorter = null;
-        DefaultTableModel model = (DefaultTableModel) tbFuncionario.getModel();
-        sorter = new TableRowSorter<TableModel>(model);
-        tbFuncionario.setRowSorter(sorter);
-        String text = tfChave.getText();
-        if (text.length() == 0) {
-            sorter.setRowFilter(null);
-        } else {
-            sorter.setRowFilter(RowFilter.regexFilter(text));
-        }
-    }//GEN-LAST:event_tfChave2KeyTyped
-
-    private void btClonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClonarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btClonarActionPerformed
-
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btCancelarActionPerformed
-
-    private void tfRefinarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfRefinarNotaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfRefinarNotaActionPerformed
-
-    private void tfRefinarNotaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfRefinarNotaKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfRefinarNotaKeyPressed
-
-    private void tfRefinarNotaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfRefinarNotaKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfRefinarNotaKeyTyped
-
-    private void tableContasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableContasMouseClicked
-
-    }//GEN-LAST:event_tableContasMouseClicked
-
-    private void tableNotasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableNotasMouseClicked
-        if (tableNotas.getSelectedRow() != -1) {
-            btLocParcela.setEnabled(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro, nota não disponível no estoque");
-        }
-    }//GEN-LAST:event_tableNotasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1270,22 +621,12 @@ private DefaultTableModel criaTabela() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane asdfascfvf;
     private javax.swing.JButton btCadastrar;
     private javax.swing.JButton btCancelar;
-    private javax.swing.JButton btClonar;
-    private javax.swing.JButton btEditar;
-    private javax.swing.JButton btLocParcela;
-    private javax.swing.JButton btLocalizar;
     private javax.swing.JButton btNovoDado;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
@@ -1295,30 +636,15 @@ private DefaultTableModel criaTabela() {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JButton jbPagar;
     private javax.swing.JPanel jpCompra;
-    private javax.swing.JLabel lbCodNota;
     private javax.swing.JTable tableContaPrazos;
-    private javax.swing.JScrollPane tableContas;
-    private javax.swing.JTable tableFornecedor;
-    private javax.swing.JTable tableNotas;
-    private javax.swing.JTable tablePrazo;
-    private javax.swing.JTextField tfChave2;
     private javax.swing.JFormattedTextField tfDataCompra;
     private javax.swing.JTextField tfNParcelas;
     private javax.swing.JTextField tfPrecoTT;
-    private javax.swing.JTextField tfRefinarNota;
     private javax.swing.JTextField tfValorEntrada;
     private javax.swing.JTabbedPane tpGuia;
     // End of variables declaration//GEN-END:variables

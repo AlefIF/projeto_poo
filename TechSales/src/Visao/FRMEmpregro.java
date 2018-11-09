@@ -41,7 +41,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tpGuia = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         lbCod = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -49,10 +49,10 @@ public class FRMEmpregro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         tfSalario = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
-        btCadastrar = new javax.swing.JButton();
+        btGravar = new javax.swing.JButton();
         btVoltar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btCancelar = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -63,7 +63,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btEditar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btClonar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         tfChave = new javax.swing.JTextField();
 
@@ -93,14 +93,14 @@ public class FRMEmpregro extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
-        btCadastrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btCadastrar.setText("Gravar");
-        btCadastrar.setEnabled(false);
-        btCadastrar.setMaximumSize(new java.awt.Dimension(73, 23));
-        btCadastrar.setMinimumSize(new java.awt.Dimension(73, 23));
-        btCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        btGravar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btGravar.setText("Gravar");
+        btGravar.setEnabled(false);
+        btGravar.setMaximumSize(new java.awt.Dimension(73, 23));
+        btGravar.setMinimumSize(new java.awt.Dimension(73, 23));
+        btGravar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCadastrarActionPerformed(evt);
+                btGravarActionPerformed(evt);
             }
         });
 
@@ -114,13 +114,28 @@ public class FRMEmpregro extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton3.setText("Novo Dado");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton4.setText("cancelar");
-        jButton4.setEnabled(false);
+        btCancelar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btCancelar.setText("cancelar");
+        btCancelar.setEnabled(false);
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         jButton5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton5.setText("Localizar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -130,9 +145,9 @@ public class FRMEmpregro extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btGravar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(btCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -144,10 +159,10 @@ public class FRMEmpregro extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -155,6 +170,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setText("salário padrão:");
 
+        tfDescricao.setEditable(false);
         tfDescricao.setColumns(20);
         tfDescricao.setRows(5);
         tfDescricao.setEnabled(false);
@@ -203,7 +219,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Cadastrar emprego", jPanel1);
+        tpGuia.addTab("Cadastrar emprego", jPanel1);
 
         tabelaEmprego.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tabelaEmprego.setModel(new javax.swing.table.DefaultTableModel(
@@ -244,9 +260,9 @@ public class FRMEmpregro extends javax.swing.JFrame {
         btExcluir.setText("Excluir");
         btExcluir.setEnabled(false);
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton1.setText("Clonar dados");
-        jButton1.setEnabled(false);
+        btClonar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btClonar.setText("Clonar dados");
+        btClonar.setEnabled(false);
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton2.setText("Excluir todos");
@@ -259,7 +275,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btEditar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btClonar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btExcluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -273,7 +289,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btClonar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -320,13 +336,13 @@ public class FRMEmpregro extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Listar Emprego", jPanel2);
+        tpGuia.addTab("Listar Emprego", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(tpGuia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
@@ -337,7 +353,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(tpGuia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -362,7 +378,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
         fun.setVisible(true);
     }//GEN-LAST:event_btVoltarActionPerformed
 
-    private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
+    private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
         if (verificaCampos() == false) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         } else {
@@ -371,7 +387,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
             limpaCampos();
             JOptionPane.showMessageDialog(null, "Emprego CADASTRADO com sucesso");
         }
-    }//GEN-LAST:event_btCadastrarActionPerformed
+    }//GEN-LAST:event_btGravarActionPerformed
 
     private void tfSalarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfSalarioKeyTyped
         String caracteres = "0123456789.";
@@ -404,6 +420,46 @@ public class FRMEmpregro extends javax.swing.JFrame {
             sorter.setRowFilter(RowFilter.regexFilter(text));
         }
     }//GEN-LAST:event_tfChaveKeyTyped
+    private void limpaBotoes() {
+        btGravar.setEnabled(false);
+        btCancelar.setEnabled(false);
+        btEditar.setEnabled(false);
+        btClonar.setEnabled(false);
+        btExcluir.setEnabled(false);
+    }
+
+    private void habilitaCampos() {
+        tfFuncao.setEnabled(true);
+        tfSalario.setEnabled(true);
+        tfDescricao.setEnabled(true);
+        tfDescricao.setEditable(true);
+
+        btCancelar.setEnabled(true);
+        btGravar.setEnabled(true);
+    }
+
+    private void desabilitaCampos() {
+        tfFuncao.setEnabled(false);
+        tfSalario.setEnabled(false);
+        tfDescricao.setEnabled(false);
+        tfDescricao.setEditable(false);
+
+    }
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        limpaBotoes();
+        limpaCampos();
+        habilitaCampos();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        limpaBotoes();
+        limpaCampos();
+        desabilitaCampos();
+    }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        tpGuia.setSelectedIndex(1);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void exclu() {
         boolean retorno = ec.remover(Integer.parseInt(lbCod.getText()));
@@ -415,6 +471,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ERRO na exclusão");
         }
     }
+
     private void edit() {
         EmpregoBEAN c = ec.localizarCodigo(Integer.parseInt(lbCod.getText()));
         c.setEmpNome(tfFuncao.getText());
@@ -431,6 +488,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
         }
     }
+
     public void limpaCampos() {
         lbCod.setText("...");
         tfFuncao.setText("");
@@ -535,14 +593,14 @@ public class FRMEmpregro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btCadastrar;
+    private javax.swing.JButton btCancelar;
+    private javax.swing.JButton btClonar;
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btExcluir;
+    private javax.swing.JButton btGravar;
     private javax.swing.JButton btVoltar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -554,12 +612,12 @@ public class FRMEmpregro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lbCod;
     private javax.swing.JTable tabelaEmprego;
     private javax.swing.JTextField tfChave;
     private javax.swing.JTextArea tfDescricao;
     private javax.swing.JTextField tfFuncao;
     private javax.swing.JTextField tfSalario;
+    private javax.swing.JTabbedPane tpGuia;
     // End of variables declaration//GEN-END:variables
 }

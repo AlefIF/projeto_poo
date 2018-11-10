@@ -49,7 +49,7 @@ public class FRMFornecedor extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel13 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tpGuia = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -86,17 +86,17 @@ public class FRMFornecedor extends javax.swing.JFrame {
         tfCidade = new javax.swing.JTextField();
         tfEstado = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        btCadastrar = new javax.swing.JButton();
+        btGravar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        btCancela = new javax.swing.JButton();
+        btCancelar = new javax.swing.JButton();
         btVoltar1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btLocaliza = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableFornecedor = new javax.swing.JTable();
         tfChave = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
-        btEditar1 = new javax.swing.JButton();
+        btEditar = new javax.swing.JButton();
         btClonar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -186,26 +186,28 @@ public class FRMFornecedor extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(tfCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(58, 58, 58))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel7)
-                                .addGap(18, 18, 18)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfEmail)))
+                                .addGap(10, 10, 10))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel3))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tfCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                            .addComponent(tfEmail))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -339,24 +341,29 @@ public class FRMFornecedor extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
-        btCadastrar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btCadastrar.setText("Gravar");
-        btCadastrar.setEnabled(false);
-        btCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        btGravar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btGravar.setText("Gravar");
+        btGravar.setEnabled(false);
+        btGravar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCadastrarActionPerformed(evt);
+                btGravarActionPerformed(evt);
             }
         });
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setText("Novo Dado");
-
-        btCancela.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btCancela.setText("Cancelar");
-        btCancela.setEnabled(false);
-        btCancela.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCancelaActionPerformed(evt);
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        btCancelar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btCancelar.setText("Cancelar");
+        btCancelar.setEnabled(false);
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
             }
         });
 
@@ -368,9 +375,13 @@ public class FRMFornecedor extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton2.setText("Localizar");
-        jButton2.setEnabled(false);
+        btLocaliza.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btLocaliza.setText("Localizar");
+        btLocaliza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLocalizaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -380,11 +391,11 @@ public class FRMFornecedor extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btCancela, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btLocaliza, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(btVoltar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -398,9 +409,9 @@ public class FRMFornecedor extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btCancela, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btLocaliza, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(btVoltar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -434,7 +445,7 @@ public class FRMFornecedor extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Cadastar Fornecedor", jPanel5);
+        tpGuia.addTab("Cadastar Fornecedor", jPanel5);
 
         tableFornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -461,6 +472,9 @@ public class FRMFornecedor extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfChaveKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfChaveKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfChaveKeyTyped(evt);
             }
@@ -468,13 +482,13 @@ public class FRMFornecedor extends javax.swing.JFrame {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Menu de Seleção", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
-        btEditar1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btEditar1.setText("Editar");
-        btEditar1.setToolTipText("");
-        btEditar1.setEnabled(false);
-        btEditar1.addActionListener(new java.awt.event.ActionListener() {
+        btEditar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btEditar.setText("Editar");
+        btEditar.setToolTipText("");
+        btEditar.setEnabled(false);
+        btEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEditar1ActionPerformed(evt);
+                btEditarActionPerformed(evt);
             }
         });
 
@@ -494,7 +508,7 @@ public class FRMFornecedor extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btClonar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -504,7 +518,7 @@ public class FRMFornecedor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btClonar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -538,13 +552,13 @@ public class FRMFornecedor extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Lista de Fornecedores", jPanel6);
+        tpGuia.addTab("Lista de Fornecedores", jPanel6);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tpGuia)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -556,7 +570,7 @@ public class FRMFornecedor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel13)
                 .addGap(10, 10, 10)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
+                .addComponent(tpGuia))
         );
 
         pack();
@@ -640,27 +654,28 @@ public class FRMFornecedor extends javax.swing.JFrame {
         tfEstado.setText("");
         tfPais.setText("");
 
-        btExcluir.setEnabled(false);
-        btEditar.setEnabled(false);
-
-        tfCNPJ.setEnabled(false);
-
     }
 
     private int verificaCPFCNPJ() {
         int cod = 0;
         for (FornecedorBEAN f : forCon.listarALL()) {
             if (f.getForCNPJ().equals(tfCNPJ.getText())) {
-                cod = f.getForCodigo();
+                try {
+                    if (f.getForCodigo() != (Integer.valueOf(lbCodigo.getText()))) {
+                        cod = f.getForCodigo();
+                    }
+                } catch (Exception e) {
+                    cod = 1;
+                }
+
             }
         }
         return cod;
     }
-    private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
+
+    private void cad() {
         int c = verificaCPFCNPJ();
-        if (verificaCampos() == false) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-        } else if (c == 0) {
+        if (c == 0) {
             FornecedorBEAN f = new FornecedorBEAN();
             f.setForNomeEmpresa(tfNome.getText());
             f.setForTelefoneContato(tfTelefone.getText());
@@ -679,21 +694,36 @@ public class FRMFornecedor extends javax.swing.JFrame {
             f.setEndereco(end);
 
             forCon.cadastrar(f);
-            this.preencheTabela();
             limpaCampos();
+            limpaBotoes();
+            desabilitaCampos();
+            preencheTabela();
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+
         } else {
-            JOptionPane.showMessageDialog(null, "Cpf ou CNPJ já cadastrado no sistema. Código: " + c);
+            JOptionPane.showMessageDialog(null, "Cpf ou CNPJ já cadastrado no sistema.");
         }
-    }//GEN-LAST:event_btCadastrarActionPerformed
+
+    }
+    private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
+        if (verificaCampos()) {
+            if (lbCodigo.getText().equals("...")) {
+                edit();
+            } else {
+                cad();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        }
+
+    }//GEN-LAST:event_btGravarActionPerformed
 
     private void edit() {
         int c = verificaCPFCNPJ();
         if (c == (Integer.valueOf(lbCodigo.getText()))) {
             c = 0;
         }
-        if (verificaCampos() == false) {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-        } else if (c == 0) {
+        if (c == 0) {
             FornecedorBEAN f = forCon.localizar(Integer.parseInt(lbCodigo.getText()));
             f.setForNomeEmpresa(tfNome.getText());
             f.setForTelefoneContato(tfTelefone.getText());
@@ -709,36 +739,21 @@ public class FRMFornecedor extends javax.swing.JFrame {
             f.getEndereco().setEndPais(tfPais.getText());
 
             forCon.editar(f);
-
-            this.preencheTabela();
             limpaCampos();
+            limpaBotoes();
+            desabilitaCampos();
+            preencheTabela();
+            JOptionPane.showMessageDialog(null, "Editado com sucesso");
         } else {
             JOptionPane.showMessageDialog(null, "Cpf ou CNPJ já cadastrado no sistema. Código: " + c);
         }
     }
 
     private void tableFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableFornecedorMouseClicked
-        limpaCampos();
         if (tableFornecedor.getSelectedRow() != -1) {
-            FornecedorBEAN f = forCon.localizar(Integer.parseInt(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 0).toString()));
 
-            lbCodigo.setText(String.valueOf(f.getForCodigo()));
-            tfNome.setText(f.getForNomeEmpresa());
-            tfTelefone.setText(f.getForTelefoneContato());
-            tfEmail.setText(f.getForEmail());
-            tfCNPJ.setText(f.getForCNPJ());
-            tfanotacao.setText(f.getForAnotacoes());
-
-            tfRua.setText(f.getEndereco().getEndRua());
-            tfNumero.setText(String.valueOf(f.getEndereco().getEndNumero()));
-            tfBairro.setText(f.getEndereco().getEndBairro());
-            tfCidade.setText(f.getEndereco().getEndCidade());
-            tfEstado.setText(f.getEndereco().getEndEstado());
-            tfPais.setText(f.getEndereco().getEndPais());
-
-            tfCNPJ.setEnabled(true);
-            btExcluir.setEnabled(true);
             btEditar.setEnabled(true);
+            btClonar.setEnabled(true);
         }
     }//GEN-LAST:event_tableFornecedorMouseClicked
 
@@ -796,37 +811,122 @@ public class FRMFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_tfChaveKeyPressed
 
     private void tfChaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyTyped
-        TableRowSorter sorter = null;
-        DefaultTableModel model = (DefaultTableModel) tableConsole.getModel();
-        sorter = new TableRowSorter<TableModel>(model);
-        tableConsole.setRowSorter(sorter);
-        String text = tfChave.getText();
-        sorter.setRowFilter(RowFilter.regexFilter(text));
+
     }//GEN-LAST:event_tfChaveKeyTyped
 
-    private void btEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditar1ActionPerformed
-        if (tableConsole.getSelectedRow() != -1) {
-            lbCodCon.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 0).toString());
-            tfNome.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 1).toString());
-            tfMarca.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 2).toString());
-        }
-    }//GEN-LAST:event_btEditar1ActionPerformed
+    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
+        limpaCampos();
+        habilitaCampos();
+        FornecedorBEAN f = forCon.localizar(Integer.parseInt(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 0).toString()));
+        lbCodigo.setText(String.valueOf(f.getForCodigo()));
+        tfNome.setText(f.getForNomeEmpresa());
+        tfTelefone.setText(f.getForTelefoneContato());
+        tfEmail.setText(f.getForEmail());
+        tfCNPJ.setText(f.getForCNPJ());
+        tfanotacao.setText(f.getForAnotacoes());
+
+        tfRua.setText(f.getEndereco().getEndRua());
+        tfNumero.setText(String.valueOf(f.getEndereco().getEndNumero()));
+        tfBairro.setText(f.getEndereco().getEndBairro());
+        tfCidade.setText(f.getEndereco().getEndCidade());
+        tfEstado.setText(f.getEndereco().getEndEstado());
+        tfPais.setText(f.getEndereco().getEndPais());
+
+        tpGuia.setSelectedIndex(0);
+    }//GEN-LAST:event_btEditarActionPerformed
 
     private void btClonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClonarActionPerformed
-        if (tableConsole.getSelectedRow() != -1) {
-            tfNome.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 1).toString());
-            tfMarca.setText(tableConsole.getValueAt(tableConsole.getSelectedRow(), 2).toString());
-        }
+        limpaCampos();
+        habilitaCampos();
+        FornecedorBEAN f = forCon.localizar(Integer.parseInt(tableFornecedor.getValueAt(tableFornecedor.getSelectedRow(), 0).toString()));
+        tfNome.setText(f.getForNomeEmpresa());
+        tfTelefone.setText(f.getForTelefoneContato());
+        tfEmail.setText(f.getForEmail());
+        tfCNPJ.setText(f.getForCNPJ());
+        tfanotacao.setText(f.getForAnotacoes());
+
+        tfRua.setText(f.getEndereco().getEndRua());
+        tfNumero.setText(String.valueOf(f.getEndereco().getEndNumero()));
+        tfBairro.setText(f.getEndereco().getEndBairro());
+        tfCidade.setText(f.getEndereco().getEndCidade());
+        tfEstado.setText(f.getEndereco().getEndEstado());
+        tfPais.setText(f.getEndereco().getEndPais());
+
+        tpGuia.setSelectedIndex(0);
     }//GEN-LAST:event_btClonarActionPerformed
 
-    private void btCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelaActionPerformed
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         limpaBotoes();
-        limparCampos();
-    }//GEN-LAST:event_btCancelaActionPerformed
+        limpaCampos();
+        desabilitaCampos();
+    }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btVoltar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltar1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_btVoltar1ActionPerformed
+    private void limpaBotoes() {
+        btGravar.setEnabled(false);
+        btCancelar.setEnabled(false);
+        btEditar.setEnabled(false);
+        btClonar.setEnabled(false);
+    }
+
+    private void habilitaCampos() {
+        tfNome.setEnabled(true);
+        tfTelefone.setEnabled(true);
+        tfEmail.setEnabled(true);
+        cbTipo.setEnabled(true);
+        tfCNPJ.setEnabled(true);
+        tfanotacao.setEnabled(true);
+
+        tfRua.setEnabled(true);
+        tfCidade.setEnabled(true);
+        tfEstado.setEnabled(true);
+        tfNumero.setEnabled(true);
+        tfBairro.setEnabled(true);
+        tfPais.setEnabled(true);
+
+        btCancelar.setEnabled(true);
+        btGravar.setEnabled(true);
+    }
+
+    private void desabilitaCampos() {
+        tfNome.setEnabled(false);
+        tfTelefone.setEnabled(false);
+        tfEmail.setEnabled(false);
+        cbTipo.setEnabled(false);
+        tfCNPJ.setEnabled(false);
+        tfanotacao.setEnabled(false);
+
+        tfRua.setEnabled(false);
+        tfCidade.setEnabled(false);
+        tfEstado.setEnabled(false);
+        tfNumero.setEnabled(false);
+        tfBairro.setEnabled(false);
+        tfPais.setEnabled(false);
+
+        btCancelar.setEnabled(false);
+        btGravar.setEnabled(false);
+    }
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        limpaBotoes();
+        limpaCampos();
+        habilitaCampos();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btLocalizaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLocalizaActionPerformed
+        tpGuia.setSelectedIndex(1);
+    }//GEN-LAST:event_btLocalizaActionPerformed
+
+    private void tfChaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyReleased
+        TableRowSorter sorter = null;
+        DefaultTableModel model = (DefaultTableModel) tableFornecedor.getModel();
+        sorter = new TableRowSorter<TableModel>(model);
+        tableFornecedor.setRowSorter(sorter);
+        String text = tfChave.getText();
+        sorter.setRowFilter(RowFilter.regexFilter(text));
+    }//GEN-LAST:event_tfChaveKeyReleased
 
     /**
      * @param args the command line arguments
@@ -864,14 +964,14 @@ public class FRMFornecedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btCadastrar;
-    private javax.swing.JButton btCancela;
+    private javax.swing.JButton btCancelar;
     private javax.swing.JButton btClonar;
-    private javax.swing.JButton btEditar1;
+    private javax.swing.JButton btEditar;
+    private javax.swing.JButton btGravar;
+    private javax.swing.JButton btLocaliza;
     private javax.swing.JButton btVoltar1;
     private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -893,7 +993,6 @@ public class FRMFornecedor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lbCodigo;
     private javax.swing.JTable tableFornecedor;
     private javax.swing.JTextField tfBairro;
@@ -908,5 +1007,6 @@ public class FRMFornecedor extends javax.swing.JFrame {
     private javax.swing.JTextField tfRua;
     private javax.swing.JTextField tfTelefone;
     private javax.swing.JTextArea tfanotacao;
+    private javax.swing.JTabbedPane tpGuia;
     // End of variables declaration//GEN-END:variables
 }

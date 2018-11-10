@@ -175,7 +175,6 @@ public class FRMEmpregro extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setText("salário padrão:");
 
-        tfDescricao.setEditable(false);
         tfDescricao.setColumns(20);
         tfDescricao.setRows(5);
         tfDescricao.setEnabled(false);
@@ -457,7 +456,6 @@ public class FRMEmpregro extends javax.swing.JFrame {
         tfFuncao.setEnabled(true);
         tfSalario.setEnabled(true);
         tfDescricao.setEnabled(true);
-        tfDescricao.setEditable(true);
 
         btCancelar.setEnabled(true);
         btGravar.setEnabled(true);
@@ -580,7 +578,6 @@ public class FRMEmpregro extends javax.swing.JFrame {
         if (retorno == true) {
             JOptionPane.showMessageDialog(null, "Emprego MODIFICADO com sucesso");
             this.preencheTabela();
-            this.limpaCampos();
         } else {
             JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
         }
@@ -610,7 +607,6 @@ public class FRMEmpregro extends javax.swing.JFrame {
         emp.setEmpDescricao(tfDescricao.getText());
         ec.cadastrar(emp);
         this.preencheTabela();
-        limpaCampos();
         JOptionPane.showMessageDialog(null, "Emprego CADASTRADO com sucesso");
     }
 

@@ -736,9 +736,6 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         } else {
             editar();
         }
-        limpaCampos();
-        limpaBotoes();
-        desabilitaCampos();
     }//GEN-LAST:event_btGravarActionPerformed
 
     private void tfIdadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdadeKeyTyped
@@ -764,8 +761,6 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         } else if (c == 0) {
             if (e == 0) {
                 editar2();
-                this.preencheTabela();
-                limpaCampos();
             } else {
                 JOptionPane.showMessageDialog(null, "Pis já cadastrado no sistema. Código: " + e);
             }
@@ -1039,8 +1034,6 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         } else if (c == 0) {
             if (e == 0) {
                 cadastrar2();
-                this.preencheTabela();
-                limpaCampos();
             } else {
                 JOptionPane.showMessageDialog(null, "Pis já cadastrado no sistema.");
             }
@@ -1062,6 +1055,9 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                 vc.cadastrar(v);
             }
         }
+        limpaCampos();
+        limpaBotoes();
+        desabilitaCampos();
     }
 
     private void editar2() {
@@ -1097,6 +1093,9 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                 }
             }
         }
+        limpaCampos();
+        limpaBotoes();
+        desabilitaCampos();
     }
 
     public boolean verificaCampos() {

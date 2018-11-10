@@ -1156,14 +1156,14 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
                 }
             }
         }
-        /*
+        
         try {
             RelatoriosBEAN.notaDoAluguel(l);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
             Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (verificaCamposLoc1() && verificaCamposLoc2()) {

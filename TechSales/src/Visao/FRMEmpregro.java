@@ -126,7 +126,7 @@ public class FRMEmpregro extends javax.swing.JFrame {
         });
 
         btCancelar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btCancelar.setText("cancelar");
+        btCancelar.setText("Cancelar");
         btCancelar.setEnabled(false);
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -466,7 +466,6 @@ public class FRMEmpregro extends javax.swing.JFrame {
         tfSalario.setEnabled(false);
         tfDescricao.setEnabled(false);
         tfDescricao.setEditable(false);
-
     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         limpaBotoes();

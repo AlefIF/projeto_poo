@@ -563,7 +563,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
         });
 
         btEditParcela.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btEditParcela.setText("Recalcular Parcelas");
+        btEditParcela.setText("Recalcular");
         btEditParcela.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEditParcelaActionPerformed(evt);

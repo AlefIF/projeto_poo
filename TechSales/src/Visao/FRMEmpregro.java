@@ -409,10 +409,10 @@ public class FRMEmpregro extends javax.swing.JFrame {
             } else {
                 edit();
             }
+            limpaCampos();
+            limpaBotoes();
+            desabilitaCampos();
         }
-        limpaCampos();
-        limpaBotoes();
-        desabilitaCampos();
     }//GEN-LAST:event_btGravarActionPerformed
 
     private void tfSalarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfSalarioKeyTyped

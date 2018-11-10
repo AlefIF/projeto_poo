@@ -255,7 +255,7 @@ public class FRMMenuVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jbGerenciarCategoriaActionPerformed
 
     private void btRVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRVendaActionPerformed
-        FRMVenda frm = new FRMVenda();
+        FRMVendaNova frm = new FRMVendaNova();
         frm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btRVendaActionPerformed

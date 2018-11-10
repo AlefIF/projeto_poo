@@ -45,7 +45,6 @@ public class FRMListaDesejo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         tpGuia = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -60,7 +59,7 @@ public class FRMListaDesejo extends javax.swing.JFrame {
         tfMarca = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         tfCliCod = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lbCliNome = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableDesejo = new javax.swing.JTable();
@@ -100,6 +99,11 @@ public class FRMListaDesejo extends javax.swing.JFrame {
         btCancelar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.setEnabled(false);
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         btVoltar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btVoltar.setText("Fechar");
@@ -156,12 +160,15 @@ public class FRMListaDesejo extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfCliCodKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfCliCodKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfCliCodKeyTyped(evt);
             }
         });
 
-        jLabel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
+        lbCliNome.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -169,44 +176,43 @@ public class FRMListaDesejo extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfNome)
-                            .addComponent(tfMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lbCodCon, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfCliCod, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(75, 75, 75))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 35, Short.MAX_VALUE))))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tfMarca)
+                                .addComponent(tfNome)))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(lbCodCon, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(tfCliCod, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lbCliNome, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbCodCon)
-                    .addComponent(tfCliCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbCliNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbCodCon)
+                        .addComponent(tfCliCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(tfMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(71, 71, 71)
+                .addGap(66, 66, 66)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -241,6 +247,9 @@ public class FRMListaDesejo extends javax.swing.JFrame {
         tfChave.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfChaveKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfChaveKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfChaveKeyTyped(evt);
@@ -321,7 +330,7 @@ public class FRMListaDesejo extends javax.swing.JFrame {
                     .addComponent(tfChave, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,141 +341,95 @@ public class FRMListaDesejo extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         tpGuia.addTab("Listar Desejos", jPanel8);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(130, 130, 130))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(tpGuia)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tpGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(tpGuia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(124, 124, 124)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tpGuia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btExcluiAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluiAllActionPerformed
-        ArrayList<CategoriaBEAN> catlista = new ArrayList<CategoriaBEAN>();
-
-        for (CategoriaBEAN c : catCon.listarALL()) {
-            for (JogoBEAN j : cjogo.listarALL()) {
-                if (c.getCatCodigo() == j.getCat().getCatCodigo()) {
-                    catlista.add(c);
-                }
-            }
+        for (ListaDesejoBEAN c : cLista.listarALL()) {
+            cLista.remover(c.getLisCodigo());
         }
-        int i = 0;
-        for (CategoriaBEAN c : catCon.listarALL()) {
-            for (CategoriaBEAN cl : catlista) {
-                if (cl.getCatCodigo() == c.getCatCodigo()) {
-                    i++;
-                }
-            }
-            if (i == 0) {
-                catCon.remover(c.getCatCodigo());
-            }
-            i = 0;
-        }
-
+        JOptionPane.showMessageDialog(null, "Todos desejos excluidos com sucesso");
         preencheTabela();
-        try {
-            FRMJogo.povoaCombos();
-        } catch (Exception e) {
-
-        }
-        JOptionPane.showMessageDialog(null, "Todas as categorias não relacionadas a jogos foram excluidas com sucesso");
     }//GEN-LAST:event_btExcluiAllActionPerformed
 
     private void btClonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClonarActionPerformed
-        if (tableCategoria.getSelectedRow() != -1) {
-            tfNome.setText(tableCategoria.getValueAt(tableCategoria.getSelectedRow(), 1).toString());
-        }
-        limpaBotoes();
-        tfNome.setEnabled(true);
-        btGravar.setEnabled(true);
-        btCancela.setEnabled(true);
+        limparCampos();
+        habilitaCampos();
+        ListaDesejoBEAN l = cLista.localizar(Integer.parseInt(tableDesejo.getValueAt(tableDesejo.getSelectedRow(), 0).toString()));
+        tfCliCod.setText(String.valueOf(l.getCliente().getCliCodigo()));
+        lbCliNome.setText(String.valueOf(l.getCliente().getCliNome()));
+        tfNome.setText(l.getLisNomeJogo());
+        tfMarca.setText(l.getLisPlataforma());
+        tpGuia.setSelectedIndex(0);
     }//GEN-LAST:event_btClonarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         int cod = 0;
-        int i = 0;
-        if (tableCategoria.getSelectedRow() != -1) {
-            cod = (Integer.parseInt(tableCategoria.getValueAt(tableCategoria.getSelectedRow(), 0).toString()));
+        if (tableDesejo.getSelectedRow() != -1) {
+            cod = (Integer.parseInt(tableDesejo.getValueAt(tableDesejo.getSelectedRow(), 0).toString()));
         }
-        for (JogoBEAN j : cjogo.listarALL()) {
-            if (j.getCat().getCatCodigo() == cod) {
-                i = 1;
-            }
-        }
-        if (i == 0) {
-            boolean retorno = false;
-            retorno = catCon.remover(cod);
-            if (retorno == true) {
-                JOptionPane.showMessageDialog(null, "Categoria EXCLUÍDA com sucesso");
-                try {
-                    FRMJogo.povoaCombos();
-                } catch (Exception E) {
-
-                }
-                preencheTabela();
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "ERRO na exclusão, essa categoria esta sendo usada em um Jogo cadastrado");
+        boolean retorno = false;
+        retorno = cLista.remover(cod);
+        if (retorno == true) {
+            JOptionPane.showMessageDialog(null, "Categoria EXCLUÍDA com sucesso");
+            preencheTabela();
         }
         limpaBotoes();
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        if (tableCategoria.getSelectedRow() != -1) {
-            lbCodCat.setText(tableCategoria.getValueAt(tableCategoria.getSelectedRow(), 0).toString());
-            tfNome.setText(tableCategoria.getValueAt(tableCategoria.getSelectedRow(), 1).toString());
-        }
-        limpaBotoes();
-        btCancela.setEnabled(true);
-        tfNome.setEnabled(true);
-        btGravar.setEnabled(true);
+        limparCampos();
+        habilitaCampos();
+        ListaDesejoBEAN l = cLista.localizar(Integer.parseInt(tableDesejo.getValueAt(tableDesejo.getSelectedRow(), 0).toString()));
+        lbCodCon.setText(String.valueOf(l.getLisCodigo()));
+        tfCliCod.setText(String.valueOf(l.getCliente().getCliCodigo()));
+        lbCliNome.setText(String.valueOf(l.getCliente().getCliNome()));
+        tfNome.setText(l.getLisNomeJogo());
+        tfMarca.setText(l.getLisPlataforma());
+        tpGuia.setSelectedIndex(0);
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void tfChaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyTyped
+
+    }//GEN-LAST:event_tfChaveKeyTyped
+
+    private void tfChaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyReleased
         TableRowSorter sorter = null;
-        DefaultTableModel model = (DefaultTableModel) tableCategoria.getModel();
+        DefaultTableModel model = (DefaultTableModel) tableDesejo.getModel();
         sorter = new TableRowSorter<TableModel>(model);
-        tableCategoria.setRowSorter(sorter);
+        tableDesejo.setRowSorter(sorter);
         String text = tfChave.getText();
         if (text.length() == 0) {
             sorter.setRowFilter(null);
         } else {
             sorter.setRowFilter(RowFilter.regexFilter(text));
         }
-    }//GEN-LAST:event_tfChaveKeyTyped
+    }//GEN-LAST:event_tfChaveKeyReleased
 
     private void tfChaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyPressed
 
@@ -478,14 +441,28 @@ public class FRMListaDesejo extends javax.swing.JFrame {
 
     private void tableDesejoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDesejoMouseClicked
         if (tableDesejo.getSelectedRow() != -1) {
-            lbCodCon.setText(tableDesejo.getValueAt(tableDesejo.getSelectedRow(), 0).toString());
-            lbCliCod.setText(tableDesejo.getValueAt(tableDesejo.getSelectedRow(), 1).toString());
-            tfNome.setText(tableDesejo.getValueAt(tableDesejo.getSelectedRow(), 2).toString());
-            tfMarca.setText(tableDesejo.getValueAt(tableDesejo.getSelectedRow(), 3).toString());
             btEditar.setEnabled(true);
             btExcluir.setEnabled(true);
+            btClonar.setEnabled(true);
         }
     }//GEN-LAST:event_tableDesejoMouseClicked
+
+    private void tfCliCodKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCliCodKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCliCodKeyTyped
+
+    private void tfCliCodKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCliCodKeyReleased
+        try {
+            ClienteBEAN c = cCliente.localizarCodigo(Integer.parseInt(tfCliCod.getText()));
+            lbCliNome.setText(c.getCliNome());
+        } catch (Exception e) {
+            lbCliNome.setText("Cliente não encontrado");
+        }
+    }//GEN-LAST:event_tfCliCodKeyReleased
+
+    private void tfCliCodKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCliCodKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCliCodKeyPressed
 
     private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
         FRMMenuVendedor fun = new FRMMenuVendedor();
@@ -493,30 +470,43 @@ public class FRMListaDesejo extends javax.swing.JFrame {
         fun.setVisible(true);
     }//GEN-LAST:event_btVoltarActionPerformed
 
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        limpaBotoes();
+        limparCampos();
+        desabilitaCampos();
+    }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        limpaBotoes();
+        limparCampos();
+        habilitaCampos();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
         if (verificarCampos()) {
-            ListaDesejoBEAN d = new ListaDesejoBEAN();
-            d.setLisNomeJogo(tfNome.getText());
-            d.setLisPlataforma(tfMarca.getText());
-            ClienteBEAN c = cCliente.localizarCodigo(Integer.parseInt(lbCliCod.getText()));
-            d.setCliente(c);
-            cLista.cadastrar(d);
-            this.preencheTabela();
+            if (lbCodCon.getText().equals("...")) {
+                cad();
+            } else {
+                edit();
+            }
+            preencheTabela();
             limparCampos();
-            JOptionPane.showMessageDialog(null, "Desejo CADASTRADO com sucesso");
+            desabilitaCampos();
+            limpaBotoes();
         } else {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         }
     }//GEN-LAST:event_btGravarActionPerformed
 
-    private void tfCliCodKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCliCodKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfCliCodKeyPressed
-
-    private void tfCliCodKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCliCodKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfCliCodKeyTyped
-    private void limpaBotoes() {
+    private void cad() {
+        ListaDesejoBEAN d = new ListaDesejoBEAN();
+        d.setLisNomeJogo(tfNome.getText());
+        d.setLisPlataforma(tfMarca.getText());
+        ClienteBEAN c = cCliente.localizarCodigo(Integer.parseInt(tfCliCod.getText()));
+        d.setCliente(c);
+        cLista.cadastrar(d);
+        JOptionPane.showMessageDialog(null, "Desejo CADASTRADO com sucesso");
+    }    private void limpaBotoes() {
         btGravar.setEnabled(false);
         btCancelar.setEnabled(false);
         btEditar.setEnabled(false);
@@ -525,32 +515,29 @@ public class FRMListaDesejo extends javax.swing.JFrame {
     }
 
     private void habilitaCampos() {
-        tfFuncao.setEnabled(true);
-        tfSalario.setEnabled(true);
-        tfDescricao.setEnabled(true);
+        tfCliCod.setEnabled(true);
+        tfNome.setEnabled(true);
+        tfMarca.setEnabled(true);
 
         btCancelar.setEnabled(true);
         btGravar.setEnabled(true);
     }
 
     private void desabilitaCampos() {
-        tfFuncao.setEnabled(false);
-        tfSalario.setEnabled(false);
-        tfDescricao.setEnabled(false);
-        tfDescricao.setEditable(false);
+        tfCliCod.setEnabled(false);
+        tfNome.setEnabled(false);
+        tfMarca.setEnabled(false);
+
+        btCancelar.setEnabled(false);
+        btGravar.setEnabled(false);
 
     }
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        limpaBotoes();
-        limparCampos();
-        habilitaCampos();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void limparCampos() {
-        lbCodCon.setText("");
+        lbCodCon.setText("...");
         tfCliCod.setText("");
         tfNome.setText("");
         tfMarca.setText("");
+        lbCliNome.setText("");
     }
 
     private void preencheTabela() {
@@ -566,6 +553,7 @@ public class FRMListaDesejo extends javax.swing.JFrame {
         }
 
         tableDesejo.setModel(dTable);
+
     }
 
     private DefaultTableModel criaTabela() {
@@ -573,8 +561,11 @@ public class FRMListaDesejo extends javax.swing.JFrame {
         DefaultTableModel dTable = new DefaultTableModel() {
 
             Class[] types = new Class[]{
-                java.lang.Integer.class, java.lang.String.class,
-                java.lang.String.class, java.lang.String.class};
+                java.lang.Integer.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.String.class
+            };
 
             boolean[] canEdit = new boolean[]{
                 false, false, false, false
@@ -593,7 +584,9 @@ public class FRMListaDesejo extends javax.swing.JFrame {
     private boolean verificarCampos() {
         if (tfNome.getText().equals("")
                 || tfMarca.getText().equals("")
-                || tfCliCod.getText().equals("...")) {
+                || tfCliCod.getText().equals("...")
+                || lbCliNome.getText().equals("Cliente não encontrado")
+                || lbCliNome.getText().equals("")) {
             return false;
         } else {
             return true;
@@ -601,20 +594,14 @@ public class FRMListaDesejo extends javax.swing.JFrame {
     }
 
     private void edit() {
-        if (verificarCampos()) {
-            ListaDesejoBEAN c = cLista.localizar(Integer.parseInt(lbCodCon.getText()));
-            c.setLisNomeJogo(tfNome.getText());
-            c.setLisPlataforma(tfMarca.getText());
-            boolean retorno = cLista.editar(c);
-            if (retorno == true) {
-                JOptionPane.showMessageDialog(null, "Desejo MODIFICADO com sucesso");
-                this.preencheTabela();
-                this.limparCampos();
-            } else {
-                JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
-            }
+        ListaDesejoBEAN c = cLista.localizar(Integer.parseInt(lbCodCon.getText()));
+        c.setLisNomeJogo(tfNome.getText());
+        c.setLisPlataforma(tfMarca.getText());
+        boolean retorno = cLista.editar(c);
+        if (retorno == true) {
+            JOptionPane.showMessageDialog(null, "Desejo MODIFICADO com sucesso");
         } else {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+            JOptionPane.showMessageDialog(null, "ERRO na EDIÇÃO");
         }
     }
 
@@ -632,16 +619,24 @@ public class FRMListaDesejo extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FRMListaDesejo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMListaDesejo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FRMListaDesejo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMListaDesejo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FRMListaDesejo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMListaDesejo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FRMListaDesejo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FRMListaDesejo.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -662,16 +657,15 @@ public class FRMListaDesejo extends javax.swing.JFrame {
     private javax.swing.JButton btGravar;
     private javax.swing.JButton btVoltar;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbCliNome;
     private javax.swing.JLabel lbCodCon;
     private javax.swing.JTable tableDesejo;
     private javax.swing.JTextField tfChave;

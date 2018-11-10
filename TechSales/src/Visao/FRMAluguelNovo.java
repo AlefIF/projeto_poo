@@ -1229,7 +1229,6 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
     }
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
         if (verificaDev2() && verificaDev1()) {
             CaixaBEAN caixa = cCaixa.localizar(1);
             LocacaoBEAN l = contLoc.localizarLoc(Integer.parseInt(tfCodLoc.getText()));
@@ -1267,13 +1266,13 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Devolução feita com sucesso");
             limpaCampos();
             tpGuia.setSelectedIndex(2);
-            /*try {
+            try {
                 RelatoriosBEAN.notaDaDev(dev);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
             } catch (DocumentException ex) {
                 Logger.getLogger(FRMEmitirRelatorios.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Preencha os campos");
         }

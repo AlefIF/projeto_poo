@@ -29,6 +29,7 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
      */
     public FRMEmitirRelatorios() {
         initComponents();
+        this.setLocationRelativeTo(null);
         setResizable(false);
         tfLocal.setText(local);
     }

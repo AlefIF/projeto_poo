@@ -59,6 +59,7 @@ public class FRMJogo extends javax.swing.JFrame {
 
     public FRMJogo() {
         initComponents();
+        this.setLocationRelativeTo(null);
         setResizable(false);
         povoaCombos();
         preencheTabela();

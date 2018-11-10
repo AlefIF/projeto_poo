@@ -33,6 +33,7 @@ public class FRMConsole extends javax.swing.JFrame {
     public FRMConsole() {
         initComponents();
         preencheTabela();
+        this.setLocationRelativeTo(null);
         setResizable(false);
     }
 
@@ -521,11 +522,11 @@ public class FRMConsole extends javax.swing.JFrame {
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluir1ActionPerformed
-         ArrayList<ConsoleBEAN> catlista = new ArrayList<ConsoleBEAN>();
+        ArrayList<ConsoleBEAN> catlista = new ArrayList<ConsoleBEAN>();
 
         for (ConsoleBEAN c : cCon.listarALL()) {
             for (JogoBEAN j : cjogo.listarALL()) {
-                if (c.getConCodigo()== j.getConsole().getConCodigo()) {
+                if (c.getConCodigo() == j.getConsole().getConCodigo()) {
                     catlista.add(c);
                 }
             }
@@ -533,7 +534,7 @@ public class FRMConsole extends javax.swing.JFrame {
         int i = 0;
         for (ConsoleBEAN c : cCon.listarALL()) {
             for (ConsoleBEAN cl : catlista) {
-                if (cl.getConCodigo()== c.getConCodigo()) {
+                if (cl.getConCodigo() == c.getConCodigo()) {
                     i++;
                 }
             }

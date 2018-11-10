@@ -44,8 +44,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         for (EmpregoBEAN e : ec.listarALL()) {
             cbEmprego.addItem(e);
         }
-        tfNomeUser.setEnabled(false);
-        tfSenhaUser.setEnabled(false);
+        this.setLocationRelativeTo(null);
         setResizable(false);
     }
 
@@ -737,6 +736,9 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         } else {
             editar();
         }
+        limpaCampos();
+        limpaBotoes();
+        desabilitaCampos();
     }//GEN-LAST:event_btGravarActionPerformed
 
     private void tfIdadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdadeKeyTyped
@@ -1060,8 +1062,6 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                 vc.cadastrar(v);
             }
         }
-        limpaCampos();
-        limpaBotoes();
     }
 
     private void editar2() {
@@ -1097,8 +1097,6 @@ public class FRMCadastroFun extends javax.swing.JFrame {
                 }
             }
         }
-        limpaCampos();
-        limpaBotoes();
     }
 
     public boolean verificaCampos() {
@@ -1147,14 +1145,11 @@ public class FRMCadastroFun extends javax.swing.JFrame {
     }
 
     private DefaultTableModel criaTabela() {
-        //sempre que usar JTable é necessário ter um DefaulttableModel
         DefaultTableModel tbUsers = new DefaultTableModel() {
-            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
             Class[] types = new Class[]{
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class,
                 java.lang.String.class, java.lang.String.class, java.lang.String.class,
                 java.lang.String.class, java.lang.String.class,};
-            //define se os campos podem ser editados na propria tabela
             boolean[] canEdit = new boolean[]{
                 false, false, false, false, false, false, false, false
             };
@@ -1166,7 +1161,6 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         ;
 
         };
-        //retorna o DefaultTableModel
     return tbUsers;
     }
 

@@ -34,6 +34,7 @@ public class FRMCategoria extends javax.swing.JFrame {
         initComponents();
         preencheTabela();
         setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**

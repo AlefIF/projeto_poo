@@ -35,6 +35,8 @@ public class FRMListaDesejo extends javax.swing.JFrame {
         preencheTabelaCli();
         btEditar.setEnabled(false);
         btExcluir.setEnabled(false);
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

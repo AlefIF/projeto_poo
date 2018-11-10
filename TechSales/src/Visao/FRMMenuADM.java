@@ -16,6 +16,8 @@ public class FRMMenuADM extends javax.swing.JFrame {
      */
     public FRMMenuADM() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

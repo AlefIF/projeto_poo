@@ -33,6 +33,7 @@ public class FRMFornecedor extends javax.swing.JFrame {
      */
     public FRMFornecedor() {
         initComponents();
+        this.setLocationRelativeTo(null);
         setResizable(false);
         preencheTabela();
         tfCNPJ.setEnabled(false);

@@ -56,7 +56,6 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
      */
     public FRMNotaDeCompra() {
         initComponents();
-        preencheTabelaNota();
         JogoBEAN jogo = FRMJogo.jogoNota;
         for (NotaDecompraBEAN n : notac.listarALL()) {
             if (n.getJogo().getJoCodigo() == jogo.getJoCodigo()) {
@@ -66,8 +65,8 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
 
             }
         }
+        this.setLocationRelativeTo(null);
         setResizable(false);
-
     }
 
     /**
@@ -602,102 +601,6 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
         ;
         };
     return dTable2;
-    }
-
-    private void preencheTabelaNota() {
-        dtNota = criaTabelaNota();
-        dtNota.addColumn("Código");
-        dtNota.addColumn("Data");
-        dtNota.addColumn("Preço Total");
-        dtNota.addColumn("Numero de Parcelas");
-        dtNota.addColumn("Entrada");
-        dtNota.addColumn("Código do jogo");
-        dtNota.addColumn("Preço Unitário");
-        dtNota.addColumn("Quantidade Comprada");
-
-        for (NotaDecompraBEAN n : notac.listarALL()) {
-            dtNota.addRow(new Object[]{n.getNdcCodigo(), n.getNdcData(), n.getNdcPrecoTotal(),
-                n.getNdcParcelas(), n.getNdcEntrada(), n.getJogo().getJoCodigo(), n.getNdcCustoUnitario(), n.getNdcQtdComprada()});
-        }
-        tableNotas.setModel(dtNota);
-    }
-
-    private DefaultTableModel criaTabelaNota() {
-        //sempre que usar JTable é necessário ter um DefaulttableModel
-        DefaultTableModel dTable = new DefaultTableModel() {
-            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
-            Class[] types = new Class[]{
-                java.lang.Integer.class,
-                java.lang.String.class,
-                java.lang.String.class,
-                java.lang.Float.class,
-                java.lang.String.class,
-                java.lang.Float.class,
-                java.lang.String.class,
-                java.lang.String.class,
-                java.lang.Float.class,
-                java.lang.Integer.class
-            };
-            //define se os campos podem ser editados na propria tabela
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false, false, false};
-
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        ;
-
-        };
-    return dTable;
-    }
-
-    private void preencheTabelaNotaPrazo(int cod) {
-        dtNotaPrazo = criaTabelaNotaPrazo();
-        dtNotaPrazo.addColumn("Código");
-        dtNotaPrazo.addColumn("Data");
-        dtNotaPrazo.addColumn("Valor da Parcela");
-        dtNotaPrazo.addColumn("Numero da Parcela");
-        dtNotaPrazo.addColumn("Codigo da Nota De Compra");
-        dtNotaPrazo.addColumn("Situação");
-
-        napDados = napC.listarALL();
-        for (NotaDeCompraPrazoBEAN n : napDados) {
-            if (n.getNota().getNdcCodigo() == cod) {
-                dtNotaPrazo.addRow(new Object[]{n.getNapCodigo(), n.getNapData(), n.getNapValor(),
-                    n.getNapNumParcela(), n.getNota().getNdcCodigo(), n.getNapSituacao()});
-            }
-        }
-
-        tablePrazo.setModel(dtNotaPrazo);
-    }
-
-    private DefaultTableModel criaTabelaNotaPrazo() {
-        //sempre que usar JTable é necessário ter um DefaulttableModel
-        DefaultTableModel dTable = new DefaultTableModel() {
-            //Define o tipo dos campos (coluna) na mesma ordem que as colunas foram criadas
-            Class[] types = new Class[]{
-                java.lang.Integer.class,
-                java.lang.String.class,
-                java.lang.Float.class,
-                java.lang.Integer.class,
-                java.lang.Integer.class,
-                java.lang.String.class
-
-            };
-            //define se os campos podem ser editados na propria tabela
-            boolean[] canEdit = new boolean[]{
-                false, false, false, false, false, false};
-
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        ;
-
-        };
-        //retorna o DefaultTableModel
-    return dTable;
     }
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed

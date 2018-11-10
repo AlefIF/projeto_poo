@@ -23,20 +23,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="tpGuia" min="-2" max="-2" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
           </Group>
+          <Component id="tpGuia" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Component id="jLabel5" min="-2" pref="30" max="-2" attributes="0"/>
-              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-              <Component id="tpGuia" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="tpGuia" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,26 +68,28 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lbCod" min="-2" pref="60" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="tfFuncao" min="-2" pref="129" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="tfSalario" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lbCod" min="-2" pref="60" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="tfFuncao" min="-2" pref="129" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="tfSalario" pref="72" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <Component id="jPanel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" pref="399" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -318,15 +320,15 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" min="-2" pref="486" max="-2" attributes="0"/>
-                          <Component id="tfChave" alignment="0" min="-2" pref="332" max="-2" attributes="0"/>
+                          <Component id="tfChave" min="-2" pref="332" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" min="-2" pref="473" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -337,9 +339,9 @@
                       <Component id="tfChave" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="122" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel3" min="-2" pref="67" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jPanel3" min="-2" pref="67" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -436,6 +438,9 @@
                     <Property name="text" type="java.lang.String" value="Excluir"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExcluirActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btClonar">
                   <Properties>
@@ -445,6 +450,9 @@
                     <Property name="text" type="java.lang.String" value="Clonar dados"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btClonarActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton2">
                   <Properties>
@@ -453,6 +461,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Excluir todos"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -472,6 +483,7 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfChaveActionPerformed"/>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfChaveKeyPressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfChaveKeyReleased"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfChaveKeyTyped"/>
               </Events>
             </Component>

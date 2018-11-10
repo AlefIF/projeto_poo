@@ -39,6 +39,8 @@ public class FRMListaDeNotaDeJogos extends javax.swing.JFrame {
     public FRMListaDeNotaDeJogos() {
         initComponents();
         preencheTabelaNota();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

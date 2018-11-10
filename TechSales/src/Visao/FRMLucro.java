@@ -27,6 +27,8 @@ public class FRMLucro extends javax.swing.JFrame {
         for (LucroBEAN l : lc.listarALL()) {
             tfLucro.setText(String.valueOf(l.getLucPorcentagem()));
         }
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

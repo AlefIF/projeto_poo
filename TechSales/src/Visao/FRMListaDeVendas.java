@@ -51,6 +51,8 @@ public class FRMListaDeVendas extends javax.swing.JFrame {
         initComponents();
         preencheTabelaVenda();
         preencheTabelaPrazo(cod);
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
      private void preencheTabelaVenda() {

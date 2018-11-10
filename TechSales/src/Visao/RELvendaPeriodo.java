@@ -25,6 +25,7 @@ public class RELvendaPeriodo extends javax.swing.JFrame {
      */
     public RELvendaPeriodo() {
         initComponents();
+        this.setLocationRelativeTo(null);
         setResizable(false);
     }
 

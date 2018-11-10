@@ -65,6 +65,8 @@ public class FRMVendaNova extends javax.swing.JFrame {
      */
     public FRMVendaNova() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

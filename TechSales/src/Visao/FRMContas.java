@@ -45,6 +45,8 @@ public class FRMContas extends javax.swing.JFrame {
      */
     public FRMContas() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

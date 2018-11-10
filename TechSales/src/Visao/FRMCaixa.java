@@ -16,6 +16,8 @@ public class FRMCaixa extends javax.swing.JFrame {
      */
     public FRMCaixa() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

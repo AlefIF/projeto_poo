@@ -55,6 +55,8 @@ public class FRMListaDeAlugueis extends javax.swing.JFrame {
         initComponents();
         preencheTabelaAllDev();
         preencheTabelaAllLoc();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     private void preencheTabelaAllDev() {

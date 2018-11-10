@@ -65,6 +65,7 @@ public class FRMAluguelNovo extends javax.swing.JFrame {
     public FRMAluguelNovo() {
         initComponents();
         this.setLocationRelativeTo(null);
+        setResizable(false);
         try {
             lbVendedorCod.setText(String.valueOf(FRMLogin.user.getVendedorCodigo()));
         } catch (Exception e) {

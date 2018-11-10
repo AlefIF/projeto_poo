@@ -18,6 +18,8 @@ public class FRMCliente extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         this.preencheTabela();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     @SuppressWarnings("unchecked")

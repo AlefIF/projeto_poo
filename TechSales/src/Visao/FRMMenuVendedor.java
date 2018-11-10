@@ -22,6 +22,7 @@ public class FRMMenuVendedor extends javax.swing.JFrame {
      */
     public FRMMenuVendedor() {
         initComponents();
+        this.setLocationRelativeTo(null);
         setResizable(false);
     }
 

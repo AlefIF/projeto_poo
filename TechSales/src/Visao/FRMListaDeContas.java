@@ -46,6 +46,8 @@ public class FRMListaDeContas extends javax.swing.JFrame {
     public FRMListaDeContas() {
         initComponents();
         preencheTabelaContas();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

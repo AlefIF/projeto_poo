@@ -528,6 +528,11 @@ public class FRMVendaNova extends javax.swing.JFrame {
                 tableParcelasMouseClicked(evt);
             }
         });
+        tableParcelas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tableParcelasKeyPressed(evt);
+            }
+        });
         jScrollPane8.setViewportView(tableParcelas);
 
         btLimpar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1251,6 +1256,10 @@ public class FRMVendaNova extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         limpaCampos2();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tableParcelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableParcelasKeyPressed
+      
+    }//GEN-LAST:event_tableParcelasKeyPressed
 
     /**
      * @param args the command line arguments

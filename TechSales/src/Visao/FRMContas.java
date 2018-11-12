@@ -18,6 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -33,7 +34,7 @@ public class FRMContas extends javax.swing.JFrame {
     private ContaAPrazoControle cCap = new ContaAPrazoControle();
     private ArrayList<ContaAPrazoBEAN> insert = new ArrayList<ContaAPrazoBEAN>();
     private int cod = 0;
-
+    private DefaultTableModel modelPrazo = new DefaultTableModel();
 
     /**
      * Creates new form FRMContas
@@ -81,7 +82,6 @@ public class FRMContas extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tableContaPrazos = new javax.swing.JTable();
-        btRecalcular = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
         btGerar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -171,7 +171,7 @@ public class FRMContas extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jScrollPane4)))
                     .addGroup(jpCompraLayout.createSequentialGroup()
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfPrecoTT, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -231,6 +231,11 @@ public class FRMContas extends javax.swing.JFrame {
         btAPrazo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btAPrazo.setText("A Prazo");
         btAPrazo.setEnabled(false);
+        btAPrazo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAPrazoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -371,12 +376,8 @@ public class FRMContas extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(tableContaPrazos);
 
-        btRecalcular.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btRecalcular.setText("Recalcular");
-        btRecalcular.setEnabled(false);
-
         btExcluir.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btExcluir.setText("Excluir");
+        btExcluir.setText("Limpar");
         btExcluir.setEnabled(false);
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -385,7 +386,7 @@ public class FRMContas extends javax.swing.JFrame {
         });
 
         btGerar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btGerar.setText("calcular parcelas");
+        btGerar.setText("Calcular parcelas");
         btGerar.setEnabled(false);
         btGerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -399,25 +400,22 @@ public class FRMContas extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfValorEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfNParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(btGerar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(btRecalcular)
-                                .addGap(86, 86, 86)
-                                .addComponent(btExcluir))
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(tfValorEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(12, 12, 12)
+                            .addComponent(jLabel18)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(tfNParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addComponent(btGerar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btExcluir))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -429,14 +427,11 @@ public class FRMContas extends javax.swing.JFrame {
                     .addComponent(jLabel18)
                     .addComponent(tfNParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btRecalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btGerar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -445,22 +440,23 @@ public class FRMContas extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111))
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(109, 109, 109))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         tpGuia.addTab("Conta a prazo", jPanel2);
@@ -492,18 +488,24 @@ public class FRMContas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void limparCampos() {
-        tfForCod.setText("...");
-        tfDescricao.setText("");
-        tfValorEntrada.setText("");
-        tfPrecoTT.setText("");
-        tfDataCompra.setText("");
-        tfNParcelas.setText("");
+        tfForCod.setText("");
         lbFornecedor.setText("");
+        tfDataCompra.setText("");
+        tfDescricao.setText("");
+        tfPrecoTT.setText("");
+        limparCampos2();
+    }
+
+    private void limparCampos2() {
+        tfValorEntrada.setText("");
+        tfNParcelas.setText("");
+        insert.clear();
+        tpGuia.setSelectedIndex(0);
     }
 
     private boolean verificaCampos2() {
-        if (tfValorEntrada.getText().equals("") || tfPrecoTT.getText().equals("")
-                || tfNParcelas.getText().equals("") || tfDataCompra.getText().equals("")) {
+        if (tfValorEntrada.getText().equals("") || tfNParcelas.getText().equals("")
+                || insert.size() == 0) {
             return false;
         } else {
             return true;
@@ -511,9 +513,11 @@ public class FRMContas extends javax.swing.JFrame {
     }
 
     private boolean verificaCampos() {
-        if (tfValorEntrada.getText().equals("") || tfPrecoTT.getText().equals("")
-                || tfNParcelas.getText().equals("")
-                || tfDataCompra.getText().equals("")) {
+        if (tfPrecoTT.getText().equals("")
+                || tfDataCompra.getText().equals("")
+                || tfDescricao.getText().equals("")
+                || tfForCod.getText().equals("")
+                || lbFornecedor.getText().equals("Fornecedor não encontrado")) {
             return false;
         } else {
             return true;
@@ -531,15 +535,19 @@ public class FRMContas extends javax.swing.JFrame {
 
     private void resultado() {
         insert.clear();
+        preecheTabelaPrazos();
         limparCampos();
         JOptionPane.showMessageDialog(null, "Notas CADASTRADAS com sucesso");
     }
 
     private void cadastroInserir() {
         ContaBEAN ndc = new ContaBEAN();
-        ndc.setConEntrada(Float.parseFloat(tfValorEntrada.getText()));
         ndc.setConValorTotal(Float.parseFloat(tfPrecoTT.getText()));
-
+        ndc.setConNparcelas(0);
+        ndc.setConEntrada(Float.parseFloat(tfPrecoTT.getText()));
+        ndc.setConDescricao(tfDescricao.getText());
+        FornecedorBEAN f = cFor.localizar(Integer.parseInt(tfForCod.getText()));
+        ndc.setFornecedor(f);
         try {
             String dataString = tfDataCompra.getText();
             DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
@@ -548,20 +556,16 @@ public class FRMContas extends javax.swing.JFrame {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        ndc.setConNparcelas(Integer.parseInt(tfNParcelas.getText()));
-
         cContas.cadastrar(ndc);
-
         CaixaBEAN caixa = cCaixa.localizar(1);
         caixa.setCaixaDinheiro(caixa.getCaixaDinheiro() - ndc.getConEntrada());
         cCaixa.editar(caixa);
 
-        for (ContaAPrazoBEAN ndca : cCap.listarALL()) {
+        for (ContaAPrazoBEAN ndca : insert) {
             ContaAPrazoBEAN nota = new ContaAPrazoBEAN();
-            nota.setCapData(ndca.getCapData());
-            nota.setCapValorParcela(ndca.getCapValorParcela());
             nota.setCapNumParcela(ndca.getCapNumParcela());
+            nota.setCapValorParcela(ndca.getCapValorParcela());
+            nota.setCapData(ndca.getCapData());
             nota.setCapSituacao("Pendente");
             nota.setConta(ndc);
             cCap.cadastrar(nota);
@@ -571,9 +575,12 @@ public class FRMContas extends javax.swing.JFrame {
 
     private void cadastroNormal() {
         ContaBEAN ndc = new ContaBEAN();
-        ndc.setConEntrada(Float.parseFloat(tfValorEntrada.getText()));
         ndc.setConValorTotal(Float.parseFloat(tfPrecoTT.getText()));
-
+        ndc.setConNparcelas(0);
+        ndc.setConEntrada(Float.parseFloat(tfPrecoTT.getText()));
+        ndc.setConDescricao(tfDescricao.getText());
+        FornecedorBEAN f = cFor.localizar(Integer.parseInt(tfForCod.getText()));
+        ndc.setFornecedor(f);
         try {
             String dataString = tfDataCompra.getText();
             DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
@@ -582,15 +589,10 @@ public class FRMContas extends javax.swing.JFrame {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        ndc.setConNparcelas(Integer.parseInt(tfNParcelas.getText()));
-
         cContas.cadastrar(ndc);
-
         CaixaBEAN caixa = cCaixa.localizar(1);
         caixa.setCaixaDinheiro(caixa.getCaixaDinheiro() - ndc.getConEntrada());
         cCaixa.editar(caixa);
-
         limparCampos();
     }
 
@@ -599,22 +601,22 @@ public class FRMContas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfPrecoTTActionPerformed
 
-    private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
-    tem coisa errada
-        int z = verificarInserir();
-        if (z == 0) {
-            if (verificaCampos()) {
-                this.cadastroNormal();
-                JOptionPane.showMessageDialog(null, "Nota Cadastrada com sucesso.");
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
-            }
-        } else if (verificaCampos2()) {
+    private void cadAprazo() {
+        if (verificaCampos() && verificaCampos2()) {
             if (Integer.parseInt(tfNParcelas.getText()) != tableContaPrazos.getRowCount()) {
                 JOptionPane.showMessageDialog(null, "Erro! A quantidade de parcelas registradas não é igual à fornecida");
             } else {
                 this.cadastroInserir();
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
+        }
+    }
+
+    private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
+        if (verificaCampos()) {
+            cadastroNormal();
+            JOptionPane.showMessageDialog(null, "Nota Cadastrada com sucesso.");
         } else {
             JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
         }
@@ -653,6 +655,36 @@ public class FRMContas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tableContaPrazosMouseClicked
 
+    private void preecheTabelaPrazos() {
+        modelPrazo = criaTabelaPrazos();
+        modelPrazo.addColumn("Num.Parcela");
+        modelPrazo.addColumn("Data");
+        modelPrazo.addColumn("Preço-Parcela");
+        for (ContaAPrazoBEAN n : insert) {
+            modelPrazo.addRow(new Object[]{n.getCapNumParcela(), n.getCapData(), n.getCapValorParcela()});
+        }
+        tableContaPrazos.setModel(modelPrazo);
+    }
+
+    private DefaultTableModel criaTabelaPrazos() {
+        DefaultTableModel dTable2 = new DefaultTableModel() {
+            Class[] types = new Class[]{
+                java.lang.Integer.class,
+                java.lang.String.class,
+                java.lang.Float.class,};
+            boolean[] canEdit = new boolean[]{
+                false, false, false};
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        ;
+        };
+    return dTable2;
+    }
+
+
     private void btGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGerarActionPerformed
         int t = Integer.parseInt(tfNParcelas.getText());
         float precoTT = Float.parseFloat((tfPrecoTT.getText()));
@@ -669,23 +701,29 @@ public class FRMContas extends javax.swing.JFrame {
             ContaAPrazoBEAN nota = new ContaAPrazoBEAN();
             int m = data.getMonth();
             data.setMonth(m + c);
-            nota.setCapValorParcela(precoParcelaTT / t);
             nota.setCapNumParcela(c);
+            nota.setCapValorParcela(precoParcelaTT / t);
             nota.setCapData(data);
+            nota.setCapSituacao("Pendente");
             insert.add(nota);
         }
     }//GEN-LAST:event_btGerarActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        // TODO add your handling code here:
+        insert.clear();
+        preecheTabelaPrazos();
     }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btGravarPrazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarPrazoActionPerformed
-        // TODO add your handling code here:
+        cadAprazo();
+        limpaBotoes();
+        limparCampos();
+        desabilitaCampos();
     }//GEN-LAST:event_btGravarPrazoActionPerformed
 
     private void btCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelar1ActionPerformed
-        // TODO add your handling code here:
+        limparCampos();
+        limparCampos2();
     }//GEN-LAST:event_btCancelar1ActionPerformed
 
     private void tfPrecoTTKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPrecoTTKeyTyped
@@ -713,10 +751,8 @@ public class FRMContas extends javax.swing.JFrame {
         btGravar.setEnabled(false);
         btCancelar.setEnabled(false);
         btAPrazo.setEnabled(false);
-
         btCancelar1.setEnabled(false);
         btGravarPrazo.setEnabled(false);
-        btRecalcular.setEnabled(false);
         btExcluir.setEnabled(false);
         btGerar.setEnabled(false);
     }
@@ -726,7 +762,6 @@ public class FRMContas extends javax.swing.JFrame {
         tfForCod.setEnabled(true);
         tfDescricao.setEnabled(true);
         tfPrecoTT.setEnabled(true);
-
         btAPrazo.setEnabled(true);
         btCancelar.setEnabled(true);
         btGravar.setEnabled(true);
@@ -735,10 +770,8 @@ public class FRMContas extends javax.swing.JFrame {
     private void habilitaCampos2() {
         tfValorEntrada.setEnabled(true);
         tfNParcelas.setEnabled(true);
-
         btCancelar1.setEnabled(true);
         btGravarPrazo.setEnabled(true);
-        btRecalcular.setEnabled(true);
         btExcluir.setEnabled(true);
         btGerar.setEnabled(true);
     }
@@ -748,7 +781,6 @@ public class FRMContas extends javax.swing.JFrame {
         tfForCod.setEnabled(false);
         tfDescricao.setEnabled(false);
         tfPrecoTT.setEnabled(false);
-
         tfValorEntrada.setEnabled(false);
         tfNParcelas.setEnabled(false);
     }
@@ -757,6 +789,15 @@ public class FRMContas extends javax.swing.JFrame {
         limparCampos();
         habilitaCampos();
     }//GEN-LAST:event_btNovoDadoActionPerformed
+
+    private void btAPrazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAPrazoActionPerformed
+        if (verificaCampos()) {
+            habilitaCampos2();
+            tpGuia.setSelectedIndex(1);
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro!Preencha todos os campos.");
+        }
+    }//GEN-LAST:event_btAPrazoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -802,7 +843,6 @@ public class FRMContas extends javax.swing.JFrame {
     private javax.swing.JButton btGravar;
     private javax.swing.JButton btGravarPrazo;
     private javax.swing.JButton btNovoDado;
-    private javax.swing.JButton btRecalcular;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel17;
@@ -819,8 +859,6 @@ public class FRMContas extends javax.swing.JFrame {
     private javax.swing.JPanel jpCompra;
     private javax.swing.JLabel lbFornecedor;
     private javax.swing.JTable tableContaPrazos;
-    private javax.swing.JTextField tfChaveJogo;
-    private javax.swing.JTextField tfChaveJogo1;
     private javax.swing.JFormattedTextField tfDataCompra;
     private javax.swing.JTextArea tfDescricao;
     private javax.swing.JTextField tfForCod;

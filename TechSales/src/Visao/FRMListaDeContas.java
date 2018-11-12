@@ -12,7 +12,6 @@ import Controle.FornecedorControle;
 import Modelo.CaixaBEAN;
 import Modelo.ContaAPrazoBEAN;
 import Modelo.ContaBEAN;
-import Modelo.LocacaoBEAN;
 import Modelo.RelatoriosBEAN;
 import com.itextpdf.text.DocumentException;
 import java.io.FileNotFoundException;

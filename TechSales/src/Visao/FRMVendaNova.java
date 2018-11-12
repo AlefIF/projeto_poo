@@ -117,7 +117,6 @@ public class FRMVendaNova extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         tfNParcelas1 = new javax.swing.JTextField();
-        btEditParcela = new javax.swing.JButton();
         lbPrecoTT2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         tfJuros = new javax.swing.JTextField();
@@ -562,14 +561,6 @@ public class FRMVendaNova extends javax.swing.JFrame {
             }
         });
 
-        btEditParcela.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btEditParcela.setText("Recalcular");
-        btEditParcela.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEditParcelaActionPerformed(evt);
-            }
-        });
-
         lbPrecoTT2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lbPrecoTT2.setText("0");
         lbPrecoTT2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Preço Total", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
@@ -593,10 +584,6 @@ public class FRMVendaNova extends javax.swing.JFrame {
             .addGroup(jpCompra1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpCompra1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpCompra1Layout.createSequentialGroup()
-                        .addComponent(btEditParcela)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btLimpar))
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jpCompra1Layout.createSequentialGroup()
                         .addGroup(jpCompra1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -613,12 +600,12 @@ public class FRMVendaNova extends javax.swing.JFrame {
                             .addComponent(jLabel23)
                             .addComponent(lbPrecoTT2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                        .addComponent(tfNParcelas1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfNParcelas1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpCompra1Layout.createSequentialGroup()
+                        .addComponent(btGeraParcela)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btLimpar)))
                 .addContainerGap())
-            .addGroup(jpCompra1Layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addComponent(btGeraParcela)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpCompra1Layout.setVerticalGroup(
             jpCompra1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -635,13 +622,11 @@ public class FRMVendaNova extends javax.swing.JFrame {
                     .addComponent(tfJuros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbPrecoTT2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btGeraParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpCompra1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btEditParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btGeraParcela, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -1259,15 +1244,6 @@ public class FRMVendaNova extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tfJurosKeyReleased
 
-    private void btEditParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditParcelaActionPerformed
-        if (tableParcelas.getSelectedRow() != -1) {
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione a parcela");
-        }
-        Editar parcelas
-    }//GEN-LAST:event_btEditParcelaActionPerformed
-
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         limpaCampos3();
     }//GEN-LAST:event_btCancelarActionPerformed
@@ -1314,7 +1290,6 @@ public class FRMVendaNova extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAddJogo;
     private javax.swing.JButton btCancelar;
-    private javax.swing.JButton btEditParcela;
     private javax.swing.JButton btFechamento;
     private javax.swing.JButton btGeraParcela;
     private javax.swing.JButton btGravarVenda;

@@ -62,7 +62,7 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
         tfLocal = new javax.swing.JTextField();
         btGravar = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -265,9 +265,14 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton7.setText("Cancelar");
-        jButton7.setEnabled(false);
+        btCancelar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btCancelar.setText("Cancelar");
+        btCancelar.setEnabled(false);
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -282,7 +287,7 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btGravar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7)
+                        .addComponent(btCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -296,7 +301,7 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
                     .addComponent(btGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7))
+                    .addComponent(btCancelar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -453,6 +458,7 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         tfLocal.setEnabled(true);
         btGravar.setEnabled(true);
+        btCancelar.setEnabled(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private boolean verificaCampos() {
@@ -469,13 +475,22 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
             l.setRelLocal(tfLocal.getText());
             relC.editar(l);
             local = l.getRelLocal();
-            tfLocal.setEnabled(false);
             JOptionPane.showMessageDialog(null, "'Local dos relátórios' atualizado");
+            tfLocal.setEnabled(false);
+            btGravar.setEnabled(false);
+            btCancelar.setEnabled(false);
         } else {
             JOptionPane.showMessageDialog(null, "Preencha o campo 'Local dos relátórios'");
         }
-        btGravar.setEnabled(false);
+
     }//GEN-LAST:event_btGravarActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        btGravar.setEnabled(false);
+        tfLocal.setEnabled(false);
+        btCancelar.setEnabled(false);
+        tfLocal.setText(local);
+    }//GEN-LAST:event_btCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -516,6 +531,7 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCancelar;
     private javax.swing.JButton btGravar;
     private javax.swing.JButton btVoltar;
     private javax.swing.JButton jButton1;
@@ -527,7 +543,6 @@ public class FRMEmitirRelatorios extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;

@@ -143,7 +143,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         btClonar = new javax.swing.JButton();
         btDemitir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerenciar funcionário");
         setResizable(false);
 

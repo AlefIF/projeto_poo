@@ -75,7 +75,7 @@ public class FRMCliente extends javax.swing.JFrame {
         btEditar = new javax.swing.JButton();
         btClonar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerenciar Clientes");
 
         jLabel3.setAlignmentX(612.0F);

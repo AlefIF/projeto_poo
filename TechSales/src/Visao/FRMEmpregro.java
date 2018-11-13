@@ -72,7 +72,8 @@ public class FRMEmpregro extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         tfChave = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Gerenciar Emprego");
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setText("Gerenciar Emprego");

@@ -1,1 +1,0 @@
-cmd C:\Users\Alef\Desktop\projeto techsales poo\TechSales\dist\TechSales.jar

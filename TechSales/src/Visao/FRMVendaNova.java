@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author Alef
@@ -127,7 +126,8 @@ public class FRMVendaNova extends javax.swing.JFrame {
         btCancelar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Realizar Venda");
 
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Dados da Venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
@@ -1269,13 +1269,29 @@ public class FRMVendaNova extends javax.swing.JFrame {
                 int col = tableParcelas.getSelectedColumn();
                 float valortt = Float.parseFloat(lbPrecoTT2.getText());
                 int qtd = Integer.parseInt(tfNParcelas1.getText()) - (tableParcelas.getSelectedRow() + 1);
+                if (qtd == 0) {
+                    qtd = (tableParcelas.getRowCount() - 1);
+                }
                 float valorPs = valortt - Float.parseFloat(tfValorEntrada1.getText());
-                float novoTT = (valorPs - Float.parseFloat(String.valueOf(tableParcelas.getValueAt(r, col)))) / qtd;
+                float novoTT = valorPs;
+                //(valorPs - Float.parseFloat(String.valueOf(tableParcelas.getValueAt(r, col)))) / qtd;
+                for (int i = 1; i <= tableParcelas.getRowCount(); i++) {
+                    if (i <= (tableParcelas.getSelectedRow() + 1)) {
+                        novoTT -= (Float.parseFloat(String.valueOf(tableParcelas.getValueAt(i - 1, col))));
+                    }
+                }
+
                 for (VendaAPrazoBEAN v : insertData) {
                     if (v.getVapNumParcela() == (r + 1)) {
-                        v.setVapValorParcela(Float.parseFloat(String.valueOf(tableParcelas.getValueAt(r, col))));
+                        if ((r + 1) == tableParcelas.getRowCount()) {
+                        } else {
+                            v.setVapValorParcela(Float.parseFloat(String.valueOf(tableParcelas.getValueAt(r, col))));
+                        }
                     } else if (v.getVapNumParcela() > (r + 1)) {
-                        v.setVapValorParcela(novoTT);
+                        if ((r + 1) == tableParcelas.getRowCount()) {
+                        } else {
+                            v.setVapValorParcela(novoTT / qtd);
+                        }
                     }
                 }
             }

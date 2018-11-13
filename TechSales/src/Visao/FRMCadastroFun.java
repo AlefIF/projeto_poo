@@ -144,7 +144,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         btDemitir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Administrador");
+        setTitle("Gerenciar funcionário");
         setResizable(false);
 
         jLabel20.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N

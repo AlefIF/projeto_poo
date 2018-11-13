@@ -1,5 +1,5 @@
 /*localrelatorio*/
-INSERT INTO `hiber`.`localrelatorio` (`relCodigo`, `relLocal`) VALUES ('1', '/desktop');
+INSERT INTO `hiber`.`localrelatorio` (`relCodigo`, `relLocal`) VALUES ('1', 'C:\Users\Paloma\Desktop\relatorios');
 /*Fornecedor*/
 INSERT INTO `hiber`.`fornecedor` (`forCodigo`, `endBairro`, `endCidade`, `endEstado`, `endNumero`, `endPais`, `endRua`, `forAnotacoes`, `forCNPJ`, `forEmail`, `forNomeEmpresa`, `forTelefoneContato`) VALUES ('1', 'Eldorado', 'Formiga', 'Minas Gerais', '104', 'Brasil', 'Isolina C. Souza', 'Forncene jogos de FPS', '111.222.333/4444-00', 'alf@gmail.com', 'FormigaGames', '(37)99999-9999');
 INSERT INTO `hiber`.`fornecedor` (`forCodigo`, `endBairro`, `endCidade`, `endEstado`, `endNumero`, `endPais`, `endRua`, `forAnotacoes`, `forCNPJ`, `forEmail`, `forNomeEmpresa`, `forTelefoneContato`) VALUES ('2', 'Centro', 'São Paulo', 'São Paulo', '235', 'Brasil', 'Av. Brasil', 'Forncene jogos de Hack and Slash', '111.222.333/4444-01', 'sp@gmail.com', 'SPGames', '(37)99999-9991');
@@ -28,7 +28,7 @@ INSERT INTO `hiber`.`console` (`conCodigo`, `conMarca`, `conNome`) VALUES ('4', 
 /*Lucro*/
 INSERT INTO `hiber`.`lucro` (`luCod`, `lucPorcentagem`) VALUES ('1', '10');
 /*Caixa*/
-INSERT INTO `hiber`.`caixa` (`caixaCodigo`, `caixaDinheiro`) VALUES ('1', '0');
+INSERT INTO `hiber`.`caixa` (`caixaCodigo`, `caixaDinheiro`) VALUES ('1', '3670');
 /*Jogo*/
 INSERT INTO `hiber`.`jogo` (`joCodigo`, `joFaixaEtaria`, `joLote`, `joNome`, `joPrecoPadrao`, `joQtd`, `joTipo`, `jo_catCodigo`, `jo_conCodigo`, `jo_forCodigo`, `jo_lucCodigo`) VALUES ('1', '+(18)', '4444', 'Crysis 4', '444', '4', 'Aluguel', '1', '4', '1', '1');
 INSERT INTO `hiber`.`jogo` (`joCodigo`, `joFaixaEtaria`, `joLote`, `joNome`, `joPrecoPadrao`, `joQtd`, `joTipo`, `jo_catCodigo`, `jo_conCodigo`, `jo_forCodigo`, `jo_lucCodigo`) VALUES ('2', '+(18)', '3333', 'Half Life 3', '333', '3', 'Aluguel', '1', '4', '1', '1');

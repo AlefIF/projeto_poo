@@ -73,7 +73,8 @@ public class FRMListaDeContas extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         btPagar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Lista de Contas");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setText("Lista de Contas");

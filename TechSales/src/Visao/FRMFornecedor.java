@@ -99,7 +99,8 @@ public class FRMFornecedor extends javax.swing.JFrame {
         btEditar = new javax.swing.JButton();
         btClonar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Gerenciar Fornecedor");
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel13.setText("Gerenciar Fornecedor");

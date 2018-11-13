@@ -186,7 +186,8 @@ public class FRMListaDeVendas extends javax.swing.JFrame {
         btPagar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Lista de Vendas");
 
         tableVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

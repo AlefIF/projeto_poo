@@ -48,7 +48,7 @@ public class RelatorioAluguelPeriodo extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visao/icons/Interface gráfica/back2.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Exemplo Relatório");
+        setTitle("Relatório Aluguel");
 
         btRelatorioCliente.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btRelatorioCliente.setText("Gerar Relatório");

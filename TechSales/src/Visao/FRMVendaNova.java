@@ -26,12 +26,14 @@ import Modelo.JogoVendaPK;
 import Modelo.VendaAPrazoBEAN;
 import Modelo.VendaBEAN;
 import Modelo.VendedorBEAN;
+import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -532,6 +534,9 @@ public class FRMVendaNova extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tableParcelasKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tableParcelasKeyReleased(evt);
+            }
         });
         jScrollPane8.setViewportView(tableParcelas);
 
@@ -1027,7 +1032,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
             }
             preecheTabelaPrazos();
         } catch (Exception e) {
-         JOptionPane.showMessageDialog(null, "Erro, verifique os campos");
+            JOptionPane.showMessageDialog(null, "Erro, verifique os campos");
         }
     }//GEN-LAST:event_btGeraParcelaActionPerformed
 
@@ -1052,7 +1057,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
                 java.lang.String.class,
                 java.lang.Float.class,};
             boolean[] canEdit = new boolean[]{
-                false, false, false};
+                false, false, true};
 
             @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1258,8 +1263,29 @@ public class FRMVendaNova extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tableParcelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableParcelasKeyPressed
-      
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            if (tableParcelas.getSelectedColumn() == 2) {
+                int r = tableParcelas.getSelectedRow();
+                int col = tableParcelas.getSelectedColumn();
+                float valortt = Float.parseFloat(lbPrecoTT2.getText());
+                int qtd = Integer.parseInt(tfNParcelas1.getText()) - (tableParcelas.getSelectedRow() + 1);
+                float valorPs = valortt - Float.parseFloat(tfValorEntrada1.getText());
+                float novoTT = (valorPs - Float.parseFloat(String.valueOf(tableParcelas.getValueAt(r, col)))) / qtd;
+                for (VendaAPrazoBEAN v : insertData) {
+                    if (v.getVapNumParcela() == (r + 1)) {
+                        v.setVapValorParcela(Float.parseFloat(String.valueOf(tableParcelas.getValueAt(r, col))));
+                    } else if (v.getVapNumParcela() > (r + 1)) {
+                        v.setVapValorParcela(novoTT);
+                    }
+                }
+            }
+            preecheTabelaPrazos();
+        }
     }//GEN-LAST:event_tableParcelasKeyPressed
+
+    private void tableParcelasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableParcelasKeyReleased
+
+    }//GEN-LAST:event_tableParcelasKeyReleased
 
     /**
      * @param args the command line arguments

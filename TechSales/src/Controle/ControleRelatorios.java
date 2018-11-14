@@ -121,7 +121,7 @@ public class ControleRelatorios {
                 + "			AND\n"
                 + "	locCodigo=dev_locCodigo\n"
                 + "GROUP BY joCodigo\n"
-                + "ORDER BY NAlocações desc\n"
+                + "ORDER BY sum(devValor) desc\n"
                 + "LIMIT 10;";
         ArrayList<JogoBEAN> jogoAL = new ArrayList<JogoBEAN>();
         try {

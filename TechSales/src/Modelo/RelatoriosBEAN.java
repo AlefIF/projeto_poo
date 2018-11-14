@@ -163,7 +163,7 @@ public class RelatoriosBEAN {
                     + "<tr> "
                     + "<th align=center><strong>Código</strong></th> "
                     + "<th align=center><strong>Nome do Jogo</strong></th> "
-                    + "<th align=center><strong>Quantidade Vendida</strong></th> "
+                    + "<th align=center><strong>Quantidade Alugada</strong></th> "
                     + "<th align=center><strong>Valor Total</strong></th> "
                     + "</tr> ";
             for (JogoBEAN j : jDAO.topAluguelJogos()) {

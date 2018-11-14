@@ -21,7 +21,6 @@ public class ConsoleBEAN {
     private int conCodigo;
     private String conNome;
     private String conMarca;
-  
 
     @Id
     @GeneratedValue
@@ -48,7 +47,6 @@ public class ConsoleBEAN {
     public void setConMarca(String conMarca) {
         this.conMarca = conMarca;
     }
-
 
     @Override
     public String toString() {

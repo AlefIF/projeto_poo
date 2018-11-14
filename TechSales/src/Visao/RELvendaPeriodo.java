@@ -150,9 +150,9 @@ public class RELvendaPeriodo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btRelatorioClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRelatorioClienteActionPerformed
-        java.sql.Date dataInicio=null;
-        java.sql.Date dataFinal=null;
-        
+        java.sql.Date dataInicio = null;
+        java.sql.Date dataFinal = null;
+
         try {
             String dataString = tfDataI.getText();
             DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
@@ -178,7 +178,7 @@ public class RELvendaPeriodo extends javax.swing.JFrame {
                 + "ORDER BY ValorRendido desc;";
 
         try {
-            relatorioVendaJogoPeriodo(query,tfDataI.getText(),tfDataF.getText());
+            relatorioVendaJogoPeriodo(query, tfDataI.getText(), tfDataF.getText());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(RELvendaPeriodo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {

@@ -17,7 +17,7 @@ import jpa.JpaUtil;
  * @author Alef
  */
 public class EmpregoControle {
-    
+
     private static EntityManager manager = JpaUtil.getEntityManager();
     private static EntityTransaction tx = manager.getTransaction();
 
@@ -65,7 +65,7 @@ public class EmpregoControle {
             return false;
         }
     }
-    
+
     public EmpregoBEAN localizarCodigo(int c) {
         EmpregoBEAN a = manager.find(EmpregoBEAN.class, c);
         return a;

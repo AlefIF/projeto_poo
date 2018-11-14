@@ -507,7 +507,9 @@ public class FRMListaDesejo extends javax.swing.JFrame {
         d.setCliente(c);
         cLista.cadastrar(d);
         JOptionPane.showMessageDialog(null, "Desejo CADASTRADO com sucesso");
-    }    private void limpaBotoes() {
+    }
+
+    private void limpaBotoes() {
         btGravar.setEnabled(false);
         btCancelar.setEnabled(false);
         btEditar.setEnabled(false);
@@ -533,6 +535,7 @@ public class FRMListaDesejo extends javax.swing.JFrame {
         btGravar.setEnabled(false);
 
     }
+
     private void limparCampos() {
         lbCodCon.setText("...");
         tfCliCod.setText("");

@@ -68,10 +68,10 @@ public class NotaDeCompraPrazoBEAN {
 
     public void setNapSituacao(String napSituacao) {
         this.napSituacao = napSituacao;
-    } 
+    }
 
     @ManyToOne
-    @JoinColumn(name="nap_ndcCodigo")
+    @JoinColumn(name = "nap_ndcCodigo")
     public NotaDecompraBEAN getNota() {
         return nota;
     }
@@ -79,8 +79,5 @@ public class NotaDeCompraPrazoBEAN {
     public void setNota(NotaDecompraBEAN nota) {
         this.nota = nota;
     }
-    
-    
-    
 
 }

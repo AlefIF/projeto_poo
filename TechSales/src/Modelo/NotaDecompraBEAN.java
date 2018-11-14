@@ -21,7 +21,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "notaDeCompra")
 public class NotaDecompraBEAN {
-    
 
     private int ndcCodigo;
     private Date ndcData;
@@ -83,7 +82,6 @@ public class NotaDecompraBEAN {
         this.ndcCustoUnitario = ndcCustoUnitario;
     }
 
-
     public int getNdcQtdComprada() {
         return ndcQtdComprada;
     }
@@ -93,7 +91,7 @@ public class NotaDecompraBEAN {
     }
 
     @OneToOne
-    @JoinColumn(name="ndc_joCodigo")
+    @JoinColumn(name = "ndc_joCodigo")
     public JogoBEAN getJogo() {
         return jogo;
     }
@@ -103,7 +101,7 @@ public class NotaDecompraBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name="ndc_caixaCodigo")
+    @JoinColumn(name = "ndc_caixaCodigo")
     public CaixaBEAN getCaixa() {
         return caixa;
     }
@@ -111,9 +109,5 @@ public class NotaDecompraBEAN {
     public void setCaixa(CaixaBEAN caixa) {
         this.caixa = caixa;
     }
-    
-    
-    
-
 
 }

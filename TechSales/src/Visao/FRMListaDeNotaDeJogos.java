@@ -31,7 +31,7 @@ public class FRMListaDeNotaDeJogos extends javax.swing.JFrame {
     private NotaDeCompraControle notac = new NotaDeCompraControle();
     private NotaDeCompraAPrazoControle napC = new NotaDeCompraAPrazoControle();
     private CaixaControle cCaixa = new CaixaControle();
-    private static  int cod=0;
+    private static int cod = 0;
 
     /**
      * Creates new form FRMListaDeNotaDeJogos

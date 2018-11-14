@@ -7,7 +7,6 @@ package Modelo;
 
 import javax.persistence.Embeddable;
 
-
 /**
  *
  * @author Alef
@@ -70,5 +69,4 @@ public class EnderecoBEAN {
         this.endPais = endPais;
     }
 
-  
 }

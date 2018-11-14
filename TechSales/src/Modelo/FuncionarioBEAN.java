@@ -98,8 +98,7 @@ public class FuncionarioBEAN {
     public void setFunEmail(String funEmail) {
         this.funEmail = funEmail;
     }
-    
-    
+
     @Embedded
     public EnderecoBEAN getEndereco() {
         return endereco;
@@ -110,7 +109,7 @@ public class FuncionarioBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name="fun_caixaCodigo")
+    @JoinColumn(name = "fun_caixaCodigo")
     public CaixaBEAN getCaixa() {
         return caixa;
     }
@@ -120,7 +119,7 @@ public class FuncionarioBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name="fun_empCodigo")
+    @JoinColumn(name = "fun_empCodigo")
     public EmpregoBEAN getEmprego() {
         return emprego;
     }
@@ -128,9 +127,5 @@ public class FuncionarioBEAN {
     public void setEmprego(EmpregoBEAN emprego) {
         this.emprego = emprego;
     }
-    
-    
-    
-    
 
 }

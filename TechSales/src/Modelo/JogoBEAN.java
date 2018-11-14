@@ -33,7 +33,6 @@ public class JogoBEAN {
     private LucroBEAN lucro;
     private FornecedorBEAN fornecedor;
 
-
     @Id
     @GeneratedValue
     public int getJoCodigo() {

@@ -596,7 +596,6 @@ public class FRMContas extends javax.swing.JFrame {
         limparCampos();
     }
 
-
     private void tfPrecoTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPrecoTTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfPrecoTTActionPerformed
@@ -683,7 +682,6 @@ public class FRMContas extends javax.swing.JFrame {
         };
     return dTable2;
     }
-
 
     private void btGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGerarActionPerformed
         int t = Integer.parseInt(tfNParcelas.getText());

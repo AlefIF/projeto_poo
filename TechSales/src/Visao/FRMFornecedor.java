@@ -792,7 +792,6 @@ public class FRMFornecedor extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-
     }//GEN-LAST:event_cbTipoItemStateChanged
 
     private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed

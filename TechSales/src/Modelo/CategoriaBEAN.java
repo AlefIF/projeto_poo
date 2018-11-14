@@ -20,7 +20,6 @@ public class CategoriaBEAN {
 
     private int catCodigo;
     private String catNome;
-    
 
     @Id
     @GeneratedValue

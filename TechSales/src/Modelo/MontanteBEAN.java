@@ -10,7 +10,7 @@ package Modelo;
  * @author Alef
  */
 public class MontanteBEAN {
-    
+
     private int funCodigo;
     private String funNome;
     private int nVendas;
@@ -73,6 +73,6 @@ public class MontanteBEAN {
 
     public void setValorTotal(float valorTotal) {
         this.valorTotal = valorTotal;
-    }  
-    
+    }
+
 }

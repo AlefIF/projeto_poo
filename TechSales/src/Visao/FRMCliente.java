@@ -551,13 +551,13 @@ public class FRMCliente extends javax.swing.JFrame {
 
     private int verificaCPF() {
         int i = 0;
-        for (ClienteBEAN c : cCliente.listarALL()) {            
+        for (ClienteBEAN c : cCliente.listarALL()) {
             if (c.getCliCpf().equals(tfCpf.getText())) {
                 try {
                     if (c.getCliCodigo() != (Integer.valueOf(lbCodigo.getText()))) {
                         i = c.getCliCodigo();
                     }
-                }catch (Exception e) {
+                } catch (Exception e) {
                     i = 1;
                 }
             }

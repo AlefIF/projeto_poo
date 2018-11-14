@@ -10,5 +10,5 @@ package Modelo;
  * @author Alef
  */
 public class EmpresaBEAN {
-    
+
 }

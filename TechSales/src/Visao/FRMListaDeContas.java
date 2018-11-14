@@ -37,7 +37,7 @@ public class FRMListaDeContas extends javax.swing.JFrame {
     private FornecedorControle cFor = new FornecedorControle();
     private ContaAPrazoControle cCap = new ContaAPrazoControle();
     private ArrayList<ContaAPrazoBEAN> insert = new ArrayList<ContaAPrazoBEAN>();
-    private static int cod=0;
+    private static int cod = 0;
 
     /**
      * Creates new form FRMListaDeContas

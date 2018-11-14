@@ -17,6 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "emprego")
 public class EmpregoBEAN {
+
     private int empCodigo;
     private String empNome;
     private String empDescricao;
@@ -55,7 +56,7 @@ public class EmpregoBEAN {
     public void setEmpSalarioPadrao(float empSalarioPadrao) {
         this.empSalarioPadrao = empSalarioPadrao;
     }
-    
+
     @Override
     public String toString() {
         return getEmpNome();

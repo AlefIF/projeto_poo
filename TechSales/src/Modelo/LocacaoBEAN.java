@@ -66,7 +66,6 @@ public class LocacaoBEAN {
         this.locDataDevolucao = locDataDevolucao;
     }
 
-   
     public String getLocStatus() {
         return locStatus;
     }
@@ -90,7 +89,6 @@ public class LocacaoBEAN {
     public void setLocEntrada(float locEntrada) {
         this.locEntrada = locEntrada;
     }
-    
 
     @ManyToOne
     @JoinColumn(name = "loc_clienteCodigo")

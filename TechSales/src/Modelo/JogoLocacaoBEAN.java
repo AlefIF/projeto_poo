@@ -23,8 +23,7 @@ public class JogoLocacaoBEAN {
     private JogoLocacaoPK chaveComposta;
     @Column(name = "jlQtd")
     private int jlQtd;
-    
-    
+
     public JogoLocacaoPK getChaveComposta() {
         return chaveComposta;
     }
@@ -40,7 +39,5 @@ public class JogoLocacaoBEAN {
     public void setJlQtd(int jlQtd) {
         this.jlQtd = jlQtd;
     }
-    
-    
 
 }

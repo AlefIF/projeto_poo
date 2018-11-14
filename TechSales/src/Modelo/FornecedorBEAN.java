@@ -85,9 +85,9 @@ public class FornecedorBEAN {
     public void setEndereco(EnderecoBEAN endereco) {
         this.endereco = endereco;
     }
-    
+
     @Override
     public String toString() {
-        return getForNomeEmpresa(); 
+        return getForNomeEmpresa();
     }
 }

@@ -767,7 +767,6 @@ public class FRMNotaDeCompra extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tableContaPrazosMouseClicked
 
-
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         insert.clear();
         preencheTabelaPrazos();

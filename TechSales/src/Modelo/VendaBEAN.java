@@ -29,7 +29,7 @@ public class VendaBEAN {
     private VendedorBEAN vendedor;
     private ClienteBEAN cliente;
     private CaixaBEAN caixa;
-    
+
     @Id
     @GeneratedValue
     public int getVendaCodigo() {
@@ -39,7 +39,6 @@ public class VendaBEAN {
     public void setVendaCodigo(int vendaCodigo) {
         this.vendaCodigo = vendaCodigo;
     }
-
 
     public Date getVendaData() {
         return vendaData;
@@ -65,8 +64,6 @@ public class VendaBEAN {
         this.vendaValorTotal = vendaValorTotal;
     }
 
-    
-
     public float getVendaEntrada() {
         return vendaEntrada;
     }
@@ -76,7 +73,7 @@ public class VendaBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name="venda_vendedorCodigo")
+    @JoinColumn(name = "venda_vendedorCodigo")
     public VendedorBEAN getVendedor() {
         return vendedor;
     }
@@ -86,7 +83,7 @@ public class VendaBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name="venda_clienteCodigo")
+    @JoinColumn(name = "venda_clienteCodigo")
     public ClienteBEAN getCliente() {
         return cliente;
     }
@@ -96,7 +93,7 @@ public class VendaBEAN {
     }
 
     @ManyToOne
-    @JoinColumn(name="venda_caixaCodigo")
+    @JoinColumn(name = "venda_caixaCodigo")
     public CaixaBEAN getCaixa() {
         return caixa;
     }
@@ -104,7 +101,5 @@ public class VendaBEAN {
     public void setCaixa(CaixaBEAN caixa) {
         this.caixa = caixa;
     }
-    
-    
 
 }

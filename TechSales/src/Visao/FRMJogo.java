@@ -539,6 +539,9 @@ public class FRMJogo extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfChaveKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfChaveKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfChaveKeyTyped(evt);
             }
@@ -807,18 +810,8 @@ public class FRMJogo extends javax.swing.JFrame {
     }//GEN-LAST:event_tfChaveKeyPressed
 
     private void tfChaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyTyped
-        TableRowSorter sorter = null;
-        DefaultTableModel model = (DefaultTableModel) tableJogo.getModel();
-        sorter = new TableRowSorter<TableModel>(model);
-        tableJogo.setRowSorter(sorter);
-        String text = tfChave.getText();
-        if (text.length() == 0) {
-            sorter.setRowFilter(null);
-        } else {
-            sorter.setRowFilter(RowFilter.regexFilter(text));
-        }
-    }//GEN-LAST:event_tfChaveKeyTyped
 
+    }//GEN-LAST:event_tfChaveKeyTyped
 
     private void tfChaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfChaveActionPerformed
         // TODO add your handling code here:
@@ -1025,7 +1018,6 @@ public class FRMJogo extends javax.swing.JFrame {
         btCadastrar.setEnabled(false);
     }
 
-
     private void btNovoDadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoDadoActionPerformed
         limpaBotoes();
         limparCampos();
@@ -1050,6 +1042,23 @@ public class FRMJogo extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_tfPrecoPadraoKeyTyped
+
+    private void tfChaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfChaveKeyReleased
+        try {
+            TableRowSorter sorter = null;
+            DefaultTableModel model = (DefaultTableModel) tableJogo.getModel();
+            sorter = new TableRowSorter<TableModel>(model);
+            tableJogo.setRowSorter(sorter);
+            String text = tfChave.getText();
+            if (text.length() == 0) {
+                sorter.setRowFilter(null);
+            } else {
+                sorter.setRowFilter(RowFilter.regexFilter(text));
+            }
+        } catch (Exception e) {
+            TableRowSorter sorter = null;
+        }
+    }//GEN-LAST:event_tfChaveKeyReleased
 
     private void limparCampos() {
         lbCodigoJogo.setText("...");

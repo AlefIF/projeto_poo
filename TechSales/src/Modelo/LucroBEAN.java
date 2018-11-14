@@ -5,8 +5,6 @@
  */
 package Modelo;
 
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,7 +14,6 @@ import javax.persistence.Table;
  *
  * @author Alef
  */
-
 @Entity
 @Table(name = "lucro")
 public class LucroBEAN {
@@ -42,5 +39,4 @@ public class LucroBEAN {
         this.lucPorcentagem = lucPorcentagem;
     }
 
-    
 }

@@ -18,7 +18,7 @@ import org.hibernate.HibernateException;
  * @author Alef
  */
 public class RelLocalControle {
-    
+
     private static EntityManager manager = JpaUtil.getEntityManager();
     private static EntityTransaction tx = manager.getTransaction();
 
@@ -75,5 +75,5 @@ public class RelLocalControle {
         }
 
     }
-     
+
 }

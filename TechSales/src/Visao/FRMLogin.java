@@ -258,7 +258,6 @@ public class FRMLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-
     private void rbSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSenhaActionPerformed
         if (rbSenha.isSelected()) {
             tfSenha.setEchoChar((char) 0);
@@ -306,7 +305,7 @@ public class FRMLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btSairProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairProgramaActionPerformed
-        System.exit(0);        
+        System.exit(0);
     }//GEN-LAST:event_btSairProgramaActionPerformed
 
     /**

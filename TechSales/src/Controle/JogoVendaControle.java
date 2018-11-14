@@ -17,6 +17,7 @@ import jpa.JpaUtil;
  * @author Alef
  */
 public class JogoVendaControle {
+
     private static EntityManager manager = JpaUtil.getEntityManager();
     private static EntityTransaction tx = manager.getTransaction();
 

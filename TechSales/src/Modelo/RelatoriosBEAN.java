@@ -890,11 +890,11 @@ public class RelatoriosBEAN {
                     + "</tr> ";
 
             for (NotaDeCompraPrazoBEAN nap : cNdcap.listarALL()) {
-                if (nap.getNota().getNdcCodigo()== n.getNdcCodigo()) {
-                    frase += "<tr align=center><td>" + nap.getNapNumParcela()+ "</td><td>"
-                            + nap.getNapData()+ "</td><td>"
-                            + nap.getNapValor()+ "</td><td>"
-                            + nap.getNapSituacao()+ "</td></tr>";
+                if (nap.getNota().getNdcCodigo() == n.getNdcCodigo()) {
+                    frase += "<tr align=center><td>" + nap.getNapNumParcela() + "</td><td>"
+                            + nap.getNapData() + "</td><td>"
+                            + nap.getNapValor() + "</td><td>"
+                            + nap.getNapSituacao() + "</td></tr>";
                 }
             }
 

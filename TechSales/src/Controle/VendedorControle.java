@@ -71,5 +71,5 @@ public class VendedorControle {
             return false;
         }
     }
-   
+
 }

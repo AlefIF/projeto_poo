@@ -77,7 +77,5 @@ public class ContaAPrazoBEAN {
     public void setConta(ContaBEAN conta) {
         this.conta = conta;
     }
-    
-    
 
 }

@@ -26,6 +26,7 @@ import Modelo.VendaBEAN;
 import Modelo.VendedorBEAN;
 import java.awt.event.KeyEvent;
 import java.math.RoundingMode;
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -68,6 +69,7 @@ public class FRMVendaNova extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
+        tfDataCompra.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date(System.currentTimeMillis())));
     }
 
     /**

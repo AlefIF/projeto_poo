@@ -56,7 +56,7 @@ public class FRMCadastroFun extends javax.swing.JFrame {
         tbUsers.addColumn("Idade");
         tbUsers.addColumn("telefone");
         tbUsers.addColumn("Email");
-        tbUsers.addColumn("nisPis");
+        tbUsers.addColumn("Pis");
         tbUsers.addColumn("Emprego");
         tbUsers.addColumn("Salário");
 
